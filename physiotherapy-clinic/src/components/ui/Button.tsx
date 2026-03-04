@@ -19,15 +19,15 @@ export function Button({
   ...props
 }: ButtonProps) {
   const base =
-    'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 cursor-pointer disabled:opacity-50 disabled:pointer-events-none';
+    'inline-flex items-center justify-center font-bold uppercase tracking-widest rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 cursor-pointer disabled:opacity-50 disabled:pointer-events-none';
 
   const variants: Record<ButtonVariant, string> = {
     primary:
-      'bg-[#19e65e] text-white hover:bg-[#14cd53] hover:-translate-y-px focus-visible:ring-[#19e65e] shadow-sm',
+      'bg-seafoam text-white hover:bg-white hover:text-forest hover:-translate-y-1 shadow-xl',
     secondary:
-      'bg-transparent text-[#19e65e] border-2 border-[#19e65e] hover:bg-[#19e65e] hover:text-white focus-visible:ring-[#19e65e]',
+      'bg-black/40 backdrop-blur-md text-white border border-white/40 hover:bg-white/20 hover:border-white/60 hover:-translate-y-1 shadow-lg',
     ghost:
-      'bg-transparent text-[#1a1a2e] hover:bg-gray-100 focus-visible:ring-gray-400',
+      'bg-transparent text-white hover:bg-white/10 focus-visible:ring-white/20',
   };
 
   const sizes: Record<ButtonSize, string> = {

@@ -1,24 +1,16 @@
 import type { Metadata } from 'next';
-import { Cormorant_Garamond, DM_Sans, Alex_Brush } from 'next/font/google';
+import { Lexend, Great_Vibes } from 'next/font/google';
 import './globals.css';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 
-const dmSans = DM_Sans({
+const lexend = Lexend({
   subsets: ['latin'],
-  weight: ['400', '500', '700'],
   variable: '--font-sans',
   display: 'swap',
 });
 
-const cormorant = Cormorant_Garamond({
-  subsets: ['latin'],
-  weight: ['300', '400', '600', '700'],
-  variable: '--font-serif',
-  display: 'swap',
-});
-
-const alexBrush = Alex_Brush({
+const greatVibes = Great_Vibes({
   subsets: ['latin'],
   weight: ['400'],
   variable: '--font-script',
@@ -40,11 +32,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${cormorant.variable} ${alexBrush.variable}`}>
+    <html lang="en" className={`${lexend.variable} ${greatVibes.variable}`}>
       <head>
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
       </head>
-      <body className="font-sans antialiased overflow-x-hidden selection:bg-lime selection:text-forest">
+      <body className="font-sans antialiased overflow-x-hidden selection:bg-seafoam selection:text-forest">
         <Navbar />
         <main>{children}</main>
         <Footer />

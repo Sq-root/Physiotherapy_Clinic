@@ -20,31 +20,30 @@ The brand language is warm, empowering, and organic — blending clinical credib
 
 ### 2.1 Color Palette
 
-| Role             | Value     | Usage                                    |
-| ---------------- | --------- | ---------------------------------------- |
-| **Primary**      | `#19e65e` | CTAs, highlights, active states, accents |
-| **Background**   | `#ffffff` | Page background (light mode)             |
-| **Canvas**       | `#f5f5f5` | Section backgrounds, cards               |
-| **Text Primary** | `#1a1a2e` | Headings, body copy                      |
-| **Text Muted**   | `#6b7280` | Captions, labels, helper text            |
-| **Border**       | `#e5e7eb` | Dividers, card borders                   |
+| Role              | Value     | Usage                                    |
+| ----------------- | --------- | ---------------------------------------- |
+| **Primary**       | `#19e65e` | CTAs, highlights, active states, accents |
+| **Background**    | `#ffffff` | Page background (light mode)             |
+| **Canvas / Sage** | `#e8efe6` | Section backgrounds, bento grid borders  |
+| **Text Primary**  | `#0e221c` | Headings, body copy (Forest)             |
+| **Text Muted**    | `#6b7280` | Captions, labels, helper text            |
+| **Border**        | `#e5e7eb` | Dividers, card borders                   |
 
 > **Color Mode:** Light  
 > **Saturation:** `2` (vibrant but not garish)
 
 ### 2.2 Typography
 
-| Role           | Font   | Weight   | Size (Desktop) |
-| -------------- | ------ | -------- | -------------- |
-| **Display H1** | Lexend | 700 Bold | `56px – 72px`  |
-| **Heading H2** | Lexend | 600      | `36px – 44px`  |
-| **Heading H3** | Lexend | 600      | `24px – 28px`  |
-| **Body**       | Lexend | 400      | `16px`         |
-| **Caption**    | Lexend | 400      | `13px – 14px`  |
-| **Button**     | Lexend | 500      | `15px – 16px`  |
+| Role           | Font        | Weight   | Size (Desktop) |
+| -------------- | ----------- | -------- | -------------- |
+| **Display H1** | Lexend      | 700 Bold | `56px – 72px`  |
+| **Heading H2** | Lexend      | 600      | `36px – 44px`  |
+| **Script**     | Great Vibes | 400      | `72px – 96px`  |
+| **Body**       | Lexend      | 400      | `16px`         |
+| **Button**     | Lexend      | 700 Bold | `14px – 16px`  |
 
-> **Font Source:** [Google Fonts — Lexend](https://fonts.google.com/specimen/Lexend)  
-> **Import:** `@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');`
+> **Font Source:** [Google Fonts — Lexend](https://fonts.google.com/specimen/Lexend), [Great Vibes](https://fonts.google.com/specimen/Great+Vibes)  
+> **Import:** `next/font/google` configuration in `layout.tsx`
 
 ### 2.3 Spacing & Layout
 
@@ -224,44 +223,25 @@ The homepage is a single long-scroll page composed of **9 distinct sections**.
 ### 5.1 Buttons
 
 ```css
-/* Primary Button */
+/* Primary Button (Pill) */
 .btn-primary {
-  background-color: #19e65e;
+  background-color: #6da588; /* Seafoam */
   color: #ffffff;
-  font-family: "Lexend", sans-serif;
-  font-weight: 500;
-  font-size: 15px;
-  padding: 12px 28px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  transition:
-    background 0.2s ease,
-    transform 0.1s ease;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: 9999px;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
 }
 
-.btn-primary:hover {
-  background-color: #14cd53;
-  transform: translateY(-1px);
-}
-
-/* Secondary / Ghost Button */
+/* Secondary Button (Dark Glass) */
 .btn-secondary {
-  background: transparent;
-  color: #19e65e;
-  border: 2px solid #19e65e;
-  font-family: "Lexend", sans-serif;
-  font-weight: 500;
-  font-size: 15px;
-  padding: 12px 28px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.btn-secondary:hover {
-  background-color: #19e65e;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   color: #ffffff;
+  border-radius: 9999px;
 }
 ```
 

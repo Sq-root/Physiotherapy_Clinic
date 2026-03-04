@@ -1,73 +1,158 @@
 export function ServicesSection() {
+  const cards = [
+    {
+      title: "Advanced Physiotherapy Treatment",
+      desc: "Our advanced physiotherapy treatments are designed to...",
+      img: "https://images.unsplash.com/photo-1588286840104-8957b019727f?auto=format&fit=crop&q=80"
+    },
+    {
+      title: "Lower Back Pain Management",
+      desc: "Our lower back physiotherapy treatment focuses on...",
+      img: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80"
+    },
+    {
+      title: "Manual Therapy",
+      desc: "Manual therapy is a hands-on physiotherapy technique...",
+      img: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&q=80"
+    },
+    {
+      title: "Strength Recovery Therapy",
+      desc: "Our shoulder rehabilitation therapy is specially designed...",
+      img: "https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&q=80"
+    },
+    {
+      title: "Neuromuscular Rehabilitation",
+      desc: "Our specialized hand therapy program focuses on...",
+      img: "https://images.unsplash.com/photo-1550831107-1553da8c8464?auto=format&fit=crop&q=80"
+    }
+  ];
+
   return (
-    <section className="relative py-24 bg-sage/20" id="services">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="bg-lime/20 border border-lime text-forest font-bold uppercase tracking-widest text-xs mb-4 inline-block px-3 py-1 rounded-full">Our Expertise</span>
-          <h2 className="text-5xl md:text-6xl font-bold text-forest mt-2 mb-6 font-serif italic">Bloom With Our Services</h2>
-          <p className="text-forest/70 text-lg font-medium">Comprehensive care tailored to your specific stage of life and recovery.</p>
-        </div>
+    <section className="relative py-24 bg-section overflow-hidden" id="services">
+      {/* Background Decor */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none overflow-hidden">
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-seafoam/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-white/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4"></div>
       </div>
-      
-      <div className="sticky top-24 z-40 bg-white/80 backdrop-blur-md border-y border-forest/10 py-4 mb-20 shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 flex justify-center">
-          <nav className="flex gap-2 md:gap-8 overflow-x-auto no-scrollbar py-2">
-            <a className="px-6 py-2 rounded-full bg-forest text-white text-sm font-bold uppercase tracking-wide hover:bg-seafoam transition-all whitespace-nowrap" href="#orthopedic">Orthopedic</a>
-            <a className="px-6 py-2 rounded-full border border-forest/20 text-forest text-sm font-bold uppercase tracking-wide hover:bg-seafoam hover:text-white transition-all whitespace-nowrap bg-white" href="#sports">Sports</a>
-            <a className="px-6 py-2 rounded-full border border-forest/20 text-forest text-sm font-bold uppercase tracking-wide hover:bg-seafoam hover:text-white transition-all whitespace-nowrap bg-white" href="#neurological">Neurological</a>
-            <a className="px-6 py-2 rounded-full border border-forest/20 text-forest text-sm font-bold uppercase tracking-wide hover:bg-seafoam hover:text-white transition-all whitespace-nowrap bg-white" href="#pediatric">Pediatric</a>
-          </nav>
-        </div>
-      </div>
-      
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 space-y-32">
-        <div className="scroll-mt-48 grid lg:grid-cols-2 gap-16 items-center" id="orthopedic">
-          <div className="relative group">
-            <div className="absolute -inset-4 bg-seafoam/10 rounded-5xl rotate-3 group-hover:rotate-6 transition-transform duration-500"></div>
-            <img alt="Orthopedic" className="relative rounded-5xl shadow-xl w-full aspect-[4/3] object-cover z-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmM6vJbOVljNe8ImuH6Mt7nLdEXowsfKuxy-Ued0sWHrf3k5JSVupKi8O4N71dbNrcW0G6bpzM9hD9a1wCvq-_XxXZX_NRp8jf0hxFB6LaK7WrDO7OVXiD_z2lLNhCQztz5OdQQEl3l66PVxeOFst3iOH3W6CdYvpu8Pjq32wPHCZ5FQjzsjwgP_q3hB668s9ljcSYRsqoYgKOaJcwWU_hQ1_sy6KOI1tAM5gvfhBWgdVN3JuHRkT5OEXEkrMTQ5p5W6PGtBbYMKaS"/>
+
+      <div className="mx-auto max-w-[1400px] px-6 lg:px-8 relative z-10">
+        
+        {/* Header Section */}
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center justify-center gap-3 mb-6">
+            <div className="w-12 h-[1px] bg-seafoam"></div>
+            <span className="text-forest text-[10px] font-bold uppercase tracking-[0.2em]">Recover With Confidence</span>
           </div>
-          <div>
-            <div className="flex items-center gap-3 mb-6">
-              <span className="p-3 rounded-full bg-seafoam text-white shadow-sm">
-                <span className="material-symbols-outlined text-2xl">orthopedics</span>
-              </span>
-              <h3 className="text-4xl font-serif italic text-forest">Orthopedic Care</h3>
-            </div>
-            <p className="text-lg text-forest/80 mb-10 leading-relaxed font-medium">Restoring the structural integrity of your body through advanced manual techniques and strength conditioning.</p>
-            <div className="grid sm:grid-cols-2 gap-8 mb-10">
-              <div className="bg-white p-6 rounded-3xl shadow-sm border border-forest/5">
-                <h4 className="font-bold text-seafoam uppercase tracking-wider text-xs mb-4 border-b border-seafoam/10 pb-2">Common Symptoms</h4>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-2 text-sm text-forest/80 font-medium">
-                    <span className="material-symbols-outlined text-seafoam text-base">check_circle</span> Back & Neck Pain
-                  </li>
-                  <li className="flex items-start gap-2 text-sm text-forest/80 font-medium">
-                    <span className="material-symbols-outlined text-seafoam text-base">check_circle</span> Arthritis
-                  </li>
-                  <li className="flex items-start gap-2 text-sm text-forest/80 font-medium">
-                    <span className="material-symbols-outlined text-seafoam text-base">check_circle</span> Joint Stiffness
-                  </li>
-                </ul>
-              </div>
-              <div className="bg-forest/5 p-6 rounded-3xl border border-forest/5">
-                <h4 className="font-bold text-forest uppercase tracking-wider text-xs mb-4 border-b border-forest/10 pb-2">Our Approach</h4>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-2 text-sm text-forest/80 font-medium">
-                    <span className="material-symbols-outlined text-forest text-base">spa</span> Manual Therapy
-                  </li>
-                  <li className="flex items-start gap-2 text-sm text-forest/80 font-medium">
-                    <span className="material-symbols-outlined text-forest text-base">spa</span> Joint Mobilization
-                  </li>
-                  <li className="flex items-start gap-2 text-sm text-forest/80 font-medium">
-                    <span className="material-symbols-outlined text-forest text-base">spa</span> Posture Correction
-                  </li>
-                </ul>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans text-forest leading-[1.2] font-medium tracking-tight max-w-4xl mx-auto">
+            Expert <span className="text-seafoam font-normal">Therapy Focused</span> On <br/>Movement And Wellness
+          </h2>
+        </div>
+
+        {/* Bento Grid Layout using Flex */}
+        <div className="flex flex-col lg:flex-row gap-6 lg:h-[760px]">
+          
+          {/* Left Column */}
+          <div className="flex flex-col gap-6 lg:w-[28%] lg:h-full">
+            {/* Card 1 */}
+            <div className="relative rounded-[2.5rem] overflow-hidden group flex-[1.1] w-full bg-white shadow-card">
+              <img src={cards[0].img} alt={cards[0].title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-forest/90 via-forest/40 to-transparent"></div>
+              <div className="absolute inset-x-0 bottom-0 p-8 flex flex-col justify-end h-full">
+                <div className="flex items-end justify-between gap-4 mt-auto">
+                  <div className="pr-4">
+                    <h3 className="text-xl xl:text-2xl font-bold text-white mb-3 leading-tight">{cards[0].title}</h3>
+                    <p className="text-white/80 text-sm font-medium line-clamp-2 leading-relaxed">{cards[0].desc}</p>
+                  </div>
+                  <button className="flex-shrink-0 size-12 rounded-full bg-white text-forest flex items-center justify-center hover:bg-seafoam hover:text-white transition-all shadow-md group-hover:-translate-y-1">
+                    <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
+                  </button>
+                </div>
               </div>
             </div>
-            <a className="inline-flex items-center justify-center px-8 py-4 bg-seafoam text-white font-bold uppercase tracking-widest rounded-full hover:bg-forest transition-all shadow-lg" href="#booking-form">
-              Book Specialized Session
-            </a>
+
+            {/* Card 2 */}
+            <div className="relative rounded-[2.5rem] overflow-hidden group flex-1 w-full bg-white shadow-card">
+              <img src={cards[1].img} alt={cards[1].title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-forest/90 via-forest/40 to-transparent"></div>
+              <div className="absolute inset-x-0 bottom-0 p-8 flex flex-col justify-end h-full">
+                <div className="flex items-end justify-between gap-4 mt-auto">
+                  <div className="pr-4">
+                    <h3 className="text-xl xl:text-2xl font-bold text-white mb-3 leading-tight">{cards[1].title}</h3>
+                    <p className="text-white/80 text-sm font-medium line-clamp-2 leading-relaxed">{cards[1].desc}</p>
+                  </div>
+                  <button className="flex-shrink-0 size-12 rounded-full bg-white text-forest flex items-center justify-center hover:bg-seafoam hover:text-white transition-all shadow-md group-hover:-translate-y-1">
+                    <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
+
+          {/* Middle Column (Hero Card) */}
+          <div className="lg:w-[44%] lg:h-full">
+            <div className="relative rounded-[3rem] overflow-hidden group w-full h-[500px] lg:h-full bg-white shadow-card">
+              <img src={cards[2].img} alt={cards[2].title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-forest/90 via-forest/20 to-transparent"></div>
+              <div className="absolute inset-x-0 bottom-0 p-10 xl:p-12 flex flex-col justify-end h-full">
+                 <div className="flex items-end justify-between gap-6 mt-auto">
+                  <div className="pr-8">
+                    <h3 className="text-3xl xl:text-4xl font-bold text-white mb-4 leading-tight">{cards[2].title}</h3>
+                    <p className="text-white/80 text-base xl:text-lg font-medium line-clamp-3 leading-relaxed">{cards[2].desc}</p>
+                  </div>
+                  <button className="flex-shrink-0 size-16 rounded-full bg-white text-forest flex items-center justify-center hover:bg-seafoam hover:text-white transition-all shadow-lg group-hover:-translate-y-1">
+                    <span className="material-symbols-outlined text-[24px]">arrow_forward</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column */}
+          <div className="flex flex-col gap-6 lg:w-[28%] lg:h-full">
+             {/* Card 4 */}
+             <div className="relative rounded-[2.5rem] overflow-hidden group flex-1 w-full bg-white shadow-card">
+              <img src={cards[3].img} alt={cards[3].title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-forest/90 via-forest/40 to-transparent"></div>
+              <div className="absolute inset-x-0 bottom-0 p-8 flex flex-col justify-end h-full">
+                <div className="flex items-end justify-between gap-4 mt-auto">
+                  <div className="pr-4">
+                    <h3 className="text-xl xl:text-2xl font-bold text-white mb-3 leading-tight">{cards[3].title}</h3>
+                    <p className="text-white/80 text-sm font-medium line-clamp-2 leading-relaxed">{cards[3].desc}</p>
+                  </div>
+                  <button className="flex-shrink-0 size-12 rounded-full bg-white text-forest flex items-center justify-center hover:bg-seafoam hover:text-white transition-all shadow-md group-hover:-translate-y-1">
+                    <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 5 */}
+            <div className="relative rounded-[2.5rem] overflow-hidden group flex-[1.1] w-full bg-white shadow-card">
+              <img src={cards[4].img} alt={cards[4].title} className="absolute inset-0 w-full h-full object-cover top-0 transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-forest/90 via-forest/40 to-transparent"></div>
+               <div className="absolute inset-x-0 bottom-0 p-8 flex flex-col justify-end h-full">
+                <div className="flex items-end justify-between gap-4 mt-auto">
+                  <div className="pr-4">
+                    <h3 className="text-xl xl:text-2xl font-bold text-white mb-3 leading-tight">{cards[4].title}</h3>
+                    <p className="text-white/80 text-sm font-medium line-clamp-2 leading-relaxed">{cards[4].desc}</p>
+                  </div>
+                  <button className="flex-shrink-0 size-12 rounded-full bg-white text-forest flex items-center justify-center hover:bg-seafoam hover:text-white transition-all shadow-md group-hover:-translate-y-1">
+                    <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="mt-20 flex justify-center">
+          <a className="inline-flex items-center justify-center gap-4 px-8 py-3 bg-transparent border border-forest text-forest hover:bg-forest hover:text-white transition-colors rounded-full text-sm font-medium tracking-wide group" href="#all-services">
+            View All Services
+            <span className="size-8 rounded-full bg-seafoam flex items-center justify-center text-forest group-hover:bg-white transition-colors">
+              <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+            </span>
+          </a>
         </div>
       </div>
     </section>

@@ -1,13 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
 @import "tailwindcss";
 @source "../../src";
 
 @theme {
-  --color-lime: #19e65e;
-  --color-forest: #1a1a2e;
+  --color-lime: #A4C639;
+  --color-forest: #002D04;
   --color-sage: #f5f5f5;
-  --color-seafoam: #19e65e;
+  --color-section: #DCE6D5;
+  --color-seafoam: #66A182;
   --color-amber: #D4A373;
   --color-white: #FFFFFF;
   --color-glass: rgba(255, 255, 255, 0.15);
@@ -15,15 +14,15 @@
 
   --font-sans: "Lexend", sans-serif;
   --font-serif: "Lexend", sans-serif;
-  --font-script: "Alex Brush", cursive;
+  --font-script: "Great Vibes", cursive;
 
   --background-image-paper-texture: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
 
   --shadow-flat: 0 0 0 0 rgba(0,0,0,0);
-  --shadow-sharp: 6px 6px 0px 0px #1a1a2e;
-  --shadow-sharp-sm: 3px 3px 0px 0px #1a1a2e;
-  --shadow-sharp-lime: 6px 6px 0px 0px #19e65e;
-  --shadow-glow: 0 8px 30px rgba(25, 230, 94, 0.15);
+  --shadow-sharp: 6px 6px 0px 0px #002D04;
+  --shadow-sharp-sm: 3px 3px 0px 0px #002D04;
+  --shadow-sharp-seafoam: 6px 6px 0px 0px #66A182;
+  --shadow-glow: 0 8px 30px rgba(102, 161, 130, 0.2);
   --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.08);
 
   --radius-4xl: 2rem;
@@ -31,21 +30,30 @@
 }
 
 @layer base {
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+  
   body {
-    @apply bg-sage text-forest;
-   background-image: var(--background-image-paper-texture);
+    @apply bg-white text-forest;
+    background-image: var(--background-image-paper-texture);
     background-attachment: fixed;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    line-height: 1.6;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold text-forest;
+    @apply font-bold text-forest tracking-tight;
+    line-height: 1.2;
   }
 }
 
 @layer utilities {
   .nav-link {
-    @apply text-white font-medium uppercase tracking-wider hover:text-lime px-4 py-3 transition-colors duration-300;
+    @apply text-white font-medium uppercase tracking-wider hover:text-seafoam px-4 py-3 transition-colors duration-300;
   }
   .shape-arch {
     border-radius: 200px 200px 0 0;
@@ -61,12 +69,6 @@
     filter: invert(1) brightness(2);
     opacity: 0.6;
   }
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
 }
 
 html {

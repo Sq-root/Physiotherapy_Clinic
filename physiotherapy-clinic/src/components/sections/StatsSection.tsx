@@ -2,7 +2,7 @@ import { stats } from '@/lib/data/stats';
 
 export function StatsSection() {
   return (
-    <section className="bg-[#19e65e] py-16">
+    <section className="bg-seafoam py-16">
       <div className="container-main">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {stats.map((stat) => (

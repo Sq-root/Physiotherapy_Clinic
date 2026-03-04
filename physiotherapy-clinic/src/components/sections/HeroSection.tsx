@@ -28,9 +28,9 @@ export function HeroSection() {
           <span className="text-xs font-bold uppercase tracking-[0.3em]">Boutique Physiotherapy</span>
         </div>
         
-        <h1 className="text-5xl md:text-8xl font-sans font-normal text-white leading-[1.1] mb-6">
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-sans font-bold text-white leading-[1.05] mb-8">
           Begin Your <br/>
-          <span className="font-script text-lime block mt-2 text-6xl md:text-9xl normal-case">Inner Recovery Journey</span>
+          <span className="font-script text-seafoam block mt-3 text-7xl md:text-9xl normal-case tracking-normal">Inner Recovery Journey</span>
         </h1>
         
         <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
@@ -39,13 +39,13 @@ export function HeroSection() {
         
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
           <a 
-            className="h-16 px-12 bg-seafoam text-white font-bold uppercase tracking-widest text-sm hover:bg-white hover:text-forest transition-all rounded-full flex items-center shadow-xl cursor-pointer" 
+            className="h-16 px-12 bg-seafoam text-white font-bold uppercase tracking-widest text-sm hover:bg-white hover:text-forest hover:-translate-y-1 transition-all rounded-full flex items-center shadow-2xl cursor-pointer" 
             href="#booking-form"
           >
             Make An Appointment
           </a>
           <a 
-            className="h-16 px-12 bg-forest/40 backdrop-blur-md border border-white/30 text-white font-bold uppercase tracking-widest text-sm hover:bg-white/20 transition-all rounded-full flex items-center cursor-pointer" 
+            className="h-16 px-12 bg-black/40 backdrop-blur-md border border-white/40 text-white font-bold uppercase tracking-widest text-sm hover:bg-white/20 hover:border-white/60 hover:-translate-y-1 transition-all rounded-full flex items-center shadow-xl cursor-pointer" 
             href="#services"
           >
             Explore Services

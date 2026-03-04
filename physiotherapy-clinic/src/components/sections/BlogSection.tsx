@@ -4,8 +4,8 @@ export function BlogSection() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div className="max-w-xl">
-            <span className="text-lime font-bold tracking-widest uppercase text-sm mb-4 block">Recovery Journal</span>
-            <h2 className="text-5xl font-serif italic text-forest mb-4">Insights & Healing</h2>
+            <span className="text-seafoam font-bold tracking-widest uppercase text-sm mb-4 block">Recovery Journal</span>
+            <h2 className="text-5xl font-sans italic text-forest mb-4">Insights & Healing</h2>
             <p className="text-forest/70 text-lg font-medium">Expert advice, patient stories, and tips for maintaining a healthy, active lifestyle.</p>
           </div>
           <a className="inline-flex items-center gap-2 font-bold text-seafoam hover:text-forest transition-colors group" href="#">
@@ -23,7 +23,7 @@ export function BlogSection() {
             </div>
             <div className="flex items-center gap-4 text-sm text-forest/60 mb-3 font-medium">
               <span>Oct 12, 2023</span>
-              <span className="w-1 h-1 rounded-full bg-lime"></span>
+              <span className="w-1 h-1 rounded-full bg-seafoam"></span>
               <span>5 min read</span>
             </div>
             <h3 className="text-2xl font-bold text-forest mb-3 leading-snug group-hover:text-seafoam transition-colors">5 Stretches to Alleviate Lower Back Pain at Your Desk</h3>
@@ -38,7 +38,7 @@ export function BlogSection() {
             </div>
             <div className="flex items-center gap-4 text-sm text-forest/60 mb-3 font-medium">
               <span>Nov 05, 2023</span>
-              <span className="w-1 h-1 rounded-full bg-lime"></span>
+              <span className="w-1 h-1 rounded-full bg-seafoam"></span>
               <span>7 min read</span>
             </div>
             <h3 className="text-2xl font-bold text-forest mb-3 leading-snug group-hover:text-seafoam transition-colors">Return to Sport: A Phased Approach to Athletic Recovery</h3>
@@ -53,7 +53,7 @@ export function BlogSection() {
             </div>
             <div className="flex items-center gap-4 text-sm text-forest/60 mb-3 font-medium">
               <span>Dec 18, 2023</span>
-              <span className="w-1 h-1 rounded-full bg-lime"></span>
+              <span className="w-1 h-1 rounded-full bg-seafoam"></span>
               <span>6 min read</span>
             </div>
             <h3 className="text-2xl font-bold text-forest mb-3 leading-snug group-hover:text-seafoam transition-colors">The Mind-Body Connection in Physiotherapy</h3>

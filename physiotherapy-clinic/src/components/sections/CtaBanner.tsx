@@ -2,7 +2,7 @@
 
 export function CtaBanner() {
   return (
-    <section className="bg-gradient-to-br from-lime to-forest py-24 relative overflow-hidden">
+    <section className="bg-gradient-to-br from-seafoam to-forest py-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-black/10"></div>
       
       <div className="mx-auto max-w-3xl px-6 lg:px-8 relative z-10 text-center">

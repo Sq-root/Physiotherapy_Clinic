@@ -19,32 +19,69 @@ export function Navbar() {
     <>
       <header
         className={cn(
-          "fixed top-0 z-50 w-full transition-all duration-300",
-          scrolled ? "bg-forest/95 backdrop-blur-md shadow-md py-0" : "bg-transparent py-2"
+          "fixed z-50 transition-all duration-500 ease-in-out",
+          scrolled 
+            ? "top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl bg-white/90 backdrop-blur-md shadow-card rounded-full py-2" 
+            : "top-0 left-0 w-full bg-transparent py-2"
         )}
       >
-        <div className="mx-auto flex h-24 max-w-7xl items-center justify-between px-6 lg:px-8">
+        <div className={cn(
+          "mx-auto flex items-center justify-between px-8 transition-all duration-500",
+          scrolled ? "h-16" : "h-24 max-w-7xl"
+        )}>
           <Link href="/" className="flex items-center gap-3 group cursor-pointer">
-            <div className="relative flex h-12 w-12 items-center justify-center border-2 border-white rounded-full bg-white/10 backdrop-blur-sm">
-              <span className="material-symbols-outlined text-2xl text-white font-bold">spa</span>
+            <div className={cn(
+              "relative animate-in fade-in zoom-in duration-700 flex items-center justify-center border-2 rounded-full transition-all duration-500",
+              scrolled ? "h-10 w-10 bg-forest border-forest" : "h-12 w-12 bg-white/10 border-white backdrop-blur-sm"
+            )}>
+              <span className={cn(
+                "material-symbols-outlined text-xl font-bold transition-colors",
+                scrolled ? "text-seafoam" : "text-white"
+              )}>spa</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-2xl font-bold tracking-tight text-white font-sans uppercase leading-none">Vitality</span>
-              <span className="text-sm font-bold tracking-[0.2em] text-lime uppercase leading-none">Path</span>
+              <span className={cn(
+                "text-xl font-bold tracking-tight font-sans uppercase leading-none transition-colors",
+                scrolled ? "text-forest" : "text-white"
+              )}>Vitality</span>
+              <span className={cn(
+                "text-xs font-bold tracking-[0.2em] uppercase leading-none transition-colors",
+                scrolled ? "text-muted" : "text-seafoam"
+              )}>Path</span>
             </div>
           </Link>
           
-          <nav className="hidden md:flex items-center gap-2">
-            <Link className="text-lime font-bold uppercase tracking-wider px-6 py-2" href="#">Home</Link>
-            <Link className="nav-link" href="#services">Services</Link>
-            <Link className="nav-link" href="#faq">FAQ</Link>
-            <Link className="nav-link" href="#journal">Blog</Link>
-            <Link className="nav-link" href="#contact">Contact</Link>
+          <nav className="hidden md:flex items-center gap-1">
+            <Link className={cn(
+              "font-bold uppercase tracking-wider px-4 py-2 text-sm transition-colors",
+              scrolled ? "text-forest hover:text-seafoam" : "text-seafoam"
+            )} href="#">Home</Link>
+            <Link className={cn(
+              "font-bold uppercase tracking-wider px-4 py-2 text-sm transition-colors",
+              scrolled ? "text-forest hover:text-lime" : "text-white/80 hover:text-white"
+            )} href="#services">Services</Link>
+            <Link className={cn(
+              "font-bold uppercase tracking-wider px-4 py-2 text-sm transition-colors",
+              scrolled ? "text-forest hover:text-lime" : "text-white/80 hover:text-white"
+            )} href="#faq">FAQ</Link>
+            <Link className={cn(
+              "font-bold uppercase tracking-wider px-4 py-2 text-sm transition-colors",
+              scrolled ? "text-forest hover:text-lime" : "text-white/80 hover:text-white"
+            )} href="#journal">Blog</Link>
+            <Link className={cn(
+              "font-bold uppercase tracking-wider px-4 py-2 text-sm transition-colors",
+              scrolled ? "text-forest hover:text-seafoam" : "text-white/80 hover:text-white"
+            )} href="#contact">Contact</Link>
           </nav>
           
           <div className="hidden md:flex gap-4">
             <Link 
-              className="flex items-center justify-center h-12 px-8 bg-seafoam text-white text-sm font-bold uppercase tracking-widest transition-all hover:bg-white hover:text-forest rounded-full" 
+              className={cn(
+                "flex items-center justify-center h-10 px-6 text-xs font-bold uppercase tracking-widest transition-all rounded-full",
+                scrolled 
+                  ? "bg-seafoam text-white hover:bg-forest shadow-sm" 
+                  : "bg-seafoam text-white hover:bg-white hover:text-forest shadow-lg"
+              )}
               href="#booking-form"
             >
               Make Appointment
@@ -53,7 +90,10 @@ export function Navbar() {
 
           {/* Mobile Hamburger */}
           <button
-            className="md:hidden p-2 rounded-lg text-white"
+            className={cn(
+              "md:hidden p-2 rounded-lg transition-colors",
+              scrolled ? "text-forest" : "text-white"
+            )}
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
           >
@@ -65,18 +105,39 @@ export function Navbar() {
       {/* Mobile Drawer */}
       <div
         className={cn(
-          'fixed inset-x-0 top-[96px] z-40 bg-forest/95 backdrop-blur-md border-b border-white/10 overflow-hidden transition-all duration-300 md:hidden',
-          mobileOpen ? 'max-h-96 py-4' : 'max-h-0 py-0'
+          'fixed inset-x-0 z-40 overflow-hidden transition-all duration-500 md:hidden',
+          scrolled 
+            ? 'top-24 left-1/2 -translate-x-1/2 w-[90%] bg-white/95 backdrop-blur-md rounded-3xl shadow-glow border border-forest/10' 
+            : 'top-[96px] bg-forest/95 backdrop-blur-md border-b border-white/10 w-full left-0',
+          mobileOpen ? 'max-h-96 py-8' : 'max-h-0 py-0'
         )}
       >
-        <div className="flex flex-col items-center gap-4">
-            <Link className="text-lime font-bold uppercase tracking-wider px-6 py-2" href="#" onClick={() => setMobileOpen(false)}>Home</Link>
-            <Link className="nav-link" href="#services" onClick={() => setMobileOpen(false)}>Services</Link>
-            <Link className="nav-link" href="#faq" onClick={() => setMobileOpen(false)}>FAQ</Link>
-            <Link className="nav-link" href="#journal" onClick={() => setMobileOpen(false)}>Blog</Link>
-            <Link className="nav-link" href="#contact" onClick={() => setMobileOpen(false)}>Contact</Link>
+        <div className="flex flex-col items-center gap-6">
+            <Link className={cn(
+              "font-bold uppercase tracking-wider text-sm transition-colors",
+              scrolled ? "text-forest" : "text-seafoam"
+            )} href="#" onClick={() => setMobileOpen(false)}>Home</Link>
+            <Link className={cn(
+              "font-bold uppercase tracking-wider text-sm transition-colors",
+              scrolled ? "text-forest" : "text-white/80"
+            )} href="#services" onClick={() => setMobileOpen(false)}>Services</Link>
+            <Link className={cn(
+              "font-bold uppercase tracking-wider text-sm transition-colors",
+              scrolled ? "text-forest" : "text-white/80"
+            )} href="#faq" onClick={() => setMobileOpen(false)}>FAQ</Link>
+            <Link className={cn(
+              "font-bold uppercase tracking-wider text-sm transition-colors",
+              scrolled ? "text-forest" : "text-white/80"
+            )} href="#journal" onClick={() => setMobileOpen(false)}>Blog</Link>
+            <Link className={cn(
+              "font-bold uppercase tracking-wider text-sm transition-colors",
+              scrolled ? "text-forest" : "text-white/80"
+            )} href="#contact" onClick={() => setMobileOpen(false)}>Contact</Link>
             <Link 
-              className="flex items-center justify-center h-12 px-8 bg-seafoam text-white text-sm font-bold uppercase tracking-widest transition-all rounded-full mt-4" 
+              className={cn(
+                "flex items-center justify-center h-12 px-10 text-sm font-bold uppercase tracking-widest transition-all rounded-full mt-4",
+                scrolled ? "bg-forest text-white" : "bg-seafoam text-white"
+              )} 
               href="#booking-form"
               onClick={() => setMobileOpen(false)}
             >

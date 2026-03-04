@@ -14,7 +14,7 @@ export function Footer() {
               </div>
               <div className="flex flex-col">
                 <span className="text-xl font-bold tracking-tight text-white font-sans uppercase leading-none">Vitality</span>
-                <span className="text-xs font-bold tracking-[0.2em] text-lime uppercase leading-none">Path</span>
+                <span className="text-xs font-bold tracking-[0.2em] text-seafoam uppercase leading-none">Path</span>
               </div>
             </Link>
             <p className="text-white/60 text-sm leading-relaxed max-w-xs font-medium">
@@ -25,7 +25,7 @@ export function Footer() {
                 <a
                   key={i}
                   href="#"
-                  className="size-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-lime hover:text-forest transition-colors duration-300"
+                  className="size-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-seafoam hover:text-forest transition-colors duration-300"
                 >
                   <span className="material-symbols-outlined text-[18px]">{icon}</span>
                 </a>
@@ -35,13 +35,13 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="font-bold text-xs uppercase tracking-widest text-lime mb-6">
+            <h4 className="font-bold text-xs uppercase tracking-widest text-seafoam mb-6">
               Services
             </h4>
             <ul className="space-y-3">
               {['Orthopedic Care', 'Sports Rehab', 'Neurological', 'Pediatric'].map((s) => (
                 <li key={s}>
-                  <a href="#services" className="text-white/60 text-sm font-medium hover:text-lime transition-colors duration-200">
+                  <a href="#services" className="text-white/60 text-sm font-medium hover:text-seafoam transition-colors duration-200">
                     {s}
                   </a>
                 </li>
@@ -51,7 +51,7 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-bold text-xs uppercase tracking-widest text-lime mb-6">
+            <h4 className="font-bold text-xs uppercase tracking-widest text-seafoam mb-6">
               Contact
             </h4>
             <ul className="space-y-4">
@@ -61,13 +61,13 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-4">
                 <span className="material-symbols-outlined text-seafoam text-[20px] shrink-0">call</span>
-                <a href="tel:+15551234567" className="text-white/60 text-sm font-medium hover:text-lime transition-colors duration-200">
+                <a href="tel:+15551234567" className="text-white/60 text-sm font-medium hover:text-seafoam transition-colors duration-200">
                   +1 (555) 123-4567
                 </a>
               </li>
               <li className="flex items-center gap-4">
                 <span className="material-symbols-outlined text-seafoam text-[20px] shrink-0">mail</span>
-                <a href="mailto:hello@vitalitypath.com" className="text-white/60 text-sm font-medium hover:text-lime transition-colors duration-200">
+                <a href="mailto:hello@vitalitypath.com" className="text-white/60 text-sm font-medium hover:text-seafoam transition-colors duration-200">
                   hello@vitalitypath.com
                 </a>
               </li>
@@ -82,7 +82,7 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-6">
             {['Privacy Policy', 'Terms of Service'].map((item) => (
-              <a key={item} href="#" className="text-white/40 text-sm font-medium hover:text-lime transition-colors duration-200">
+              <a key={item} href="#" className="text-white/40 text-sm font-medium hover:text-seafoam transition-colors duration-200">
                 {item}
               </a>
             ))}

@@ -10,7 +10,7 @@ export function ContactSection() {
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Left — Info */}
           <div>
-            <span className="text-[#19e65e] text-sm font-semibold uppercase tracking-widest mb-3 block">
+            <span className="text-seafoam text-sm font-semibold uppercase tracking-widest mb-3 block">
               Get In Touch
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-[#1a1a2e] mb-4">
@@ -29,8 +29,8 @@ export function ContactSection() {
                 { icon: Clock, label: 'Mon–Sat: 8:00 AM – 7:00 PM', sub: 'Sun: 10:00 AM – 4:00 PM' },
               ].map(({ icon: Icon, label, sub }) => (
                 <div key={label} className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-[#19e65e]/10 rounded-lg flex items-center justify-center shrink-0">
-                    <Icon className="w-5 h-5 text-[#19e65e]" />
+                  <div className="w-10 h-10 bg-seafoam/10 rounded-lg flex items-center justify-center shrink-0">
+                    <Icon className="w-5 h-5 text-seafoam" />
                   </div>
                   <div>
                     <p className="font-medium text-[#1a1a2e] text-sm">{label}</p>
@@ -53,7 +53,7 @@ export function ContactSection() {
                   <input
                     type="text"
                     placeholder="John"
-                    className="w-full px-4 py-3 bg-white border border-[#e5e7eb] rounded-lg text-sm text-[#1a1a2e] placeholder:text-[#6b7280] focus:outline-none focus:ring-2 focus:ring-[#19e65e]/40 focus:border-[#19e65e] transition-all duration-200"
+                    className="w-full px-4 py-3 bg-white border border-[#e5e7eb] rounded-lg text-sm text-[#1a1a2e] placeholder:text-[#6b7280] focus:outline-none focus:ring-2 focus:ring-seafoam/40 focus:border-seafoam transition-all duration-200"
                   />
                 </div>
                 <div>
@@ -63,7 +63,7 @@ export function ContactSection() {
                   <input
                     type="text"
                     placeholder="Doe"
-                    className="w-full px-4 py-3 bg-white border border-[#e5e7eb] rounded-lg text-sm text-[#1a1a2e] placeholder:text-[#6b7280] focus:outline-none focus:ring-2 focus:ring-[#19e65e]/40 focus:border-[#19e65e] transition-all duration-200"
+                    className="w-full px-4 py-3 bg-white border border-[#e5e7eb] rounded-lg text-sm text-[#1a1a2e] placeholder:text-[#6b7280] focus:outline-none focus:ring-2 focus:ring-seafoam/40 focus:border-seafoam transition-all duration-200"
                   />
                 </div>
               </div>
