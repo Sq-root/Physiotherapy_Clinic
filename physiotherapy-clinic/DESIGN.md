@@ -20,17 +20,21 @@ The brand language is warm, empowering, and organic — blending clinical credib
 
 ### 2.1 Color Palette
 
-| Role              | Value     | Usage                                    |
-| ----------------- | --------- | ---------------------------------------- |
-| **Primary**       | `#19e65e` | CTAs, highlights, active states, accents |
-| **Background**    | `#ffffff` | Page background (light mode)             |
-| **Canvas / Sage** | `#e8efe6` | Section backgrounds, bento grid borders  |
-| **Text Primary**  | `#0e221c` | Headings, body copy (Forest)             |
-| **Text Muted**    | `#6b7280` | Captions, labels, helper text            |
-| **Border**        | `#e5e7eb` | Dividers, card borders                   |
+| Role                | Value     | Usage                                       |
+| ------------------- | --------- | ------------------------------------------- |
+| **Forest (Primary)**| `#002D04` | Headings, icons, primary text, dark cards   |
+| **Lime**            | `#C5D86D` | Accent cards, active nav pills, highlights  |
+| **Lime Dark**       | `#8DB600` | Script text accent, success indicators      |
+| **Lime Light**      | `#d4e38a` | Icon circles on lime backgrounds            |
+| **Seafoam**         | `#66A182` | Subtle accents, secondary icons, PATH text  |
+| **Sage Background** | `#E8EFE3` | Hero section bg, page backgrounds           |
+| **Card Surface**    | `#DCE6D5` | Secondary card backgrounds                  |
+| **Dark Section**    | `#2a4a2f` | FAQ section, dark curve backgrounds         |
+| **Text Muted**      | `#002D04/50` | Descriptions, helper text (50% opacity)  |
+| **Border**          | `#002D04/10` | Card borders (10% opacity)               |
 
 > **Color Mode:** Light  
-> **Saturation:** `2` (vibrant but not garish)
+> **Design Reference:** PHYSEO-inspired wellness palette
 
 ### 2.2 Typography
 
@@ -49,25 +53,37 @@ The brand language is warm, empowering, and organic — blending clinical credib
 
 | Property            | Value                  |
 | ------------------- | ---------------------- |
-| **Border Radius**   | `8px` (global default) |
+| **Border Radius**   | `24px` (cards), `full` (pills, icons) |
 | **Section Padding** | `80px 0` (desktop)     |
 | **Container Width** | `1280px` max-width     |
-| **Grid Columns**    | 12-column grid         |
-| **Card Padding**    | `24px – 32px`          |
-| **Component Gap**   | `16px – 24px`          |
+| **Services Grid**   | 12-column bento grid   |
+| **Card Padding**    | `20px – 24px`          |
+| **Component Gap**   | `12px – 16px`          |
 
-### 2.4 Shadows & Elevation
+### 2.4 Card Styles
 
 ```css
-/* Card Shadow */
-box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+/* Standard Card (white with border) */
+border-radius: 24px;
+border: 1px solid rgba(0, 45, 4, 0.1);
+background: white;
 
-/* Hover Elevation */
-box-shadow: 0 8px 30px rgba(25, 230, 94, 0.15);
+/* Accent Card (lime) */
+border-radius: 24px;
+background: #C5D86D;
 
-/* Modal/Overlay */
-box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+/* Dark Card (forest with image) */
+border-radius: 24px;
+background: #2a4a2f;
 ```
+
+### 2.5 Icon Circles
+
+| Type          | Size    | Background   | Icon Color |
+| ------------- | ------- | ------------ | ---------- |
+| **Dark**      | 48px    | `#002D04`    | white      |
+| **Light Lime**| 56px    | `#d4e38a`    | `#002D04`  |
+| **Subtle**    | 40px    | `rgba(0,45,4,0.1)` | `#002D04` |
 
 ---
 
@@ -108,46 +124,56 @@ The homepage is a single long-scroll page composed of **9 distinct sections**.
 ### 4.1 Navigation Bar
 
 - **Layout:** Fixed/sticky top bar, full width
-- **Left:** Logo — "Vitality Path" wordmark
-- **Center/Right:** Navigation links: `Home`, `Services`, `About`, `Blog`, `Contact`
-- **CTA:** Primary button — **"Make An Appointment"** (`#19e65e` background)
-- **Behavior:** Transparent on hero, solid white on scroll
+- **Left:** Logo — Leaf icon in sage circle + "VITALITY" with "PATH" below
+- **Center:** Navigation links: `Home`, `Services`, `Journey`, `Journal`, `Contact`
+- **Active State:** Lime pill background (`#C5D86D`) for current page
+- **CTA:** Primary button — **"Book Visit"** (`#002D04` dark green bg, text-white)
+- **Behavior:** Transparent at top, floating white card on scroll (rounded-2xl, shadow)
+- **Border Radius:** Full rounded pill for active nav item, 2xl for floating container
 
 ---
 
-### 4.2 Hero Section
+### 4.2 Hero Section — Active Life Design
 
-- **Headline:** `"Begin Your Inner Recovery Journey"`
-- **Subheadline:** `"Embark on a journey of self-discovery and physical healing with our expert therapists in a serene, nature-inspired environment."`
-- **CTAs:**
-  - Primary: **"Make An Appointment"** — filled green button
-  - Secondary: **"Explore Services"** — outlined/ghost button
-- **Social Proof Chip:** `1,200+ Lives Restored`
-- **Did You Know Panel:** Floating factoid card — _"Movement is medicine. Gentle, guided activity can reduce recovery time by up to 30% compared to complete rest."_
-- **Visual:** Full-width hero image (nature / serene clinic / therapist)
-- **Layout:** Split layout (text left, visual right) or full-bleed with overlay text
+- **Badge:** "EXPLORE YOUR RECOVERY" — pill with thin border (`#002D04/20`)
+- **Headline:** `"Active Life Design"` — "Life" in Great Vibes script (`#8DB600`)
+- **Subheadline:** `"Choose a pathway tailored to your body's needs..."`
+- **Layout:** Bento grid with 6 cards in asymmetric layout
+
+**Bento Grid Cards:**
+| Card | Type | Grid Span | Style |
+| ---- | ---- | --------- | ----- |
+| Manual Therapy | Image + text | 5 cols, 2 rows | Dark green with image overlay |
+| Sports Recovery | Icon + text + image | 3 cols | White with border, image at bottom |
+| Pain Mgmt | Icon centered | 4 cols | Lime card (`#C5D86D`) |
+| Success Story | Quote | 3 cols | White, testimonial quote |
+| Post-Surgical | Image | 4 cols | Lime overlay with image |
 
 ---
 
-### 4.3 Services Section
+### 4.3 Therapeutic Deep Dive Section
 
-**Heading:** `"Bloom With Our Services"`  
-**Subheading:** `"Comprehensive care tailored to your specific stage of life and recovery."`
+**Heading:** `"Therapeutic Deep Dive"` — "Deep Dive" in Great Vibes script
+**Badge:** "EXPLORE MODALITIES"
 
-| Service Tab     | Anchor          |
-| --------------- | --------------- |
-| Orthopedic Care | `#orthopedic`   |
-| Sports Rehab    | `#sports`       |
-| Neurological    | `#neurological` |
-| Pediatric       | `#pediatric`    |
+**Service Cards:** (3 cards in horizontal layout)
+| Service | Category Badge | Description |
+| ------- | -------------- | ----------- |
+| Active Aging | MOBILITY | Low-impact movement strategies |
+| Joint Rejuvenation | MANUAL THERAPY | Advanced mobilization techniques |
+| Sports Performance | ATHLETIC RECOVERY | Biomechanics-based training |
 
-- **Layout:** Horizontal tab navigation with content panel below
-- **Each Service Card Contains:**
-  - Icon/Illustration
-  - Service Name (H3)
-  - Short description
-  - "Learn More →" link
-- **Hover State:** Card lifts with green glow shadow
+**Card Style:**
+- Border radius: 24px
+- Image at top with rounded corners
+- Category badge: Lime pill (`#C5D86D`)
+- Title + description below
+- "Learn More" link with arrow
+
+**Floating Testimonial Cards:** Between service cards
+- Style: White cards with quotes
+- Quote marks in lime color
+- Patient name and description
 
 ---
 
@@ -191,13 +217,24 @@ The homepage is a single long-scroll page composed of **9 distinct sections**.
 
 ---
 
-### 4.9 FAQ / Patient Knowledge Base
+### 4.9 FAQ / Service Questions Section
 
-**Heading:** `"Patient Knowledge Base"`  
-**Subheading:** `"Answers to common questions about your journey to recovery."`
+**Layout:** Dark curved section with background (`#2a4a2f`)
+**Heading:** Left-aligned "Have Questions?" + "Let's answer them."
+**CTA:** "View All FAQs" ghost button
 
-| Question               | State  |
-| ---------------------- | ------ |
+**Accordion Style:**
+- White background cards
+- Rounded corners (16px)
+- Active state: Lime left border + subtle lime background tint
+- Plus/minus icons for toggle
+- Smooth expand animation
+
+**Sample Questions:**
+- How long does a typical session last?
+- What should I wear to my appointment?
+- Will my insurance cover physiotherapy?
+- How soon will I see results?
 | Do I need a referral?  | Closed |
 | What should I wear?    | Open   |
 | How long are sessions? | Closed |

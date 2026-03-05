@@ -2,20 +2,22 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navLinks = [
-  { label: 'Home', href: '#' },
-  { label: 'Services', href: '#services' },
-  { label: 'About', href: '#about' },
-  { label: 'FAQ', href: '#faq' },
+  { label: 'Home', href: '/' },
+  { label: 'Services', href: '/services' },
+  { label: 'Journey', href: '#journey' },
+  { label: 'Journal', href: '#blog' },
   { label: 'Contact', href: '#contact' },
 ];
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -76,54 +78,54 @@ export function Navbar() {
               <Link href="/" className="flex items-center gap-2.5 group relative z-10">
                 <motion.div 
                   className={cn(
-                    "relative flex items-center justify-center rounded-xl transition-all duration-500",
+                    "relative flex items-center justify-center rounded-full transition-all duration-500",
                     scrolled 
-                      ? "w-9 h-9 bg-forest" 
-                      : "w-10 h-10 bg-white/10 backdrop-blur-sm border border-white/20"
+                      ? "w-10 h-10 bg-[#E8EFE3] border border-[#002D04]/10" 
+                      : "w-10 h-10 bg-[#E8EFE3] border border-[#002D04]/10"
                   )}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <span className={cn(
-                    "material-symbols-outlined text-lg font-medium transition-colors duration-500",
-                    scrolled ? "text-seafoam" : "text-white"
-                  )}>spa</span>
+                  <span className="material-symbols-outlined text-[20px] text-[#002D04]">eco</span>
                 </motion.div>
                 <div className="flex flex-col">
                   <span className={cn(
                     "text-base font-bold tracking-tight uppercase leading-none transition-colors duration-500",
-                    scrolled ? "text-forest" : "text-white"
+                    scrolled ? "text-forest" : "text-[#002D04]"
                   )}>Vitality</span>
-                  <span className={cn(
-                    "text-[9px] font-bold tracking-[0.2em] uppercase leading-none transition-colors duration-500",
-                    scrolled ? "text-seafoam" : "text-seafoam"
-                  )}>Path</span>
+                  <span className="text-[9px] font-bold tracking-[0.2em] uppercase leading-none text-[#66A182]">Path</span>
                 </div>
               </Link>
               
               {/* Desktop Navigation */}
               <nav className="hidden md:flex items-center gap-1">
-                {navLinks.map((link) => (
-                  <Link 
-                    key={link.label}
-                    href={link.href}
-                    className="relative px-4 py-2 group"
-                  >
-                    <span className={cn(
-                      "text-xs font-semibold uppercase tracking-wider transition-colors duration-300",
-                      scrolled 
-                        ? "text-forest/70 group-hover:text-forest" 
-                        : "text-white/70 group-hover:text-white"
-                    )}>
-                      {link.label}
-                    </span>
-                    {/* Hover underline */}
-                    <span className={cn(
-                      "absolute bottom-1 left-4 right-4 h-0.5 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left",
-                      scrolled ? "bg-seafoam" : "bg-seafoam"
-                    )} />
-                  </Link>
-                ))}
+                {navLinks.map((link) => {
+                  const isActive = link.href === pathname || 
+                    (link.href === '/' && pathname === '/') ||
+                    (link.href !== '/' && pathname?.startsWith(link.href.split('#')[0]) && link.href.split('#')[0] !== '/');
+                  
+                  return (
+                    <Link 
+                      key={link.label}
+                      href={link.href}
+                      className={cn(
+                        "relative px-4 py-2 rounded-full transition-all duration-300",
+                        isActive && "bg-[#b8c96a]"
+                      )}
+                    >
+                      <span className={cn(
+                        "text-xs font-semibold uppercase tracking-wider transition-colors duration-300",
+                        isActive 
+                          ? "text-[#002D04]"
+                          : scrolled 
+                            ? "text-[#002D04]/70 hover:text-[#002D04]" 
+                            : "text-[#002D04]/70 hover:text-[#002D04]"
+                      )}>
+                        {link.label}
+                      </span>
+                    </Link>
+                  );
+                })}
               </nav>
               
               {/* CTA Button */}
@@ -135,16 +137,13 @@ export function Navbar() {
                   <Link 
                     href="#appointment"
                     className={cn(
-                      "inline-flex items-center gap-2 h-10 px-5 text-[11px] font-bold uppercase tracking-wider rounded-xl transition-all duration-300",
+                      "inline-flex items-center justify-center h-10 px-6 text-[11px] font-bold uppercase tracking-wider rounded-full transition-all duration-300",
                       scrolled 
                         ? "bg-forest text-white hover:bg-forest/90 shadow-sm" 
-                        : "bg-white text-forest hover:bg-seafoam hover:text-white"
+                        : "bg-forest text-white hover:bg-forest/90"
                     )}
                   >
-                    <span>Book Now</span>
-                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
+                    Book Visit
                   </Link>
                 </motion.div>
               </div>
