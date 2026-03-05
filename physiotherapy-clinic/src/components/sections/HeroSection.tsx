@@ -1,67 +1,262 @@
 'use client';
 
+import { useState, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const slides = [
+  {
+    id: 1,
+    badge: 'Sports Recovery',
+    title: 'Get Back To',
+    highlight: 'Peak Performance',
+    description: 'Professional sports rehabilitation designed to get athletes back in the game faster with evidence-based treatment protocols.',
+    image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&q=80&w=1920',
+  },
+  {
+    id: 2,
+    badge: 'Senior Care',
+    title: 'Gentle Therapy',
+    highlight: 'For Active Aging',
+    description: 'Specialized physiotherapy programs to maintain mobility, reduce pain, and improve quality of life for seniors.',
+    image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1920',
+  },
+  {
+    id: 3,
+    badge: 'Pain Relief',
+    title: 'End Chronic',
+    highlight: 'Back & Neck Pain',
+    description: 'Advanced manual therapy techniques combined with therapeutic exercises to eliminate persistent pain at its source.',
+    image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=1920',
+  },
+  {
+    id: 4,
+    badge: 'Post Surgery',
+    title: 'Accelerate Your',
+    highlight: 'Recovery Journey',
+    description: 'Comprehensive post-operative rehabilitation to restore function, rebuild strength, and get you back to daily activities.',
+    image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=1920',
+  },
+];
+
 export function HeroSection() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  }, []);
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+    setIsAutoPlaying(false);
+    setTimeout(() => setIsAutoPlaying(true), 8000);
+  };
+
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+    const interval = setInterval(nextSlide, 6000);
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, nextSlide]);
+
+  const slide = slides[currentSlide];
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        <img 
-            alt="Serene Clinic Garden" 
-            className="w-full h-full object-cover" 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDldKYYAG93Fy6_M_0J-LjzMLpzP4F9IlHnAwNzoV3v8adKBkK4r2myxsdwxZui_GGvL-YpXtSOlOrhDYQva0qYFEL-fAIRd-0a2KCXaA5q5QH1G01WMmZpsNKjtM6fATRvmtJCqGWw7iGFiQrO7pAzM6E2moS1HQOzOM_aOYIZ6kHibVb9Jjxk6C6UncuFGgtbbXO0_9uyrug_Po0AaRJqwzrrVWeurisZ2m2vakwssTtUMSTYlrlFmeDewOT9KKj_oT0ZxZJeulbk"
-        />
-        <div className="absolute inset-0 bg-black/30"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-forest/60 via-transparent to-black/40"></div>
-      </div>
+    <section className="relative h-screen min-h-[600px] max-h-[900px] overflow-hidden">
+      {/* Background Slides */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={slide.id}
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1, ease: 'easeInOut' }}
+          className="absolute inset-0 z-0"
+        >
+          <img
+            src={slide.image}
+            alt={slide.title}
+            className="w-full h-full object-cover"
+          />
+          {/* Gradient Overlays */}
+          <div className="absolute inset-0 bg-gradient-to-r from-forest/90 via-forest/60 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-forest/50 via-transparent to-forest/30"></div>
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Decorative Elements */}
+      <div className="absolute top-20 left-10 w-32 h-32 border border-white/10 rounded-full pointer-events-none hidden lg:block"></div>
+      <div className="absolute bottom-40 left-20 w-20 h-20 border border-seafoam/20 rounded-full pointer-events-none hidden lg:block"></div>
       
-      <div className="absolute bottom-0 left-0 z-10 w-1/3 max-w-[400px] pointer-events-none">
-        <svg className="botanical-art w-full h-auto" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10,190 Q50,150 40,80 T80,20 M10,190 Q80,170 120,120 T150,50 M10,190 Q120,190 170,140 T190,80" fill="none" stroke="white" strokeWidth="0.5"></path>
-          <circle cx="80" cy="20" fill="white" r="2"></circle>
-          <circle cx="150" cy="50" fill="white" r="2"></circle>
-          <circle cx="190" cy="80" fill="white" r="2"></circle>
-          <path d="M40,80 L35,70 Q40,65 45,70 Z M120,120 L115,110 Q120,105 125,110 Z" fill="white"></path>
+      {/* Main Content */}
+      <div className="relative z-20 h-full flex items-center">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 w-full">
+          <div className="max-w-2xl">
+            {/* Badge */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`badge-${slide.id}`}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                transition={{ duration: 0.5 }}
+                className="flex items-center gap-3 mb-6"
+              >
+                <div className="w-10 h-[2px] bg-seafoam"></div>
+                <span className="inline-flex items-center gap-2 text-seafoam text-xs font-bold uppercase tracking-[0.2em]">
+                  <span className="w-2 h-2 bg-seafoam rounded-full animate-pulse"></span>
+                  {slide.badge}
+                </span>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Heading */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`title-${slide.id}`}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -30 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+              >
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-bold text-white leading-[1.1] mb-6">
+                  {slide.title}
+                  <br />
+                  <span className="text-seafoam">{slide.highlight}</span>
+                </h1>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Description */}
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={`desc-${slide.id}`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="text-white/80 text-base sm:text-lg md:text-xl max-w-xl leading-relaxed mb-8"
+              >
+                {slide.description}
+              </motion.p>
+            </AnimatePresence>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="flex flex-wrap gap-4"
+            >
+              <a
+                href="mailto:contact@vitalitypath.com"
+                className="group inline-flex items-center gap-3 bg-seafoam text-white pl-5 pr-2 py-2 rounded-full font-semibold text-sm hover:bg-white hover:text-forest transition-all duration-300"
+              >
+                <span>Contact@VitalityPath.Com</span>
+                <span className="size-9 rounded-full bg-forest/30 flex items-center justify-center group-hover:bg-seafoam transition-colors">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </span>
+              </a>
+              <a
+                href="tel:+917700900123"
+                className="group inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/30 text-white pl-5 pr-2 py-2 rounded-full font-semibold text-sm hover:bg-white hover:text-forest transition-all duration-300"
+              >
+                <span>+91 7700 900123</span>
+                <span className="size-9 rounded-full bg-seafoam flex items-center justify-center">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </span>
+              </a>
+            </motion.div>
+
+            {/* Stats Row */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="flex items-center gap-8 mt-12 pt-8 border-t border-white/10"
+            >
+              <div>
+                <p className="text-3xl md:text-4xl font-bold text-white">1,200+</p>
+                <p className="text-white/60 text-xs uppercase tracking-wider">Lives Restored</p>
+              </div>
+              <div className="w-px h-12 bg-white/20"></div>
+              <div>
+                <p className="text-3xl md:text-4xl font-bold text-white">15+</p>
+                <p className="text-white/60 text-xs uppercase tracking-wider">Years Experience</p>
+              </div>
+              <div className="w-px h-12 bg-white/20 hidden sm:block"></div>
+              <div className="hidden sm:block">
+                <p className="text-3xl md:text-4xl font-bold text-white">98%</p>
+                <p className="text-white/60 text-xs uppercase tracking-wider">Success Rate</p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
+      {/* Slide Navigation Dots - Right Side */}
+      <div className="absolute right-6 lg:right-10 top-1/2 -translate-y-1/2 z-30 flex flex-col gap-4">
+        {slides.map((s, i) => (
+          <button
+            key={s.id}
+            onClick={() => goToSlide(i)}
+            className={`group relative flex items-center justify-end transition-all duration-300 ${
+              currentSlide === i ? 'gap-3' : 'gap-0'
+            }`}
+            aria-label={`Go to slide ${i + 1}`}
+          >
+            {/* Label on hover */}
+            <span className={`text-white text-xs font-medium whitespace-nowrap transition-all duration-300 ${
+              currentSlide === i ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4 group-hover:opacity-70 group-hover:translate-x-0'
+            }`}>
+              {s.badge}
+            </span>
+            {/* Dot */}
+            <span className={`relative flex items-center justify-center transition-all duration-300 ${
+              currentSlide === i ? 'w-4 h-4' : 'w-3 h-3'
+            }`}>
+              <span className={`absolute inset-0 rounded-full transition-all duration-300 ${
+                currentSlide === i 
+                  ? 'bg-seafoam scale-100' 
+                  : 'bg-white/40 scale-100 group-hover:bg-white/70'
+              }`}></span>
+              {currentSlide === i && (
+                <span className="absolute inset-0 rounded-full bg-seafoam animate-ping opacity-30"></span>
+              )}
+            </span>
+          </button>
+        ))}
+      </div>
+
+      {/* Progress Bar */}
+      {/* <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/10 z-30">
+        <motion.div
+          key={currentSlide}
+          initial={{ width: '0%' }}
+          animate={{ width: '100%' }}
+          transition={{ duration: 6, ease: 'linear' }}
+          className="h-full bg-seafoam"
+        />
+      </div> */}
+
+      {/* Curved Bottom Edge */}
+      <div className="absolute -bottom-1 left-0 right-0 z-20">
+        <svg viewBox="0 0 1440 120" fill="none" preserveAspectRatio="none" className="w-full h-16 md:h-24">
+          <path 
+            d="M0,120 L0,60 Q360,120 720,60 T1440,60 L1440,120 Z" 
+            fill="white"
+          />
         </svg>
       </div>
 
-      <div className="relative z-20 mx-auto max-w-4xl px-6 text-center text-white mt-24">
-        <div className="inline-block bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full mb-8">
-          <span className="text-xs font-bold uppercase tracking-[0.3em]">Boutique Physiotherapy</span>
-        </div>
-        
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-sans font-bold text-white leading-[1.05] mb-8">
-          Begin Your <br/>
-          <span className="font-script text-seafoam block mt-3 text-7xl md:text-9xl normal-case tracking-normal">Inner Recovery Journey</span>
-        </h1>
-        
-        <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
-          Embark on a journey of self-discovery and physical healing with our expert therapists in a serene, nature-inspired environment.
-        </p>
-        
-        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-          <a 
-            className="h-16 px-12 bg-seafoam text-white font-bold uppercase tracking-widest text-sm hover:bg-white hover:text-forest hover:-translate-y-1 transition-all rounded-full flex items-center shadow-2xl cursor-pointer" 
-            href="#booking-form"
-          >
-            Make An Appointment
-          </a>
-          <a 
-            className="h-16 px-12 bg-black/40 backdrop-blur-md border border-white/40 text-white font-bold uppercase tracking-widest text-sm hover:bg-white/20 hover:border-white/60 hover:-translate-y-1 transition-all rounded-full flex items-center shadow-xl cursor-pointer" 
-            href="#services"
-          >
-            Explore Services
-          </a>
-        </div>
-        
-        <div className="mt-16 flex flex-col items-center gap-4 opacity-80">
-          <div className="flex -space-x-3">
-            <img alt="User" className="w-10 h-10 rounded-full border-2 border-white/50 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5ZCevtNNTZCHVhC88hP8Y3KUMrJzlSGalWN75be9_XboR-mWEdpxLgn0NSwyKpYD0vVT78O8nZocVFQtW7z72VXhiYuPqz0FZ1cGZiCCvenkBgugfKoWDTwKYwakka4nQGbfXMs-CVROoPQqa9TtrPuTLlrzw__W5eF-C48623m_MUgKe7ZFSrjr0Txp71QVdevTei10F_HIHUHjwSEywFMIpurKYXpTxUmRgj0kJ38_2vH_3mwGxAzVzf3SyexT9lBzD6c_mdHV7"/>
-            <img alt="User" className="w-10 h-10 rounded-full border-2 border-white/50 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5ZCevtNNTZCHVhC88hP8Y3KUMrJzlSGalWN75be9_XboR-mWEdpxLgn0NSwyKpYD0vVT78O8nZocVFQtW7z72VXhiYuPqz0FZ1cGZiCCvenkBgugfKoWDTwKYwakka4nQGbfXMs-CVROoPQqa9TtrPuTLlrzw__W5eF-C48623m_MUgKe7ZFSrjr0Txp71QVdevTei10F_HIHUHjwSEywFMIpurKYXpTxUmRgj0kJ38_2vH_3mwGxAzVzf3SyexT9lBzD6c_mdHV7"/>
-            <img alt="User" className="w-10 h-10 rounded-full border-2 border-white/50 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_JfxnUTxS996Y5F8wO8-dk_fSCKHC5UfLsIJyGMAB9Lk3DcKmrHFrSFG3vWqAro4yEwpYrN0oNt2PMJkVjMr9krFgJfW5k1ijqPtLepW0WpL0nk8cWzL9NicOG2K3KLIu2ufiCdbzXYqjMKb1-_HN38tWPfzhCMotrqKi_pCcgije0gtkTOL3-iqE0sfNhAHTHsR7QpcEHpDn4fRCFLnrqxsHEtRiRDxbH1zUhFFaXNlCMOS-i5ccFa8rzZGqNSKp-p-UUWOCOqrV"/>
-          </div>
-          <div className="text-center">
-            <p className="text-xs font-bold uppercase tracking-widest text-white/70">1,200+ Lives Restored</p>
-          </div>
-        </div>
+      {/* Slide Counter */}
+      <div className="absolute bottom-20 md:bottom-28 left-6 lg:left-8 z-30 flex items-center gap-3 text-white/60 text-sm font-medium">
+        <span className="text-2xl font-bold text-white">{String(currentSlide + 1).padStart(2, '0')}</span>
+        <span className="w-8 h-px bg-white/30"></span>
+        <span>{String(slides.length).padStart(2, '0')}</span>
       </div>
     </section>
   );

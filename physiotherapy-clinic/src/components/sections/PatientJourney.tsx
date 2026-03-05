@@ -1,213 +1,379 @@
 'use client';
 
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
 export function PatientJourney() {
+  const [activeStep, setActiveStep] = useState(0);
+  const [hoveredTag, setHoveredTag] = useState<number | null>(null);
+
   const steps = [
     {
       num: 1,
-      title: "Assessment",
-      desc: "Detailed breakdown of your injury history, biomechanics, and personal goals.",
+      title: "Initial Assessment",
+      shortTitle: "Assess",
+      desc: "Comprehensive evaluation of your injury history, biomechanics, lifestyle factors, and personal recovery goals.",
+      icon: "📋",
+      duration: "45-60 min",
+      color: "from-blue-500/20 to-blue-600/20"
     },
     {
       num: 2,
-      title: "Hands-On Therapy",
-      desc: "Targeted manual techniques to reduce pain, improve mobility, and restore function.",
+      title: "Treatment Plan",
+      shortTitle: "Plan",
+      desc: "Customized therapy program designed specifically for your condition, timeline, and desired outcomes.",
+      icon: "🎯",
+      duration: "Personalized",
+      color: "from-purple-500/20 to-purple-600/20"
     },
     {
       num: 3,
-      title: "Progress Tracking",
-      desc: "Data-driven milestones to ensure you're healing on schedule.",
+      title: "Active Therapy",
+      shortTitle: "Heal",
+      desc: "Hands-on manual techniques combined with guided exercises to reduce pain and restore function.",
+      icon: "💪",
+      duration: "2-8 weeks",
+      color: "from-seafoam/20 to-lime/20"
     },
     {
       num: 4,
-      title: "Recovery & Bloom",
-      desc: "Return to full activity with a resilient body and the knowledge to stay healthy.",
+      title: "Full Recovery",
+      shortTitle: "Thrive",
+      desc: "Return to full activity with lasting results, prevention strategies, and ongoing wellness support.",
+      icon: "🌟",
+      duration: "Long-term",
+      color: "from-lime/20 to-yellow-500/20"
     },
   ];
 
-  const tags = [
+  const painPoints = [
     {
       id: 1,
-      title: "Neck Stiffness",
-      desc: "Therapeutic Touch, Controlled Motion, Reduce Stiffness",
-      img: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&q=80&w=200",
-      top: "10%",
-      left: "0%",
-      pointX: "50%",
-      pointY: "18%",
+      title: "Neck & Shoulder",
+      conditions: ["Stiffness", "Tension", "Whiplash"],
+      position: { top: "15%", left: "50%" },
     },
     {
       id: 2,
-      title: "Hand Tightness",
-      desc: "Reclaim Hand Function Through Targeted Treatment",
-      img: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&q=80&w=200",
-      top: "2%",
-      right: "0%",
-      pointX: "68%",
-      pointY: "53%",
+      title: "Upper Back",
+      conditions: ["Posture Issues", "Muscle Strain", "Thoracic Pain"],
+      position: { top: "30%", left: "50%" },
     },
     {
       id: 3,
-      title: "Leg Fatigue",
-      desc: "Restore Strength and Comfort in Your Legs Through Expert Therapy",
-      img: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=200",
-      bottom: "25%",
-      left: "0%",
-      pointX: "43%",
-      pointY: "72%",
+      title: "Lower Back",
+      conditions: ["Disc Issues", "Sciatica", "Chronic Pain"],
+      position: { top: "48%", left: "50%" },
     },
     {
       id: 4,
-      title: "Palm Discomfort",
-      desc: "Personalized hand therapy to relieve stress and tension.",
-      img: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&q=80&w=200",
-      bottom: "10%",
-      right: "0%",
-      pointX: "50%",
-      pointY: "30%",
+      title: "Knee & Leg",
+      conditions: ["Sports Injuries", "Arthritis", "Recovery"],
+      position: { top: "72%", left: "50%" },
     },
   ];
 
   return (
-    <section className="bg-forest py-24 relative overflow-hidden" id="journey">
-      {/* Subtle diamond pattern overlay */}
-      <div
-        className="absolute inset-0 opacity-5 bg-cover bg-center pointer-events-none"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60' fill='none'%3E%3Cg opacity='1'%3E%3Cpath d='M30 0L60 30L30 60L0 30L30 0Z' fill='%23FCFFFF'/%3E%3C/g%3E%3C/svg%3E")`,
-        }}
-      />
+    <section className="bg-forest py-16 md:py-24 relative overflow-hidden" id="journey">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Gradient Orbs */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-seafoam/5 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-lime/5 rounded-full blur-[100px]" />
+        
+        {/* Grid Lines */}
+        <div className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`,
+            backgroundSize: '80px 80px'
+          }}
+        />
+      </div>
 
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center relative z-10">
-
-        {/* ── LEFT — Body Diagram with Interactive Tags ── */}
-        <div className="relative h-[650px] w-full flex items-center justify-center">
-          
-          {/* Body Diagram Image */}
-          <div className="relative h-[90%] w-auto group">
-            <img
-              src="/body-diagram.png"
-              alt="Anatomical Body Diagram"
-              className="h-full w-auto object-contain z-10 relative brightness-110"
-            />
-            
-            {/* Soft radial glow behind body */}
-            <div className="absolute inset-0 bg-seafoam/10 filter blur-[80px] rounded-full scale-75 -z-10 animate-pulse"></div>
-
-            {/* Interactive Tags/Cards */}
-            {tags.map((tag) => (
-              <div
-                key={tag.id}
-                className="absolute z-20 group/tag"
-                style={{
-                  top: tag.top,
-                  bottom: tag.bottom,
-                  left: tag.left,
-                  right: tag.right,
-                  width: '240px',
-                }}
-              >
-                {/* Connector Line (Simplified) */}
-                <div 
-                  className={`hidden lg:block absolute h-px bg-white/20 z-0 origin-left transition-all duration-500 group-hover/tag:bg-seafoam/40
-                  ${tag.left !== undefined ? 'left-full top-1/2' : 'right-full top-1/2'}`}
-                  style={{
-                    width: '30px',
-                    transform: tag.left !== undefined ? 'rotate(0deg)' : 'rotate(180deg)'
-                  }}
-                ></div>
-
-                {/* Card Container */}
-                <div className="bg-white/95 backdrop-blur-md p-2.5 rounded-2xl shadow-xl border border-white/20 transition-all duration-300 group-hover/tag:-translate-y-1 group-hover/tag:shadow-2xl flex gap-3">
-                  <div className="size-14 rounded-lg overflow-hidden shrink-0 border border-forest/5 shadow-inner">
-                    <img src={tag.img} alt={tag.title} className="w-full h-full object-cover transition-transform duration-500 group-hover/tag:scale-110" />
-                  </div>
-                  <div className="flex flex-col justify-center min-w-0">
-                    <h4 className="text-forest font-bold text-[11px] leading-tight mb-0.5 truncate">{tag.title}</h4>
-                    <p className="text-forest/60 text-[9px] leading-tight line-clamp-2">{tag.desc}</p>
-                    <a href="#services" className="text-seafoam text-[8px] font-bold mt-1 flex items-center gap-0.5 hover:gap-1 transition-all">
-                      View Services <span className="material-symbols-outlined text-[9px]">arrow_forward</span>
-                    </a>
-                  </div>
-                </div>
-
-                {/* Body Point Marker */}
-                <div 
-                   className="absolute size-2.5 rounded-full bg-white border-2 border-seafoam shadow-md z-30 animate-ping opacity-75"
-                   style={{
-                     left: tag.pointX,
-                     top: tag.pointY,
-                     transform: 'translate(-50%, -50%)',
-                     pointerEvents: 'none'
-                   }}
-                ></div>
-                <div 
-                   className="absolute size-2.5 rounded-full bg-white border-2 border-seafoam shadow-md z-30"
-                   style={{
-                     left: tag.pointX,
-                     top: tag.pointY,
-                     transform: 'translate(-50%, -50%)'
-                   }}
-                ></div>
-              </div>
-            ))}
-          </div>
-
-          {/* Proven Methodology card */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-forest/80 backdrop-blur-md p-3.5 rounded-full border border-white/10 shadow-2xl z-30 flex items-center gap-3 px-6">
-            <div className="size-7 rounded-full bg-seafoam flex items-center justify-center shrink-0">
-              <span className="material-symbols-outlined text-white text-sm">verified</span>
+      <div className="mx-auto max-w-[1400px] px-4 md:px-6 lg:px-8 relative z-10">
+        
+        {/* Header */}
+        <motion.div 
+          className="text-center mb-12 md:mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="inline-flex items-center gap-2 mb-4">
+            <div className="w-8 h-8 rounded-full bg-seafoam/20 flex items-center justify-center">
+              <span className="text-seafoam text-sm">✦</span>
             </div>
-            <p className="text-white font-bold text-[13px] whitespace-nowrap">Evidence-based recovery tracks</p>
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-seafoam">Your Recovery Path</span>
           </div>
-        </div>
-
-        {/* ── RIGHT — Process label + Heading + Steps ── */}
-        <div className="pl-0 lg:pl-10">
-
-          {/* Section label */}
-          <span className="text-seafoam font-bold tracking-widest uppercase text-xs mb-4 block">
-            Process
-          </span>
-
-          {/* Heading */}
-          <h2 className="text-5xl font-serif italic text-white mb-10 leading-tight">
-            Your Journey from{" "}
-            <br />
-            <span className="text-lime not-italic">Pain-to-Peace</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-sans text-white font-semibold leading-[1.1] tracking-tight mb-4">
+            From Pain to <span className="text-lime">Peak Performance</span>
           </h2>
+          <p className="text-white/60 text-sm md:text-base max-w-2xl mx-auto">
+            Our proven 4-step methodology has helped thousands of patients achieve lasting recovery
+          </p>
+        </motion.div>
 
-          {/* Steps */}
-          <div className="space-y-8 relative">
-            {/* Vertical connector line */}
-            <div className="absolute left-[22px] top-4 bottom-4 w-0.5 bg-white/10 rounded-full" />
+        {/* Main Content */}
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          
+          {/* Left - Interactive Body Map (Desktop) */}
+          <div className="hidden lg:block lg:col-span-4">
+            <motion.div 
+              className="sticky top-24"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="relative bg-white/5 backdrop-blur-sm rounded-3xl p-6 border border-white/10">
+                <h3 className="text-white font-semibold text-lg mb-4">We Treat All Areas</h3>
+                
+                {/* Body Silhouette with Points */}
+                <div className="relative h-[400px] flex items-center justify-center">
+                  {/* Simplified Body Shape */}
+                  <div className="relative w-32">
+                    {/* Head */}
+                    <div className="w-16 h-16 mx-auto rounded-full bg-white/10 border border-white/20" />
+                    {/* Neck */}
+                    <div className="w-8 h-6 mx-auto bg-white/10 border-x border-white/20" />
+                    {/* Torso */}
+                    <div className="w-24 h-32 mx-auto rounded-t-lg bg-white/10 border border-white/20 border-b-0" />
+                    {/* Lower Body */}
+                    <div className="flex justify-center gap-2">
+                      <div className="w-10 h-28 rounded-b-lg bg-white/10 border border-white/20" />
+                      <div className="w-10 h-28 rounded-b-lg bg-white/10 border border-white/20" />
+                    </div>
+                  </div>
 
-            {steps.map((step, i) => (
-              <div key={i} className="relative flex gap-8 group">
-                {/* Step number circle */}
-                <div
-                  className={`relative z-10 shrink-0 size-11 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-300 shadow-md
-                    ${i === 0
-                      ? "bg-white border-4 border-forest text-forest"
-                      : "bg-forest border-2 border-white/20 text-white group-hover:bg-white group-hover:text-forest group-hover:border-white"
-                    }`}
-                >
-                  {step.num}
+                  {/* Pain Points */}
+                  {painPoints.map((point, index) => (
+                    <motion.button
+                      key={point.id}
+                      className={`absolute z-10 group`}
+                      style={{ top: point.position.top, left: point.position.left, transform: 'translate(-50%, -50%)' }}
+                      onHoverStart={() => setHoveredTag(point.id)}
+                      onHoverEnd={() => setHoveredTag(null)}
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 + 0.3 }}
+                    >
+                      {/* Pulse Ring */}
+                      <div className="absolute inset-0 rounded-full bg-seafoam/30 animate-ping" />
+                      {/* Main Dot */}
+                      <div className={`relative w-4 h-4 rounded-full transition-all duration-300 ${
+                        hoveredTag === point.id ? 'bg-lime scale-150' : 'bg-seafoam'
+                      }`} />
+                      
+                      {/* Tooltip */}
+                      <AnimatePresence>
+                        {hoveredTag === point.id && (
+                          <motion.div
+                            initial={{ opacity: 0, x: 10, scale: 0.9 }}
+                            animate={{ opacity: 1, x: 0, scale: 1 }}
+                            exit={{ opacity: 0, x: 10, scale: 0.9 }}
+                            className="absolute left-6 top-1/2 -translate-y-1/2 bg-white rounded-xl p-3 shadow-xl min-w-[160px] z-20"
+                          >
+                            <p className="text-forest font-bold text-sm mb-1">{point.title}</p>
+                            <div className="flex flex-wrap gap-1">
+                              {point.conditions.map((condition) => (
+                                <span key={condition} className="text-[10px] px-2 py-0.5 bg-section rounded-full text-forest/70">
+                                  {condition}
+                                </span>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.button>
+                  ))}
                 </div>
 
-                {/* Step content */}
-                <div className="pt-1.5">
-                  <h3 className="text-xl font-bold text-white mb-1 group-hover:text-seafoam transition-colors duration-200">
-                    {step.title}
-                  </h3>
-                  <p className="text-white/70 text-sm leading-relaxed font-medium max-w-sm">
-                    {step.desc}
-                  </p>
+                {/* Stats */}
+                <div className="grid grid-cols-2 gap-3 mt-4">
+                  <div className="text-center p-3 bg-white/5 rounded-xl">
+                    <p className="text-2xl font-bold text-white">15+</p>
+                    <p className="text-[10px] text-white/50 uppercase tracking-wider">Body Areas</p>
+                  </div>
+                  <div className="text-center p-3 bg-white/5 rounded-xl">
+                    <p className="text-2xl font-bold text-white">50+</p>
+                    <p className="text-[10px] text-white/50 uppercase tracking-wider">Conditions</p>
+                  </div>
                 </div>
               </div>
-            ))}
+            </motion.div>
+          </div>
+
+          {/* Right - Journey Steps */}
+          <div className="lg:col-span-8">
+            {/* Step Timeline - Desktop */}
+            <div className="hidden md:block mb-8">
+              <div className="flex items-center justify-between relative">
+                {/* Progress Line */}
+                <div className="absolute top-1/2 left-0 right-0 h-1 bg-white/10 -translate-y-1/2 rounded-full" />
+                <motion.div 
+                  className="absolute top-1/2 left-0 h-1 bg-gradient-to-r from-seafoam to-lime -translate-y-1/2 rounded-full"
+                  initial={{ width: "0%" }}
+                  animate={{ width: `${(activeStep / (steps.length - 1)) * 100}%` }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                />
+
+                {/* Step Buttons */}
+                {steps.map((step, index) => (
+                  <motion.button
+                    key={step.num}
+                    onClick={() => setActiveStep(index)}
+                    className="relative z-10 group"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <div className={`w-14 h-14 rounded-full flex items-center justify-center text-2xl transition-all duration-300 ${
+                      index <= activeStep
+                        ? 'bg-gradient-to-br from-seafoam to-lime shadow-lg shadow-seafoam/30'
+                        : 'bg-white/10 border border-white/20'
+                    }`}>
+                      {step.icon}
+                    </div>
+                    <span className={`absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs font-medium whitespace-nowrap transition-colors ${
+                      index === activeStep ? 'text-lime' : 'text-white/50'
+                    }`}>
+                      {step.shortTitle}
+                    </span>
+                  </motion.button>
+                ))}
+              </div>
+            </div>
+
+            {/* Active Step Card */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeStep}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4 }}
+                className={`relative rounded-3xl overflow-hidden bg-gradient-to-br ${steps[activeStep].color} border border-white/10 p-6 md:p-8 lg:p-10 mt-12 md:mt-16`}
+              >
+                {/* Large Number Background */}
+                <div className="absolute top-4 right-4 md:top-6 md:right-6 text-[120px] md:text-[180px] font-bold text-white/5 leading-none select-none">
+                  {steps[activeStep].num}
+                </div>
+
+                <div className="relative z-10">
+                  {/* Step Badge */}
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-6">
+                    <span className="text-2xl">{steps[activeStep].icon}</span>
+                    <span className="text-white text-sm font-medium">Step {steps[activeStep].num} of {steps.length}</span>
+                    <span className="w-px h-4 bg-white/30" />
+                    <span className="text-white/70 text-sm">{steps[activeStep].duration}</span>
+                  </div>
+
+                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4">
+                    {steps[activeStep].title}
+                  </h3>
+                  <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-2xl mb-8">
+                    {steps[activeStep].desc}
+                  </p>
+
+                  {/* Navigation */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex gap-2">
+                      {steps.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setActiveStep(index)}
+                          className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                            index === activeStep ? 'bg-lime w-8' : 'bg-white/30 hover:bg-white/50'
+                          }`}
+                        />
+                      ))}
+                    </div>
+
+                    <div className="flex gap-3">
+                      <button
+                        onClick={() => setActiveStep(Math.max(0, activeStep - 1))}
+                        disabled={activeStep === 0}
+                        className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                      >
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                      </button>
+                      <button
+                        onClick={() => setActiveStep(Math.min(steps.length - 1, activeStep + 1))}
+                        disabled={activeStep === steps.length - 1}
+                        className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-forest hover:bg-lime transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                      >
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Mobile Step List */}
+            <div className="md:hidden mt-8 space-y-3">
+              {steps.map((step, index) => (
+                <motion.button
+                  key={step.num}
+                  onClick={() => setActiveStep(index)}
+                  className={`w-full text-left p-4 rounded-2xl transition-all duration-300 ${
+                    index === activeStep
+                      ? 'bg-gradient-to-r from-seafoam/20 to-lime/20 border border-white/20'
+                      : 'bg-white/5 border border-transparent'
+                  }`}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <div className="flex items-center gap-4">
+                    <div className={`w-12 h-12 rounded-full flex items-center justify-center text-xl ${
+                      index <= activeStep
+                        ? 'bg-gradient-to-br from-seafoam to-lime'
+                        : 'bg-white/10'
+                    }`}>
+                      {step.icon}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between">
+                        <h4 className={`font-semibold ${index === activeStep ? 'text-white' : 'text-white/70'}`}>
+                          {step.title}
+                        </h4>
+                        <span className="text-xs text-white/40">{step.duration}</span>
+                      </div>
+                      <p className="text-white/50 text-xs truncate">{step.desc}</p>
+                    </div>
+                  </div>
+                </motion.button>
+              ))}
+            </div>
+
+            {/* Bottom CTA */}
+            <motion.div 
+              className="mt-8 md:mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+            >
+              <div className="text-center sm:text-left">
+                <p className="text-white font-semibold mb-1">Ready to start your recovery?</p>
+                <p className="text-white/50 text-sm">Book your initial assessment today</p>
+              </div>
+              <button className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-seafoam to-lime text-forest font-semibold rounded-full hover:shadow-lg hover:shadow-seafoam/30 transition-all">
+                Book Assessment
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </button>
+            </motion.div>
           </div>
         </div>
-
       </div>
     </section>
   );

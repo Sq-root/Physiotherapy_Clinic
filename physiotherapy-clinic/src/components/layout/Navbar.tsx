@@ -3,148 +3,304 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
-import { Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const navLinks = [
+  { label: 'Home', href: '#' },
+  { label: 'Services', href: '#services' },
+  { label: 'About', href: '#about' },
+  { label: 'FAQ', href: '#faq' },
+  { label: 'Contact', href: '#contact' },
+];
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 60);
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 50;
+      if (isScrolled !== scrolled) {
+        setScrolled(isScrolled);
+      }
+    };
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
+  }, [scrolled]);
+
+  // Close mobile menu on resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) setMobileOpen(false);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return (
     <>
-      <header
+      <motion.header
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ type: 'spring', stiffness: 100, damping: 20 }}
         className={cn(
-          "fixed z-50 transition-all duration-500 ease-in-out",
-          scrolled 
-            ? "top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl bg-white/90 backdrop-blur-md shadow-card rounded-full py-2" 
-            : "top-0 left-0 w-full bg-transparent py-2"
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out",
+          scrolled && "pointer-events-none"
         )}
       >
+        {/* Background layer for non-scrolled state */}
         <div className={cn(
-          "mx-auto flex items-center justify-between px-8 transition-all duration-500",
-          scrolled ? "h-16" : "h-24 max-w-7xl"
-        )}>
-          <Link href="/" className="flex items-center gap-3 group cursor-pointer">
-            <div className={cn(
-              "relative animate-in fade-in zoom-in duration-700 flex items-center justify-center border-2 rounded-full transition-all duration-500",
-              scrolled ? "h-10 w-10 bg-forest border-forest" : "h-12 w-12 bg-white/10 border-white backdrop-blur-sm"
-            )}>
-              <span className={cn(
-                "material-symbols-outlined text-xl font-bold transition-colors",
-                scrolled ? "text-seafoam" : "text-white"
-              )}>spa</span>
-            </div>
-            <div className="flex flex-col">
-              <span className={cn(
-                "text-xl font-bold tracking-tight font-sans uppercase leading-none transition-colors",
-                scrolled ? "text-forest" : "text-white"
-              )}>Vitality</span>
-              <span className={cn(
-                "text-xs font-bold tracking-[0.2em] uppercase leading-none transition-colors",
-                scrolled ? "text-muted" : "text-seafoam"
-              )}>Path</span>
-            </div>
-          </Link>
-          
-          <nav className="hidden md:flex items-center gap-1">
-            <Link className={cn(
-              "font-bold uppercase tracking-wider px-4 py-2 text-sm transition-colors",
-              scrolled ? "text-forest hover:text-seafoam" : "text-seafoam"
-            )} href="#">Home</Link>
-            <Link className={cn(
-              "font-bold uppercase tracking-wider px-4 py-2 text-sm transition-colors",
-              scrolled ? "text-forest hover:text-lime" : "text-white/80 hover:text-white"
-            )} href="#services">Services</Link>
-            <Link className={cn(
-              "font-bold uppercase tracking-wider px-4 py-2 text-sm transition-colors",
-              scrolled ? "text-forest hover:text-lime" : "text-white/80 hover:text-white"
-            )} href="#faq">FAQ</Link>
-            <Link className={cn(
-              "font-bold uppercase tracking-wider px-4 py-2 text-sm transition-colors",
-              scrolled ? "text-forest hover:text-lime" : "text-white/80 hover:text-white"
-            )} href="#journal">Blog</Link>
-            <Link className={cn(
-              "font-bold uppercase tracking-wider px-4 py-2 text-sm transition-colors",
-              scrolled ? "text-forest hover:text-seafoam" : "text-white/80 hover:text-white"
-            )} href="#contact">Contact</Link>
-          </nav>
-          
-          <div className="hidden md:flex gap-4">
-            <Link 
-              className={cn(
-                "flex items-center justify-center h-10 px-6 text-xs font-bold uppercase tracking-widest transition-all rounded-full",
-                scrolled 
-                  ? "bg-seafoam text-white hover:bg-forest shadow-sm" 
-                  : "bg-seafoam text-white hover:bg-white hover:text-forest shadow-lg"
-              )}
-              href="#booking-form"
-            >
-              Make Appointment
-            </Link>
-          </div>
+          "absolute inset-0 transition-opacity duration-500",
+          scrolled ? "opacity-0" : "opacity-100"
+        )} />
 
-          {/* Mobile Hamburger */}
-          <button
-            className={cn(
-              "md:hidden p-2 rounded-lg transition-colors",
-              scrolled ? "text-forest" : "text-white"
-            )}
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-      </header>
-      
-      {/* Mobile Drawer */}
-      <div
-        className={cn(
-          'fixed inset-x-0 z-40 overflow-hidden transition-all duration-500 md:hidden',
+        {/* Floating navbar container when scrolled */}
+        <div className={cn(
+          "mx-auto transition-all duration-500 ease-out pointer-events-auto",
           scrolled 
-            ? 'top-24 left-1/2 -translate-x-1/2 w-[90%] bg-white/95 backdrop-blur-md rounded-3xl shadow-glow border border-forest/10' 
-            : 'top-[96px] bg-forest/95 backdrop-blur-md border-b border-white/10 w-full left-0',
-          mobileOpen ? 'max-h-96 py-8' : 'max-h-0 py-0'
-        )}
-      >
-        <div className="flex flex-col items-center gap-6">
-            <Link className={cn(
-              "font-bold uppercase tracking-wider text-sm transition-colors",
-              scrolled ? "text-forest" : "text-seafoam"
-            )} href="#" onClick={() => setMobileOpen(false)}>Home</Link>
-            <Link className={cn(
-              "font-bold uppercase tracking-wider text-sm transition-colors",
-              scrolled ? "text-forest" : "text-white/80"
-            )} href="#services" onClick={() => setMobileOpen(false)}>Services</Link>
-            <Link className={cn(
-              "font-bold uppercase tracking-wider text-sm transition-colors",
-              scrolled ? "text-forest" : "text-white/80"
-            )} href="#faq" onClick={() => setMobileOpen(false)}>FAQ</Link>
-            <Link className={cn(
-              "font-bold uppercase tracking-wider text-sm transition-colors",
-              scrolled ? "text-forest" : "text-white/80"
-            )} href="#journal" onClick={() => setMobileOpen(false)}>Blog</Link>
-            <Link className={cn(
-              "font-bold uppercase tracking-wider text-sm transition-colors",
-              scrolled ? "text-forest" : "text-white/80"
-            )} href="#contact" onClick={() => setMobileOpen(false)}>Contact</Link>
-            <Link 
-              className={cn(
-                "flex items-center justify-center h-12 px-10 text-sm font-bold uppercase tracking-widest transition-all rounded-full mt-4",
-                scrolled ? "bg-forest text-white" : "bg-seafoam text-white"
-              )} 
-              href="#booking-form"
-              onClick={() => setMobileOpen(false)}
-            >
-              Make Appointment
-            </Link>
+            ? "mt-4 max-w-5xl mx-4 md:mx-auto" 
+            : "max-w-[1400px]"
+        )}>
+          <div className={cn(
+            "relative transition-all duration-500 ease-out",
+            scrolled 
+              ? "bg-white/95 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,45,4,0.12)] rounded-2xl border border-forest/5" 
+              : "bg-transparent"
+          )}>
+            <div className={cn(
+              "flex items-center justify-between transition-all duration-500",
+              scrolled ? "px-6 h-16" : "px-6 lg:px-8 h-20"
+            )}>
+              {/* Logo */}
+              <Link href="/" className="flex items-center gap-2.5 group relative z-10">
+                <motion.div 
+                  className={cn(
+                    "relative flex items-center justify-center rounded-xl transition-all duration-500",
+                    scrolled 
+                      ? "w-9 h-9 bg-forest" 
+                      : "w-10 h-10 bg-white/10 backdrop-blur-sm border border-white/20"
+                  )}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <span className={cn(
+                    "material-symbols-outlined text-lg font-medium transition-colors duration-500",
+                    scrolled ? "text-seafoam" : "text-white"
+                  )}>spa</span>
+                </motion.div>
+                <div className="flex flex-col">
+                  <span className={cn(
+                    "text-base font-bold tracking-tight uppercase leading-none transition-colors duration-500",
+                    scrolled ? "text-forest" : "text-white"
+                  )}>Vitality</span>
+                  <span className={cn(
+                    "text-[9px] font-bold tracking-[0.2em] uppercase leading-none transition-colors duration-500",
+                    scrolled ? "text-seafoam" : "text-seafoam"
+                  )}>Path</span>
+                </div>
+              </Link>
+              
+              {/* Desktop Navigation */}
+              <nav className="hidden md:flex items-center gap-1">
+                {navLinks.map((link) => (
+                  <Link 
+                    key={link.label}
+                    href={link.href}
+                    className="relative px-4 py-2 group"
+                  >
+                    <span className={cn(
+                      "text-xs font-semibold uppercase tracking-wider transition-colors duration-300",
+                      scrolled 
+                        ? "text-forest/70 group-hover:text-forest" 
+                        : "text-white/70 group-hover:text-white"
+                    )}>
+                      {link.label}
+                    </span>
+                    {/* Hover underline */}
+                    <span className={cn(
+                      "absolute bottom-1 left-4 right-4 h-0.5 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left",
+                      scrolled ? "bg-seafoam" : "bg-seafoam"
+                    )} />
+                  </Link>
+                ))}
+              </nav>
+              
+              {/* CTA Button */}
+              <div className="hidden md:block">
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Link 
+                    href="#appointment"
+                    className={cn(
+                      "inline-flex items-center gap-2 h-10 px-5 text-[11px] font-bold uppercase tracking-wider rounded-xl transition-all duration-300",
+                      scrolled 
+                        ? "bg-forest text-white hover:bg-forest/90 shadow-sm" 
+                        : "bg-white text-forest hover:bg-seafoam hover:text-white"
+                    )}
+                  >
+                    <span>Book Now</span>
+                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </Link>
+                </motion.div>
+              </div>
+
+              {/* Mobile Menu Button */}
+              <motion.button
+                className={cn(
+                  "md:hidden relative w-10 h-10 rounded-xl flex items-center justify-center transition-colors duration-300",
+                  scrolled 
+                    ? "bg-forest/5 text-forest" 
+                    : "bg-white/10 text-white"
+                )}
+                onClick={() => setMobileOpen(!mobileOpen)}
+                whileTap={{ scale: 0.9 }}
+                aria-label="Toggle menu"
+              >
+                <div className="relative w-5 h-4 flex flex-col justify-between">
+                  <motion.span 
+                    className={cn(
+                      "block h-0.5 rounded-full transition-colors",
+                      scrolled ? "bg-forest" : "bg-white"
+                    )}
+                    animate={{ 
+                      rotate: mobileOpen ? 45 : 0,
+                      y: mobileOpen ? 7 : 0,
+                      width: mobileOpen ? '100%' : '100%'
+                    }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  <motion.span 
+                    className={cn(
+                      "block h-0.5 rounded-full transition-colors",
+                      scrolled ? "bg-forest" : "bg-white"
+                    )}
+                    animate={{ 
+                      opacity: mobileOpen ? 0 : 1,
+                      x: mobileOpen ? -10 : 0
+                    }}
+                    transition={{ duration: 0.2 }}
+                  />
+                  <motion.span 
+                    className={cn(
+                      "block h-0.5 rounded-full transition-colors",
+                      scrolled ? "bg-forest" : "bg-white"
+                    )}
+                    animate={{ 
+                      rotate: mobileOpen ? -45 : 0,
+                      y: mobileOpen ? -7 : 0,
+                      width: mobileOpen ? '100%' : '60%'
+                    }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </div>
+              </motion.button>
+            </div>
+          </div>
         </div>
-      </div>
+      </motion.header>
+      
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 bg-forest/60 backdrop-blur-sm z-40 md:hidden"
+              onClick={() => setMobileOpen(false)}
+            />
+            
+            {/* Mobile Menu Panel */}
+            <motion.div
+              initial={{ opacity: 0, y: -20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.95 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              className={cn(
+                "fixed z-50 md:hidden overflow-hidden",
+                scrolled 
+                  ? "top-24 left-4 right-4 bg-white rounded-2xl shadow-2xl" 
+                  : "top-24 left-4 right-4 bg-white rounded-2xl shadow-2xl"
+              )}
+            >
+              <div className="p-6">
+                {/* Mobile Nav Links */}
+                <nav className="space-y-1 mb-6">
+                  {navLinks.map((link, index) => (
+                    <motion.div
+                      key={link.label}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                    >
+                      <Link 
+                        href={link.href}
+                        onClick={() => setMobileOpen(false)}
+                        className="flex items-center justify-between py-3 px-4 rounded-xl text-forest hover:bg-forest/5 transition-colors group"
+                      >
+                        <span className="text-sm font-semibold uppercase tracking-wider">{link.label}</span>
+                        <svg className="w-4 h-4 text-forest/30 group-hover:text-seafoam group-hover:translate-x-1 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </nav>
+                
+                {/* Mobile CTA */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  <Link 
+                    href="#appointment"
+                    onClick={() => setMobileOpen(false)}
+                    className="flex items-center justify-center gap-2 w-full h-12 bg-forest text-white text-sm font-bold uppercase tracking-wider rounded-xl hover:bg-forest/90 transition-colors"
+                  >
+                    <span>Book Appointment</span>
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </Link>
+                </motion.div>
+                
+                {/* Contact Info */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.4 }}
+                  className="mt-6 pt-6 border-t border-forest/10"
+                >
+                  <div className="flex items-center gap-4 text-forest/60">
+                    <a href="tel:+15551234567" className="flex items-center gap-2 text-xs hover:text-seafoam transition-colors">
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                      (555) 123-4567
+                    </a>
+                    <span className="w-px h-4 bg-forest/20" />
+                    <a href="mailto:hello@vitalitypath.com" className="flex items-center gap-2 text-xs hover:text-seafoam transition-colors">
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                      Email Us
+                    </a>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 }

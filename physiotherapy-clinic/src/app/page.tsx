@@ -2,10 +2,9 @@ import { HeroSection } from '@/components/sections/HeroSection';
 import { SupportSection } from '@/components/sections/SupportSection';
 import { ServicesSection } from '@/components/sections/ServicesSection';
 import { PatientJourney } from '@/components/sections/PatientJourney';
-import { BlogSection } from '@/components/sections/BlogSection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { FaqSection } from '@/components/sections/FaqSection';
-import { CtaBanner } from '@/components/sections/CtaBanner';
+import { AppointmentSection } from '@/components/sections/AppointmentSection';
 
 export default function HomePage() {
   return (
@@ -20,7 +19,8 @@ export default function HomePage() {
       {/* <BlogSection /> */}
       <TestimonialsSection />
       <FaqSection />
-      <CtaBanner />
+      <AppointmentSection />
+      {/* <CtaBanner /> */}
     </main>
   );
 }

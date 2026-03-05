@@ -1,159 +1,412 @@
+"use client";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
 export function ServicesSection() {
-  const cards = [
+  const [activeService, setActiveService] = useState(0);
+
+  const services = [
     {
-      title: "Advanced Physiotherapy Treatment",
-      desc: "Our advanced physiotherapy treatments are designed to...",
-      img: "https://images.unsplash.com/photo-1588286840104-8957b019727f?auto=format&fit=crop&q=80"
+      id: "01",
+      title: "Orthopedic Rehabilitation",
+      shortDesc: "Joint & Bone Recovery",
+      fullDesc: "Comprehensive treatment for musculoskeletal disorders including joint pain, fractures, arthritis management, and post-surgical rehabilitation protocols.",
+      icon: "🦴",
+      img: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80",
+      features: ["Joint Mobilization", "Post-Surgery Care", "Pain Management"]
     },
     {
-      title: "Lower Back Pain Management",
-      desc: "Our lower back physiotherapy treatment focuses on...",
-      img: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80"
+      id: "02",
+      title: "Sports Medicine & Rehab",
+      shortDesc: "Athletic Performance",
+      fullDesc: "Expert rehabilitation for athletes of all levels - from injury diagnosis and treatment to full return-to-sport performance optimization programs.",
+      icon: "⚡",
+      img: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&q=80",
+      features: ["Injury Prevention", "Performance Training", "Sport-Specific Rehab"]
     },
     {
+      id: "03",
+      title: "Neurological Therapy",
+      shortDesc: "Brain & Nerve Care",
+      fullDesc: "Compassionate care for neurological conditions including stroke recovery, Parkinson's disease, multiple sclerosis, and spinal cord injuries.",
+      icon: "🧠",
+      img: "https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&q=80",
+      features: ["Stroke Recovery", "Balance Training", "Motor Control"]
+    },
+    {
+      id: "04",
       title: "Manual Therapy",
-      desc: "Manual therapy is a hands-on physiotherapy technique...",
-      img: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&q=80"
+      shortDesc: "Hands-On Healing",
+      fullDesc: "Skilled hands-on techniques including soft tissue mobilization, joint manipulation, and myofascial release for optimal pain relief and mobility.",
+      icon: "🤲",
+      img: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80",
+      features: ["Deep Tissue Work", "Trigger Point Release", "Spinal Adjustment"]
     },
     {
-      title: "Strength Recovery Therapy",
-      desc: "Our shoulder rehabilitation therapy is specially designed...",
-      img: "https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&q=80"
-    },
-    {
-      title: "Neuromuscular Rehabilitation",
-      desc: "Our specialized hand therapy program focuses on...",
-      img: "https://images.unsplash.com/photo-1550831107-1553da8c8464?auto=format&fit=crop&q=80"
+      id: "05",
+      title: "Senior Wellness Program",
+      shortDesc: "Active Aging",
+      fullDesc: "Specialized programs for older adults focusing on balance improvement, fall prevention, strength maintenance, and enhanced quality of life.",
+      icon: "💚",
+      img: "https://images.unsplash.com/photo-1550831107-1553da8c8464?auto=format&fit=crop&q=80",
+      features: ["Fall Prevention", "Mobility Enhancement", "Strength Building"]
     }
   ];
 
+  const activeData = services[activeService];
+
   return (
-    <section className="relative py-24 bg-section overflow-hidden" id="services">
-      {/* Background Decor */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none overflow-hidden">
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-seafoam/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-white/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4"></div>
+    <section className="relative py-16 md:py-24 bg-section overflow-hidden" id="services">
+      {/* Background Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 opacity-[0.03]" 
+          style={{
+            backgroundImage: `linear-gradient(#002D04 1px, transparent 1px), linear-gradient(90deg, #002D04 1px, transparent 1px)`,
+            backgroundSize: '60px 60px'
+          }}
+        />
+        {/* Decorative Circles */}
+        <div className="absolute top-20 right-20 w-96 h-96 border border-seafoam/10 rounded-full" />
+        <div className="absolute top-24 right-24 w-80 h-80 border border-seafoam/5 rounded-full" />
+        <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-seafoam/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="mx-auto max-w-[1400px] px-6 lg:px-8 relative z-10">
+      <div className="mx-auto max-w-[1400px] px-4 md:px-6 lg:px-8 relative z-10">
         
-        {/* Header Section */}
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center justify-center gap-3 mb-6">
-            <div className="w-12 h-[1px] bg-seafoam"></div>
-            <span className="text-forest text-[10px] font-bold uppercase tracking-[0.2em]">Recover With Confidence</span>
+        {/* Header */}
+        <motion.div 
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 md:mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div>
+            <div className="inline-flex items-center gap-2 mb-4">
+              <div className="w-8 h-8 rounded-full bg-seafoam/10 flex items-center justify-center">
+                <span className="text-seafoam text-sm">✦</span>
+              </div>
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-seafoam">Our Services</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-sans text-forest font-semibold leading-[1.1] tracking-tight">
+              Expert Care For Every<br className="hidden md:block" />
+              <span className="text-seafoam">Recovery Journey</span>
+            </h2>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans text-forest leading-[1.2] font-medium tracking-tight max-w-4xl mx-auto">
-            Expert <span className="text-seafoam font-normal">Therapy Focused</span> On <br/>Movement And Wellness
-          </h2>
+          <p className="text-forest/60 text-sm md:text-base max-w-md leading-relaxed">
+            From sports injuries to chronic conditions, our specialized treatments are designed to restore your mobility and enhance your quality of life.
+          </p>
+        </motion.div>
+
+        {/* Main Content - Desktop */}
+        <div className="hidden lg:grid lg:grid-cols-12 gap-6 lg:gap-8">
+          
+          {/* Left - Service List */}
+          <div className="col-span-4 space-y-3">
+            {services.map((service, index) => (
+              <motion.button
+                key={service.id}
+                onClick={() => setActiveService(index)}
+                className={`w-full text-left p-4 xl:p-5 rounded-2xl transition-all duration-300 group relative overflow-hidden ${
+                  activeService === index 
+                    ? 'bg-forest text-white shadow-lg' 
+                    : 'bg-white hover:bg-forest/5 border border-forest/10'
+                }`}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, duration: 0.4 }}
+                whileHover={{ scale: activeService === index ? 1 : 1.02 }}
+              >
+                <div className="flex items-center gap-4">
+                  {/* Number */}
+                  <span className={`text-3xl xl:text-4xl font-bold transition-colors ${
+                    activeService === index ? 'text-seafoam' : 'text-forest/10'
+                  }`}>
+                    {service.id}
+                  </span>
+                  
+                  <div className="flex-1 min-w-0">
+                    <h3 className={`font-semibold text-sm xl:text-base mb-0.5 truncate ${
+                      activeService === index ? 'text-white' : 'text-forest'
+                    }`}>
+                      {service.title}
+                    </h3>
+                    <p className={`text-xs truncate ${
+                      activeService === index ? 'text-white/70' : 'text-forest/50'
+                    }`}>
+                      {service.shortDesc}
+                    </p>
+                  </div>
+
+                  {/* Icon */}
+                  <span className={`text-2xl transition-transform ${
+                    activeService === index ? 'scale-110' : 'group-hover:scale-110'
+                  }`}>
+                    {service.icon}
+                  </span>
+                </div>
+
+                {/* Active Indicator */}
+                {activeService === index && (
+                  <motion.div 
+                    className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-seafoam rounded-r-full"
+                    layoutId="activeIndicator"
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
+                )}
+              </motion.button>
+            ))}
+
+            {/* Stats Mini Card */}
+            <motion.div 
+              className="mt-6 p-5 bg-gradient-to-br from-seafoam/10 to-seafoam/5 rounded-2xl border border-seafoam/20"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
+            >
+              <div className="flex items-center justify-between">
+                <div className="text-center">
+                  <p className="text-2xl font-bold text-forest">15+</p>
+                  <p className="text-[10px] text-forest/60 uppercase tracking-wider">Services</p>
+                </div>
+                <div className="w-px h-10 bg-forest/10" />
+                <div className="text-center">
+                  <p className="text-2xl font-bold text-forest">8K+</p>
+                  <p className="text-[10px] text-forest/60 uppercase tracking-wider">Patients</p>
+                </div>
+                <div className="w-px h-10 bg-forest/10" />
+                <div className="text-center">
+                  <p className="text-2xl font-bold text-forest">98%</p>
+                  <p className="text-[10px] text-forest/60 uppercase tracking-wider">Success</p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Right - Featured Service Display */}
+          <div className="col-span-8">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeService}
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                className="relative h-[560px] xl:h-[600px] rounded-3xl overflow-hidden group"
+              >
+                {/* Image */}
+                <motion.img 
+                  src={activeData.img} 
+                  alt={activeData.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  initial={{ scale: 1.1 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.6 }}
+                />
+                
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/50 to-transparent" />
+                
+                {/* Content */}
+                <div className="absolute inset-0 p-8 xl:p-10 flex flex-col justify-end">
+                  {/* Top Badge */}
+                  <motion.div 
+                    className="absolute top-8 left-8 inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                  >
+                    <span className="text-xl">{activeData.icon}</span>
+                    <span className="text-white text-sm font-medium">{activeData.shortDesc}</span>
+                  </motion.div>
+
+                  {/* Main Text */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                  >
+                    <span className="text-seafoam text-6xl xl:text-7xl font-bold opacity-30 mb-2 block">
+                      {activeData.id}
+                    </span>
+                    <h3 className="text-3xl xl:text-4xl font-bold text-white mb-4 leading-tight">
+                      {activeData.title}
+                    </h3>
+                    <p className="text-white/80 text-base xl:text-lg max-w-xl mb-6 leading-relaxed">
+                      {activeData.fullDesc}
+                    </p>
+
+                    {/* Features Tags */}
+                    <div className="flex flex-wrap gap-2 mb-8">
+                      {activeData.features.map((feature, i) => (
+                        <motion.span
+                          key={feature}
+                          className="px-4 py-2 bg-white/10 backdrop-blur-sm text-white text-sm rounded-full border border-white/10"
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: 0.2 + i * 0.1 }}
+                        >
+                          {feature}
+                        </motion.span>
+                      ))}
+                    </div>
+
+                    {/* CTA Button */}
+                    <motion.button
+                      className="inline-flex items-center gap-3 px-6 py-3 bg-white text-forest font-semibold rounded-full hover:bg-seafoam hover:text-white transition-colors group/btn"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      Learn More About This Service
+                      <span className="size-8 rounded-full bg-forest/10 flex items-center justify-center group-hover/btn:bg-white/20 transition-colors">
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </span>
+                    </motion.button>
+                  </motion.div>
+                </div>
+
+                {/* Navigation Dots */}
+                <div className="absolute top-1/2 right-6 -translate-y-1/2 flex flex-col gap-2">
+                  {services.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setActiveService(i)}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                        i === activeService 
+                          ? 'bg-white h-6' 
+                          : 'bg-white/30 hover:bg-white/50'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
 
-        {/* Bento Grid Layout using Flex */}
-        <div className="flex flex-col lg:flex-row gap-6 lg:h-[760px]">
-          
-          {/* Left Column */}
-          <div className="flex flex-col gap-6 lg:w-[28%] lg:h-full">
-            {/* Card 1 */}
-            <div className="relative rounded-[2.5rem] overflow-hidden group flex-[1.1] w-full bg-white shadow-card">
-              <img src={cards[0].img} alt={cards[0].title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-forest/90 via-forest/40 to-transparent"></div>
-              <div className="absolute inset-x-0 bottom-0 p-8 flex flex-col justify-end h-full">
-                <div className="flex items-end justify-between gap-4 mt-auto">
-                  <div className="pr-4">
-                    <h3 className="text-xl xl:text-2xl font-bold text-white mb-3 leading-tight">{cards[0].title}</h3>
-                    <p className="text-white/80 text-sm font-medium line-clamp-2 leading-relaxed">{cards[0].desc}</p>
-                  </div>
-                  <button className="flex-shrink-0 size-12 rounded-full bg-white text-forest flex items-center justify-center hover:bg-seafoam hover:text-white transition-all shadow-md group-hover:-translate-y-1">
-                    <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 2 */}
-            <div className="relative rounded-[2.5rem] overflow-hidden group flex-1 w-full bg-white shadow-card">
-              <img src={cards[1].img} alt={cards[1].title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-forest/90 via-forest/40 to-transparent"></div>
-              <div className="absolute inset-x-0 bottom-0 p-8 flex flex-col justify-end h-full">
-                <div className="flex items-end justify-between gap-4 mt-auto">
-                  <div className="pr-4">
-                    <h3 className="text-xl xl:text-2xl font-bold text-white mb-3 leading-tight">{cards[1].title}</h3>
-                    <p className="text-white/80 text-sm font-medium line-clamp-2 leading-relaxed">{cards[1].desc}</p>
-                  </div>
-                  <button className="flex-shrink-0 size-12 rounded-full bg-white text-forest flex items-center justify-center hover:bg-seafoam hover:text-white transition-all shadow-md group-hover:-translate-y-1">
-                    <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
-                  </button>
-                </div>
-              </div>
-            </div>
+        {/* Mobile Layout */}
+        <div className="lg:hidden">
+          {/* Service Pills - Horizontal Scroll */}
+          <div className="flex gap-2 overflow-x-auto pb-4 mb-6 scrollbar-hide -mx-4 px-4">
+            {services.map((service, index) => (
+              <button
+                key={service.id}
+                onClick={() => setActiveService(index)}
+                className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${
+                  activeService === index
+                    ? 'bg-forest text-white'
+                    : 'bg-white text-forest border border-forest/20'
+                }`}
+              >
+                <span className="mr-2">{service.icon}</span>
+                {service.title}
+              </button>
+            ))}
           </div>
 
-          {/* Middle Column (Hero Card) */}
-          <div className="lg:w-[44%] lg:h-full">
-            <div className="relative rounded-[3rem] overflow-hidden group w-full h-[500px] lg:h-full bg-white shadow-card">
-              <img src={cards[2].img} alt={cards[2].title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-forest/90 via-forest/20 to-transparent"></div>
-              <div className="absolute inset-x-0 bottom-0 p-10 xl:p-12 flex flex-col justify-end h-full">
-                 <div className="flex items-end justify-between gap-6 mt-auto">
-                  <div className="pr-8">
-                    <h3 className="text-3xl xl:text-4xl font-bold text-white mb-4 leading-tight">{cards[2].title}</h3>
-                    <p className="text-white/80 text-base xl:text-lg font-medium line-clamp-3 leading-relaxed">{cards[2].desc}</p>
-                  </div>
-                  <button className="flex-shrink-0 size-16 rounded-full bg-white text-forest flex items-center justify-center hover:bg-seafoam hover:text-white transition-all shadow-lg group-hover:-translate-y-1">
-                    <span className="material-symbols-outlined text-[24px]">arrow_forward</span>
-                  </button>
+          {/* Active Service Card */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeService}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="relative rounded-2xl overflow-hidden aspect-[4/5]"
+            >
+              <img 
+                src={activeData.img} 
+                alt={activeData.title}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/60 to-transparent" />
+              
+              <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                {/* Badge */}
+                <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
+                  <span className="text-lg">{activeData.icon}</span>
+                  <span className="text-white text-xs font-medium">{activeData.shortDesc}</span>
                 </div>
-              </div>
-            </div>
-          </div>
 
-          {/* Right Column */}
-          <div className="flex flex-col gap-6 lg:w-[28%] lg:h-full">
-             {/* Card 4 */}
-             <div className="relative rounded-[2.5rem] overflow-hidden group flex-1 w-full bg-white shadow-card">
-              <img src={cards[3].img} alt={cards[3].title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-forest/90 via-forest/40 to-transparent"></div>
-              <div className="absolute inset-x-0 bottom-0 p-8 flex flex-col justify-end h-full">
-                <div className="flex items-end justify-between gap-4 mt-auto">
-                  <div className="pr-4">
-                    <h3 className="text-xl xl:text-2xl font-bold text-white mb-3 leading-tight">{cards[3].title}</h3>
-                    <p className="text-white/80 text-sm font-medium line-clamp-2 leading-relaxed">{cards[3].desc}</p>
-                  </div>
-                  <button className="flex-shrink-0 size-12 rounded-full bg-white text-forest flex items-center justify-center hover:bg-seafoam hover:text-white transition-all shadow-md group-hover:-translate-y-1">
-                    <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
-                  </button>
+                {/* Number */}
+                <span className="text-5xl font-bold text-seafoam/30 mb-2">{activeData.id}</span>
+                
+                <h3 className="text-2xl font-bold text-white mb-2">{activeData.title}</h3>
+                <p className="text-white/70 text-sm mb-4 line-clamp-3">{activeData.fullDesc}</p>
+                
+                {/* Features */}
+                <div className="flex flex-wrap gap-1.5 mb-4">
+                  {activeData.features.map((feature) => (
+                    <span key={feature} className="px-3 py-1 bg-white/10 text-white text-xs rounded-full">
+                      {feature}
+                    </span>
+                  ))}
                 </div>
-              </div>
-            </div>
 
-            {/* Card 5 */}
-            <div className="relative rounded-[2.5rem] overflow-hidden group flex-[1.1] w-full bg-white shadow-card">
-              <img src={cards[4].img} alt={cards[4].title} className="absolute inset-0 w-full h-full object-cover top-0 transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-forest/90 via-forest/40 to-transparent"></div>
-               <div className="absolute inset-x-0 bottom-0 p-8 flex flex-col justify-end h-full">
-                <div className="flex items-end justify-between gap-4 mt-auto">
-                  <div className="pr-4">
-                    <h3 className="text-xl xl:text-2xl font-bold text-white mb-3 leading-tight">{cards[4].title}</h3>
-                    <p className="text-white/80 text-sm font-medium line-clamp-2 leading-relaxed">{cards[4].desc}</p>
-                  </div>
-                  <button className="flex-shrink-0 size-12 rounded-full bg-white text-forest flex items-center justify-center hover:bg-seafoam hover:text-white transition-all shadow-md group-hover:-translate-y-1">
-                    <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
-                  </button>
-                </div>
+                <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-forest font-semibold rounded-full text-sm w-fit">
+                  Learn More
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </button>
               </div>
-            </div>
+
+              {/* Slide Indicators */}
+              <div className="absolute bottom-6 right-6 flex gap-1.5">
+                {services.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setActiveService(i)}
+                    className={`w-1.5 h-1.5 rounded-full transition-all ${
+                      i === activeService ? 'bg-white w-4' : 'bg-white/40'
+                    }`}
+                  />
+                ))}
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Mobile Stats */}
+          <div className="mt-6 grid grid-cols-3 gap-3">
+            {[
+              { value: "15+", label: "Services" },
+              { value: "8K+", label: "Patients" },
+              { value: "98%", label: "Success" }
+            ].map((stat) => (
+              <div key={stat.label} className="text-center p-3 bg-white rounded-xl border border-forest/10">
+                <p className="text-xl font-bold text-forest">{stat.value}</p>
+                <p className="text-[10px] text-forest/60 uppercase tracking-wider">{stat.label}</p>
+              </div>
+            ))}
           </div>
         </div>
 
         {/* Bottom CTA */}
-        <div className="mt-20 flex justify-center">
-          <a className="inline-flex items-center justify-center gap-4 px-8 py-3 bg-transparent border border-forest text-forest hover:bg-forest hover:text-white transition-colors rounded-full text-sm font-medium tracking-wide group" href="#all-services">
-            View All Services
-            <span className="size-8 rounded-full bg-seafoam flex items-center justify-center text-forest group-hover:bg-white transition-colors">
-              <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+        <motion.div 
+          className="mt-12 md:mt-16 flex justify-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+        >
+          <a 
+            href="#all-services"
+            className="inline-flex items-center gap-4 px-6 md:px-8 py-3 bg-forest text-white hover:bg-forest/90 transition-colors rounded-full text-sm font-medium tracking-wide group"
+          >
+            Explore All Services
+            <span className="size-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-seafoam transition-colors">
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
             </span>
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
