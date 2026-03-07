@@ -260,59 +260,58 @@ export function PatientJourney() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.4 }}
-                className={`relative rounded-3xl overflow-hidden bg-gradient-to-br ${steps[activeStep].color} border border-white/10 p-6 md:p-8 lg:p-10 mt-12 md:mt-16`}
+                className={`relative rounded-2xl md:rounded-3xl overflow-hidden bg-gradient-to-br ${steps[activeStep].color} border border-white/10 p-4 sm:p-6 md:p-8 lg:p-10 mt-4 md:mt-16`}
               >
                 {/* Large Number Background */}
-                <div className="absolute top-4 right-4 md:top-6 md:right-6 text-[120px] md:text-[180px] font-bold text-white/5 leading-none select-none">
+                <div className="absolute top-2 right-2 sm:top-4 sm:right-4 md:top-6 md:right-6 text-[80px] sm:text-[120px] md:text-[180px] font-bold text-white/5 leading-none select-none">
                   {steps[activeStep].num}
                 </div>
 
                 <div className="relative z-10">
                   {/* Step Badge */}
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-6">
-                    <span className="text-2xl">{steps[activeStep].icon}</span>
-                    <span className="text-white text-sm font-medium">Step {steps[activeStep].num} of {steps.length}</span>
-                    <span className="w-px h-4 bg-white/30" />
-                    <span className="text-white/70 text-sm">{steps[activeStep].duration}</span>
+                  <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full mb-4 sm:mb-6">
+                    <span className="text-white text-xs sm:text-sm font-medium">Step {steps[activeStep].num} of {steps.length}</span>
+                    <span className="w-px h-3 sm:h-4 bg-white/30" />
+                    <span className="text-white/70 text-xs sm:text-sm">{steps[activeStep].duration}</span>
                   </div>
 
-                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4">
                     {steps[activeStep].title}
                   </h3>
-                  <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-2xl mb-8">
+                  <p className="text-white/70 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mb-6 sm:mb-8">
                     {steps[activeStep].desc}
                   </p>
 
                   {/* Navigation */}
                   <div className="flex items-center justify-between">
-                    <div className="flex gap-2">
+                    <div className="flex gap-1.5 sm:gap-2">
                       {steps.map((_, index) => (
                         <button
                           key={index}
                           onClick={() => setActiveStep(index)}
-                          className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                            index === activeStep ? 'bg-lime w-8' : 'bg-white/30 hover:bg-white/50'
+                          className={`h-2 rounded-full transition-all duration-300 ${
+                            index === activeStep ? 'bg-lime w-6 sm:w-8' : 'bg-white/30 hover:bg-white/50 w-2'
                           }`}
                         />
                       ))}
                     </div>
 
-                    <div className="flex gap-3">
+                    <div className="flex gap-2 sm:gap-3">
                       <button
                         onClick={() => setActiveStep(Math.max(0, activeStep - 1))}
                         disabled={activeStep === 0}
-                        className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                        className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                       >
-                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                         </svg>
                       </button>
                       <button
                         onClick={() => setActiveStep(Math.min(steps.length - 1, activeStep + 1))}
                         disabled={activeStep === steps.length - 1}
-                        className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-forest hover:bg-lime transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                        className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white flex items-center justify-center text-forest hover:bg-lime transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                       >
-                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
                       </button>
@@ -323,12 +322,12 @@ export function PatientJourney() {
             </AnimatePresence>
 
             {/* Mobile Step List */}
-            <div className="md:hidden mt-8 space-y-3">
+            <div className="md:hidden mt-6 space-y-2">
               {steps.map((step, index) => (
                 <motion.button
                   key={step.num}
                   onClick={() => setActiveStep(index)}
-                  className={`w-full text-left p-4 rounded-2xl transition-all duration-300 ${
+                  className={`w-full text-left p-3 rounded-xl transition-all duration-300 ${
                     index === activeStep
                       ? 'bg-gradient-to-r from-seafoam/20 to-lime/20 border border-white/20'
                       : 'bg-white/5 border border-transparent'
@@ -338,27 +337,27 @@ export function PatientJourney() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-3">
                     {(() => {
                       const IconComponent = stepIconMap[step.num as keyof typeof stepIconMap];
                       return (
-                        <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
+                        <div className={`w-10 h-10 flex-shrink-0 rounded-full flex items-center justify-center ${
                           index <= activeStep
                             ? 'bg-gradient-to-br from-seafoam to-lime'
                             : 'bg-white/10'
                         }`}>
-                          {IconComponent && <IconComponent className="w-5 h-5 text-white" />}
+                          {IconComponent && <IconComponent className="w-4 h-4 text-white" />}
                         </div>
                       );
                     })()}
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between">
-                        <h4 className={`font-semibold ${index === activeStep ? 'text-white' : 'text-white/70'}`}>
+                      <div className="flex items-center justify-between gap-2">
+                        <h4 className={`font-semibold text-sm ${index === activeStep ? 'text-white' : 'text-white/70'}`}>
                           {step.title}
                         </h4>
-                        <span className="text-xs text-white/40">{step.duration}</span>
+                        <span className="text-[10px] text-white/40 flex-shrink-0">{step.duration}</span>
                       </div>
-                      <p className="text-white/50 text-xs truncate">{step.desc}</p>
+                      <p className="text-white/50 text-xs line-clamp-1">{step.desc}</p>
                     </div>
                   </div>
                 </motion.button>
@@ -367,17 +366,17 @@ export function PatientJourney() {
 
             {/* Bottom CTA */}
             <motion.div 
-              className="mt-8 md:mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10"
+              className="mt-6 sm:mt-8 md:mt-12 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 p-4 sm:p-6 bg-white/5 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-white/10"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
             >
               <div className="text-center sm:text-left">
-                <p className="text-white font-semibold mb-1">Ready to start your recovery?</p>
-                <p className="text-white/50 text-sm">Book your initial assessment today</p>
+                <p className="text-white font-semibold text-sm sm:text-base mb-0.5 sm:mb-1">Ready to start your recovery?</p>
+                <p className="text-white/50 text-xs sm:text-sm">Book your initial assessment today</p>
               </div>
-              <button className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-seafoam to-lime text-forest font-semibold rounded-full hover:shadow-lg hover:shadow-seafoam/30 transition-all">
+              <button className="w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-3 px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-seafoam to-lime text-forest font-semibold rounded-full hover:shadow-lg hover:shadow-seafoam/30 transition-all text-sm sm:text-base">
                 Book Assessment
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

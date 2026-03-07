@@ -430,7 +430,7 @@ export function AppointmentSection() {
                     </AnimatePresence>
 
                     {/* Name, Email, Phone Row */}
-                    <div className="grid grid-cols-3 gap-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                       <div className="relative">
                         <div className="absolute left-3 top-1/2 -translate-y-1/2">
                           <User className="w-4 h-4 text-forest/30" />
@@ -442,7 +442,7 @@ export function AppointmentSection() {
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           disabled={status === 'loading'}
-                          className="w-full pl-9 pr-3 py-2.5 bg-section/40 border-0 rounded-lg text-xs text-forest placeholder:text-forest/40 focus:outline-none focus:ring-2 focus:ring-seafoam/30 disabled:opacity-50"
+                          className="w-full pl-9 pr-3 py-2.5 bg-section/40 border-0 rounded-lg text-sm sm:text-xs text-forest placeholder:text-forest/40 focus:outline-none focus:ring-2 focus:ring-seafoam/30 disabled:opacity-50"
                         />
                       </div>
                       <div className="relative">
@@ -456,7 +456,7 @@ export function AppointmentSection() {
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           disabled={status === 'loading'}
-                          className="w-full pl-9 pr-3 py-2.5 bg-section/40 border-0 rounded-lg text-xs text-forest placeholder:text-forest/40 focus:outline-none focus:ring-2 focus:ring-seafoam/30 disabled:opacity-50"
+                          className="w-full pl-9 pr-3 py-2.5 bg-section/40 border-0 rounded-lg text-sm sm:text-xs text-forest placeholder:text-forest/40 focus:outline-none focus:ring-2 focus:ring-seafoam/30 disabled:opacity-50"
                         />
                       </div>
                       <div className="relative">
@@ -469,7 +469,7 @@ export function AppointmentSection() {
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           disabled={status === 'loading'}
-                          className="w-full pl-9 pr-3 py-2.5 bg-section/40 border-0 rounded-lg text-xs text-forest placeholder:text-forest/40 focus:outline-none focus:ring-2 focus:ring-seafoam/30 disabled:opacity-50"
+                          className="w-full pl-9 pr-3 py-2.5 bg-section/40 border-0 rounded-lg text-sm sm:text-xs text-forest placeholder:text-forest/40 focus:outline-none focus:ring-2 focus:ring-seafoam/30 disabled:opacity-50"
                         />
                       </div>
                     </div>
@@ -479,7 +479,7 @@ export function AppointmentSection() {
                       <p className="text-[10px] text-forest/50 uppercase tracking-wider font-medium mb-2">
                         Select Service *
                       </p>
-                      <div className="grid grid-cols-6 gap-1.5">
+                      <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-1.5">
                         {services.map((service) => {
                           const IconComponent = serviceIconMap[service];
                           return (
@@ -488,14 +488,14 @@ export function AppointmentSection() {
                               type="button"
                               onClick={() => setFormData({ ...formData, service })}
                               disabled={status === 'loading'}
-                              className={`flex flex-col items-center p-2 rounded-lg transition-all duration-200 disabled:opacity-50 ${
+                              className={`flex flex-col items-center p-2.5 sm:p-2 rounded-lg transition-all duration-200 disabled:opacity-50 ${
                                 formData.service === service
                                   ? 'bg-forest text-white shadow-md'
                                   : 'bg-section/40 text-forest/60 hover:bg-section'
                               }`}
                             >
-                              <IconComponent className="w-4 h-4 mb-0.5" />
-                              <span className="text-[9px] font-medium leading-tight">
+                              <IconComponent className="w-5 h-5 sm:w-4 sm:h-4 mb-1 sm:mb-0.5" />
+                              <span className="text-[10px] sm:text-[9px] font-medium leading-tight">
                                 {serviceLabels[service]}
                               </span>
                             </button>
@@ -505,7 +505,7 @@ export function AppointmentSection() {
                     </div>
 
                     {/* Date & Time Row */}
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       <div className="relative">
                         <div className="absolute left-3 top-1/2 -translate-y-1/2">
                           <Calendar className="w-4 h-4 text-forest/30" />
@@ -518,7 +518,7 @@ export function AppointmentSection() {
                           value={formData.date}
                           onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                           disabled={status === 'loading'}
-                          className="w-full pl-9 pr-3 py-2.5 bg-section/40 border-0 rounded-lg text-xs text-forest focus:outline-none focus:ring-2 focus:ring-seafoam/30 cursor-pointer disabled:opacity-50"
+                          className="w-full pl-9 pr-3 py-2.5 bg-section/40 border-0 rounded-lg text-sm sm:text-xs text-forest focus:outline-none focus:ring-2 focus:ring-seafoam/30 cursor-pointer disabled:opacity-50"
                         />
                       </div>
                       <div className="relative">
@@ -534,7 +534,7 @@ export function AppointmentSection() {
                             value={formData.timeSlot}
                             onChange={(e) => setFormData({ ...formData, timeSlot: e.target.value as TimeSlot })}
                             disabled={status === 'loading'}
-                            className="w-full px-3 py-2.5 bg-section/40 border-0 rounded-lg text-xs text-forest focus:outline-none focus:ring-2 focus:ring-seafoam/30 cursor-pointer disabled:opacity-50"
+                            className="w-full px-3 py-2.5 bg-section/40 border-0 rounded-lg text-sm sm:text-xs text-forest focus:outline-none focus:ring-2 focus:ring-seafoam/30 cursor-pointer disabled:opacity-50"
                           >
                             <option value="">Select Time *</option>
                             {timeSlotOptions.map((slot) => (
@@ -558,7 +558,7 @@ export function AppointmentSection() {
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         disabled={status === 'loading'}
                         rows={2}
-                        className="w-full pl-9 pr-3 py-2.5 bg-section/40 border-0 rounded-lg text-xs text-forest placeholder:text-forest/40 focus:outline-none focus:ring-2 focus:ring-seafoam/30 resize-none disabled:opacity-50"
+                        className="w-full pl-9 pr-3 py-2.5 bg-section/40 border-0 rounded-lg text-sm sm:text-xs text-forest placeholder:text-forest/40 focus:outline-none focus:ring-2 focus:ring-seafoam/30 resize-none disabled:opacity-50"
                       />
                     </div>
 
