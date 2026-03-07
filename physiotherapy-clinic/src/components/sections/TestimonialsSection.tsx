@@ -1,7 +1,7 @@
 'use client';
 
 import { testimonials } from '@/lib/data/testimonials';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { useState } from 'react';
 import { Check, ArrowUpRight, Heart, Star, Zap, Trophy } from 'lucide-react';
 
@@ -9,7 +9,7 @@ export function TestimonialsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const featuredTestimonial = testimonials[activeIndex];
   
-  const fadeInUp = {
+  const fadeInUp: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
@@ -18,7 +18,7 @@ export function TestimonialsSection() {
     },
   };
 
-  const staggerContainer = {
+  const staggerContainer: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,

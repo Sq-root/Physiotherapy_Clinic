@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServerClient } from '@/lib/supabase/client';
-import type { ServiceType, TimeSlot } from '@/lib/supabase/types';
+import type { Appointment, AppointmentInsert, Database, ServiceType, TimeSlot } from '@/lib/supabase/types';
 
 // Validation helpers
 const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 const isValidPhone = (phone: string) => /^[\d\s\-+()]{10,}$/.test(phone);
-const isValidService = (service: string): service is ServiceType => 
+const isValidService = (service: string): service is ServiceType =>
   ['ortho', 'sports', 'neuro', 'manual', 'senior', 'surgery'].includes(service);
-const isValidTimeSlot = (slot: string): slot is TimeSlot => 
+const isValidTimeSlot = (slot: string): slot is TimeSlot =>
   ['morning', 'afternoon', 'evening'].includes(slot);
 
 interface AppointmentRequest {
@@ -50,11 +50,11 @@ export async function POST(request: NextRequest) {
       const selectedDate = new Date(date);
       const today = new Date();
       today.setHours(0, 0, 0, 0);
-      
+
       if (selectedDate < today) {
         errors.push('Appointment date cannot be in the past');
       }
-      
+
       // Check if date is within next 90 days
       const maxDate = new Date();
       maxDate.setDate(maxDate.getDate() + 90);
@@ -77,8 +77,8 @@ export async function POST(request: NextRequest) {
     const supabase = createServerClient();
 
     // Check for existing appointment (double-booking prevention)
-    const { data: existingAppointment, error: checkError } = await supabase
-      .from('appointments')
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data: existingAppointment, error: checkError } = await (supabase.from('appointments') as any)
       .select('id')
       .eq('appointment_date', date)
       .eq('time_slot', timeSlot as TimeSlot)
@@ -97,39 +97,43 @@ export async function POST(request: NextRequest) {
 
     if (existingAppointment) {
       return NextResponse.json(
-        { 
-          success: false, 
-          errors: ['This time slot is already booked. Please choose a different time or date.'] 
+        {
+          success: false,
+          errors: ['This time slot is already booked. Please choose a different time or date.']
         },
         { status: 409 }
       );
     }
 
     // Insert the appointment
-    const { data: appointment, error: insertError } = await supabase
-      .from('appointments')
-      .insert({
-        name: name.trim(),
-        email: email.trim().toLowerCase(),
-        phone: phone?.trim() || null,
-        service: service as ServiceType,
-        appointment_date: date,
-        time_slot: timeSlot as TimeSlot,
-        message: message?.trim() || null,
-        status: 'pending',
-      })
+    const appointmentData: AppointmentInsert = {
+      name: name.trim(),
+      email: email.trim().toLowerCase(),
+      phone: phone?.trim() || null,
+      service: service as ServiceType,
+      appointment_date: date,
+      time_slot: timeSlot as TimeSlot,
+      message: message?.trim() || null,
+      status: 'pending',
+    };
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data: appointment, error: insertError } = await (supabase.from('appointments') as any)
+      .insert(appointmentData)
       .select()
       .single();
 
+    const typedAppointment = appointment as Appointment | null;
+
     if (insertError) {
       console.error('Insert error:', insertError);
-      
+
       // Handle unique constraint violation (double booking)
       if (insertError.code === '23505') {
         return NextResponse.json(
-          { 
-            success: false, 
-            errors: ['This time slot was just booked. Please choose a different time.'] 
+          {
+            success: false,
+            errors: ['This time slot was just booked. Please choose a different time.']
           },
           { status: 409 }
         );
@@ -145,13 +149,13 @@ export async function POST(request: NextRequest) {
       success: true,
       message: 'Appointment booked successfully!',
       data: {
-        id: appointment.id,
-        name: appointment.name,
-        email: appointment.email,
-        service: appointment.service,
-        date: appointment.appointment_date,
-        timeSlot: appointment.time_slot,
-        status: appointment.status,
+        id: typedAppointment?.id,
+        name: typedAppointment?.name,
+        email: typedAppointment?.email,
+        service: typedAppointment?.service,
+        date: typedAppointment?.appointment_date,
+        timeSlot: typedAppointment?.time_slot,
+        status: typedAppointment?.status,
       },
     });
 
@@ -181,8 +185,8 @@ export async function GET(request: NextRequest) {
     const supabase = createServerClient();
 
     // Get booked slots for the date and service
-    const { data: bookedSlots, error } = await supabase
-      .from('appointments')
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data: bookedSlots, error } = await (supabase.from('appointments') as any)
       .select('time_slot')
       .eq('appointment_date', date)
       .eq('service', service as ServiceType)
@@ -196,15 +200,15 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const bookedTimeSlots = bookedSlots?.map(s => s.time_slot) || [];
+    const bookedTimeSlots = (bookedSlots as { time_slot: TimeSlot }[] | null)?.map(s => s.time_slot) || [];
     const allSlots: TimeSlot[] = ['morning', 'afternoon', 'evening'];
-    
+
     const availability = allSlots.map(slot => ({
       slot,
       available: !bookedTimeSlots.includes(slot),
-      label: slot === 'morning' ? 'Morning (9AM-12PM)' 
-           : slot === 'afternoon' ? 'Afternoon (12PM-5PM)' 
-           : 'Evening (5PM-10PM)',
+      label: slot === 'morning' ? 'Morning (9AM-12PM)'
+        : slot === 'afternoon' ? 'Afternoon (12PM-5PM)'
+          : 'Evening (5PM-10PM)',
     }));
 
     return NextResponse.json({
