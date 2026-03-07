@@ -125,7 +125,7 @@ export function FaqSection() {
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-seafoam">FAQ</span>
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-sans text-forest font-semibold leading-[1.1] tracking-tight mb-4">
-            Questions? <span className="text-seafoam">We've Got Answers</span>
+            Questions? <span className="text-seafoam">We&apos;ve Got Answers</span>
           </h2>
           <p className="text-forest/60 text-sm md:text-base max-w-2xl mx-auto">
             Everything you need to know about your recovery journey at Vitality Path
