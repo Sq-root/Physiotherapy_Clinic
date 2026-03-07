@@ -1,5 +1,6 @@
 import { siteConfig } from '@/config/site';
 import Link from 'next/link';
+import { Flower2 } from 'lucide-react';
 
 export function Footer() {
   const socialLinks = [
@@ -45,7 +46,7 @@ export function Footer() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
             <div className="relative flex size-10 items-center justify-center border-2 border-white/30 rounded-full bg-white/5">
-              <span className="material-symbols-outlined text-xl text-seafoam font-bold">spa</span>
+              <Flower2 className="w-5 h-5 text-seafoam" />
             </div>
             <div className="flex flex-col">
               <span className="text-lg font-bold tracking-tight text-white font-sans uppercase leading-none">Vitality</span>

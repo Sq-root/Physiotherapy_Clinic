@@ -1,29 +1,241 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+// import { useEffect, useCallback } from 'react'; // Commented out - for slot availability
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  Bone, Zap, Brain, Hand, Heart, Hospital, 
+  Stethoscope, CheckCircle, Lock, Star, Check, 
+  Phone, Clock, User, Mail, Calendar, ArrowRight,
+  Loader2, AlertCircle, PartyPopper, MessageSquare
+} from 'lucide-react';
+import type { ServiceType, TimeSlot } from '@/lib/supabase/types';
+
+const serviceIconMap: Record<ServiceType, typeof Bone> = {
+  ortho: Bone,
+  sports: Zap,
+  neuro: Brain,
+  manual: Hand,
+  senior: Heart,
+  surgery: Hospital,
+};
+
+const serviceLabels: Record<ServiceType, string> = {
+  ortho: 'Orthopedic',
+  sports: 'Sports',
+  neuro: 'Neuro',
+  manual: 'Manual',
+  senior: 'Senior',
+  surgery: 'Post-Op',
+};
+
+// Interface for slot availability - commented out for now
+// interface SlotAvailability {
+//   slot: TimeSlot;
+//   available: boolean;
+//   label: string;
+// }
+
+interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+  service: ServiceType | '';
+  date: string;
+  timeSlot: TimeSlot | '';
+  message: string;
+}
+
+type FormStatus = 'idle' | 'loading' | 'success' | 'error';
 
 export function AppointmentSection() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     phone: '',
     service: '',
     date: '',
+    timeSlot: '',
+    message: '',
   });
 
-  const services = [
-    { id: "ortho", label: "Orthopedic", icon: "🦴" },
-    { id: "sports", label: "Sports", icon: "⚡" },
-    { id: "neuro", label: "Neuro", icon: "🧠" },
-    { id: "manual", label: "Manual", icon: "🤲" },
-    { id: "senior", label: "Senior", icon: "💚" },
-    { id: "surgery", label: "Post-Op", icon: "🏥" },
+  const [status, setStatus] = useState<FormStatus>('idle');
+  const [errors, setErrors] = useState<string[]>([]);
+  // const [slots, setSlots] = useState<SlotAvailability[]>([]);
+  // const [loadingSlots, setLoadingSlots] = useState(false);
+  const [bookedAppointment, setBookedAppointment] = useState<{
+    id: string;
+    date: string;
+    timeSlot: string;
+    service: string;
+  } | null>(null);
+
+  const services: ServiceType[] = ['ortho', 'sports', 'neuro', 'manual', 'senior', 'surgery'];
+
+  // Get minimum date (today)
+  const getMinDate = () => {
+    const today = new Date();
+    return today.toISOString().split('T')[0];
+  };
+
+  // Get maximum date (90 days from now)
+  const getMaxDate = () => {
+    const maxDate = new Date();
+    maxDate.setDate(maxDate.getDate() + 90);
+    return maxDate.toISOString().split('T')[0];
+  };
+
+  // Slot availability checking - commented out for now (duplicates allowed)
+  // const fetchAvailableSlots = useCallback(async (date: string, service: ServiceType) => {
+  //   setLoadingSlots(true);
+  //   try {
+  //     const response = await fetch(
+  //       `/api/appointments?date=${date}&service=${service}`
+  //     );
+  //     const data = await response.json();
+  //     
+  //     if (data.success) {
+  //       setSlots(data.data.slots);
+  //     } else {
+  //       setSlots([]);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error fetching slots:', error);
+  //     setSlots([]);
+  //   } finally {
+  //     setLoadingSlots(false);
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   if (formData.date && formData.service) {
+  //     fetchAvailableSlots(formData.date, formData.service);
+  //     setFormData(prev => ({ ...prev, timeSlot: '' })); // Reset time slot
+  //   }
+  // }, [formData.date, formData.service, fetchAvailableSlots]);
+
+  const timeSlotOptions = [
+    { slot: 'morning', label: 'Morning (9AM-12PM)' },
+    { slot: 'afternoon', label: 'Afternoon (12PM-5PM)' },
+    { slot: 'evening', label: 'Evening (5PM-10PM)' },
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Client-side validation
+  const validateForm = (): string[] => {
+    const validationErrors: string[] = [];
+
+    if (!formData.name || formData.name.trim().length < 2) {
+      validationErrors.push('Name must be at least 2 characters');
+    }
+
+    if (!formData.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      validationErrors.push('Please provide a valid email address');
+    }
+
+    if (formData.phone && !/^[\d\s\-+()]{10,}$/.test(formData.phone)) {
+      validationErrors.push('Please provide a valid phone number');
+    }
+
+    if (!formData.service) {
+      validationErrors.push('Please select a service');
+    }
+
+    if (!formData.date) {
+      validationErrors.push('Please select an appointment date');
+    }
+
+    if (!formData.timeSlot) {
+      validationErrors.push('Please select a time slot');
+    }
+
+    return validationErrors;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    
+    // Client-side validation
+    const validationErrors = validateForm();
+    if (validationErrors.length > 0) {
+      setErrors(validationErrors);
+      setStatus('error');
+      return;
+    }
+
+    setStatus('loading');
+    setErrors([]);
+
+    try {
+      const response = await fetch('/api/appointments', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || undefined,
+          service: formData.service,
+          date: formData.date,
+          timeSlot: formData.timeSlot,
+          message: formData.message || undefined,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus('success');
+        setBookedAppointment({
+          id: data.data.id,
+          date: data.data.date,
+          timeSlot: data.data.timeSlot,
+          service: data.data.service,
+        });
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          service: '',
+          date: '',
+          timeSlot: '',
+          message: '',
+        });
+        // setSlots([]);
+      } else {
+        setErrors(data.errors || ['Failed to book appointment']);
+        setStatus('error');
+      }
+    } catch (error) {
+      console.error('Booking error:', error);
+      setErrors(['An unexpected error occurred. Please try again.']);
+      setStatus('error');
+    }
+  };
+
+  const resetForm = () => {
+    setStatus('idle');
+    setErrors([]);
+    setBookedAppointment(null);
+  };
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  };
+
+  const getTimeSlotLabel = (slot: string) => {
+    const labels: Record<string, string> = {
+      morning: 'Morning (9AM-12PM)',
+      afternoon: 'Afternoon (12PM-5PM)',
+      evening: 'Evening (5PM-10PM)',
+    };
+    return labels[slot] || slot;
   };
 
   return (
@@ -73,9 +285,9 @@ export function AppointmentSection() {
             {/* Feature List */}
             <div className="space-y-3 mb-8">
               {[
-                { text: "Same-day appointments available", icon: "⚡" },
-                { text: "Expert physiotherapists on staff", icon: "👨‍⚕️" },
-                { text: "Insurance accepted & verified", icon: "✅" },
+                { text: "Same-day appointments available", Icon: Zap },
+                { text: "Expert physiotherapists on staff", Icon: Stethoscope },
+                { text: "Insurance accepted & verified", Icon: CheckCircle },
               ].map((item, i) => (
                 <motion.div
                   key={item.text}
@@ -85,7 +297,7 @@ export function AppointmentSection() {
                   viewport={{ once: true }}
                   transition={{ delay: 0.1 * i }}
                 >
-                  <span className="text-lg">{item.icon}</span>
+                  <item.Icon className="w-4 h-4 text-seafoam" />
                   <span className="text-white/70 text-sm">{item.text}</span>
                 </motion.div>
               ))}
@@ -95,9 +307,7 @@ export function AppointmentSection() {
             <div className="flex items-center gap-6">
               <a href="tel:+15551234567" className="group flex items-center gap-2">
                 <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-seafoam/20 transition-colors">
-                  <svg className="w-4 h-4 text-seafoam" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
+                  <Phone className="w-4 h-4 text-seafoam" />
                 </div>
                 <div>
                   <p className="text-white text-sm font-medium">Call Us</p>
@@ -107,9 +317,7 @@ export function AppointmentSection() {
               <div className="w-px h-10 bg-white/10" />
               <div className="flex items-center gap-2">
                 <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
-                  <svg className="w-4 h-4 text-seafoam" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
+                  <Clock className="w-4 h-4 text-seafoam" />
                 </div>
                 <div>
                   <p className="text-white text-sm font-medium">Hours</p>
@@ -119,7 +327,7 @@ export function AppointmentSection() {
             </div>
           </motion.div>
 
-          {/* Right - Modern Form Card */}
+          {/* Right - Form Card */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -129,128 +337,267 @@ export function AppointmentSection() {
           >
             <div className="bg-white rounded-2xl p-5 md:p-6 shadow-2xl shadow-forest/10 lg:shadow-none border border-forest/5 lg:border-0">
               
-              <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Inline Fields Row */}
-                <div className="grid grid-cols-3 gap-2">
-                  <div className="relative">
-                    <div className="absolute left-3 top-1/2 -translate-y-1/2">
-                      <svg className="w-4 h-4 text-forest/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                      </svg>
-                    </div>
-                    <input
-                      type="text"
-                      placeholder="Name"
-                      required
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full pl-9 pr-3 py-2.5 bg-section/40 border-0 rounded-lg text-xs text-forest placeholder:text-forest/40 focus:outline-none focus:ring-2 focus:ring-seafoam/30"
-                    />
-                  </div>
-                  <div className="relative">
-                    <div className="absolute left-3 top-1/2 -translate-y-1/2">
-                      <svg className="w-4 h-4 text-forest/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                    <input
-                      type="email"
-                      placeholder="Email"
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full pl-9 pr-3 py-2.5 bg-section/40 border-0 rounded-lg text-xs text-forest placeholder:text-forest/40 focus:outline-none focus:ring-2 focus:ring-seafoam/30"
-                    />
-                  </div>
-                  <div className="relative">
-                    <div className="absolute left-3 top-1/2 -translate-y-1/2">
-                      <svg className="w-4 h-4 text-forest/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                      </svg>
-                    </div>
-                    <input
-                      type="tel"
-                      placeholder="Phone"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full pl-9 pr-3 py-2.5 bg-section/40 border-0 rounded-lg text-xs text-forest placeholder:text-forest/40 focus:outline-none focus:ring-2 focus:ring-seafoam/30"
-                    />
-                  </div>
-                </div>
-
-                {/* Service Selection Grid */}
-                <div>
-                  <p className="text-[10px] text-forest/50 uppercase tracking-wider font-medium mb-2">Select Service</p>
-                  <div className="grid grid-cols-6 gap-1.5">
-                    {services.map((service) => (
-                      <button
-                        key={service.id}
-                        type="button"
-                        onClick={() => setFormData({ ...formData, service: service.id })}
-                        className={`flex flex-col items-center p-2 rounded-lg transition-all duration-200 ${
-                          formData.service === service.id
-                            ? 'bg-forest text-white shadow-md'
-                            : 'bg-section/40 text-forest/60 hover:bg-section'
-                        }`}
-                      >
-                        <span className="text-base mb-0.5">{service.icon}</span>
-                        <span className="text-[9px] font-medium leading-tight">{service.label}</span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Date & Time Row */}
-                <div className="grid grid-cols-2 gap-2">
-                  <div className="relative">
-                    <div className="absolute left-3 top-1/2 -translate-y-1/2">
-                      <svg className="w-4 h-4 text-forest/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                    <input
-                      type="date"
-                      value={formData.date}
-                      onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                      className="w-full pl-9 pr-3 py-2.5 bg-section/40 border-0 rounded-lg text-xs text-forest focus:outline-none focus:ring-2 focus:ring-seafoam/30 cursor-pointer"
-                    />
-                  </div>
-                  <select
-                    className="px-3 py-2.5 bg-section/40 border-0 rounded-lg text-xs text-forest focus:outline-none focus:ring-2 focus:ring-seafoam/30 cursor-pointer"
+              <AnimatePresence mode="wait">
+                {/* Success State */}
+                {status === 'success' && bookedAppointment ? (
+                  <motion.div
+                    key="success"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    className="text-center py-8"
                   >
-                    <option value="">Preferred Time</option>
-                    <option value="morning">Morning (9AM-12PM)</option>
-                    <option value="afternoon">Afternoon (12PM-5PM)</option>
-                    <option value="evening">Evening (5PM-10PM)</option>
-                  </select>
-                </div>
+                    <div className="w-16 h-16 bg-seafoam/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <PartyPopper className="w-8 h-8 text-seafoam" />
+                    </div>
+                    <h3 className="text-xl font-bold text-forest mb-2">
+                      Appointment Booked!
+                    </h3>
+                    <p className="text-forest/60 text-sm mb-6">
+                      We&apos;ve received your booking request. A confirmation email will be sent to your inbox shortly.
+                    </p>
+                    
+                    <div className="bg-section/50 rounded-xl p-4 mb-6 text-left">
+                      <h4 className="text-xs font-semibold text-forest/50 uppercase tracking-wider mb-3">
+                        Booking Details
+                      </h4>
+                      <div className="space-y-2">
+                        <div className="flex justify-between">
+                          <span className="text-sm text-forest/60">Service</span>
+                          <span className="text-sm font-medium text-forest">
+                            {serviceLabels[bookedAppointment.service as ServiceType]}
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-sm text-forest/60">Date</span>
+                          <span className="text-sm font-medium text-forest">
+                            {formatDate(bookedAppointment.date)}
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-sm text-forest/60">Time</span>
+                          <span className="text-sm font-medium text-forest">
+                            {getTimeSlotLabel(bookedAppointment.timeSlot)}
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-sm text-forest/60">Reference</span>
+                          <span className="text-xs font-mono text-forest/50">
+                            {bookedAppointment.id.slice(0, 8).toUpperCase()}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
 
-                {/* Submit Button */}
-                <motion.button
-                  type="submit"
-                  className="w-full py-3 bg-forest text-white font-semibold rounded-xl flex items-center justify-center gap-2 hover:bg-forest/90 transition-all duration-300 group"
-                  whileHover={{ scale: 1.01 }}
-                  whileTap={{ scale: 0.99 }}
-                >
-                  <span>Book Free Assessment</span>
-                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </motion.button>
+                    <button
+                      onClick={resetForm}
+                      className="text-seafoam text-sm font-medium hover:underline"
+                    >
+                      Book Another Appointment
+                    </button>
+                  </motion.div>
+                ) : (
+                  /* Form State */
+                  <motion.form 
+                    key="form"
+                    onSubmit={handleSubmit} 
+                    className="space-y-4"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  >
+                    {/* Error Messages */}
+                    <AnimatePresence>
+                      {status === 'error' && errors.length > 0 && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="bg-red-50 border border-red-200 rounded-lg p-3"
+                        >
+                          <div className="flex items-start gap-2">
+                            <AlertCircle className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" />
+                            <div>
+                              {errors.map((error, i) => (
+                                <p key={i} className="text-red-600 text-xs">
+                                  {error}
+                                </p>
+                              ))}
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
 
-                {/* Trust Row */}
-                <div className="flex items-center justify-center gap-4 pt-1">
-                  {[
-                    { icon: "🔒", text: "Secure" },
-                    { icon: "⭐", text: "5-Star" },
-                    { icon: "✓", text: "Free" },
-                  ].map((item) => (
-                    <span key={item.text} className="flex items-center gap-1 text-[10px] text-forest/40">
-                      <span>{item.icon}</span> {item.text}
-                    </span>
-                  ))}
-                </div>
-              </form>
+                    {/* Name, Email, Phone Row */}
+                    <div className="grid grid-cols-3 gap-2">
+                      <div className="relative">
+                        <div className="absolute left-3 top-1/2 -translate-y-1/2">
+                          <User className="w-4 h-4 text-forest/30" />
+                        </div>
+                        <input
+                          type="text"
+                          placeholder="Name *"
+                          required
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          disabled={status === 'loading'}
+                          className="w-full pl-9 pr-3 py-2.5 bg-section/40 border-0 rounded-lg text-xs text-forest placeholder:text-forest/40 focus:outline-none focus:ring-2 focus:ring-seafoam/30 disabled:opacity-50"
+                        />
+                      </div>
+                      <div className="relative">
+                        <div className="absolute left-3 top-1/2 -translate-y-1/2">
+                          <Mail className="w-4 h-4 text-forest/30" />
+                        </div>
+                        <input
+                          type="email"
+                          placeholder="Email *"
+                          required
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          disabled={status === 'loading'}
+                          className="w-full pl-9 pr-3 py-2.5 bg-section/40 border-0 rounded-lg text-xs text-forest placeholder:text-forest/40 focus:outline-none focus:ring-2 focus:ring-seafoam/30 disabled:opacity-50"
+                        />
+                      </div>
+                      <div className="relative">
+                        <div className="absolute left-3 top-1/2 -translate-y-1/2">
+                          <Phone className="w-4 h-4 text-forest/30" />
+                        </div>
+                        <input
+                          type="tel"
+                          placeholder="Phone"
+                          value={formData.phone}
+                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          disabled={status === 'loading'}
+                          className="w-full pl-9 pr-3 py-2.5 bg-section/40 border-0 rounded-lg text-xs text-forest placeholder:text-forest/40 focus:outline-none focus:ring-2 focus:ring-seafoam/30 disabled:opacity-50"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Service Selection Grid */}
+                    <div>
+                      <p className="text-[10px] text-forest/50 uppercase tracking-wider font-medium mb-2">
+                        Select Service *
+                      </p>
+                      <div className="grid grid-cols-6 gap-1.5">
+                        {services.map((service) => {
+                          const IconComponent = serviceIconMap[service];
+                          return (
+                            <button
+                              key={service}
+                              type="button"
+                              onClick={() => setFormData({ ...formData, service })}
+                              disabled={status === 'loading'}
+                              className={`flex flex-col items-center p-2 rounded-lg transition-all duration-200 disabled:opacity-50 ${
+                                formData.service === service
+                                  ? 'bg-forest text-white shadow-md'
+                                  : 'bg-section/40 text-forest/60 hover:bg-section'
+                              }`}
+                            >
+                              <IconComponent className="w-4 h-4 mb-0.5" />
+                              <span className="text-[9px] font-medium leading-tight">
+                                {serviceLabels[service]}
+                              </span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    {/* Date & Time Row */}
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="relative">
+                        <div className="absolute left-3 top-1/2 -translate-y-1/2">
+                          <Calendar className="w-4 h-4 text-forest/30" />
+                        </div>
+                        <input
+                          type="date"
+                          required
+                          min={getMinDate()}
+                          max={getMaxDate()}
+                          value={formData.date}
+                          onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                          disabled={status === 'loading'}
+                          className="w-full pl-9 pr-3 py-2.5 bg-section/40 border-0 rounded-lg text-xs text-forest focus:outline-none focus:ring-2 focus:ring-seafoam/30 cursor-pointer disabled:opacity-50"
+                        />
+                      </div>
+                      <div className="relative">
+                        {/* Slot availability loading - commented out
+                        {loadingSlots ? (
+                          <div className="flex items-center justify-center h-full px-3 py-2.5 bg-section/40 rounded-lg">
+                            <Loader2 className="w-4 h-4 text-forest/40 animate-spin" />
+                            <span className="ml-2 text-xs text-forest/40">Loading...</span>
+                          </div>
+                        ) : ( */}
+                          <select
+                            required
+                            value={formData.timeSlot}
+                            onChange={(e) => setFormData({ ...formData, timeSlot: e.target.value as TimeSlot })}
+                            disabled={status === 'loading'}
+                            className="w-full px-3 py-2.5 bg-section/40 border-0 rounded-lg text-xs text-forest focus:outline-none focus:ring-2 focus:ring-seafoam/30 cursor-pointer disabled:opacity-50"
+                          >
+                            <option value="">Select Time *</option>
+                            {timeSlotOptions.map((slot) => (
+                              <option key={slot.slot} value={slot.slot}>
+                                {slot.label}
+                              </option>
+                            ))}
+                          </select>
+                        {/* )} */}
+                      </div>
+                    </div>
+
+                    {/* Message Field */}
+                    <div className="relative">
+                      <div className="absolute left-3 top-3">
+                        <MessageSquare className="w-4 h-4 text-forest/30" />
+                      </div>
+                      <textarea
+                        placeholder="Additional notes or concerns (optional)"
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        disabled={status === 'loading'}
+                        rows={2}
+                        className="w-full pl-9 pr-3 py-2.5 bg-section/40 border-0 rounded-lg text-xs text-forest placeholder:text-forest/40 focus:outline-none focus:ring-2 focus:ring-seafoam/30 resize-none disabled:opacity-50"
+                      />
+                    </div>
+
+                    {/* Submit Button */}
+                    <motion.button
+                      type="submit"
+                      disabled={status === 'loading'}
+                      className="w-full py-3 bg-forest text-white font-semibold rounded-xl flex items-center justify-center gap-2 hover:bg-forest/90 transition-all duration-300 group disabled:opacity-70 disabled:cursor-not-allowed"
+                      whileHover={{ scale: status === 'loading' ? 1 : 1.01 }}
+                      whileTap={{ scale: status === 'loading' ? 1 : 0.99 }}
+                    >
+                      {status === 'loading' ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span>Booking...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>Book Free Assessment</span>
+                          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        </>
+                      )}
+                    </motion.button>
+
+                    {/* Trust Row */}
+                    <div className="flex items-center justify-center gap-4 pt-1">
+                      <span className="flex items-center gap-1 text-[10px] text-forest/40">
+                        <Lock className="w-3 h-3" /> Secure
+                      </span>
+                      <span className="flex items-center gap-1 text-[10px] text-forest/40">
+                        <Star className="w-3 h-3" /> 5-Star
+                      </span>
+                      <span className="flex items-center gap-1 text-[10px] text-forest/40">
+                        <Check className="w-3 h-3" /> Free
+                      </span>
+                    </div>
+                  </motion.form>
+                )}
+              </AnimatePresence>
             </div>
           </motion.div>
         </div>

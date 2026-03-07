@@ -2,6 +2,14 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ClipboardList, Target, Dumbbell, Star, Sparkles } from "lucide-react";
+
+const stepIconMap = {
+  1: ClipboardList,
+  2: Target,
+  3: Dumbbell,
+  4: Star,
+};
 
 export function PatientJourney() {
   const [activeStep, setActiveStep] = useState(0);
@@ -13,7 +21,6 @@ export function PatientJourney() {
       title: "Initial Assessment",
       shortTitle: "Assess",
       desc: "Comprehensive evaluation of your injury history, biomechanics, lifestyle factors, and personal recovery goals.",
-      icon: "📋",
       duration: "45-60 min",
       color: "from-blue-500/20 to-blue-600/20"
     },
@@ -22,7 +29,6 @@ export function PatientJourney() {
       title: "Treatment Plan",
       shortTitle: "Plan",
       desc: "Customized therapy program designed specifically for your condition, timeline, and desired outcomes.",
-      icon: "🎯",
       duration: "Personalized",
       color: "from-purple-500/20 to-purple-600/20"
     },
@@ -31,7 +37,6 @@ export function PatientJourney() {
       title: "Active Therapy",
       shortTitle: "Heal",
       desc: "Hands-on manual techniques combined with guided exercises to reduce pain and restore function.",
-      icon: "💪",
       duration: "2-8 weeks",
       color: "from-seafoam/20 to-lime/20"
     },
@@ -40,7 +45,6 @@ export function PatientJourney() {
       title: "Full Recovery",
       shortTitle: "Thrive",
       desc: "Return to full activity with lasting results, prevention strategies, and ongoing wellness support.",
-      icon: "🌟",
       duration: "Long-term",
       color: "from-lime/20 to-yellow-500/20"
     },
@@ -102,7 +106,7 @@ export function PatientJourney() {
         >
           <div className="inline-flex items-center gap-2 mb-4">
             <div className="w-8 h-8 rounded-full bg-seafoam/20 flex items-center justify-center">
-              <span className="text-seafoam text-sm">✦</span>
+              <Sparkles className="w-4 h-4 text-seafoam" />
             </div>
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-seafoam">Your Recovery Path</span>
           </div>
@@ -220,28 +224,31 @@ export function PatientJourney() {
                 />
 
                 {/* Step Buttons */}
-                {steps.map((step, index) => (
-                  <motion.button
-                    key={step.num}
-                    onClick={() => setActiveStep(index)}
-                    className="relative z-10 group"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <div className={`w-14 h-14 rounded-full flex items-center justify-center text-2xl transition-all duration-300 ${
-                      index <= activeStep
-                        ? 'bg-gradient-to-br from-seafoam to-lime shadow-lg shadow-seafoam/30'
-                        : 'bg-white/10 border border-white/20'
-                    }`}>
-                      {step.icon}
-                    </div>
-                    <span className={`absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs font-medium whitespace-nowrap transition-colors ${
-                      index === activeStep ? 'text-lime' : 'text-white/50'
-                    }`}>
-                      {step.shortTitle}
-                    </span>
-                  </motion.button>
-                ))}
+                {steps.map((step, index) => {
+                  const IconComponent = stepIconMap[step.num as keyof typeof stepIconMap];
+                  return (
+                    <motion.button
+                      key={step.num}
+                      onClick={() => setActiveStep(index)}
+                      className="relative z-10 group"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <div className={`w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 ${
+                        index <= activeStep
+                          ? 'bg-gradient-to-br from-seafoam to-lime shadow-lg shadow-seafoam/30'
+                          : 'bg-white/10 border border-white/20'
+                      }`}>
+                        {IconComponent && <IconComponent className="w-6 h-6 text-white" />}
+                      </div>
+                      <span className={`absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs font-medium whitespace-nowrap transition-colors ${
+                        index === activeStep ? 'text-lime' : 'text-white/50'
+                      }`}>
+                        {step.shortTitle}
+                      </span>
+                    </motion.button>
+                  );
+                })}
               </div>
             </div>
 
@@ -332,13 +339,18 @@ export function PatientJourney() {
                   transition={{ delay: index * 0.1 }}
                 >
                   <div className="flex items-center gap-4">
-                    <div className={`w-12 h-12 rounded-full flex items-center justify-center text-xl ${
-                      index <= activeStep
-                        ? 'bg-gradient-to-br from-seafoam to-lime'
-                        : 'bg-white/10'
-                    }`}>
-                      {step.icon}
-                    </div>
+                    {(() => {
+                      const IconComponent = stepIconMap[step.num as keyof typeof stepIconMap];
+                      return (
+                        <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
+                          index <= activeStep
+                            ? 'bg-gradient-to-br from-seafoam to-lime'
+                            : 'bg-white/10'
+                        }`}>
+                          {IconComponent && <IconComponent className="w-5 h-5 text-white" />}
+                        </div>
+                      );
+                    })()}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between">
                         <h4 className={`font-semibold ${index === activeStep ? 'text-white' : 'text-white/70'}`}>

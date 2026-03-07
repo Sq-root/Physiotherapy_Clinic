@@ -2,6 +2,15 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Bone, Zap, Brain, Hand, Heart, Sparkles, ArrowRight } from "lucide-react";
+
+const iconMap = {
+  bone: Bone,
+  zap: Zap,
+  brain: Brain,
+  hand: Hand,
+  heart: Heart,
+};
 
 export function ServicesSection() {
   const [activeService, setActiveService] = useState(0);
@@ -12,7 +21,7 @@ export function ServicesSection() {
       title: "Orthopedic Rehabilitation",
       shortDesc: "Joint & Bone Recovery",
       fullDesc: "Comprehensive treatment for musculoskeletal disorders including joint pain, fractures, arthritis management, and post-surgical rehabilitation protocols.",
-      icon: "🦴",
+      icon: "bone",
       img: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80",
       features: ["Joint Mobilization", "Post-Surgery Care", "Pain Management"]
     },
@@ -21,7 +30,7 @@ export function ServicesSection() {
       title: "Sports Medicine & Rehab",
       shortDesc: "Athletic Performance",
       fullDesc: "Expert rehabilitation for athletes of all levels - from injury diagnosis and treatment to full return-to-sport performance optimization programs.",
-      icon: "⚡",
+      icon: "zap",
       img: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&q=80",
       features: ["Injury Prevention", "Performance Training", "Sport-Specific Rehab"]
     },
@@ -30,7 +39,7 @@ export function ServicesSection() {
       title: "Neurological Therapy",
       shortDesc: "Brain & Nerve Care",
       fullDesc: "Compassionate care for neurological conditions including stroke recovery, Parkinson's disease, multiple sclerosis, and spinal cord injuries.",
-      icon: "🧠",
+      icon: "brain",
       img: "https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&q=80",
       features: ["Stroke Recovery", "Balance Training", "Motor Control"]
     },
@@ -39,7 +48,7 @@ export function ServicesSection() {
       title: "Manual Therapy",
       shortDesc: "Hands-On Healing",
       fullDesc: "Skilled hands-on techniques including soft tissue mobilization, joint manipulation, and myofascial release for optimal pain relief and mobility.",
-      icon: "🤲",
+      icon: "hand",
       img: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80",
       features: ["Deep Tissue Work", "Trigger Point Release", "Spinal Adjustment"]
     },
@@ -48,7 +57,7 @@ export function ServicesSection() {
       title: "Senior Wellness Program",
       shortDesc: "Active Aging",
       fullDesc: "Specialized programs for older adults focusing on balance improvement, fall prevention, strength maintenance, and enhanced quality of life.",
-      icon: "💚",
+      icon: "heart",
       img: "https://images.unsplash.com/photo-1550831107-1553da8c8464?auto=format&fit=crop&q=80",
       features: ["Fall Prevention", "Mobility Enhancement", "Strength Building"]
     }
@@ -86,7 +95,7 @@ export function ServicesSection() {
           <div>
             <div className="inline-flex items-center gap-2 mb-4">
               <div className="w-8 h-8 rounded-full bg-seafoam/10 flex items-center justify-center">
-                <span className="text-seafoam text-sm">✦</span>
+                <Sparkles className="w-4 h-4 text-seafoam" />
               </div>
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-seafoam">Our Services</span>
             </div>
@@ -142,11 +151,14 @@ export function ServicesSection() {
                   </div>
 
                   {/* Icon */}
-                  <span className={`text-2xl transition-transform ${
-                    activeService === index ? 'scale-110' : 'group-hover:scale-110'
-                  }`}>
-                    {service.icon}
-                  </span>
+                  {(() => {
+                    const IconComponent = iconMap[service.icon as keyof typeof iconMap];
+                    return IconComponent ? (
+                      <IconComponent className={`w-6 h-6 transition-transform ${
+                        activeService === index ? 'scale-110 text-seafoam' : 'text-forest/60 group-hover:scale-110'
+                      }`} />
+                    ) : null;
+                  })()}
                 </div>
 
                 {/* Active Indicator */}
@@ -220,7 +232,10 @@ export function ServicesSection() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
                   >
-                    <span className="text-xl">{activeData.icon}</span>
+                    {(() => {
+                      const IconComponent = iconMap[activeData.icon as keyof typeof iconMap];
+                      return IconComponent ? <IconComponent className="w-5 h-5 text-white" /> : null;
+                    })()}
                     <span className="text-white text-sm font-medium">{activeData.shortDesc}</span>
                   </motion.div>
 
@@ -263,9 +278,7 @@ export function ServicesSection() {
                     >
                       Learn More About This Service
                       <span className="size-8 rounded-full bg-forest/10 flex items-center justify-center group-hover/btn:bg-white/20 transition-colors">
-                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
+                        <ArrowRight className="w-4 h-4" />
                       </span>
                     </motion.button>
                   </motion.div>
@@ -298,13 +311,16 @@ export function ServicesSection() {
               <button
                 key={service.id}
                 onClick={() => setActiveService(index)}
-                className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${
+                className={`flex-shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${
                   activeService === index
                     ? 'bg-forest text-white'
                     : 'bg-white text-forest border border-forest/20'
                 }`}
               >
-                <span className="mr-2">{service.icon}</span>
+                {(() => {
+                  const IconComponent = iconMap[service.icon as keyof typeof iconMap];
+                  return IconComponent ? <IconComponent className="w-4 h-4" /> : null;
+                })()}
                 {service.title}
               </button>
             ))}
@@ -330,7 +346,10 @@ export function ServicesSection() {
               <div className="absolute inset-0 p-6 flex flex-col justify-end">
                 {/* Badge */}
                 <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
-                  <span className="text-lg">{activeData.icon}</span>
+                  {(() => {
+                    const IconComponent = iconMap[activeData.icon as keyof typeof iconMap];
+                    return IconComponent ? <IconComponent className="w-4 h-4 text-white" /> : null;
+                  })()}
                   <span className="text-white text-xs font-medium">{activeData.shortDesc}</span>
                 </div>
 
@@ -351,9 +370,7 @@ export function ServicesSection() {
 
                 <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-forest font-semibold rounded-full text-sm w-fit">
                   Learn More
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
+                  <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
 
@@ -401,9 +418,7 @@ export function ServicesSection() {
           >
             Explore All Services
             <span className="size-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-seafoam transition-colors">
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
+              <ArrowRight className="w-4 h-4" />
             </span>
           </a>
         </motion.div>

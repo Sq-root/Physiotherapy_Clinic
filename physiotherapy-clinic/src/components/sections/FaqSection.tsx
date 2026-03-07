@@ -2,6 +2,14 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Rocket, User, CreditCard, Sparkles, MessageCircle, Clock, Zap, CheckCircle, ChevronDown, ArrowRight } from 'lucide-react';
+
+const categoryIconMap = {
+  'getting-started': Rocket,
+  'treatment': User,
+  'insurance': CreditCard,
+  'aftercare': Sparkles,
+};
 
 export function FaqSection() {
   const [activeCategory, setActiveCategory] = useState(0);
@@ -11,7 +19,6 @@ export function FaqSection() {
     {
       id: "getting-started",
       label: "Getting Started",
-      icon: "🚀",
       faqs: [
         {
           question: "Do I need a referral to book an appointment?",
@@ -30,7 +37,6 @@ export function FaqSection() {
     {
       id: "treatment",
       label: "Treatment",
-      icon: "💆",
       faqs: [
         {
           question: "How long does each session typically last?",
@@ -49,7 +55,6 @@ export function FaqSection() {
     {
       id: "insurance",
       label: "Insurance & Cost",
-      icon: "💳",
       faqs: [
         {
           question: "Do you accept insurance?",
@@ -68,7 +73,6 @@ export function FaqSection() {
     {
       id: "aftercare",
       label: "Recovery & Aftercare",
-      icon: "✨",
       faqs: [
         {
           question: "How many sessions will I need?",
@@ -153,11 +157,14 @@ export function FaqSection() {
                   whileHover={{ scale: activeCategory === index ? 1 : 1.02 }}
                 >
                   <div className="flex items-center gap-4">
-                    <span className={`text-2xl transition-transform ${
-                      activeCategory === index ? 'scale-110' : 'group-hover:scale-110'
-                    }`}>
-                      {category.icon}
-                    </span>
+                    {(() => {
+                      const IconComponent = categoryIconMap[category.id as keyof typeof categoryIconMap];
+                      return IconComponent ? (
+                        <IconComponent className={`w-6 h-6 transition-transform ${
+                          activeCategory === index ? 'scale-110 text-seafoam' : 'text-forest/60 group-hover:scale-110'
+                        }`} />
+                      ) : null;
+                    })()}
                     <div className="flex-1">
                       <h3 className={`font-semibold text-base ${
                         activeCategory === index ? 'text-white' : 'text-forest'
@@ -170,16 +177,11 @@ export function FaqSection() {
                         {category.faqs.length} questions
                       </p>
                     </div>
-                    <svg 
+                    <ChevronDown 
                       className={`w-5 h-5 transition-transform ${
                         activeCategory === index ? 'rotate-0' : '-rotate-90'
                       } ${activeCategory === index ? 'text-seafoam' : 'text-forest/30'}`}
-                      fill="none" 
-                      viewBox="0 0 24 24" 
-                      stroke="currentColor"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
+                    />
                   </div>
                 </motion.button>
               ))}
@@ -194,7 +196,7 @@ export function FaqSection() {
               >
                 <div className="flex items-start gap-3 mb-4">
                   <div className="w-10 h-10 rounded-full bg-seafoam/20 flex items-center justify-center flex-shrink-0">
-                    <span className="text-lg">💬</span>
+                    <MessageCircle className="w-5 h-5 text-seafoam" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-forest text-sm">Still have questions?</h4>
@@ -206,9 +208,7 @@ export function FaqSection() {
                   className="inline-flex items-center gap-2 w-full justify-center px-4 py-2.5 bg-forest text-white rounded-full text-sm font-medium hover:bg-forest/90 transition-colors"
                 >
                   Contact Support
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
+                  <ArrowRight className="w-4 h-4" />
                 </a>
               </motion.div>
             </div>
@@ -227,7 +227,10 @@ export function FaqSection() {
               >
                 {/* Category Header */}
                 <div className="flex items-center gap-3 mb-6 pb-6 border-b border-forest/10">
-                  <span className="text-3xl">{categories[activeCategory].icon}</span>
+                  {(() => {
+                    const IconComponent = categoryIconMap[categories[activeCategory].id as keyof typeof categoryIconMap];
+                    return IconComponent ? <IconComponent className="w-8 h-8 text-seafoam" /> : null;
+                  })()}
                   <div>
                     <h3 className="text-xl md:text-2xl font-bold text-forest">
                       {categories[activeCategory].label}
@@ -323,17 +326,21 @@ export function FaqSection() {
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
             >
-              {[
-                { value: "24/7", label: "Support Available", icon: "🕐" },
-                { value: "<2hr", label: "Response Time", icon: "⚡" },
-                { value: "98%", label: "Resolution Rate", icon: "✅" }
-              ].map((stat) => (
-                <div key={stat.label} className="text-center p-4 bg-section/50 rounded-2xl border border-forest/5">
-                  <span className="text-xl mb-2 block">{stat.icon}</span>
-                  <p className="text-lg md:text-xl font-bold text-forest">{stat.value}</p>
-                  <p className="text-[10px] text-forest/50 uppercase tracking-wider">{stat.label}</p>
-                </div>
-              ))}
+              <div className="text-center p-4 bg-section/50 rounded-2xl border border-forest/5">
+                <Clock className="w-5 h-5 mx-auto mb-2 text-seafoam" />
+                <p className="text-lg md:text-xl font-bold text-forest">24/7</p>
+                <p className="text-[10px] text-forest/50 uppercase tracking-wider">Support Available</p>
+              </div>
+              <div className="text-center p-4 bg-section/50 rounded-2xl border border-forest/5">
+                <Zap className="w-5 h-5 mx-auto mb-2 text-seafoam" />
+                <p className="text-lg md:text-xl font-bold text-forest">&lt;2hr</p>
+                <p className="text-[10px] text-forest/50 uppercase tracking-wider">Response Time</p>
+              </div>
+              <div className="text-center p-4 bg-section/50 rounded-2xl border border-forest/5">
+                <CheckCircle className="w-5 h-5 mx-auto mb-2 text-seafoam" />
+                <p className="text-lg md:text-xl font-bold text-forest">98%</p>
+                <p className="text-[10px] text-forest/50 uppercase tracking-wider">Resolution Rate</p>
+              </div>
             </motion.div>
           </div>
         </div>

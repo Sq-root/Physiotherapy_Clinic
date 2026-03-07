@@ -1,6 +1,13 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { Target, FlaskConical, Heart } from 'lucide-react';
+
+const highlightIconMap = {
+  0: Target,
+  1: FlaskConical,
+  2: Heart,
+};
 
 export function SupportSection() {
   const fadeInUp = {
@@ -9,9 +16,9 @@ export function SupportSection() {
   };
 
   const highlights = [
-    { icon: '🎯', label: 'Personalized' },
-    { icon: '🔬', label: 'Evidence-Based' },
-    { icon: '❤️', label: 'Compassionate' },
+    { label: 'Personalized' },
+    { label: 'Evidence-Based' },
+    { label: 'Compassionate' },
   ];
 
   return (
@@ -84,12 +91,15 @@ export function SupportSection() {
 
             {/* Highlights */}
             <div className="flex flex-wrap gap-1.5">
-              {highlights.map((item, i) => (
-                <span key={i} className="inline-flex items-center gap-1 bg-white rounded-full px-2.5 py-1 text-[10px] font-medium text-forest shadow-sm border border-forest/5">
-                  <span>{item.icon}</span>
-                  {item.label}
-                </span>
-              ))}
+              {highlights.map((item, i) => {
+                const IconComponent = highlightIconMap[i as keyof typeof highlightIconMap];
+                return (
+                  <span key={i} className="inline-flex items-center gap-1 bg-white rounded-full px-2.5 py-1 text-[10px] font-medium text-forest shadow-sm border border-forest/5">
+                    {IconComponent && <IconComponent className="w-3 h-3 text-seafoam" />}
+                    {item.label}
+                  </span>
+                );
+              })}
             </div>
           </motion.div>
         </div>
@@ -180,12 +190,15 @@ export function SupportSection() {
 
             {/* Highlights */}
             <div className="flex flex-wrap gap-3 mb-8">
-              {highlights.map((item, i) => (
-                <span key={i} className="inline-flex items-center gap-2 bg-section rounded-full px-5 py-2.5 text-sm font-medium text-forest border border-forest/5 hover:border-seafoam/30 hover:shadow-md transition-all duration-300">
-                  <span className="text-lg">{item.icon}</span>
-                  {item.label}
-                </span>
-              ))}
+              {highlights.map((item, i) => {
+                const IconComponent = highlightIconMap[i as keyof typeof highlightIconMap];
+                return (
+                  <span key={i} className="inline-flex items-center gap-2 bg-section rounded-full px-5 py-2.5 text-sm font-medium text-forest border border-forest/5 hover:border-seafoam/30 hover:shadow-md transition-all duration-300">
+                    {IconComponent && <IconComponent className="w-4 h-4 text-seafoam" />}
+                    {item.label}
+                  </span>
+                );
+              })}
             </div>
 
             {/* Stats Row */}

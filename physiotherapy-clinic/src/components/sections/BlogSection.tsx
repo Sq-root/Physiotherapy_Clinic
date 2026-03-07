@@ -1,3 +1,5 @@
+import { ArrowRight } from 'lucide-react';
+
 export function BlogSection() {
   return (
     <section className="py-24 bg-white" id="journal">
@@ -10,7 +12,7 @@ export function BlogSection() {
           </div>
           <a className="inline-flex items-center gap-2 font-bold text-seafoam hover:text-forest transition-colors group" href="#">
             View All Articles
-            <span className="material-symbols-outlined text-xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </a>
         </div>
         

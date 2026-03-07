@@ -33,9 +33,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${lexend.variable} ${greatVibes.variable}`}>
-      <head>
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-      </head>
       <body className="font-sans antialiased overflow-x-hidden selection:bg-seafoam selection:text-forest">
         <Navbar />
         <main>{children}</main>

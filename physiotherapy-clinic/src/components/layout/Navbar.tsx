@@ -1,23 +1,45 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Leaf } from 'lucide-react';
 
 const navLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'Services', href: '/services' },
-  { label: 'Journey', href: '#journey' },
-  { label: 'Journal', href: '#blog' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', href: '/', isHash: false },
+  { label: 'Services', href: '/services', isHash: false },
+  { label: 'Journey', href: '/#journey', isHash: true },
+  { label: 'FAQ', href: '/faq', isHash: false },
+  { label: 'Contact', href: '/#contact', isHash: true },
 ];
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeHash, setActiveHash] = useState('');
   const pathname = usePathname();
+
+  // Detect active section based on scroll position (for hash links)
+  const updateActiveHash = useCallback(() => {
+    if (pathname !== '/') {
+      setActiveHash('');
+      return;
+    }
+    
+    const sections = ['journey', 'blog', 'contact'];
+    const scrollPosition = window.scrollY + 150;
+    
+    for (const section of sections.reverse()) {
+      const element = document.getElementById(section);
+      if (element && element.offsetTop <= scrollPosition) {
+        setActiveHash(`#${section}`);
+        return;
+      }
+    }
+    setActiveHash('');
+  }, [pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,11 +47,12 @@ export function Navbar() {
       if (isScrolled !== scrolled) {
         setScrolled(isScrolled);
       }
+      updateActiveHash();
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [scrolled]);
+  }, [scrolled, updateActiveHash]);
 
   // Close mobile menu on resize
   useEffect(() => {
@@ -39,6 +62,33 @@ export function Navbar() {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  // Determine active link
+  const getActiveLink = () => {
+    // Check for services page first
+    if (pathname === '/services' || pathname?.startsWith('/services/')) {
+      return '/services';
+    }
+    // Check for FAQ page
+    if (pathname === '/faq' || pathname?.startsWith('/faq/')) {
+      return '/faq';
+    }
+    // On home page, check for hash sections
+    if (pathname === '/') {
+      if (activeHash) {
+        return `/${activeHash}`;
+      }
+      return '/';
+    }
+    return pathname;
+  };
+
+  const activeLinkHref = getActiveLink();
+
+  // Pages without a dark hero need dark navbar text even before scroll
+  const isLightPage = pathname !== '/';
+  // Use dark styling when scrolled OR on a light-background page
+  const useDarkStyle = scrolled || isLightPage;
 
   return (
     <>
@@ -79,71 +129,113 @@ export function Navbar() {
                 <motion.div 
                   className={cn(
                     "relative flex items-center justify-center rounded-full transition-all duration-500",
-                    scrolled 
+                    useDarkStyle 
                       ? "w-10 h-10 bg-[#E8EFE3] border border-[#002D04]/10" 
-                      : "w-10 h-10 bg-[#E8EFE3] border border-[#002D04]/10"
+                      : "w-10 h-10 bg-white/20 backdrop-blur-sm border border-white/30"
                   )}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <span className="material-symbols-outlined text-[20px] text-[#002D04]">eco</span>
+                  <Leaf className={cn(
+                    "w-5 h-5 transition-colors duration-500",
+                    useDarkStyle ? "text-[#002D04]" : "text-white"
+                  )} />
                 </motion.div>
                 <div className="flex flex-col">
                   <span className={cn(
                     "text-base font-bold tracking-tight uppercase leading-none transition-colors duration-500",
-                    scrolled ? "text-forest" : "text-[#002D04]"
+                    useDarkStyle ? "text-forest" : "text-white"
                   )}>Vitality</span>
-                  <span className="text-[9px] font-bold tracking-[0.2em] uppercase leading-none text-[#66A182]">Path</span>
+                  <span className={cn(
+                    "text-[9px] font-bold tracking-[0.2em] uppercase leading-none transition-colors duration-500",
+                    useDarkStyle ? "text-[#66A182]" : "text-white/70"
+                  )}>Path</span>
                 </div>
               </Link>
               
-              {/* Desktop Navigation */}
-              <nav className="hidden md:flex items-center gap-1">
-                {navLinks.map((link) => {
-                  const isActive = link.href === pathname || 
-                    (link.href === '/' && pathname === '/') ||
-                    (link.href !== '/' && pathname?.startsWith(link.href.split('#')[0]) && link.href.split('#')[0] !== '/');
-                  
-                  return (
-                    <Link 
-                      key={link.label}
-                      href={link.href}
-                      className={cn(
-                        "relative px-4 py-2 rounded-full transition-all duration-300",
-                        isActive && "bg-[#b8c96a]"
-                      )}
-                    >
-                      <span className={cn(
-                        "text-xs font-semibold uppercase tracking-wider transition-colors duration-300",
-                        isActive 
-                          ? "text-[#002D04]"
-                          : scrolled 
-                            ? "text-[#002D04]/70 hover:text-[#002D04]" 
-                            : "text-[#002D04]/70 hover:text-[#002D04]"
-                      )}>
-                        {link.label}
-                      </span>
-                    </Link>
-                  );
-                })}
+              {/* Desktop Navigation with Clean Design */}
+              <nav className="hidden md:flex items-center relative">
+                <div className={cn(
+                  "flex items-center gap-1 rounded-full px-1.5 py-1 transition-all duration-300",
+                  useDarkStyle 
+                    ? "bg-forest/[0.04] border border-forest/[0.08]" 
+                    : "bg-white/10 backdrop-blur-sm border border-white/20"
+                )}>
+                  {navLinks.map((link) => {
+                    const isActive = activeLinkHref === link.href || 
+                      (link.href === '/' && pathname === '/' && !activeHash) ||
+                      (link.href === '/services' && pathname?.startsWith('/services'));
+                    
+                    return (
+                      <Link 
+                        key={link.label}
+                        href={link.href}
+                        className="relative px-4 py-2 rounded-full group"
+                      >
+                        {/* Animated Active Background */}
+                        {isActive && (
+                          <motion.div
+                            layoutId="navbar-active-pill"
+                            className={cn(
+                              "absolute inset-0 rounded-full",
+                              useDarkStyle 
+                                ? "bg-forest shadow-sm" 
+                                : "bg-white/95 shadow-md"
+                            )}
+                            initial={false}
+                            transition={{
+                              type: "spring",
+                              stiffness: 400,
+                              damping: 35,
+                              mass: 0.8
+                            }}
+                          />
+                        )}
+                        
+                        {/* Link Text */}
+                        <span 
+                          className={cn(
+                            "relative z-10 text-[11px] font-semibold uppercase tracking-[0.1em] transition-all duration-200",
+                            isActive 
+                              ? useDarkStyle ? "text-white" : "text-forest"
+                              : useDarkStyle 
+                                ? "text-forest/70 group-hover:text-forest" 
+                                : "text-white/80 group-hover:text-white"
+                          )}
+                        >
+                          {link.label}
+                        </span>
+                      </Link>
+                    );
+                  })}
+                </div>
               </nav>
               
               {/* CTA Button */}
               <div className="hidden md:block">
                 <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  whileHover={{ scale: 1.03, y: -1 }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ type: "spring", stiffness: 400 }}
                 >
                   <Link 
                     href="#appointment"
                     className={cn(
-                      "inline-flex items-center justify-center h-10 px-6 text-[11px] font-bold uppercase tracking-wider rounded-full transition-all duration-300",
-                      scrolled 
-                        ? "bg-forest text-white hover:bg-forest/90 shadow-sm" 
-                        : "bg-forest text-white hover:bg-forest/90"
+                      "inline-flex items-center justify-center gap-2 h-10 px-5 text-[10px] font-bold uppercase tracking-wider rounded-full transition-all duration-300 group",
+                      useDarkStyle 
+                        ? "bg-forest text-white hover:bg-forest/90 shadow-lg shadow-forest/20" 
+                        : "bg-white text-forest hover:bg-white/90 shadow-lg shadow-white/20"
                     )}
                   >
-                    Book Visit
+                    <span>Book Visit</span>
+                    <svg 
+                      className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" 
+                      fill="none" 
+                      viewBox="0 0 24 24" 
+                      stroke="currentColor"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
                   </Link>
                 </motion.div>
               </div>
@@ -152,7 +244,7 @@ export function Navbar() {
               <motion.button
                 className={cn(
                   "md:hidden relative w-10 h-10 rounded-xl flex items-center justify-center transition-colors duration-300",
-                  scrolled 
+                  useDarkStyle 
                     ? "bg-forest/5 text-forest" 
                     : "bg-white/10 text-white"
                 )}
@@ -164,7 +256,7 @@ export function Navbar() {
                   <motion.span 
                     className={cn(
                       "block h-0.5 rounded-full transition-colors",
-                      scrolled ? "bg-forest" : "bg-white"
+                      useDarkStyle ? "bg-forest" : "bg-white"
                     )}
                     animate={{ 
                       rotate: mobileOpen ? 45 : 0,
@@ -176,7 +268,7 @@ export function Navbar() {
                   <motion.span 
                     className={cn(
                       "block h-0.5 rounded-full transition-colors",
-                      scrolled ? "bg-forest" : "bg-white"
+                      useDarkStyle ? "bg-forest" : "bg-white"
                     )}
                     animate={{ 
                       opacity: mobileOpen ? 0 : 1,
@@ -187,7 +279,7 @@ export function Navbar() {
                   <motion.span 
                     className={cn(
                       "block h-0.5 rounded-full transition-colors",
-                      scrolled ? "bg-forest" : "bg-white"
+                      useDarkStyle ? "bg-forest" : "bg-white"
                     )}
                     animate={{ 
                       rotate: mobileOpen ? -45 : 0,

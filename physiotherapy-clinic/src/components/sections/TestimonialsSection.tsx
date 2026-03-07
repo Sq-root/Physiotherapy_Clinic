@@ -3,6 +3,7 @@
 import { testimonials } from '@/lib/data/testimonials';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
+import { Check, ArrowUpRight, Heart, Star, Zap, Trophy } from 'lucide-react';
 
 export function TestimonialsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -27,8 +28,8 @@ export function TestimonialsSection() {
 
   // Trust indicators for credibility
   const trustBadges = [
-    { icon: '✓', label: 'Verified Patient' },
-    { icon: '↗', label: 'Full Recovery' },
+    { Icon: Check, label: 'Verified Patient' },
+    { Icon: ArrowUpRight, label: 'Full Recovery' },
   ];
 
   return (
@@ -141,7 +142,7 @@ export function TestimonialsSection() {
                   <div className="flex items-center gap-3">
                     {trustBadges.map((badge, i) => (
                       <div key={i} className="flex items-center gap-1.5 bg-white/10 backdrop-blur-sm rounded-full px-3 py-1.5">
-                        <span className="text-lime text-sm">{badge.icon}</span>
+                        <badge.Icon className="w-3.5 h-3.5 text-lime" />
                         <span className="text-white/80 text-xs font-medium">{badge.label}</span>
                       </div>
                     ))}
@@ -218,17 +219,17 @@ export function TestimonialsSection() {
           variants={staggerContainer}
         >
           {[
-            { value: '98%', label: 'Patient Satisfaction', icon: '❤️' },
-            { value: '1,200+', label: 'Lives Restored', icon: '🌟' },
-            { value: '30%', label: 'Faster Recovery', icon: '⚡' },
-            { value: '15+', label: 'Years Experience', icon: '🏆' },
+            { value: '98%', label: 'Patient Satisfaction', Icon: Heart },
+            { value: '1,200+', label: 'Lives Restored', Icon: Star },
+            { value: '30%', label: 'Faster Recovery', Icon: Zap },
+            { value: '15+', label: 'Years Experience', Icon: Trophy },
           ].map((stat, i) => (
             <motion.div
               key={i}
               variants={fadeInUp}
               className="bg-white rounded-2xl p-5 md:p-6 shadow-card border border-forest/5 text-center group hover:shadow-glow transition-all duration-300"
             >
-              <span className="text-2xl mb-2 block">{stat.icon}</span>
+              <stat.Icon className="w-6 h-6 mx-auto mb-2 text-seafoam" />
               <p className="text-3xl md:text-4xl font-bold text-forest mb-1">{stat.value}</p>
               <p className="text-forest/60 text-xs md:text-sm font-medium">{stat.label}</p>
             </motion.div>
