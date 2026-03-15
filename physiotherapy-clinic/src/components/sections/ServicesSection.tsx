@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import { Bone, Zap, Brain, Hand, Heart, Sparkles, ArrowRight } from "lucide-react";
 import { siteConfig } from "@/config/site";
 
@@ -23,7 +24,7 @@ export function ServicesSection() {
       shortDesc: "Joint & Bone Recovery",
       fullDesc: "Comprehensive treatment for musculoskeletal disorders including joint pain, fractures, arthritis management, and post-surgical rehabilitation protocols.",
       icon: "bone",
-      img: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80",
+      img: "/services/IMG_0114.jpeg",
       features: ["Joint Mobilization", "Post-Surgery Care", "Pain Management"]
     },
     {
@@ -32,7 +33,7 @@ export function ServicesSection() {
       shortDesc: "Athletic Performance",
       fullDesc: "Expert rehabilitation for athletes of all levels - from injury diagnosis and treatment to full return-to-sport performance optimization programs.",
       icon: "zap",
-      img: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&q=80",
+      img: "/services/IMG_0115.jpeg",
       features: ["Injury Prevention", "Performance Training", "Sport-Specific Rehab"]
     },
     {
@@ -41,7 +42,7 @@ export function ServicesSection() {
       shortDesc: "Brain & Nerve Care",
       fullDesc: "Compassionate care for neurological conditions including stroke recovery, Parkinson's disease, multiple sclerosis, and spinal cord injuries.",
       icon: "brain",
-      img: "https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&q=80",
+      img: "/services/IMG_0116.jpeg",
       features: ["Stroke Recovery", "Balance Training", "Motor Control"]
     },
     {
@@ -50,7 +51,7 @@ export function ServicesSection() {
       shortDesc: "Hands-On Healing",
       fullDesc: "Skilled hands-on techniques including soft tissue mobilization, joint manipulation, and myofascial release for optimal pain relief and mobility.",
       icon: "hand",
-      img: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80",
+      img: "/services/IMG_0119.jpeg",
       features: ["Deep Tissue Work", "Trigger Point Release", "Spinal Adjustment"]
     },
     {
@@ -59,7 +60,7 @@ export function ServicesSection() {
       shortDesc: "Active Aging",
       fullDesc: "Specialized programs for older adults focusing on balance improvement, fall prevention, strength maintenance, and enhanced quality of life.",
       icon: "heart",
-      img: "https://images.unsplash.com/photo-1550831107-1553da8c8464?auto=format&fit=crop&q=80",
+      img: "/services/IMG_0128.jpeg",
       features: ["Fall Prevention", "Mobility Enhancement", "Strength Building"]
     }
   ];
@@ -413,15 +414,15 @@ export function ServicesSection() {
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
         >
-          <a 
-            href="#all-services"
+          <Link 
+            href="/services"
             className="inline-flex items-center gap-4 px-6 md:px-8 py-3 bg-forest text-white hover:bg-forest/90 transition-colors rounded-full text-sm font-medium tracking-wide group"
           >
             Explore All Services
             <span className="size-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-seafoam transition-colors">
               <ArrowRight className="w-4 h-4" />
             </span>
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

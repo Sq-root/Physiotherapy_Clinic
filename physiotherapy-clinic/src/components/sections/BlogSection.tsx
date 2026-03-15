@@ -20,7 +20,7 @@ export function BlogSection() {
           {/* Article 1 */}
           <article className="group cursor-pointer">
             <div className="relative h-64 overflow-hidden rounded-3xl mb-6 shadow-md">
-              <img alt="Blog Post" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&q=80&auto=format&fit=crop"/>
+              <img alt="Blog Post" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="/services/IMG_0119.jpeg"/>
               <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-forest uppercase tracking-widest">Therapy Tips</div>
             </div>
             <div className="flex items-center gap-4 text-sm text-forest/60 mb-3 font-medium">
@@ -35,7 +35,7 @@ export function BlogSection() {
           {/* Article 2 */}
           <article className="group cursor-pointer">
             <div className="relative h-64 overflow-hidden rounded-3xl mb-6 shadow-md">
-              <img alt="Blog Post" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://images.unsplash.com/photo-1576678927484-cc907957088c?w=600&q=80&auto=format&fit=crop"/>
+              <img alt="Blog Post" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="/services/IMG_0114.jpeg"/>
               <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-forest uppercase tracking-widest">Sports Rehab</div>
             </div>
             <div className="flex items-center gap-4 text-sm text-forest/60 mb-3 font-medium">
@@ -50,7 +50,7 @@ export function BlogSection() {
           {/* Article 3 */}
           <article className="group cursor-pointer">
             <div className="relative h-64 overflow-hidden rounded-3xl mb-6 shadow-md">
-              <img alt="Blog Post" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80&auto=format&fit=crop"/>
+              <img alt="Blog Post" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="/services/IMG_0014.jpeg"/>
               <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-forest uppercase tracking-widest">Wellness</div>
             </div>
             <div className="flex items-center gap-4 text-sm text-forest/60 mb-3 font-medium">

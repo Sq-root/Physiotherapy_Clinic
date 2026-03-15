@@ -237,7 +237,7 @@ export function Navbar() {
                   transition={{ type: "spring", stiffness: 400 }}
                 >
                   <Link
-                    href="#appointment"
+                    href="/contact"
                     className={cn(
                       "inline-flex items-center justify-center gap-2 h-10 px-5 text-[10px] font-bold uppercase tracking-wider rounded-full transition-all duration-300 group",
                       useDarkStyle

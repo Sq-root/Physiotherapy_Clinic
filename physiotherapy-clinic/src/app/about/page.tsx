@@ -1,6 +1,7 @@
-import Image from 'next/image';
-import { Target, Eye } from 'lucide-react';
-import { siteConfig } from '@/config/site';
+import Image from "next/image";
+import Link from "next/link";
+import { Target, Eye } from "lucide-react";
+import { siteConfig } from "@/config/site";
 
 export default function AboutPage() {
   return (
@@ -12,9 +13,10 @@ export default function AboutPage() {
           <Image
             alt={siteConfig.doctorName}
             className="w-full h-full object-cover"
-            src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1600&q=80&auto=format&fit=crop"
+            src="/services/dr_isha_hero_final_native.png"
             fill
             priority
+            unoptimized
           />
         </div>
         <div className="relative z-20 max-w-7xl mx-auto px-6 lg:px-12 w-full pt-20">
@@ -46,16 +48,16 @@ export default function AboutPage() {
             </h3>
             <p className="text-forest/70 text-base md:text-lg leading-relaxed font-light">
               To provide personalized, clinical excellence that empowers our
-              patients to overcome physical limitations. We don&apos;t just treat
-              symptoms; we treat individuals, ensuring every step of the recovery
-              journey is supported by science and genuine care.
+              patients to overcome physical limitations. We don&apos;t just
+              treat symptoms; we treat individuals, ensuring every step of the
+              recovery journey is supported by science and genuine care.
             </p>
           </div>
 
           {/* Vision Block */}
           <div className="bg-forest p-10 md:p-14 rounded-2xl shadow-2xl relative overflow-hidden">
             <div className="absolute -right-10 -top-10 w-40 h-40 bg-lime/10 rounded-full blur-3xl z-0" />
-            
+
             <div className="relative z-10 text-lime mb-6 size-12 bg-white/10 rounded-xl flex items-center justify-center backdrop-blur-sm border border-white/5">
               <Eye className="w-6 h-6 text-lime" />
             </div>
@@ -82,13 +84,15 @@ export default function AboutPage() {
                 <Image
                   alt={`Portrait of ${siteConfig.doctorName}`}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  src="https://images.unsplash.com/photo-1594824432247-41ecdfb8417c?w=800&q=80&auto=format&fit=crop"
+                  src="/services/IMG_0017.jpeg"
                   fill
                 />
               </div>
-              
+
               <div className="absolute -bottom-8 -right-4 md:-right-8 bg-white/95 backdrop-blur-xl p-8 rounded-2xl shadow-xl shadow-forest/10 hidden md:block border border-forest/5">
-                <p className="text-5xl font-bold text-forest mb-1">{siteConfig.social.yearsExperience}</p>
+                <p className="text-5xl font-bold text-forest mb-1">
+                  {siteConfig.social.yearsExperience}
+                </p>
                 <p className="text-[10px] font-bold text-forest/50 uppercase tracking-[0.2em]">
                   Years of Experience
                 </p>
@@ -103,10 +107,12 @@ export default function AboutPage() {
               <h2 className="text-4xl md:text-5xl font-bold mb-10 leading-tight tracking-tight text-forest">
                 A Personal Note from <br />
                 <span className="relative inline-block mt-2">
-                  <span className="relative z-10 font-script text-5xl md:text-6xl text-lime font-normal">{siteConfig.doctorName.replace('Dr. ', 'Dr. ')}</span>
+                  <span className="relative z-10 font-script text-5xl md:text-6xl text-lime font-normal">
+                    {siteConfig.doctorName.replace("Dr. ", "Dr. ")}
+                  </span>
                 </span>
               </h2>
-              
+
               <div className="space-y-6 text-forest/70 text-lg leading-relaxed font-light">
                 <p>
                   My journey into physiotherapy began with a simple observation:
@@ -119,28 +125,43 @@ export default function AboutPage() {
                 </p>
                 <p>
                   I founded this clinic because I wanted to create a space where
-                  patients aren&apos;t just a number on a chart. Here, we take the
-                  time to listen. We look at the biomechanics of how you move,
-                  but we also listen to how your injury impacts your daily life,
-                  your hobbies, and your mental well-being.
+                  patients aren&apos;t just a number on a chart. Here, we take
+                  the time to listen. We look at the biomechanics of how you
+                  move, but we also listen to how your injury impacts your daily
+                  life, your hobbies, and your mental well-being.
                 </p>
                 <div className="relative mt-8 mb-8 p-8 rounded-2xl bg-white/50 border border-forest/10 italic text-forest shadow-sm text-lg md:text-xl font-medium leading-relaxed">
-                  <div className="absolute -left-3 -top-4 text-5xl text-lime/40 font-serif">&quot;</div>
-                  My goal isn&apos;t just to get you back on your feet; it&apos;s to keep
-                  you there, stronger and more confident than you were before.
+                  <div className="absolute -left-3 -top-4 text-5xl text-lime/40 font-serif">
+                    &quot;
+                  </div>
+                  My goal isn&apos;t just to get you back on your feet;
+                  it&apos;s to keep you there, stronger and more confident than
+                  you were before.
                 </div>
               </div>
-              
+
               <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-8 border-t border-forest/10 pt-10">
                 <div>
-                  <h5 className="font-bold text-forest mb-2 uppercase tracking-wider text-xs">Education</h5>
-                  <p className="text-sm text-forest/60 font-medium">Doctorate of Physical Therapy</p>
-                  <p className="text-xs text-forest/50 mt-1 font-light">Stanford University</p>
+                  <h5 className="font-bold text-forest mb-2 uppercase tracking-wider text-xs">
+                    Education
+                  </h5>
+                  <p className="text-sm text-forest/60 font-medium">
+                    Doctorate of Physical Therapy
+                  </p>
+                  <p className="text-xs text-forest/50 mt-1 font-light">
+                    Stanford University
+                  </p>
                 </div>
                 <div>
-                  <h5 className="font-bold text-forest mb-2 uppercase tracking-wider text-xs">Specialization</h5>
-                  <p className="text-sm text-forest/60 font-medium">Orthopedic Manual Therapy</p>
-                  <p className="text-xs text-forest/50 mt-1 font-light">& Sports Medicine</p>
+                  <h5 className="font-bold text-forest mb-2 uppercase tracking-wider text-xs">
+                    Specialization
+                  </h5>
+                  <p className="text-sm text-forest/60 font-medium">
+                    Orthopedic Manual Therapy
+                  </p>
+                  <p className="text-xs text-forest/50 mt-1 font-light">
+                    & Sports Medicine
+                  </p>
                 </div>
               </div>
             </div>
@@ -154,7 +175,7 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10"></div>
           {/* Subtle noise/texture using CSS class from globals if available, otherwise solid */}
         </div>
-        
+
         <div className="max-w-4xl mx-auto relative z-20">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white tracking-tight">
             Ready to start your recovery?
@@ -164,12 +185,18 @@ export default function AboutPage() {
             mobility under {siteConfig.doctorName}&apos;s expert care.
           </p>
           <div className="flex flex-col sm:flex-row gap-5 justify-center">
-            <button className="bg-lime text-forest px-8 py-4 rounded-full font-bold hover:bg-white transition-all shadow-lg shadow-black/20 text-sm tracking-wide">
+            <Link 
+              href="/contact"
+              className="bg-lime text-forest px-8 py-4 rounded-full font-bold hover:bg-white transition-all shadow-lg shadow-black/20 text-sm tracking-wide"
+            >
               Schedule an Evaluation
-            </button>
-            <button className="bg-white/10 backdrop-blur-sm text-white border border-white/20 px-8 py-4 rounded-full font-bold hover:bg-white/20 transition-all text-sm tracking-wide">
+            </Link>
+            <Link 
+              href="/services"
+              className="bg-white/10 backdrop-blur-sm text-white border border-white/20 px-8 py-4 rounded-full font-bold hover:bg-white/20 transition-all text-sm tracking-wide"
+            >
               View Our Services
-            </button>
+            </Link>
           </div>
         </div>
       </section>

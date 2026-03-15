@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import { ClipboardList, Target, Dumbbell, Star, Sparkles } from "lucide-react";
 import { siteConfig } from "@/config/site";
 
@@ -385,12 +386,15 @@ export function PatientJourney() {
                 <p className="text-white font-semibold text-sm sm:text-base mb-0.5 sm:mb-1">Ready to start your recovery?</p>
                 <p className="text-white/50 text-xs sm:text-sm">Book your initial assessment today</p>
               </div>
-              <button className="w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-3 px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-seafoam to-lime text-forest font-semibold rounded-full hover:shadow-lg hover:shadow-seafoam/30 transition-all text-sm sm:text-base">
+              <Link 
+                href="/contact"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-3 px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-seafoam to-lime text-forest font-semibold rounded-full hover:shadow-lg hover:shadow-seafoam/30 transition-all text-sm sm:text-base"
+              >
                 Book Assessment
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </button>
+              </Link>
             </motion.div>
           </div>
         </div>

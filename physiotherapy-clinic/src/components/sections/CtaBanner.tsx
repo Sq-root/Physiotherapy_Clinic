@@ -1,6 +1,7 @@
 'use client';
 
 import { Sparkles } from 'lucide-react';
+import Link from 'next/link';
 import { siteConfig } from '@/config/site';
 
 export function CtaBanner() {
@@ -23,12 +24,12 @@ export function CtaBanner() {
         </p>
 
         <div className="flex flex-col sm:flex-row justify-center gap-6">
-          <button 
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+          <Link 
+            href="/contact"
             className="h-16 px-12 bg-white text-forest font-bold uppercase tracking-widest text-sm hover:scale-105 transition-all rounded-full flex items-center justify-center shadow-xl cursor-pointer"
           >
             Make An Appointment
-          </button>
+          </Link>
           <a 
             href={`tel:${siteConfig.contact.phone.replace(/[^0-9+]/g, '')}`}
             className="h-16 px-12 bg-transparent border-2 border-white/40 text-white font-bold uppercase tracking-widest text-sm hover:bg-white/10 hover:border-white transition-all rounded-full flex items-center justify-center cursor-pointer gap-3"

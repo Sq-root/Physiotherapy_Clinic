@@ -73,7 +73,7 @@ function ServicesBentoHero() {
             className="lg:col-span-6 row-span-2 group relative overflow-hidden rounded-[2.5rem] border-[3px] border-white shadow-xl cursor-pointer hover:shadow-[6px_6px_0px_0px_#A4C639] transition-all duration-300"
           >
             <Image
-              src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80&auto=format&fit=crop"
+              src="/services/IMG_0115.jpeg"
               alt="Manual Therapy"
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -100,7 +100,7 @@ function ServicesBentoHero() {
           >
             <div 
               className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105 opacity-10 group-hover:opacity-[0.05]"
-              style={{ backgroundImage: `url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80')` }}
+              style={{ backgroundImage: `url('/services/IMG_0116.jpeg')` }}
             />
             <div className="relative h-full flex flex-col justify-between p-6">
               <div>
@@ -114,7 +114,7 @@ function ServicesBentoHero() {
                 <p className="text-[10px] font-bold text-forest uppercase tracking-widest mb-2">Success Story</p>
                 <div className="flex items-center gap-3">
                   <Image 
-                    src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=100&q=80&auto=format&fit=crop"
+                    src="/services/IMG_0017.jpeg"
                     alt="Athlete"
                     width={32}
                     height={32}
@@ -143,7 +143,7 @@ function ServicesBentoHero() {
             className="lg:col-span-3 row-span-1 group relative overflow-hidden rounded-[2rem] bg-forest border-[3px] border-white shadow-lg cursor-pointer hover:shadow-[5px_5px_0px_0px_#A4C639] transition-all duration-300"
           >
             <Image
-              src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80&auto=format&fit=crop"
+              src="/services/IMG_0128.jpeg"
               alt="Post Op"
               fill
               className="object-cover opacity-60 group-hover:opacity-40 transition-opacity"
@@ -164,7 +164,7 @@ function ServicesBentoHero() {
 function TherapeuticDeepDive() {
   const serviceData = [
     {
-      image: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=600&q=80',
+      image: '/services/IMG_0124.jpeg',
       category: 'Mobility',
       title: 'Active Aging',
       description: 'Maintaining independence and strength through tailored low-impact movement strategies.',
@@ -172,7 +172,7 @@ function TherapeuticDeepDive() {
       author: 'Margaret, 72',
     },
     {
-      image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&q=80',
+      image: '/services/IMG_0127.jpeg',
       category: 'Recovery',
       title: 'Hydrotherapy',
       description: 'Low-impact aquatic resistance training to rebuild muscle without joint stress.',
@@ -180,7 +180,7 @@ function TherapeuticDeepDive() {
       author: 'David, 45',
     },
     {
-      image: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80',
+      image: '/services/IMG_0122.jpeg',
       category: 'Prevention',
       title: 'Corrective Exercise',
       description: 'Fixing imbalances and posture issues before they become injuries.',
@@ -253,7 +253,7 @@ function TherapeuticDeepDive() {
                   </div>
                   <div className="flex items-start gap-3">
                     <Image
-                      src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=100&q=80&auto=format&fit=crop"
+                      src="/services/IMG_0017.jpeg"
                       alt="Client"
                       width={40}
                       height={40}

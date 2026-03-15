@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { faqCategories, type FaqCategory, type FaqItem } from '@/lib/data/faq-help';
@@ -263,7 +264,8 @@ function CategorySection({
             {category.cta.description}
           </p>
         </div>
-        <button
+        <Link
+          href="/contact"
           className={cn(
             'relative z-10 px-6 py-2.5 rounded-full font-bold transition-all whitespace-nowrap text-xs',
             category.cta.variant === 'primary'
@@ -272,7 +274,7 @@ function CategorySection({
           )}
         >
           {category.cta.buttonText}
-        </button>
+        </Link>
       </motion.div>
     </section>
   );
@@ -299,13 +301,13 @@ function Sidebar() {
           </p>
 
           <div className="space-y-2.5 relative z-10">
-            <a
-              href="#"
+            <Link
+              href="/contact"
               className="flex items-center justify-center gap-2 w-full py-2.5 rounded-full bg-lime text-forest font-bold text-xs hover:bg-white transition-all shadow-md shadow-black/10"
             >
               <MessageSquare className="w-4 h-4" />
               WhatsApp Us
-            </a>
+            </Link>
             <a
               href="tel:+"
               className="flex items-center justify-center gap-2 w-full py-2.5 rounded-full bg-white/10 border border-white/20 text-white font-bold text-xs hover:bg-white hover:text-forest transition-all backdrop-blur-sm"
@@ -329,7 +331,7 @@ function Sidebar() {
           <div className="flex items-center gap-2.5">
             <div className="w-9 h-9 rounded-full bg-gray-200 overflow-hidden ring-2 ring-white ring-offset-2 ring-offset-section">
               <Image
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80&auto=format&fit=crop"
+                src="/services/IMG_0017.jpeg"
                 alt="James R."
                 width={36}
                 height={36}

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
 import { siteConfig } from '@/config/site';
 
 const slides = [
@@ -11,7 +12,7 @@ const slides = [
     title: 'Get Back To',
     highlight: 'Peak Performance',
     description: 'Professional sports rehabilitation designed to get athletes back in the game faster with evidence-based treatment protocols.',
-    image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&q=80&w=1920',
+    image: '/services/IMG_0114.jpeg',
   },
   {
     id: 2,
@@ -19,7 +20,7 @@ const slides = [
     title: 'Gentle Therapy',
     highlight: 'For Active Aging',
     description: 'Specialized physiotherapy programs to maintain mobility, reduce pain, and improve quality of life for seniors.',
-    image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1920',
+    image: '/services/IMG_0116.jpeg',
   },
   {
     id: 3,
@@ -27,7 +28,7 @@ const slides = [
     title: 'End Chronic',
     highlight: 'Back & Neck Pain',
     description: 'Advanced manual therapy techniques combined with therapeutic exercises to eliminate persistent pain at its source.',
-    image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=1920',
+    image: '/services/IMG_0123.jpeg',
   },
   {
     id: 4,
@@ -35,7 +36,7 @@ const slides = [
     title: 'Accelerate Your',
     highlight: 'Recovery Journey',
     description: 'Comprehensive post-operative rehabilitation to restore function, rebuild strength, and get you back to daily activities.',
-    image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=1920',
+    image: '/services/IMG_0124.jpeg',
   },
 ];
 
@@ -148,9 +149,9 @@ export function HeroSection() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="flex flex-wrap gap-4"
             >
-              <a
-                href={`mailto:${siteConfig.contact.email}`}
-                className="group inline-flex items-center gap-3 bg-seafoam text-white pl-5 pr-2 py-2 rounded-full font-semibold text-sm hover:bg-white hover:text-forest transition-all duration-300"
+              <Link
+                href="/contact"
+                className="group inline-flex items-center gap-3 bg-seafoam text-white pl-5 pr-2 py-2.5 rounded-full font-semibold text-sm hover:bg-white hover:text-forest transition-all duration-300"
               >
                 <span className="capitalize">{siteConfig.contact.email}</span>
                 <span className="size-9 rounded-full bg-forest/30 flex items-center justify-center group-hover:bg-seafoam transition-colors">
@@ -158,7 +159,7 @@ export function HeroSection() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </span>
-              </a>
+              </Link>
               <a
                 href={`tel:${siteConfig.contact.phone.replace(/[^0-9+]/g, '')}`}
                 className="group inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/30 text-white pl-5 pr-2 py-2 rounded-full font-semibold text-sm hover:bg-white hover:text-forest transition-all duration-300"
