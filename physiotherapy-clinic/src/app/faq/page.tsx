@@ -7,14 +7,10 @@ import { cn } from '@/lib/utils';
 import { faqCategories, type FaqCategory, type FaqItem } from '@/lib/data/faq-help';
 import { Search, ChevronDown, MessageCircle, MessageSquare, Phone } from 'lucide-react';
 
-/* ─── Animation Variants ─── */
 const stagger = {
   visible: { transition: { staggerChildren: 0.08 } },
 };
 
-/* ═══════════════════════════════════════════
-   Hero Section
-   ═══════════════════════════════════════════ */
 function HeroSection({
   searchQuery,
   onSearchChange,
@@ -82,24 +78,29 @@ function StickyNav({
   onCategoryChange: (id: string) => void;
 }) {
   return (
-    <div className="sticky top-20 z-40 w-full shadow-sm overflow-x-auto no-scrollbar py-3 bg-section/80 backdrop-blur-md border-b border-white/20">
-      <div className="mx-auto max-w-6xl flex items-center justify-center px-6 gap-2.5">
+    <div className="sticky top-20 z-40 w-full shadow-sm overflow-x-auto no-scrollbar py-4 bg-section/80 backdrop-blur-md border-b border-white/20">
+      <div className="mx-auto max-w-6xl flex items-center justify-center px-6 gap-3">
         {categories.map((cat) => (
           <button
             key={cat.id}
-            onClick={() => {
-              onCategoryChange(cat.id);
-              const el = document.getElementById(cat.id);
-              if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }}
+            onClick={() => onCategoryChange(cat.id)}
             className={cn(
-              'px-5 py-2 rounded-full text-xs font-medium border backdrop-blur-sm transition-all whitespace-nowrap',
+              'px-6 py-2.5 rounded-full text-xs font-medium border backdrop-blur-sm transition-all duration-300 whitespace-nowrap relative',
               activeCategory === cat.id
-                ? 'border-transparent bg-lime text-forest font-bold shadow-md shadow-lime/20'
-                : 'text-forest border-forest/20 hover:border-forest/50 bg-white/50'
+                ? 'border-transparent bg-forest text-white shadow-xl shadow-forest/20'
+                : 'text-forest border-forest/10 hover:border-forest/30 bg-white/40 hover:bg-white/60'
             )}
           >
-            {cat.label}
+            {activeCategory === cat.id && (
+              <motion.div
+                layoutId="activeTab"
+                className="absolute inset-0 bg-forest rounded-full -z-10"
+                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+              />
+            )}
+            <span className={cn(activeCategory === cat.id ? "font-bold" : "font-medium")}>
+              {cat.label}
+            </span>
           </button>
         ))}
       </div>
@@ -209,11 +210,12 @@ function CategorySection({
       {/* Subcategory groups */}
       <div className="space-y-7">
         {filteredSubcategories.map((sub) => (
-          <div key={sub.title}>
-            <h3 className="text-[10px] uppercase tracking-widest font-bold text-forest/60 mb-3.5">
+          <div key={sub.title} className="bg-white/40 border border-white/60 rounded-2xl p-5 md:p-8 backdrop-blur-sm shadow-sm">
+            <h3 className="text-[10px] uppercase tracking-widest font-bold text-forest/40 mb-6 flex items-center gap-3">
+              <span className="w-8 h-[1px] bg-forest/10" />
               {sub.title}
             </h3>
-            <div className="space-y-2.5">
+            <div className="grid grid-cols-1 gap-3">
               {sub.items.map((item) => (
                 <FaqAccordionItem
                   key={item.id}
@@ -243,17 +245,19 @@ function CategorySection({
         {category.cta.variant === 'primary' && (
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5" />
         )}
-        <div
-          className={cn(
-            'relative z-10 text-center md:text-left',
-            category.cta.variant !== 'primary' && 'text-forest'
-          )}
-        >
-          <h4 className="text-lg font-bold mb-1">{category.cta.heading}</h4>
+        <div className="relative z-10 text-center md:text-left">
+          <h4
+            className={cn(
+              'text-lg font-bold mb-1',
+              category.cta.variant === 'primary' ? 'text-white' : 'text-forest'
+            )}
+          >
+            {category.cta.heading}
+          </h4>
           <p
             className={cn(
               'font-light text-xs',
-              category.cta.variant === 'primary' ? 'text-lime/90' : 'text-forest/70'
+              category.cta.variant === 'primary' ? 'text-white/80' : 'text-forest/70'
             )}
           >
             {category.cta.description}
@@ -289,7 +293,7 @@ function Sidebar() {
             <MessageCircle className="w-5 h-5 text-lime" />
           </div>
 
-          <h4 className="text-base font-bold mb-1 relative z-10">Quick Contact</h4>
+          <h4 className="text-base font-bold mb-1 relative z-10 text-white">Quick Contact</h4>
           <p className="text-xs text-white/70 mb-5 font-light relative z-10">
             Our care coordinators are available 24/7 for urgent inquiries.
           </p>
@@ -353,32 +357,23 @@ export default function FaqPage() {
   const [openId, setOpenId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Observer to update active category on scroll
-  useEffect(() => {
-    const observers: IntersectionObserver[] = [];
-
-    faqCategories.forEach((cat) => {
-      const el = document.getElementById(cat.id);
-      if (!el) return;
-
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setActiveCategory(cat.id);
-          }
-        },
-        { rootMargin: '-200px 0px -60% 0px', threshold: 0 }
-      );
-      observer.observe(el);
-      observers.push(observer);
-    });
-
-    return () => observers.forEach((o) => o.disconnect());
-  }, []);
-
   const handleToggle = (id: string) => {
     setOpenId((prev) => (prev === id ? null : id));
   };
+
+
+  const displayedCategories = searchQuery.trim().length > 0
+    ? faqCategories
+    : faqCategories.filter(cat => cat.id === activeCategory);
+
+  const hasResults = displayedCategories.some(cat => {
+    return cat.subcategories.some(sub => 
+      sub.items.some(item => 
+        item.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.answer.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    );
+  });
 
   return (
     <div className="bg-section text-forest font-sans antialiased overflow-x-hidden">
@@ -397,20 +392,53 @@ export default function FaqPage() {
         initial="hidden"
         animate="visible"
         variants={stagger}
-        className="mx-auto max-w-6xl px-6 lg:px-8 py-12 relative z-10"
+        className="mx-auto max-w-6xl px-6 lg:px-8 py-16 relative z-10"
       >
-        <div className="flex flex-col lg:flex-row gap-10">
+        <div className="flex flex-col lg:flex-row gap-12">
           {/* FAQ Sections */}
-          <div className="flex-1 space-y-14">
-            {faqCategories.map((cat) => (
-              <CategorySection
-                key={cat.id}
-                category={cat}
-                openId={openId}
-                onToggle={handleToggle}
-                searchQuery={searchQuery}
-              />
-            ))}
+          <div className="flex-1">
+            <AnimatePresence mode="wait">
+              {hasResults ? (
+                <motion.div
+                  key={searchQuery ? 'search' : activeCategory}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                  className="space-y-16"
+                >
+                  {displayedCategories.map((cat) => (
+                    <CategorySection
+                      key={cat.id}
+                      category={cat}
+                      openId={openId}
+                      onToggle={handleToggle}
+                      searchQuery={searchQuery}
+                    />
+                  ))}
+                </motion.div>
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="py-20 text-center"
+                >
+                  <div className="size-16 rounded-full bg-forest/5 flex items-center justify-center mx-auto mb-6">
+                    <Search className="w-8 h-8 text-forest/20" />
+                  </div>
+                  <h3 className="text-xl font-bold text-forest mb-2">No results found</h3>
+                  <p className="text-forest/60 max-w-xs mx-auto text-sm font-light">
+                    We couldn't find any questions matching &quot;{searchQuery}&quot;. Try using different keywords.
+                  </p>
+                  <button 
+                    onClick={() => setSearchQuery('')}
+                    className="mt-6 text-xs font-bold text-forest underline underline-offset-4 decoration-lime hover:text-lime transition-all"
+                  >
+                    Clear Search
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           {/* Sidebar */}

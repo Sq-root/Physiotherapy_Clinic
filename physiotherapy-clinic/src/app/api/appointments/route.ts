@@ -76,35 +76,6 @@ export async function POST(request: NextRequest) {
 
     const supabase = createServerClient();
 
-    // Check for existing appointment (double-booking prevention)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: existingAppointment, error: checkError } = await (supabase.from('appointments') as any)
-      .select('id')
-      .eq('appointment_date', date)
-      .eq('time_slot', timeSlot as TimeSlot)
-      .eq('service', service as ServiceType)
-      .neq('status', 'cancelled')
-      .single();
-
-    if (checkError && checkError.code !== 'PGRST116') {
-      // PGRST116 means no rows found, which is what we want
-      console.error('Check error:', checkError);
-      return NextResponse.json(
-        { success: false, errors: ['Failed to check availability. Please try again.'] },
-        { status: 500 }
-      );
-    }
-
-    if (existingAppointment) {
-      return NextResponse.json(
-        {
-          success: false,
-          errors: ['This time slot is already booked. Please choose a different time or date.']
-        },
-        { status: 409 }
-      );
-    }
-
     // Insert the appointment
     const appointmentData: AppointmentInsert = {
       name: name.trim(),
@@ -168,44 +139,26 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// GET endpoint to check available slots
+// GET endpoint to check available slots (Hard-coded for now)
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const date = searchParams.get('date');
     const service = searchParams.get('service');
 
-    if (!date || !service || !isValidService(service)) {
+    if (!date || !service) {
       return NextResponse.json(
         { success: false, errors: ['Date and service are required'] },
         { status: 400 }
       );
     }
 
-    const supabase = createServerClient();
-
-    // Get booked slots for the date and service
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: bookedSlots, error } = await (supabase.from('appointments') as any)
-      .select('time_slot')
-      .eq('appointment_date', date)
-      .eq('service', service as ServiceType)
-      .neq('status', 'cancelled');
-
-    if (error) {
-      console.error('Error fetching slots:', error);
-      return NextResponse.json(
-        { success: false, errors: ['Failed to fetch available slots'] },
-        { status: 500 }
-      );
-    }
-
-    const bookedTimeSlots = (bookedSlots as { time_slot: TimeSlot }[] | null)?.map(s => s.time_slot) || [];
+    // Hard-coded all slots as available
     const allSlots: TimeSlot[] = ['morning', 'afternoon', 'evening'];
 
     const availability = allSlots.map(slot => ({
       slot,
-      available: !bookedTimeSlots.includes(slot),
+      available: true, // Always available
       label: slot === 'morning' ? 'Morning (9AM-12PM)'
         : slot === 'afternoon' ? 'Afternoon (12PM-5PM)'
           : 'Evening (5PM-10PM)',

@@ -10,9 +10,9 @@ import { Leaf } from "lucide-react";
 const navLinks = [
   { label: "Home", href: "/", isHash: false },
   { label: "Services", href: "/services", isHash: false },
-  // { label: 'Journey', href: '/#journey', isHash: true },
   { label: "FAQ", href: "/faq", isHash: false },
   { label: "Contact", href: "/contact", isHash: false },
+  { label: 'About Us', href: '/about', isHash: false },
 ];
 
 export function Navbar() {
@@ -86,7 +86,7 @@ export function Navbar() {
   const activeLinkHref = getActiveLink();
 
   // Pages without a dark hero need dark navbar text even before scroll
-  const isLightPage = pathname !== "/";
+  const isLightPage = pathname !== "/" && pathname !== "/about";
   // Use dark styling when scrolled OR on a light-background page
   const useDarkStyle = scrolled || isLightPage;
 
