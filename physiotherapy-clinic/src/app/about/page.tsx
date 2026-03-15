@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { Target, Eye } from 'lucide-react';
+import { siteConfig } from '@/config/site';
 
 export default function AboutPage() {
   return (
@@ -9,7 +10,7 @@ export default function AboutPage() {
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-forest/80 via-forest/40 to-transparent z-10"></div>
           <Image
-            alt="Dr. Sarah Mitchell"
+            alt={siteConfig.doctorName}
             className="w-full h-full object-cover"
             src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1600&q=80&auto=format&fit=crop"
             fill
@@ -22,7 +23,7 @@ export default function AboutPage() {
               Founder & Lead Physiotherapist
             </span>
             <h2 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
-              Dr. Sarah Mitchell
+              {siteConfig.doctorName}
             </h2>
             <p className="text-xl text-white/90 font-light leading-relaxed mb-8 max-w-lg">
               Dedicated to restoring movement and enhancing the quality of life
@@ -79,7 +80,7 @@ export default function AboutPage() {
             <div className="lg:col-span-5 relative">
               <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl shadow-forest/20 group relative border-4 border-white/50">
                 <Image
-                  alt="Portrait of Dr. Sarah Mitchell"
+                  alt={`Portrait of ${siteConfig.doctorName}`}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   src="https://images.unsplash.com/photo-1594824432247-41ecdfb8417c?w=800&q=80&auto=format&fit=crop"
                   fill
@@ -87,7 +88,7 @@ export default function AboutPage() {
               </div>
               
               <div className="absolute -bottom-8 -right-4 md:-right-8 bg-white/95 backdrop-blur-xl p-8 rounded-2xl shadow-xl shadow-forest/10 hidden md:block border border-forest/5">
-                <p className="text-5xl font-bold text-forest mb-1">15<span className="text-lime">+</span></p>
+                <p className="text-5xl font-bold text-forest mb-1">{siteConfig.social.yearsExperience}</p>
                 <p className="text-[10px] font-bold text-forest/50 uppercase tracking-[0.2em]">
                   Years of Experience
                 </p>
@@ -97,12 +98,12 @@ export default function AboutPage() {
             {/* Text Column */}
             <div className="lg:col-span-7 pt-4 md:pl-8">
               <h4 className="text-lime font-bold text-[10px] tracking-[0.2em] uppercase mb-4">
-                The Heart of Vitality Path
+                The Heart of {siteConfig.name}
               </h4>
               <h2 className="text-4xl md:text-5xl font-bold mb-10 leading-tight tracking-tight text-forest">
                 A Personal Note from <br />
                 <span className="relative inline-block mt-2">
-                  <span className="relative z-10 font-script text-5xl md:text-6xl text-lime font-normal">Dr. Mitchell</span>
+                  <span className="relative z-10 font-script text-5xl md:text-6xl text-lime font-normal">{siteConfig.doctorName.replace('Dr. ', 'Dr. ')}</span>
                 </span>
               </h2>
               
@@ -160,7 +161,7 @@ export default function AboutPage() {
           </h2>
           <p className="text-lg md:text-xl text-white/70 font-light mb-12 max-w-2xl mx-auto">
             Join hundreds of patients who have found relief and regained their
-            mobility under Dr. Mitchell&apos;s expert care.
+            mobility under {siteConfig.doctorName}&apos;s expert care.
           </p>
           <div className="flex flex-col sm:flex-row gap-5 justify-center">
             <button className="bg-lime text-forest px-8 py-4 rounded-full font-bold hover:bg-white transition-all shadow-lg shadow-black/20 text-sm tracking-wide">

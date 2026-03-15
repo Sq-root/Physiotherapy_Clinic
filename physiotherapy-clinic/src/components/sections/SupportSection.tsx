@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Target, FlaskConical, Heart } from 'lucide-react';
+import { siteConfig } from '@/config/site';
 
 const highlightIconMap = {
   0: Target,
@@ -16,9 +17,9 @@ export function SupportSection() {
   };
 
   const highlights = [
-    { label: 'Personalized' },
-    { label: 'Evidence-Based' },
-    { label: 'Compassionate' },
+    { label: 'Global Standard Of Care' },
+    { label: 'Personalized (Evidence-based)' },
+    { label: 'Tailored Rehabilitation' },
   ];
 
   return (
@@ -56,7 +57,7 @@ export function SupportSection() {
                   />
                 </div>
                 <div className="absolute -bottom-2 -right-2 size-10 bg-seafoam rounded-full flex items-center justify-center shadow-lg border-2 border-white">
-                  <span className="text-white text-[10px] font-bold">15+</span>
+                  <span className="text-white text-[10px] font-bold">{siteConfig.social.yearsExperience}</span>
                 </div>
               </div>
 
@@ -66,13 +67,13 @@ export function SupportSection() {
                   <span className="text-seafoam text-[9px] font-semibold tracking-wider uppercase">Why Us</span>
                 </div>
                 <h2 className="text-base font-bold text-forest leading-tight">
-                  Expert Care & Support
+                  Precision Physiotherapy for Lasting Recovery
                 </h2>
               </div>
             </div>
 
             {/* Stats Row */}
-            <div className="flex items-center justify-between bg-white rounded-xl p-3 mb-4">
+            {/* <div className="flex items-center justify-between bg-white rounded-xl p-3 mb-4">
               <div className="text-center flex-1">
                 <p className="text-forest text-lg font-bold">5K+</p>
                 <p className="text-forest/50 text-[8px] uppercase">Patients</p>
@@ -87,7 +88,7 @@ export function SupportSection() {
                 <p className="text-forest text-lg font-bold">4.9</p>
                 <p className="text-forest/50 text-[8px] uppercase">Rating</p>
               </div>
-            </div>
+            </div> */}
 
             {/* Highlights */}
             <div className="flex flex-wrap gap-1.5">
@@ -151,7 +152,7 @@ export function SupportSection() {
                   <div className="absolute inset-0 w-28 h-28 lg:w-32 lg:h-32 border-2 border-dashed border-seafoam/40 rounded-full animate-spin" style={{ animationDuration: '15s' }}></div>
                   {/* Badge */}
                   <div className="relative size-24 lg:size-28 bg-seafoam rounded-full flex flex-col items-center justify-center shadow-2xl border-4 border-white">
-                    <span className="text-white text-2xl lg:text-3xl font-bold">15+</span>
+                    <span className="text-white text-2xl lg:text-3xl font-bold">{siteConfig.social.yearsExperience}</span>
                     <span className="text-white/80 text-[8px] font-bold uppercase tracking-wider">Years Exp.</span>
                   </div>
                 </div>
@@ -178,14 +179,15 @@ export function SupportSection() {
 
             {/* Heading */}
             <h2 className="text-3xl lg:text-4xl xl:text-5xl font-sans text-forest leading-[1.15] font-bold tracking-tight mb-6">
-              Passionate About{' '}
-              <span className="text-seafoam">Expert Care</span> & Support
+              Precision Physiotherapy for{' '}
+              <span className="text-seafoam">Lasting Recovery</span>
             </h2>
 
             {/* Description */}
             <p className="text-forest/70 text-base lg:text-lg mb-8 leading-relaxed">
-              Our dedicated team combines cutting-edge techniques with genuine compassion 
-              to deliver transformative results. Every treatment is tailored to your unique needs.
+              Every session is delivered one-to-one with a focus on identifying the root cause of pain. 
+              Through precise assessment and evidence-based rehabilitation, we help you recover faster 
+              and move with confidence again.
             </p>
 
             {/* Highlights */}
@@ -202,7 +204,7 @@ export function SupportSection() {
             </div>
 
             {/* Stats Row */}
-            <div className="flex items-center gap-8 py-6 px-8 bg-forest rounded-2xl mb-8">
+            {/* <div className="flex items-center gap-8 py-6 px-8 bg-forest rounded-2xl mb-8">
               <div className="text-center">
                 <p className="text-white text-3xl font-bold">5K+</p>
                 <p className="text-white/60 text-xs uppercase tracking-wider">Patients</p>
@@ -217,7 +219,7 @@ export function SupportSection() {
                 <p className="text-white text-3xl font-bold">4.9</p>
                 <p className="text-white/60 text-xs uppercase tracking-wider">Rating</p>
               </div>
-            </div>
+            </div> */}
 
             {/* Doctor + CTA */}
             <div className="flex items-center justify-between flex-wrap gap-4">
@@ -225,7 +227,7 @@ export function SupportSection() {
                 <div className="relative">
                   <img 
                     src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=200" 
-                    alt="Dr. Priya Sharma" 
+                    alt={siteConfig.doctorName}
                     className="size-14 rounded-full object-cover object-top border-2 border-seafoam shadow-lg"
                   />
                   <div className="absolute -bottom-1 -right-1 size-5 bg-lime rounded-full flex items-center justify-center border-2 border-white">
@@ -235,7 +237,7 @@ export function SupportSection() {
                   </div>
                 </div>
                 <div>
-                  <p className="text-forest font-bold">Dr. Priya Sharma</p>
+                  <p className="text-forest font-bold">{siteConfig.doctorName}</p>
                   <p className="text-seafoam text-sm">Lead Physiotherapist</p>
                 </div>
               </div>

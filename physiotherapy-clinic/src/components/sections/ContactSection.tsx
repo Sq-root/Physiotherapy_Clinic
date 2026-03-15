@@ -2,6 +2,7 @@
 
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
+import { siteConfig } from '@/config/site';
 
 export function ContactSection() {
   return (
@@ -23,17 +24,31 @@ export function ContactSection() {
 
             <div className="space-y-5">
               {[
-                { icon: Phone, label: '+1 (555) 123-4567', sub: 'Mon–Fri, 8am–6pm' },
-                { icon: Mail, label: 'hello@vitalitypath.com', sub: 'We reply within 24 hours' },
-                { icon: MapPin, label: '123 Healing Ave, Wellness District', sub: 'WD 10001' },
-                { icon: Clock, label: 'Mon–Sat: 8:00 AM – 7:00 PM', sub: 'Sun: 10:00 AM – 4:00 PM' },
-              ].map(({ icon: Icon, label, sub }) => (
+                { 
+                  icon: Phone, 
+                  label: siteConfig.contact.phone, 
+                  sub: 'Mon–Fri, 8am–6pm',
+                  isPhone: true 
+                },
+                { icon: Mail, label: siteConfig.contact.email, sub: 'We reply within 24 hours' },
+                { icon: MapPin, label: `${siteConfig.contact.address.line1}, ${siteConfig.contact.address.line2}`, sub: `${siteConfig.contact.address.city}, ${siteConfig.contact.address.zip}` },
+                { icon: Clock, label: siteConfig.contact.timing, sub: 'Sun: Closed' },
+              ].map(({ icon: Icon, label, sub, isPhone }) => (
                 <div key={label} className="flex items-start gap-4">
                   <div className="w-10 h-10 bg-seafoam/10 rounded-lg flex items-center justify-center shrink-0">
                     <Icon className="w-5 h-5 text-seafoam" />
                   </div>
                   <div>
-                    <p className="font-medium text-[#1a1a2e] text-sm">{label}</p>
+                    <div className="flex items-center gap-2">
+                      {isPhone && (
+                        <img 
+                          src="/logo/ae_flag.svg" 
+                          alt="UAE Flag" 
+                          className="w-6 h-auto rounded shadow-sm border border-forest/10" 
+                        />
+                      )}
+                      <p className="font-medium text-[#1a1a2e] text-sm">{label}</p>
+                    </div>
                     <p className="text-[#6b7280] text-xs mt-0.5">{sub}</p>
                   </div>
                 </div>

@@ -428,7 +428,7 @@ export default function FaqPage() {
                   </div>
                   <h3 className="text-xl font-bold text-forest mb-2">No results found</h3>
                   <p className="text-forest/60 max-w-xs mx-auto text-sm font-light">
-                    We couldn't find any questions matching &quot;{searchQuery}&quot;. Try using different keywords.
+                    We couldn&apos;t find any questions matching &quot;{searchQuery}&quot;. Try using different keywords.
                   </p>
                   <button 
                     onClick={() => setSearchQuery('')}

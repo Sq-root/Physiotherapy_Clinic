@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import type { Easing } from 'framer-motion';
 import { Hand, ArrowRight, Activity, Brain, ArrowDown, ArrowLeft, Quote, Plus, Minus } from 'lucide-react';
+import { siteConfig } from '@/config/site';
 
 // Animation variants
 const fadeInUp = {
@@ -284,7 +285,7 @@ function ServiceFAQ() {
     },
     {
       question: 'Can I combine treatments?',
-      answer: 'Absolutely. Our "Vitality Path" is holistic. Most successful recovery plans involve a mix of Manual Therapy for immediate relief and Corrective Exercise for long-term prevention.',
+      answer: `Absolutely. Our "${siteConfig.name}" is holistic. Most successful recovery plans involve a mix of Manual Therapy for immediate relief and Corrective Exercise for long-term prevention.`,
     },
     {
       question: 'Do you offer post-op packages?',
@@ -400,7 +401,7 @@ function ServicesCTA() {
               Book Initial Consult
             </Link>
             <p className="text-forest font-bold text-sm uppercase tracking-widest mt-4 sm:mt-0 opacity-60">
-              or call (555) 123-4567
+              or call {siteConfig.contact.phone}
             </p>
           </div>
         </motion.div>

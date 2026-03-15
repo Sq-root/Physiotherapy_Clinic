@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ClipboardList, Target, Dumbbell, Star, Sparkles } from "lucide-react";
+import { siteConfig } from "@/config/site";
 
 const stepIconMap = {
   1: ClipboardList,
@@ -55,25 +56,25 @@ export function PatientJourney() {
       id: 1,
       title: "Neck & Shoulder",
       conditions: ["Stiffness", "Tension", "Whiplash"],
-      position: { top: "15%", left: "50%" },
+      position: { top: "18%", left: "50%" },
     },
     {
       id: 2,
       title: "Upper Back",
       conditions: ["Posture Issues", "Muscle Strain", "Thoracic Pain"],
-      position: { top: "30%", left: "50%" },
+      position: { top: "27%", left: "50%" },
     },
     {
       id: 3,
       title: "Lower Back",
       conditions: ["Disc Issues", "Sciatica", "Chronic Pain"],
-      position: { top: "48%", left: "50%" },
+      position: { top: "42%", left: "50%" },
     },
     {
       id: 4,
       title: "Knee & Leg",
       conditions: ["Sports Injuries", "Arthritis", "Recovery"],
-      position: { top: "72%", left: "50%" },
+      position: { top: "75%", left: "50%" },
     },
   ];
 
@@ -134,20 +135,14 @@ export function PatientJourney() {
                 <h3 className="text-white font-semibold text-lg mb-4">We Treat All Areas</h3>
                 
                 {/* Body Silhouette with Points */}
-                <div className="relative h-[400px] flex items-center justify-center">
-                  {/* Simplified Body Shape */}
-                  <div className="relative w-32">
-                    {/* Head */}
-                    <div className="w-16 h-16 mx-auto rounded-full bg-white/10 border border-white/20" />
-                    {/* Neck */}
-                    <div className="w-8 h-6 mx-auto bg-white/10 border-x border-white/20" />
-                    {/* Torso */}
-                    <div className="w-24 h-32 mx-auto rounded-t-lg bg-white/10 border border-white/20 border-b-0" />
-                    {/* Lower Body */}
-                    <div className="flex justify-center gap-2">
-                      <div className="w-10 h-28 rounded-b-lg bg-white/10 border border-white/20" />
-                      <div className="w-10 h-28 rounded-b-lg bg-white/10 border border-white/20" />
-                    </div>
+                <div className="relative h-[450px] lg:h-[415px] w-full flex items-center justify-center">
+                  {/* Medical Skeleton/Anatomy Image */}
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <img
+                      src="/human_skeleton.png"
+                      alt="Human Anatomy Representation"
+                      className="h-full w-auto max-w-full object-contain opacity-90 drop-shadow-2xl"
+                    />
                   </div>
 
                   {/* Pain Points */}
@@ -163,12 +158,26 @@ export function PatientJourney() {
                       viewport={{ once: true }}
                       transition={{ delay: index * 0.1 + 0.3 }}
                     >
-                      {/* Pulse Ring */}
-                      <div className="absolute inset-0 rounded-full bg-seafoam/30 animate-ping" />
-                      {/* Main Dot */}
-                      <div className={`relative w-4 h-4 rounded-full transition-all duration-300 ${
-                        hoveredTag === point.id ? 'bg-lime scale-150' : 'bg-seafoam'
-                      }`} />
+                      {/* Interactive Marker Hotspot */}
+                      <div className="relative flex items-center justify-center">
+                        {/* Outer pulsing ring for visibility */}
+                        <div 
+                          className="absolute w-10 h-10 lg:w-12 lg:h-12 rounded-full border border-white/40 animate-ping" 
+                          style={{ animationDuration: '2.5s' }}
+                        />
+                        
+                        {/* Core Marker */}
+                        <div className={`relative flex items-center justify-center w-6 h-6 lg:w-7 lg:h-7 rounded-full transition-all duration-300 ${
+                          hoveredTag === point.id 
+                            ? 'bg-lime scale-125 shadow-[0_0_20px_rgba(25,230,94,0.6)]' 
+                            : 'bg-white shadow-[0_0_15px_rgba(255,255,255,0.4)] border border-forest/20'
+                        }`}>
+                           {/* Inner dot */}
+                           <div className={`w-2 h-2 rounded-full transition-colors ${
+                             hoveredTag === point.id ? 'bg-forest' : 'bg-lime'
+                           }`} />
+                        </div>
+                      </div>
                       
                       {/* Tooltip */}
                       <AnimatePresence>
@@ -177,7 +186,7 @@ export function PatientJourney() {
                             initial={{ opacity: 0, x: 10, scale: 0.9 }}
                             animate={{ opacity: 1, x: 0, scale: 1 }}
                             exit={{ opacity: 0, x: 10, scale: 0.9 }}
-                            className="absolute left-6 top-1/2 -translate-y-1/2 bg-white rounded-xl p-3 shadow-xl min-w-[160px] z-20"
+                            className="absolute left-10 lg:left-12 top-1/2 -translate-y-1/2 bg-white rounded-xl p-3 shadow-2xl min-w-[160px] z-50 border border-forest/10"
                           >
                             <p className="text-forest font-bold text-sm mb-1">{point.title}</p>
                             <div className="flex flex-wrap gap-1">
@@ -197,11 +206,11 @@ export function PatientJourney() {
                 {/* Stats */}
                 <div className="grid grid-cols-2 gap-3 mt-4">
                   <div className="text-center p-3 bg-white/5 rounded-xl">
-                    <p className="text-2xl font-bold text-white">15+</p>
+                    <p className="text-2xl font-bold text-white">{siteConfig.social.bodyAreas}</p>
                     <p className="text-[10px] text-white/50 uppercase tracking-wider">Body Areas</p>
                   </div>
                   <div className="text-center p-3 bg-white/5 rounded-xl">
-                    <p className="text-2xl font-bold text-white">50+</p>
+                    <p className="text-2xl font-bold text-white">{siteConfig.social.conditions}</p>
                     <p className="text-[10px] text-white/50 uppercase tracking-wider">Conditions</p>
                   </div>
                 </div>

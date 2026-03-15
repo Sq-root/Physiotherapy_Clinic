@@ -1,6 +1,7 @@
 'use client';
 
 import { Sparkles } from 'lucide-react';
+import { siteConfig } from '@/config/site';
 
 export function CtaBanner() {
   return (
@@ -29,10 +30,15 @@ export function CtaBanner() {
             Make An Appointment
           </button>
           <a 
-            href="tel:+15551234567" 
-            className="h-16 px-12 bg-transparent border-2 border-white/40 text-white font-bold uppercase tracking-widest text-sm hover:bg-white/10 hover:border-white transition-all rounded-full flex items-center justify-center cursor-pointer"
+            href={`tel:${siteConfig.contact.phone.replace(/[^0-9+]/g, '')}`}
+            className="h-16 px-12 bg-transparent border-2 border-white/40 text-white font-bold uppercase tracking-widest text-sm hover:bg-white/10 hover:border-white transition-all rounded-full flex items-center justify-center cursor-pointer gap-3"
           >
-            Call Us Now
+            <img 
+              src="/logo/ae_flag.svg" 
+              alt="UAE Flag" 
+              className="w-8 h-auto rounded shadow-lg border border-white/20"
+            />
+            <span>Call Us Now</span>
           </a>
         </div>
       </div>

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Rocket, User, CreditCard, Sparkles, MessageCircle, Clock, Zap, CheckCircle, ChevronDown, ArrowRight } from 'lucide-react';
+import { siteConfig } from '@/config/site';
 
 const categoryIconMap = {
   'getting-started': Rocket,
@@ -128,7 +129,7 @@ export function FaqSection() {
             Questions? <span className="text-seafoam">We&apos;ve Got Answers</span>
           </h2>
           <p className="text-forest/60 text-sm md:text-base max-w-2xl mx-auto">
-            Everything you need to know about your recovery journey at Vitality Path
+            Everything you need to know about your recovery journey at {siteConfig.name}
           </p>
         </motion.div>
 

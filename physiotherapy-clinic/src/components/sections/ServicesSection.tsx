@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Bone, Zap, Brain, Hand, Heart, Sparkles, ArrowRight } from "lucide-react";
+import { siteConfig } from "@/config/site";
 
 const iconMap = {
   bone: Bone,
@@ -182,17 +183,17 @@ export function ServicesSection() {
             >
               <div className="flex items-center justify-between">
                 <div className="text-center">
-                  <p className="text-2xl font-bold text-forest">15+</p>
+                  <p className="text-2xl font-bold text-forest">{siteConfig.social.servicesCount}</p>
                   <p className="text-[10px] text-forest/60 uppercase tracking-wider">Services</p>
                 </div>
                 <div className="w-px h-10 bg-forest/10" />
                 <div className="text-center">
-                  <p className="text-2xl font-bold text-forest">8K+</p>
+                  <p className="text-2xl font-bold text-forest">{siteConfig.social.livesRestored}</p>
                   <p className="text-[10px] text-forest/60 uppercase tracking-wider">Patients</p>
                 </div>
                 <div className="w-px h-10 bg-forest/10" />
                 <div className="text-center">
-                  <p className="text-2xl font-bold text-forest">98%</p>
+                  <p className="text-2xl font-bold text-forest">{siteConfig.social.recoveryRate}</p>
                   <p className="text-[10px] text-forest/60 uppercase tracking-wider">Success</p>
                 </div>
               </div>
@@ -392,9 +393,9 @@ export function ServicesSection() {
           {/* Mobile Stats */}
           <div className="mt-6 grid grid-cols-3 gap-3">
             {[
-              { value: "15+", label: "Services" },
-              { value: "8K+", label: "Patients" },
-              { value: "98%", label: "Success" }
+              { value: siteConfig.social.servicesCount, label: "Services" },
+              { value: siteConfig.social.livesRestored, label: "Patients" },
+              { value: siteConfig.social.recoveryRate, label: "Success" }
             ].map((stat) => (
               <div key={stat.label} className="text-center p-3 bg-white rounded-xl border border-forest/10">
                 <p className="text-xl font-bold text-forest">{stat.value}</p>

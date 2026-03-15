@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import type { Easing } from 'framer-motion';
+import { siteConfig } from '@/config/site';
 
 // Animation variants
 const fadeInUp = {
@@ -41,32 +42,32 @@ const contactInfo = [
   { 
     icon: Phone, 
     title: 'Call Us',
-    primary: '+1 (555) 123-4567', 
+    primary: siteConfig.contact.phone, 
     secondary: 'Mon–Fri, 8am–6pm',
-    action: 'tel:+15551234567',
+    action: `tel:${siteConfig.contact.phone.replace(/[^0-9+]/g, '')}`,
     color: 'bg-seafoam'
   },
   { 
     icon: Mail, 
     title: 'Email Us',
-    primary: 'hello@vitalitypath.com', 
+    primary: siteConfig.contact.email, 
     secondary: 'We reply within 24 hours',
-    action: 'mailto:hello@vitalitypath.com',
+    action: `mailto:${siteConfig.contact.email}`,
     color: 'bg-lime'
   },
   { 
     icon: MapPin, 
     title: 'Visit Us',
-    primary: '123 Healing Ave', 
-    secondary: 'Wellness District, WD 10001',
+    primary: siteConfig.contact.address.line1, 
+    secondary: `${siteConfig.contact.address.city}, ${siteConfig.contact.address.zip}`,
     action: 'https://maps.google.com',
     color: 'bg-forest'
   },
   { 
     icon: Clock, 
     title: 'Working Hours',
-    primary: 'Mon–Sat: 8AM – 7PM', 
-    secondary: 'Sun: 10AM – 4PM',
+    primary: siteConfig.contact.timing, 
+    secondary: 'Sun: Closed',
     action: null,
     color: 'bg-amber'
   },
@@ -345,7 +346,16 @@ function ContactCard({ item }: { item: typeof contactInfo[0] }) {
         <Icon className="w-5 h-5 text-white" />
       </div>
       <h3 className="font-bold text-forest text-sm mb-1">{item.title}</h3>
-      <p className="text-forest text-sm font-medium">{item.primary}</p>
+      <div className="flex items-center gap-2">
+        {item.title === 'Call Us' && (
+          <img 
+            src="/logo/ae_flag.svg" 
+            alt="UAE Flag" 
+            className="w-6 h-auto rounded shadow-sm border border-forest/10" 
+          />
+        )}
+        <p className="text-forest text-sm font-medium">{item.primary}</p>
+      </div>
       <p className="text-forest/50 text-xs mt-1">{item.secondary}</p>
     </div>
   );

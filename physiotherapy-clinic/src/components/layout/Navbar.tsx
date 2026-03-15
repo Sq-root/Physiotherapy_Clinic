@@ -6,14 +6,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { Leaf } from "lucide-react";
-
-const navLinks = [
-  { label: "Home", href: "/", isHash: false },
-  { label: "Services", href: "/services", isHash: false },
-  { label: "FAQ", href: "/faq", isHash: false },
-  { label: "Contact", href: "/contact", isHash: false },
-  { label: 'About Us', href: '/about', isHash: false },
-];
+import { siteConfig } from "@/config/site";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -152,23 +145,23 @@ export function Navbar() {
                     )}
                   />
                 </motion.div>
-                <div className="flex flex-col">
+                <div className="flex flex-col justify-center">
                   <span
                     className={cn(
-                      "text-base font-bold tracking-tight uppercase leading-none transition-colors duration-500",
+                      "text-[22px] font-medium tracking-normal leading-none transition-colors duration-500 font-[family-name:var(--font-script)]",
                       useDarkStyle ? "text-forest" : "text-white",
                     )}
                   >
-                    Vitality
+                    {siteConfig.name}
                   </span>
-                  <span
+                  {/* <span
                     className={cn(
                       "text-[9px] font-bold tracking-[0.2em] uppercase leading-none transition-colors duration-500",
                       useDarkStyle ? "text-[#66A182]" : "text-white/70",
                     )}
                   >
-                    Path
-                  </span>
+                    {siteConfig.name.split(' ').slice(1).join(' ')}
+                  </span> */}
                 </div>
               </Link>
 
@@ -182,7 +175,7 @@ export function Navbar() {
                       : "bg-white/10 backdrop-blur-sm border border-white/20",
                   )}
                 >
-                  {navLinks.map((link) => {
+                  {siteConfig.nav.map((link) => {
                     const isActive =
                       activeLinkHref === link.href ||
                       (link.href === "/" && pathname === "/" && !activeHash) ||
@@ -355,7 +348,7 @@ export function Navbar() {
               <div className="p-6">
                 {/* Mobile Nav Links */}
                 <nav className="space-y-1 mb-6">
-                  {navLinks.map((link, index) => (
+                  {siteConfig.nav.map((link, index) => (
                     <motion.div
                       key={link.label}
                       initial={{ opacity: 0, x: -20 }}
@@ -423,9 +416,9 @@ export function Navbar() {
                   transition={{ delay: 0.4 }}
                   className="mt-6 pt-6 border-t border-forest/10"
                 >
-                  <div className="flex items-center gap-4 text-forest/60">
+                  <div className="flex flex-col gap-3 text-forest/60">
                     <a
-                      href="tel:+15551234567"
+                      href={`tel:${siteConfig.contact.phone.replace(/[^0-9+]/g, "")}`}
                       className="flex items-center gap-2 text-xs hover:text-seafoam transition-colors"
                     >
                       <svg
@@ -441,11 +434,17 @@ export function Navbar() {
                           d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                         />
                       </svg>
-                      (555) 123-4567
+                      <div className="flex items-center gap-2">
+                        <img
+                          src="/logo/ae_flag.svg"
+                          alt="UAE Flag"
+                          className="w-6 h-auto rounded shadow-sm border border-forest/10"
+                        />
+                        <span>{siteConfig.contact.phone}</span>
+                      </div>
                     </a>
-                    <span className="w-px h-4 bg-forest/20" />
                     <a
-                      href="mailto:hello@vitalitypath.com"
+                      href={`mailto:${siteConfig.contact.email}`}
                       className="flex items-center gap-2 text-xs hover:text-seafoam transition-colors"
                     >
                       <svg
@@ -461,7 +460,7 @@ export function Navbar() {
                           d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                         />
                       </svg>
-                      Email Us
+                      {siteConfig.contact.email}
                     </a>
                   </div>
                 </motion.div>

@@ -3,6 +3,7 @@ import { Lexend, Great_Vibes } from 'next/font/google';
 import './globals.css';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+import { siteConfig } from '@/config/site';
 
 const lexend = Lexend({
   subsets: ['latin'],
@@ -19,11 +20,10 @@ const greatVibes = Great_Vibes({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Vitality Path | Physiotherapy Clinic',
-    template: '%s | Vitality Path',
+    default: `${siteConfig.name} | Physiotherapy Clinic`,
+    template: `%s | ${siteConfig.name}`,
   },
-  description:
-    'Embark on a journey of self-discovery and physical healing with expert therapists at Vitality Path — a serene, nature-inspired physiotherapy clinic.',
+  description: siteConfig.description,
 };
 
 export default function RootLayout({

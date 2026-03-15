@@ -1,15 +1,33 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 // import { useEffect, useCallback } from 'react'; // Commented out - for slot availability
-import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Bone, Zap, Brain, Hand, Heart, Hospital, 
-  Stethoscope, CheckCircle, Lock, Star, Check, 
-  Phone, Clock, User, Mail, Calendar, ArrowRight,
-  Loader2, AlertCircle, PartyPopper, MessageSquare
-} from 'lucide-react';
-import type { ServiceType, TimeSlot } from '@/lib/supabase/types';
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Bone,
+  Zap,
+  Brain,
+  Hand,
+  Heart,
+  Hospital,
+  Stethoscope,
+  CheckCircle,
+  Lock,
+  Star,
+  Check,
+  Phone,
+  Clock,
+  User,
+  Mail,
+  Calendar,
+  ArrowRight,
+  Loader2,
+  AlertCircle,
+  PartyPopper,
+  MessageSquare,
+} from "lucide-react";
+import type { ServiceType, TimeSlot } from "@/lib/supabase/types";
+import { siteConfig } from "@/config/site";
 
 const serviceIconMap: Record<ServiceType, typeof Bone> = {
   ortho: Bone,
@@ -21,12 +39,12 @@ const serviceIconMap: Record<ServiceType, typeof Bone> = {
 };
 
 const serviceLabels: Record<ServiceType, string> = {
-  ortho: 'Orthopedic',
-  sports: 'Sports',
-  neuro: 'Neuro',
-  manual: 'Manual',
-  senior: 'Senior',
-  surgery: 'Post-Op',
+  ortho: "Orthopedic",
+  sports: "Sports",
+  neuro: "Neuro",
+  manual: "Manual",
+  senior: "Senior",
+  surgery: "Post-Op",
 };
 
 // Interface for slot availability - commented out for now
@@ -40,26 +58,26 @@ interface FormData {
   name: string;
   email: string;
   phone: string;
-  service: ServiceType | '';
+  service: ServiceType | "";
   date: string;
-  timeSlot: TimeSlot | '';
+  timeSlot: TimeSlot | "";
   message: string;
 }
 
-type FormStatus = 'idle' | 'loading' | 'success' | 'error';
+type FormStatus = "idle" | "loading" | "success" | "error";
 
 export function AppointmentSection() {
   const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
-    phone: '',
-    service: '',
-    date: '',
-    timeSlot: '',
-    message: '',
+    name: "",
+    email: "",
+    phone: "",
+    service: "",
+    date: "",
+    timeSlot: "",
+    message: "",
   });
 
-  const [status, setStatus] = useState<FormStatus>('idle');
+  const [status, setStatus] = useState<FormStatus>("idle");
   const [errors, setErrors] = useState<string[]>([]);
   // const [slots, setSlots] = useState<SlotAvailability[]>([]);
   // const [loadingSlots, setLoadingSlots] = useState(false);
@@ -70,19 +88,26 @@ export function AppointmentSection() {
     service: string;
   } | null>(null);
 
-  const services: ServiceType[] = ['ortho', 'sports', 'neuro', 'manual', 'senior', 'surgery'];
+  const services: ServiceType[] = [
+    "ortho",
+    "sports",
+    "neuro",
+    "manual",
+    "senior",
+    "surgery",
+  ];
 
   // Get minimum date (today)
   const getMinDate = () => {
     const today = new Date();
-    return today.toISOString().split('T')[0];
+    return today.toISOString().split("T")[0];
   };
 
   // Get maximum date (90 days from now)
   const getMaxDate = () => {
     const maxDate = new Date();
     maxDate.setDate(maxDate.getDate() + 90);
-    return maxDate.toISOString().split('T')[0];
+    return maxDate.toISOString().split("T")[0];
   };
 
   // Slot availability checking - commented out for now (duplicates allowed)
@@ -93,7 +118,7 @@ export function AppointmentSection() {
   //       `/api/appointments?date=${date}&service=${service}`
   //     );
   //     const data = await response.json();
-  //     
+  //
   //     if (data.success) {
   //       setSlots(data.data.slots);
   //     } else {
@@ -115,9 +140,9 @@ export function AppointmentSection() {
   // }, [formData.date, formData.service, fetchAvailableSlots]);
 
   const timeSlotOptions = [
-    { slot: 'morning', label: 'Morning (9AM-12PM)' },
-    { slot: 'afternoon', label: 'Afternoon (12PM-5PM)' },
-    { slot: 'evening', label: 'Evening (5PM-10PM)' },
+    { slot: "morning", label: "Morning (9AM-12PM)" },
+    { slot: "afternoon", label: "Afternoon (12PM-5PM)" },
+    { slot: "evening", label: "Evening (5PM-10PM)" },
   ];
 
   // Client-side validation
@@ -125,27 +150,27 @@ export function AppointmentSection() {
     const validationErrors: string[] = [];
 
     if (!formData.name || formData.name.trim().length < 2) {
-      validationErrors.push('Name must be at least 2 characters');
+      validationErrors.push("Name must be at least 2 characters");
     }
 
     if (!formData.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      validationErrors.push('Please provide a valid email address');
+      validationErrors.push("Please provide a valid email address");
     }
 
     if (formData.phone && !/^[\d\s\-+()]{10,}$/.test(formData.phone)) {
-      validationErrors.push('Please provide a valid phone number');
+      validationErrors.push("Please provide a valid phone number");
     }
 
     if (!formData.service) {
-      validationErrors.push('Please select a service');
+      validationErrors.push("Please select a service");
     }
 
     if (!formData.date) {
-      validationErrors.push('Please select an appointment date');
+      validationErrors.push("Please select an appointment date");
     }
 
     if (!formData.timeSlot) {
-      validationErrors.push('Please select a time slot');
+      validationErrors.push("Please select a time slot");
     }
 
     return validationErrors;
@@ -153,23 +178,23 @@ export function AppointmentSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Client-side validation
     const validationErrors = validateForm();
     if (validationErrors.length > 0) {
       setErrors(validationErrors);
-      setStatus('error');
+      setStatus("error");
       return;
     }
 
-    setStatus('loading');
+    setStatus("loading");
     setErrors([]);
 
     try {
-      const response = await fetch('/api/appointments', {
-        method: 'POST',
+      const response = await fetch("/api/appointments", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           name: formData.name,
@@ -185,7 +210,7 @@ export function AppointmentSection() {
       const data = await response.json();
 
       if (data.success) {
-        setStatus('success');
+        setStatus("success");
         setBookedAppointment({
           id: data.data.id,
           date: data.data.date,
@@ -194,52 +219,55 @@ export function AppointmentSection() {
         });
         // Reset form
         setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          service: '',
-          date: '',
-          timeSlot: '',
-          message: '',
+          name: "",
+          email: "",
+          phone: "",
+          service: "",
+          date: "",
+          timeSlot: "",
+          message: "",
         });
         // setSlots([]);
       } else {
-        setErrors(data.errors || ['Failed to book appointment']);
-        setStatus('error');
+        setErrors(data.errors || ["Failed to book appointment"]);
+        setStatus("error");
       }
     } catch (error) {
-      console.error('Booking error:', error);
-      setErrors(['An unexpected error occurred. Please try again.']);
-      setStatus('error');
+      console.error("Booking error:", error);
+      setErrors(["An unexpected error occurred. Please try again."]);
+      setStatus("error");
     }
   };
 
   const resetForm = () => {
-    setStatus('idle');
+    setStatus("idle");
     setErrors([]);
     setBookedAppointment(null);
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
+    return new Date(dateString).toLocaleDateString("en-US", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
   };
 
   const getTimeSlotLabel = (slot: string) => {
     const labels: Record<string, string> = {
-      morning: 'Morning (9AM-12PM)',
-      afternoon: 'Afternoon (12PM-5PM)',
-      evening: 'Evening (5PM-10PM)',
+      morning: "Morning (9AM-12PM)",
+      afternoon: "Afternoon (12PM-5PM)",
+      evening: "Evening (5PM-10PM)",
     };
     return labels[slot] || slot;
   };
 
   return (
-    <section id="appointment" className="relative py-12 md:py-16 overflow-hidden">
+    <section
+      id="appointment"
+      className="relative py-12 md:py-16 overflow-hidden"
+    >
       {/* Split Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-forest" />
@@ -248,10 +276,11 @@ export function AppointmentSection() {
 
       {/* Background Pattern on Dark Side */}
       <div className="absolute inset-0 lg:w-1/2 pointer-events-none">
-        <div className="absolute inset-0 opacity-[0.03]"
+        <div
+          className="absolute inset-0 opacity-[0.03]"
           style={{
             backgroundImage: `radial-gradient(#fff 1px, transparent 1px)`,
-            backgroundSize: '20px 20px'
+            backgroundSize: "20px 20px",
           }}
         />
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-seafoam/10 rounded-full blur-[80px]" />
@@ -259,7 +288,6 @@ export function AppointmentSection() {
 
       <div className="mx-auto max-w-[1400px] px-4 md:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-0 items-center">
-          
           {/* Left - Content */}
           <motion.div
             className="lg:pr-12"
@@ -270,16 +298,22 @@ export function AppointmentSection() {
           >
             <div className="inline-flex items-center gap-2 mb-4">
               <span className="w-2 h-2 rounded-full bg-lime animate-pulse" />
-              <span className="text-xs font-bold uppercase tracking-[0.15em] text-seafoam">Available Now</span>
+              <span className="text-xs font-bold uppercase tracking-[0.15em] text-seafoam">
+                Available Now
+              </span>
             </div>
-            
+
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-sans text-white font-semibold leading-[1.1] tracking-tight mb-4">
-              Book Your<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-seafoam to-lime">Free Assessment</span>
+              Book Your
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-seafoam to-lime">
+                Assessment
+              </span>
             </h2>
-            
+
             <p className="text-white/50 text-sm md:text-base max-w-md mb-8">
-              Start your recovery journey with a complimentary consultation. Our experts will create your personalized treatment plan.
+              Start your recovery with expert that will create your personalized
+              treatment plan.
             </p>
 
             {/* Feature List */}
@@ -287,7 +321,7 @@ export function AppointmentSection() {
               {[
                 { text: "Same-day appointments available", Icon: Zap },
                 { text: "Expert physiotherapists on staff", Icon: Stethoscope },
-                { text: "Insurance accepted & verified", Icon: CheckCircle },
+                // { text: "Insurance accepted & verified", Icon: CheckCircle },
               ].map((item, i) => (
                 <motion.div
                   key={item.text}
@@ -305,13 +339,23 @@ export function AppointmentSection() {
 
             {/* Contact Quick Links */}
             <div className="flex items-center gap-6">
-              <a href="tel:+15551234567" className="group flex items-center gap-2">
+              <a
+                href={`tel:${siteConfig.contact.phone.replace(/[^0-9+]/g, '')}`}
+                className="group flex items-center gap-2"
+              >
                 <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-seafoam/20 transition-colors">
                   <Phone className="w-4 h-4 text-seafoam" />
                 </div>
                 <div>
                   <p className="text-white text-sm font-medium">Call Us</p>
-                  <p className="text-white/50 text-xs">(555) 123-4567</p>
+                  <div className="flex items-center gap-2">
+                    <img 
+                      src="/logo/ae_flag.svg" 
+                      alt="UAE Flag" 
+                      className="w-6 h-auto rounded shadow-sm border border-white/20" 
+                    />
+                    <p className="text-white/50 text-xs">{siteConfig.contact.phone}</p>
+                  </div>
                 </div>
               </a>
               <div className="w-px h-10 bg-white/10" />
@@ -321,7 +365,7 @@ export function AppointmentSection() {
                 </div>
                 <div>
                   <p className="text-white text-sm font-medium">Hours</p>
-                  <p className="text-white/50 text-xs">Mon-Sat 9-10PM</p>
+                  <p className="text-white/50 text-xs">{siteConfig.contact.timing.split(' ').slice(0, 2).join('')}</p>
                 </div>
               </div>
             </div>
@@ -336,10 +380,9 @@ export function AppointmentSection() {
             className="lg:pl-8"
           >
             <div className="bg-white rounded-2xl p-5 md:p-6 shadow-2xl shadow-forest/10 lg:shadow-none border border-forest/5 lg:border-0">
-              
               <AnimatePresence mode="wait">
                 {/* Success State */}
-                {status === 'success' && bookedAppointment ? (
+                {status === "success" && bookedAppointment ? (
                   <motion.div
                     key="success"
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -354,18 +397,25 @@ export function AppointmentSection() {
                       Appointment Booked!
                     </h3>
                     <p className="text-forest/60 text-sm mb-6">
-                      We&apos;ve received your booking request. A confirmation email will be sent to your inbox shortly.
+                      We&apos;ve received your booking request. A confirmation
+                      email will be sent to your inbox shortly.
                     </p>
-                    
+
                     <div className="bg-section/50 rounded-xl p-4 mb-6 text-left">
                       <h4 className="text-xs font-semibold text-forest/50 uppercase tracking-wider mb-3">
                         Booking Details
                       </h4>
                       <div className="space-y-2">
                         <div className="flex justify-between">
-                          <span className="text-sm text-forest/60">Service</span>
+                          <span className="text-sm text-forest/60">
+                            Service
+                          </span>
                           <span className="text-sm font-medium text-forest">
-                            {serviceLabels[bookedAppointment.service as ServiceType]}
+                            {
+                              serviceLabels[
+                                bookedAppointment.service as ServiceType
+                              ]
+                            }
                           </span>
                         </div>
                         <div className="flex justify-between">
@@ -381,7 +431,9 @@ export function AppointmentSection() {
                           </span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-sm text-forest/60">Reference</span>
+                          <span className="text-sm text-forest/60">
+                            Reference
+                          </span>
                           <span className="text-xs font-mono text-forest/50">
                             {bookedAppointment.id.slice(0, 8).toUpperCase()}
                           </span>
@@ -398,9 +450,9 @@ export function AppointmentSection() {
                   </motion.div>
                 ) : (
                   /* Form State */
-                  <motion.form 
+                  <motion.form
                     key="form"
-                    onSubmit={handleSubmit} 
+                    onSubmit={handleSubmit}
                     className="space-y-4"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -408,10 +460,10 @@ export function AppointmentSection() {
                   >
                     {/* Error Messages */}
                     <AnimatePresence>
-                      {status === 'error' && errors.length > 0 && (
+                      {status === "error" && errors.length > 0 && (
                         <motion.div
                           initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
+                          animate={{ opacity: 1, height: "auto" }}
                           exit={{ opacity: 0, height: 0 }}
                           className="bg-red-50 border border-red-200 rounded-lg p-3"
                         >
@@ -440,8 +492,10 @@ export function AppointmentSection() {
                           placeholder="Name *"
                           required
                           value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          disabled={status === 'loading'}
+                          onChange={(e) =>
+                            setFormData({ ...formData, name: e.target.value })
+                          }
+                          disabled={status === "loading"}
                           className="w-full pl-9 pr-3 py-2.5 bg-section/40 border-0 rounded-lg text-sm sm:text-xs text-forest placeholder:text-forest/40 focus:outline-none focus:ring-2 focus:ring-seafoam/30 disabled:opacity-50"
                         />
                       </div>
@@ -454,8 +508,10 @@ export function AppointmentSection() {
                           placeholder="Email *"
                           required
                           value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          disabled={status === 'loading'}
+                          onChange={(e) =>
+                            setFormData({ ...formData, email: e.target.value })
+                          }
+                          disabled={status === "loading"}
                           className="w-full pl-9 pr-3 py-2.5 bg-section/40 border-0 rounded-lg text-sm sm:text-xs text-forest placeholder:text-forest/40 focus:outline-none focus:ring-2 focus:ring-seafoam/30 disabled:opacity-50"
                         />
                       </div>
@@ -467,8 +523,10 @@ export function AppointmentSection() {
                           type="tel"
                           placeholder="Phone"
                           value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          disabled={status === 'loading'}
+                          onChange={(e) =>
+                            setFormData({ ...formData, phone: e.target.value })
+                          }
+                          disabled={status === "loading"}
                           className="w-full pl-9 pr-3 py-2.5 bg-section/40 border-0 rounded-lg text-sm sm:text-xs text-forest placeholder:text-forest/40 focus:outline-none focus:ring-2 focus:ring-seafoam/30 disabled:opacity-50"
                         />
                       </div>
@@ -486,12 +544,14 @@ export function AppointmentSection() {
                             <button
                               key={service}
                               type="button"
-                              onClick={() => setFormData({ ...formData, service })}
-                              disabled={status === 'loading'}
+                              onClick={() =>
+                                setFormData({ ...formData, service })
+                              }
+                              disabled={status === "loading"}
                               className={`flex flex-col items-center p-2.5 sm:p-2 rounded-lg transition-all duration-200 disabled:opacity-50 ${
                                 formData.service === service
-                                  ? 'bg-forest text-white shadow-md'
-                                  : 'bg-section/40 text-forest/60 hover:bg-section'
+                                  ? "bg-forest text-white shadow-md"
+                                  : "bg-section/40 text-forest/60 hover:bg-section"
                               }`}
                             >
                               <IconComponent className="w-5 h-5 sm:w-4 sm:h-4 mb-1 sm:mb-0.5" />
@@ -516,8 +576,10 @@ export function AppointmentSection() {
                           min={getMinDate()}
                           max={getMaxDate()}
                           value={formData.date}
-                          onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                          disabled={status === 'loading'}
+                          onChange={(e) =>
+                            setFormData({ ...formData, date: e.target.value })
+                          }
+                          disabled={status === "loading"}
                           className="w-full pl-9 pr-3 py-2.5 bg-section/40 border-0 rounded-lg text-sm sm:text-xs text-forest focus:outline-none focus:ring-2 focus:ring-seafoam/30 cursor-pointer disabled:opacity-50"
                         />
                       </div>
@@ -529,20 +591,25 @@ export function AppointmentSection() {
                             <span className="ml-2 text-xs text-forest/40">Loading...</span>
                           </div>
                         ) : ( */}
-                          <select
-                            required
-                            value={formData.timeSlot}
-                            onChange={(e) => setFormData({ ...formData, timeSlot: e.target.value as TimeSlot })}
-                            disabled={status === 'loading'}
-                            className="w-full px-3 py-2.5 bg-section/40 border-0 rounded-lg text-sm sm:text-xs text-forest focus:outline-none focus:ring-2 focus:ring-seafoam/30 cursor-pointer disabled:opacity-50"
-                          >
-                            <option value="">Select Time *</option>
-                            {timeSlotOptions.map((slot) => (
-                              <option key={slot.slot} value={slot.slot}>
-                                {slot.label}
-                              </option>
-                            ))}
-                          </select>
+                        <select
+                          required
+                          value={formData.timeSlot}
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              timeSlot: e.target.value as TimeSlot,
+                            })
+                          }
+                          disabled={status === "loading"}
+                          className="w-full px-3 py-2.5 bg-section/40 border-0 rounded-lg text-sm sm:text-xs text-forest focus:outline-none focus:ring-2 focus:ring-seafoam/30 cursor-pointer disabled:opacity-50"
+                        >
+                          <option value="">Select Time *</option>
+                          {timeSlotOptions.map((slot) => (
+                            <option key={slot.slot} value={slot.slot}>
+                              {slot.label}
+                            </option>
+                          ))}
+                        </select>
                         {/* )} */}
                       </div>
                     </div>
@@ -555,8 +622,10 @@ export function AppointmentSection() {
                       <textarea
                         placeholder="Additional notes or concerns (optional)"
                         value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        disabled={status === 'loading'}
+                        onChange={(e) =>
+                          setFormData({ ...formData, message: e.target.value })
+                        }
+                        disabled={status === "loading"}
                         rows={2}
                         className="w-full pl-9 pr-3 py-2.5 bg-section/40 border-0 rounded-lg text-sm sm:text-xs text-forest placeholder:text-forest/40 focus:outline-none focus:ring-2 focus:ring-seafoam/30 resize-none disabled:opacity-50"
                       />
@@ -565,12 +634,12 @@ export function AppointmentSection() {
                     {/* Submit Button */}
                     <motion.button
                       type="submit"
-                      disabled={status === 'loading'}
+                      disabled={status === "loading"}
                       className="w-full py-3 bg-forest text-white font-semibold rounded-xl flex items-center justify-center gap-2 hover:bg-forest/90 transition-all duration-300 group disabled:opacity-70 disabled:cursor-not-allowed"
-                      whileHover={{ scale: status === 'loading' ? 1 : 1.01 }}
-                      whileTap={{ scale: status === 'loading' ? 1 : 0.99 }}
+                      whileHover={{ scale: status === "loading" ? 1 : 1.01 }}
+                      whileTap={{ scale: status === "loading" ? 1 : 0.99 }}
                     >
-                      {status === 'loading' ? (
+                      {status === "loading" ? (
                         <>
                           <Loader2 className="w-4 h-4 animate-spin" />
                           <span>Booking...</span>

@@ -4,6 +4,7 @@ import { testimonials } from '@/lib/data/testimonials';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { useState } from 'react';
 import { Check, ArrowUpRight, Heart, Star, Zap, Trophy } from 'lucide-react';
+import { siteConfig } from '@/config/site';
 
 export function TestimonialsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -92,11 +93,11 @@ export function TestimonialsSection() {
             <div className="absolute -right-20 -top-20 w-64 h-64 md:w-96 md:h-96 bg-lime/20 rounded-full blur-3xl"></div>
             <div className="absolute -left-10 -bottom-10 w-48 h-48 bg-seafoam/20 rounded-full blur-2xl"></div>
 
-            <div className="relative z-10 grid lg:grid-cols-5 gap-8 p-6 sm:p-8 md:p-12 lg:p-16">
+            <div className="relative z-10 grid lg:grid-cols-5 gap-6 p-6 sm:p-8 md:p-10 lg:p-12">
               {/* Quote & Content */}
               <div className="lg:col-span-3 flex flex-col justify-center">
                 {/* Large Quote Mark */}
-                <svg className="w-12 h-12 md:w-16 md:h-16 text-lime mb-6 md:mb-8 opacity-60" viewBox="0 0 24 24" fill="currentColor">
+                <svg className="w-10 h-10 md:w-12 md:h-12 text-lime mb-4 md:mb-6 opacity-60" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"/>
                 </svg>
                 
@@ -107,7 +108,7 @@ export function TestimonialsSection() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.4 }}
-                    className="text-white text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium leading-relaxed mb-8 md:mb-10"
+                    className="text-white text-base sm:text-lg md:text-xl font-normal leading-relaxed mb-6 md:mb-8"
                   >
                     &ldquo;{featuredTestimonial.content}&rdquo;
                   </motion.blockquote>
@@ -219,10 +220,10 @@ export function TestimonialsSection() {
           variants={staggerContainer}
         >
           {[
-            { value: '98%', label: 'Patient Satisfaction', Icon: Heart },
-            { value: '1,200+', label: 'Lives Restored', Icon: Star },
+            { value: siteConfig.social.recoveryRate, label: 'Patient Satisfaction', Icon: Heart },
+            { value: siteConfig.social.livesRestored, label: 'Lives Restored', Icon: Star },
             { value: '30%', label: 'Faster Recovery', Icon: Zap },
-            { value: '15+', label: 'Years Experience', Icon: Trophy },
+            { value: siteConfig.social.yearsExperience, label: 'Years Experience', Icon: Trophy },
           ].map((stat, i) => (
             <motion.div
               key={i}

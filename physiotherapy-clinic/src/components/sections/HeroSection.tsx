@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { siteConfig } from '@/config/site';
 
 const slides = [
   {
@@ -148,10 +149,10 @@ export function HeroSection() {
               className="flex flex-wrap gap-4"
             >
               <a
-                href="mailto:contact@vitalitypath.com"
+                href={`mailto:${siteConfig.contact.email}`}
                 className="group inline-flex items-center gap-3 bg-seafoam text-white pl-5 pr-2 py-2 rounded-full font-semibold text-sm hover:bg-white hover:text-forest transition-all duration-300"
               >
-                <span>Contact@VitalityPath.Com</span>
+                <span className="capitalize">{siteConfig.contact.email}</span>
                 <span className="size-9 rounded-full bg-forest/30 flex items-center justify-center group-hover:bg-seafoam transition-colors">
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -159,10 +160,17 @@ export function HeroSection() {
                 </span>
               </a>
               <a
-                href="tel:+917700900123"
+                href={`tel:${siteConfig.contact.phone.replace(/[^0-9+]/g, '')}`}
                 className="group inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/30 text-white pl-5 pr-2 py-2 rounded-full font-semibold text-sm hover:bg-white hover:text-forest transition-all duration-300"
               >
-                <span>+91 7700 900123</span>
+                <div className="flex items-center gap-2">
+                  <img 
+                    src="/logo/ae_flag.svg" 
+                    alt="UAE Flag" 
+                    className="w-7 h-auto rounded shadow-lg border border-white/20" 
+                  />
+                  <span>{siteConfig.contact.phone}</span>
+                </div>
                 <span className="size-9 rounded-full bg-seafoam flex items-center justify-center">
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -179,17 +187,17 @@ export function HeroSection() {
               className="flex items-center gap-8 mt-12 pt-8 border-t border-white/10"
             >
               <div>
-                <p className="text-3xl md:text-4xl font-bold text-white">1,200+</p>
+                <p className="text-3xl md:text-4xl font-bold text-white">{siteConfig.social.livesRestored}</p>
                 <p className="text-white/60 text-xs uppercase tracking-wider">Lives Restored</p>
               </div>
               <div className="w-px h-12 bg-white/20"></div>
               <div>
-                <p className="text-3xl md:text-4xl font-bold text-white">15+</p>
+                <p className="text-3xl md:text-4xl font-bold text-white">{siteConfig.social.yearsExperience}</p>
                 <p className="text-white/60 text-xs uppercase tracking-wider">Years Experience</p>
               </div>
               <div className="w-px h-12 bg-white/20 hidden sm:block"></div>
               <div className="hidden sm:block">
-                <p className="text-3xl md:text-4xl font-bold text-white">98%</p>
+                <p className="text-3xl md:text-4xl font-bold text-white">{siteConfig.social.recoveryRate}</p>
                 <p className="text-white/60 text-xs uppercase tracking-wider">Success Rate</p>
               </div>
             </motion.div>
