@@ -24,7 +24,8 @@ export function ServicesSection() {
       shortDesc: "Joint & Bone Recovery",
       fullDesc: "Comprehensive treatment for musculoskeletal disorders including joint pain, fractures, arthritis management, and post-surgical rehabilitation protocols.",
       icon: "bone",
-      img: "/services/IMG_0114.jpeg",
+      img: "/services/orthopedic_service_v2.png",
+      imagePosition: "object-center",
       features: ["Joint Mobilization", "Post-Surgery Care", "Pain Management"]
     },
     {
@@ -33,7 +34,8 @@ export function ServicesSection() {
       shortDesc: "Athletic Performance",
       fullDesc: "Expert rehabilitation for athletes of all levels - from injury diagnosis and treatment to full return-to-sport performance optimization programs.",
       icon: "zap",
-      img: "/services/IMG_0115.jpeg",
+      img: "/services/sports_medicine_v2.png",
+      imagePosition: "object-center",
       features: ["Injury Prevention", "Performance Training", "Sport-Specific Rehab"]
     },
     {
@@ -42,7 +44,8 @@ export function ServicesSection() {
       shortDesc: "Brain & Nerve Care",
       fullDesc: "Compassionate care for neurological conditions including stroke recovery, Parkinson's disease, multiple sclerosis, and spinal cord injuries.",
       icon: "brain",
-      img: "/services/IMG_0116.jpeg",
+      img: "/services/neuro_service_v2.png",
+      imagePosition: "object-center",
       features: ["Stroke Recovery", "Balance Training", "Motor Control"]
     },
     {
@@ -51,7 +54,8 @@ export function ServicesSection() {
       shortDesc: "Hands-On Healing",
       fullDesc: "Skilled hands-on techniques including soft tissue mobilization, joint manipulation, and myofascial release for optimal pain relief and mobility.",
       icon: "hand",
-      img: "/services/IMG_0119.jpeg",
+      img: "/services/manual_therapy_v2.png",
+      imagePosition: "object-center",
       features: ["Deep Tissue Work", "Trigger Point Release", "Spinal Adjustment"]
     },
     {
@@ -60,7 +64,8 @@ export function ServicesSection() {
       shortDesc: "Active Aging",
       fullDesc: "Specialized programs for older adults focusing on balance improvement, fall prevention, strength maintenance, and enhanced quality of life.",
       icon: "heart",
-      img: "/services/IMG_0128.jpeg",
+      img: "/services/senior_wellness_v2.png",
+      imagePosition: "object-center",
       features: ["Fall Prevention", "Mobility Enhancement", "Strength Building"]
     }
   ];
@@ -216,7 +221,7 @@ export function ServicesSection() {
                 <motion.img 
                   src={activeData.img} 
                   alt={activeData.title}
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className={`absolute inset-0 w-full h-full object-cover ${(activeData as any).imagePosition || 'object-center'}`}
                   initial={{ scale: 1.1 }}
                   animate={{ scale: 1 }}
                   transition={{ duration: 0.6 }}
@@ -341,7 +346,7 @@ export function ServicesSection() {
               <img 
                 src={activeData.img} 
                 alt={activeData.title}
-                className="absolute inset-0 w-full h-full object-cover"
+                className={`absolute inset-0 w-full h-full object-cover ${(activeData as any).imagePosition || 'object-center'}`}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/60 to-transparent" />
               

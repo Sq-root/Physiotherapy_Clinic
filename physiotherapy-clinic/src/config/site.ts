@@ -16,7 +16,7 @@ export const siteConfig = {
     doctorName: 'Dr. Isha Shah',
 
     social: {
-        livesRestored: '200+',
+        livesRestored: '1200+',
         therapists: '25+',
         yearsExperience: '7+',
         recoveryRate: '98%',

@@ -78,8 +78,9 @@ export function Navbar() {
 
   const activeLinkHref = getActiveLink();
 
-  // Pages without a dark hero need dark navbar text even before scroll
-  const isLightPage = pathname !== "/" && pathname !== "/about";
+  // The Home page has a dark hero background, so it needs white text initially.
+  // Other pages (including About, Services, Contact) have light backgrounds.
+  const isLightPage = pathname !== "/";
   // Use dark styling when scrolled OR on a light-background page
   const useDarkStyle = scrolled || isLightPage;
 
@@ -148,20 +149,12 @@ export function Navbar() {
                 <div className="flex flex-col justify-center">
                   <span
                     className={cn(
-                      "text-[22px] font-medium tracking-normal leading-none transition-colors duration-500 font-[family-name:var(--font-script)]",
+                      "text-[22px] font-medium tracking-tight leading-none transition-colors duration-500 font-[family-name:var(--font-script)]",
                       useDarkStyle ? "text-forest" : "text-white",
                     )}
                   >
                     {siteConfig.name}
                   </span>
-                  {/* <span
-                    className={cn(
-                      "text-[9px] font-bold tracking-[0.2em] uppercase leading-none transition-colors duration-500",
-                      useDarkStyle ? "text-[#66A182]" : "text-white/70",
-                    )}
-                  >
-                    {siteConfig.name.split(' ').slice(1).join(' ')}
-                  </span> */}
                 </div>
               </Link>
 
@@ -169,7 +162,7 @@ export function Navbar() {
               <nav className="hidden md:flex items-center relative">
                 <div
                   className={cn(
-                    "flex items-center gap-1 rounded-full px-1.5 py-1 transition-all duration-300",
+                    "flex items-center gap-1.5 rounded-full px-2 py-1.5 transition-all duration-300",
                     useDarkStyle
                       ? "bg-forest/[0.04] border border-forest/[0.08]"
                       : "bg-white/10 backdrop-blur-sm border border-white/20",
@@ -186,7 +179,7 @@ export function Navbar() {
                       <Link
                         key={link.label}
                         href={link.href}
-                        className="relative px-4 py-2 rounded-full group"
+                        className="relative px-5 py-2.5 rounded-full group"
                       >
                         {/* Animated Active Background */}
                         {isActive && (
@@ -208,16 +201,16 @@ export function Navbar() {
                           />
                         )}
 
-                        {/* Link Text */}
+                        {/* Link Text - Refined Scale */}
                         <span
                           className={cn(
-                            "relative z-10 text-[11px] font-semibold uppercase tracking-[0.1em] transition-all duration-200",
+                            "relative z-10 text-[12px] font-semibold uppercase tracking-[0.12em] transition-all duration-200",
                             isActive
                               ? useDarkStyle
                                 ? "text-white"
                                 : "text-forest"
                               : useDarkStyle
-                                ? "text-forest/70 group-hover:text-forest"
+                                ? "text-forest/60 group-hover:text-forest"
                                 : "text-white/80 group-hover:text-white",
                           )}
                         >
@@ -229,7 +222,7 @@ export function Navbar() {
                 </div>
               </nav>
 
-              {/* CTA Button */}
+              {/* CTA Button - Improved Visibility */}
               <div className="hidden md:block">
                 <motion.div
                   whileHover={{ scale: 1.03, y: -1 }}
@@ -239,7 +232,7 @@ export function Navbar() {
                   <Link
                     href="/contact"
                     className={cn(
-                      "inline-flex items-center justify-center gap-2 h-10 px-5 text-[10px] font-bold uppercase tracking-wider rounded-full transition-all duration-300 group",
+                      "inline-flex items-center justify-center gap-2 h-10 px-5 text-[11px] font-bold uppercase tracking-widest rounded-full transition-all duration-300 group",
                       useDarkStyle
                         ? "bg-forest text-white hover:bg-forest/90 shadow-lg shadow-forest/20"
                         : "bg-white text-forest hover:bg-white/90 shadow-lg shadow-white/20",
@@ -247,7 +240,7 @@ export function Navbar() {
                   >
                     <span>Book Visit</span>
                     <svg
-                      className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"
+                      className="w-4 h-4 group-hover:translate-x-0.5 transition-transform"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"

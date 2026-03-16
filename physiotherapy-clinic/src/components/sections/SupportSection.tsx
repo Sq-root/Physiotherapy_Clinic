@@ -24,7 +24,7 @@ export function SupportSection() {
   const highlights = [
     { label: "Global Standard Of Care" },
     { label: "Personalized (Evidence-based)" },
-    { label: "Tailored Rehabilitation" },
+    { label: "Outcome-driven Rehabilitation" },
   ];
 
   return (
@@ -143,7 +143,7 @@ export function SupportSection() {
               {/* Main Large Image */}
               <div className="absolute top-0 left-0 w-[62%] h-[88%] rounded-3xl overflow-hidden shadow-2xl z-10">
                 <img
-                  src="/services/dr_isha_hero_final_native.png"
+                  src="/services/doctor_portrait_stretgth.webp"
                   alt="Senior Physiotherapist"
                   className="w-full h-full object-cover object-center"
                 />
@@ -163,7 +163,7 @@ export function SupportSection() {
               {/* Bottom Right Image */}
               <div className="absolute bottom-0 right-0 w-[35%] h-[45%] rounded-2xl overflow-hidden shadow-xl z-10">
                 <img
-                  src="/services/IMG_0123.jpeg"
+                  src="/services/IMG_0116.jpeg"
                   alt="Therapy Session"
                   className="w-full h-full object-cover"
                 />

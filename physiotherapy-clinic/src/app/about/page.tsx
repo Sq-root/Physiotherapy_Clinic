@@ -1,205 +1,383 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { Target, Eye } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  ShieldCheck,
+  Target,
+  ArrowRight,
+  Activity,
+  Microscope,
+  Zap,
+  Award,
+  Home,
+  Monitor,
+  CheckCircle2,
+  Stethoscope,
+  Scaling,
+  Quote,
+} from "lucide-react";
 import { siteConfig } from "@/config/site";
 
 export default function AboutPage() {
+  const clinicalFocus = [
+    { title: "Spine & Persistent Pain", icon: Activity },
+    { title: "Post-Surgical & Complex Rehab", icon: Target },
+    { title: "Postnatal Biomechanics", icon: Scaling },
+    {
+      title: "High-Functioning Individuals with Recurrent Dysfunction",
+      icon: Microscope,
+    },
+    { title: "Musculoskeletal & Sports Injuries", icon: Zap },
+  ];
+
+  const standards = [
+    {
+      title: "Private, Not Casual",
+      desc: "Care is delivered one-to-one, in your space, on your schedule. No clinic chaos, no compromised attention.",
+      icon: Home,
+    },
+    {
+      title: "Digital, But Exact",
+      desc: "Online physiotherapy is assessment-driven and outcome-mapped. Live analysis, progressive load management, and constant recalibration.",
+      icon: Monitor,
+    },
+    {
+      title: "Clinically Aligned",
+      desc: "Working in parallel with medical and surgical teams when required, handling complex spine and persistent pain cases.",
+      icon: Stethoscope,
+    },
+  ];
+
+  const ethos = [
+    { tag: "Pain is data" },
+    { tag: "Movement is strategy" },
+    { tag: "Recovery is engineered" },
+  ];
+
   return (
-    <div className="font-sans text-forest antialiased selection:bg-seafoam selection:text-forest">
-      {/* Editorial Hero Section */}
-      <section className="relative w-full h-[85vh] flex items-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-forest/80 via-forest/40 to-transparent z-10"></div>
-          <Image
-            alt={siteConfig.doctorName}
-            className="w-full h-full object-cover"
-            src="/services/dr_isha_hero_final_native.png"
-            fill
-            priority
-            unoptimized
-          />
-        </div>
-        <div className="relative z-20 max-w-7xl mx-auto px-6 lg:px-12 w-full pt-20">
-          <div className="max-w-2xl">
-            <span className="inline-block bg-lime text-forest px-5 py-2 rounded-full text-xs font-bold shadow-md shadow-lime/20 tracking-[0.2em] uppercase mb-6">
-              Founder & Lead Physiotherapist
-            </span>
-            <h2 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
-              {siteConfig.doctorName}
-            </h2>
-            <p className="text-xl text-white/90 font-light leading-relaxed mb-8 max-w-lg">
-              Dedicated to restoring movement and enhancing the quality of life
-              through empathetic, evidence-based care.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Overlapping Content Section (Mission & Vision) */}
-      <section className="relative z-30 -mt-24 pb-24 px-6 lg:px-12">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Mission Block */}
-          <div className="bg-white/90 backdrop-blur-md p-10 md:p-14 rounded-2xl shadow-xl shadow-forest/5 border-l-[4px] border-lime">
-            <div className="text-lime mb-6 size-12 bg-lime/10 rounded-xl flex items-center justify-center">
-              <Target className="w-6 h-6 text-forest" />
-            </div>
-            <h3 className="text-3xl tracking-tight font-bold mb-6 text-forest">
-              Our Mission
-            </h3>
-            <p className="text-forest/70 text-base md:text-lg leading-relaxed font-light">
-              To provide personalized, clinical excellence that empowers our
-              patients to overcome physical limitations. We don&apos;t just
-              treat symptoms; we treat individuals, ensuring every step of the
-              recovery journey is supported by science and genuine care.
-            </p>
-          </div>
-
-          {/* Vision Block */}
-          <div className="bg-forest p-10 md:p-14 rounded-2xl shadow-2xl relative overflow-hidden">
-            <div className="absolute -right-10 -top-10 w-40 h-40 bg-lime/10 rounded-full blur-3xl z-0" />
-
-            <div className="relative z-10 text-lime mb-6 size-12 bg-white/10 rounded-xl flex items-center justify-center backdrop-blur-sm border border-white/5">
-              <Eye className="w-6 h-6 text-lime" />
-            </div>
-            <h3 className="relative z-10 text-3xl tracking-tight font-bold mb-6 text-white">
-              Our Vision
-            </h3>
-            <p className="relative z-10 text-white/70 text-base md:text-lg leading-relaxed font-light">
-              To become the leading center for holistic physical rehabilitation,
-              where innovation meets empathy. We envision a community where
-              chronic pain and mobility issues are managed with world-class
-              expertise, returning people to the lives they love.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Personal Introduction Section */}
-      <section className="py-24 bg-section">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            {/* Image Column */}
-            <div className="lg:col-span-5 relative">
-              <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl shadow-forest/20 group relative border-4 border-white/50">
+    <main className="font-sans text-forest antialiased bg-white pt-24 pb-0">
+      {/* 1. Hero / Founder Profile - More Balanced Typography */}
+      <section className="py-16 md:py-24 bg-section overflow-hidden rounded-b-[4rem]">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+            {/* Image Column - Sleeker Aspect Ratio */}
+            <div className="lg:col-span-5 order-2 lg:order-1 relative">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+                className="aspect-[5/6] relative rounded-[2.5rem] overflow-hidden shadow-2xl border-[10px] border-white ring-1 ring-forest/5"
+              >
                 <Image
-                  alt={`Portrait of ${siteConfig.doctorName}`}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  src="/services/IMG_0017.jpeg"
+                  src="/services/doctor_portrait_stretgth.webp"
+                  alt="Dr. Isha Shah, Founder and Lead Physiotherapist"
                   fill
+                  className="object-cover"
+                  priority
                 />
-              </div>
+              </motion.div>
 
-              <div className="absolute -bottom-8 -right-4 md:-right-8 bg-white/95 backdrop-blur-xl p-8 rounded-2xl shadow-xl shadow-forest/10 hidden md:block border border-forest/5">
-                <p className="text-5xl font-bold text-forest mb-1">
-                  {siteConfig.social.yearsExperience}
+              {/* Refined Experience Badge */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+                className="absolute -bottom-4 -left-4 bg-forest text-white p-6 rounded-[2rem] shadow-2xl flex items-center gap-4"
+              >
+                <span className="text-3xl font-bold font-serif leading-none">
+                  7<span className="text-seafoam">+</span>
+                </span>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] leading-tight border-l border-white/20 pl-4">
+                  Years of
+                  <br />
+                  Clinical Depth
                 </p>
-                <p className="text-[10px] font-bold text-forest/50 uppercase tracking-[0.2em]">
-                  Years of Experience
-                </p>
-              </div>
+              </motion.div>
             </div>
 
-            {/* Text Column */}
-            <div className="lg:col-span-7 pt-4 md:pl-8">
-              <h4 className="text-lime font-bold text-[10px] tracking-[0.2em] uppercase mb-4">
-                The Heart of {siteConfig.name}
-              </h4>
-              <h2 className="text-4xl md:text-5xl font-bold mb-10 leading-tight tracking-tight text-forest">
-                A Personal Note from <br />
-                <span className="relative inline-block mt-2">
-                  <span className="relative z-10 font-script text-5xl md:text-6xl text-lime font-normal">
-                    {siteConfig.doctorName.replace("Dr. ", "Dr. ")}
+            {/* Text Column - Reduced Heading scale */}
+            <div className="lg:col-span-7 order-1 lg:order-2">
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+              >
+                <div className="inline-flex items-center gap-3 mb-6">
+                  <span className="w-6 h-px bg-seafoam"></span>
+                  <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-seafoam">
+                    Founder & Lead Physiotherapist
                   </span>
+                </div>
+
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-8 leading-[1.05]">
+                  Dr. Isha Shah
+                </h1>
+
+                <div className="space-y-6 text-base md:text-lg text-forest/70 font-light leading-relaxed max-w-xl mb-10">
+                  <p className="text-forest font-medium">
+                    This practice is led by clinical judgment—not delegation.
+                  </p>
+                  <p>
+                    Dr. Isha Shah is a physiotherapist with advanced expertise
+                    in spine rehabilitation, complex pain, post-procedure
+                    recovery, and postnatal restoration. Her work is grounded in
+                    movement diagnostics and load science rather than trends or
+                    generic protocols.
+                  </p>
+                  <p>
+                    She works closely with medical teams when required, managing
+                    cases that demand precision and discretion. Every program is
+                    personally designed and progressed—without dilution.
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap gap-3">
+                  <div className="flex items-center gap-2.5 bg-white px-5 py-2.5 rounded-full shadow-sm border border-forest/5 transition-hover hover:border-seafoam/30">
+                    <ShieldCheck className="w-4 h-4 text-seafoam" />
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-forest/80">
+                      DHA Licensed
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2.5 bg-white px-5 py-2.5 rounded-full shadow-sm border border-forest/5 transition-hover hover:border-seafoam/30">
+                    <ShieldCheck className="w-4 h-4 text-seafoam" />
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-forest/80">
+                      MSCOTP (India)
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Philosophy & Focus - Balanced Layout */}
+      <section className="py-20 md:py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+            {/* Practice Overview */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="space-y-10"
+            >
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">
+                  A Curated Practice
+                </h2>
+                <div className="h-1 w-12 bg-seafoam mb-8"></div>
+                <p className="text-forest/70 text-lg leading-relaxed font-light">
+                  This is not a scaled model. Clients accepted into care work
+                  directly under my clinical oversight—ensuring consistency,
+                  accountability, and clinical depth at every stage.
+                </p>
+              </div>
+
+              <div className="bg-section p-10 md:p-14 rounded-[3rem] border border-forest/5 shadow-inner relative group">
+                <Quote className="absolute top-8 right-8 w-12 h-12 text-seafoam opacity-20 transition-transform duration-500 group-hover:rotate-12" />
+                <p className="text-xl md:text-2xl font-serif italic leading-relaxed text-forest">
+                  "I do not believe in high-volume care, indefinite treatment
+                  plans, or passive rehabilitation. My methodology is
+                  analytical, finite, and outcome-led."
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Clinical Focus - More refined list */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="space-y-8 lg:pt-4"
+            >
+              <h2 className="text-3xl font-bold tracking-tight">
+                Clinical Focus
+              </h2>
+              <div className="grid gap-3">
+                {clinicalFocus.map((focus, i) => {
+                  const Icon = focus.icon;
+                  return (
+                    <div
+                      key={i}
+                      className="flex items-center gap-5 p-5 rounded-2xl border border-forest/[0.08] hover:border-seafoam/40 hover:bg-section transition-all duration-300 group bg-white shadow-sm hover:shadow-md"
+                    >
+                      <div className="w-12 h-12 shrink-0 rounded-2xl bg-forest text-white transition-colors group-hover:bg-seafoam group-hover:text-forest flex items-center justify-center">
+                        <Icon className="w-5 h-5" />
+                      </div>
+                      <h3 className="text-base font-bold text-forest group-hover:translate-x-1 transition-transform">
+                        {focus.title}
+                      </h3>
+                    </div>
+                  );
+                })}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Standards & Ethos - Compact Editorial */}
+      <section className="py-14 md:py-20 bg-section rounded-[3rem]">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
+          {/* Compact Header */}
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
+            <div>
+              <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-seafoam mb-3 block">
+                The Methodology
+              </span>
+              <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
+                The Standard We Operate At
+              </h2>
+            </div>
+            <p className="text-sm text-forest/50 font-light max-w-xs leading-relaxed">
+              High-precision physiotherapy for individuals who value discretion
+              and measurable outcomes.
+            </p>
+          </div>
+
+          {/* Horizontal Feature Row */}
+          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-forest/10 border border-forest/10 bg-white rounded-2xl overflow-hidden mb-16">
+            {standards.map((s, i) => {
+              const Icon = s.icon;
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08 }}
+                  className="p-7 lg:p-8 group hover:bg-section transition-colors duration-300"
+                >
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="w-9 h-9 rounded-xl bg-forest/5 text-forest flex items-center justify-center border border-forest/10 group-hover:bg-forest group-hover:text-white transition-colors duration-400 shrink-0">
+                      <Icon className="w-4 h-4" />
+                    </div>
+                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-forest/30">
+                      0{i + 1}
+                    </span>
+                  </div>
+                  <h3 className="text-base font-bold mb-2 group-hover:text-seafoam transition-colors">
+                    {s.title}
+                  </h3>
+                  <p className="text-forest/55 leading-relaxed text-[13px] font-light">
+                    {s.desc}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* Combined Ethos & Target - Ultra Modern Split */}
+          <div className="bg-forest rounded-[3.5rem] p-8 md:p-16 lg:p-20 overflow-hidden relative">
+            <div className="absolute top-0 right-0 w-1/2 h-full bg-white/[0.03] -skew-x-12 translate-x-1/4 pointer-events-none"></div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 relative z-10 items-center">
+              <div className="lg:col-span-7">
+                <h3 className="text-2xl md:text-3xl font-bold text-white mb-10 tracking-tight">
+                  Who This Is For
+                </h3>
+                <div className="grid gap-4">
+                  {[
+                    "Individuals who think long-term.",
+                    "Professionals who protect their time.",
+                    "Postnatal women who expect intelligent restoration.",
+                    "Active bodies that refuse decline.",
+                    "Patients who want decisions, not reassurance.",
+                  ].map((item, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                      className="flex items-center gap-4 bg-white/5 p-5 rounded-2xl border border-white/5 backdrop-blur-sm hover:bg-white/10 transition-colors"
+                    >
+                      <CheckCircle2 className="w-5 h-5 text-seafoam shrink-0" />
+                      <span className="text-white/80 font-medium text-sm md:text-base">
+                        {item}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="lg:col-span-5 border-l border-white/10 lg:pl-12">
+                <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/40 mb-8 block">
+                  Fundamental Ethos
                 </span>
+                <div className="space-y-8">
+                  {ethos.map((e, i) => (
+                    <div key={i} className="group cursor-default">
+                      <span className="text-3xl md:text-4xl xl:text-5xl font-bold tracking-tight text-white/40 group-hover:text-seafoam transition-colors duration-500 leading-[1.1] block">
+                        {e.tag}.
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-12 p-6 rounded-2xl bg-white/[0.03] border border-white/5 italic text-white/50 text-[13px] leading-relaxed">
+                  If you expect clinical depth and uncompromising
+                  standards—welcome.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Final CTA - Sophisticated Floating Design */}
+      <section className="relative py-24 md:py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="relative bg-forest rounded-[3rem] p-8 md:p-16 lg:p-24 overflow-hidden shadow-2xl"
+          >
+            {/* Glossy Decorative Lights */}
+            <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-seafoam/15 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
+            <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-white/5 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2"></div>
+            
+            <div className="relative z-10 text-center max-w-3xl mx-auto">
+              <div className="inline-flex items-center gap-2 mb-8 bg-white/5 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 uppercase tracking-[0.2em] text-[10px] font-bold text-seafoam">
+                The Final Milestone
+              </div>
+
+              <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 leading-[1.1] text-white">
+                Ready for{" "}
+                <span className="text-seafoam italic font-serif font-light">
+                  intelligent
+                </span>{" "}
+                recovery?
               </h2>
 
-              <div className="space-y-6 text-forest/70 text-lg leading-relaxed font-light">
-                <p>
-                  My journey into physiotherapy began with a simple observation:
-                  the human body is remarkably resilient, yet often
-                  misunderstood. After completing my Doctorate in Physical
-                  Therapy, I spent a decade working with elite athletes and
-                  clinical patients alike, noticing that the most successful
-                  outcomes always stemmed from a partnership between therapist
-                  and patient.
-                </p>
-                <p>
-                  I founded this clinic because I wanted to create a space where
-                  patients aren&apos;t just a number on a chart. Here, we take
-                  the time to listen. We look at the biomechanics of how you
-                  move, but we also listen to how your injury impacts your daily
-                  life, your hobbies, and your mental well-being.
-                </p>
-                <div className="relative mt-8 mb-8 p-8 rounded-2xl bg-white/50 border border-forest/10 italic text-forest shadow-sm text-lg md:text-xl font-medium leading-relaxed">
-                  <div className="absolute -left-3 -top-4 text-5xl text-lime/40 font-serif">
-                    &quot;
-                  </div>
-                  My goal isn&apos;t just to get you back on your feet;
-                  it&apos;s to keep you there, stronger and more confident than
-                  you were before.
-                </div>
-              </div>
+              <p className="text-white/60 text-lg mb-12 font-light leading-relaxed">
+                Experience clinical depth and focused outcomes. Every program is
+                personally designed for your unique recovery journey.
+              </p>
 
-              <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-8 border-t border-forest/10 pt-10">
-                <div>
-                  <h5 className="font-bold text-forest mb-2 uppercase tracking-wider text-xs">
-                    Education
-                  </h5>
-                  <p className="text-sm text-forest/60 font-medium">
-                    Doctorate of Physical Therapy
-                  </p>
-                  <p className="text-xs text-forest/50 mt-1 font-light">
-                    Stanford University
-                  </p>
-                </div>
-                <div>
-                  <h5 className="font-bold text-forest mb-2 uppercase tracking-wider text-xs">
-                    Specialization
-                  </h5>
-                  <p className="text-sm text-forest/60 font-medium">
-                    Orthopedic Manual Therapy
-                  </p>
-                  <p className="text-xs text-forest/50 mt-1 font-light">
-                    & Sports Medicine
-                  </p>
-                </div>
+              <div className="flex flex-col sm:flex-row gap-5 justify-center">
+                <Link
+                  href="/contact"
+                  className="group relative inline-flex items-center justify-center gap-3 bg-white text-forest px-10 py-5 rounded-full font-bold hover:bg-seafoam transition-all transition-transform hover:-translate-y-1 shadow-lg"
+                >
+                  Schedule Assessment
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <Link
+                  href="/services"
+                  className="inline-flex items-center justify-center gap-3 bg-white/5 backdrop-blur-md text-white border border-white/15 px-10 py-5 rounded-full font-bold hover:bg-white/10 transition-all transition-transform hover:-translate-y-1"
+                >
+                  Our Clinical Services
+                </Link>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
-
-      {/* CTA Section */}
-      <section className="py-24 px-6 lg:px-12 relative overflow-hidden bg-forest text-center">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10"></div>
-          {/* Subtle noise/texture using CSS class from globals if available, otherwise solid */}
-        </div>
-
-        <div className="max-w-4xl mx-auto relative z-20">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white tracking-tight">
-            Ready to start your recovery?
-          </h2>
-          <p className="text-lg md:text-xl text-white/70 font-light mb-12 max-w-2xl mx-auto">
-            Join hundreds of patients who have found relief and regained their
-            mobility under {siteConfig.doctorName}&apos;s expert care.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-5 justify-center">
-            <Link 
-              href="/contact"
-              className="bg-lime text-forest px-8 py-4 rounded-full font-bold hover:bg-white transition-all shadow-lg shadow-black/20 text-sm tracking-wide"
-            >
-              Schedule an Evaluation
-            </Link>
-            <Link 
-              href="/services"
-              className="bg-white/10 backdrop-blur-sm text-white border border-white/20 px-8 py-4 rounded-full font-bold hover:bg-white/20 transition-all text-sm tracking-wide"
-            >
-              View Our Services
-            </Link>
-          </div>
-        </div>
-      </section>
-    </div>
+    </main>
   );
 }
