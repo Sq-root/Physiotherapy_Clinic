@@ -3,8 +3,20 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { Bone, Zap, Brain, Hand, Heart, Sparkles, ArrowRight } from "lucide-react";
 import { siteConfig } from "@/config/site";
+
+interface Service {
+  id: string;
+  title: string;
+  shortDesc: string;
+  fullDesc: string;
+  icon: string;
+  img: string;
+  imagePosition: string;
+  features: string[];
+}
 
 const iconMap = {
   bone: Bone,
@@ -218,14 +230,20 @@ export function ServicesSection() {
                 className="relative h-[560px] xl:h-[600px] rounded-3xl overflow-hidden group"
               >
                 {/* Image */}
-                <motion.img 
-                  src={activeData.img} 
-                  alt={activeData.title}
-                  className={`absolute inset-0 w-full h-full object-cover ${(activeData as any).imagePosition || 'object-center'}`}
+                <motion.div
+                  className="absolute inset-0"
                   initial={{ scale: 1.1 }}
                   animate={{ scale: 1 }}
                   transition={{ duration: 0.6 }}
-                />
+                >
+                  <Image 
+                    src={activeData.img} 
+                    alt={activeData.title}
+                    fill
+                    className={`object-cover ${activeData.imagePosition || 'object-center'}`}
+                    priority={activeService === 0}
+                  />
+                </motion.div>
                 
                 {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/50 to-transparent" />
@@ -343,10 +361,11 @@ export function ServicesSection() {
               transition={{ duration: 0.3 }}
               className="relative rounded-2xl overflow-hidden aspect-[4/5]"
             >
-              <img 
+              <Image 
                 src={activeData.img} 
                 alt={activeData.title}
-                className={`absolute inset-0 w-full h-full object-cover ${(activeData as any).imagePosition || 'object-center'}`}
+                fill
+                className={`object-cover ${activeData.imagePosition || 'object-center'}`}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/60 to-transparent" />
               

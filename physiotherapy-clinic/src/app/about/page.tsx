@@ -10,7 +10,6 @@ import {
   Activity,
   Microscope,
   Zap,
-  Award,
   Home,
   Monitor,
   CheckCircle2,
@@ -18,7 +17,6 @@ import {
   Scaling,
   Quote,
 } from "lucide-react";
-import { siteConfig } from "@/config/site";
 
 export default function AboutPage() {
   const clinicalFocus = [
@@ -179,9 +177,9 @@ export default function AboutPage() {
               <div className="bg-section p-10 md:p-14 rounded-[3rem] border border-forest/5 shadow-inner relative group">
                 <Quote className="absolute top-8 right-8 w-12 h-12 text-seafoam opacity-20 transition-transform duration-500 group-hover:rotate-12" />
                 <p className="text-xl md:text-2xl font-serif italic leading-relaxed text-forest">
-                  "I do not believe in high-volume care, indefinite treatment
+                  &ldquo;I do not believe in high-volume care, indefinite treatment
                   plans, or passive rehabilitation. My methodology is
-                  analytical, finite, and outcome-led."
+                  analytical, finite, and outcome-led.&rdquo;
                 </p>
               </div>
             </motion.div>
