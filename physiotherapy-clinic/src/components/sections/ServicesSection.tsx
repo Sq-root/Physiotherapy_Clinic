@@ -36,7 +36,7 @@ export function ServicesSection() {
       shortDesc: "Joint & Bone Recovery",
       fullDesc: "Comprehensive treatment for musculoskeletal disorders including joint pain, fractures, arthritis management, and post-surgical rehabilitation protocols.",
       icon: "bone",
-      img: "/services/orthopedic_service_v2.png",
+      img: "/services/orthopedic_service_v2.webp",
       imagePosition: "object-center",
       features: ["Joint Mobilization", "Post-Surgery Care", "Pain Management"]
     },
@@ -46,7 +46,7 @@ export function ServicesSection() {
       shortDesc: "Athletic Performance",
       fullDesc: "Expert rehabilitation for athletes of all levels - from injury diagnosis and treatment to full return-to-sport performance optimization programs.",
       icon: "zap",
-      img: "/services/sports_medicine_v2.png",
+      img: "/services/sports_medicine_v2.webp",
       imagePosition: "object-center",
       features: ["Injury Prevention", "Performance Training", "Sport-Specific Rehab"]
     },
@@ -56,7 +56,7 @@ export function ServicesSection() {
       shortDesc: "Brain & Nerve Care",
       fullDesc: "Compassionate care for neurological conditions including stroke recovery, Parkinson's disease, multiple sclerosis, and spinal cord injuries.",
       icon: "brain",
-      img: "/services/neuro_service_v2.png",
+      img: "/services/neuro_service_v2.webp",
       imagePosition: "object-center",
       features: ["Stroke Recovery", "Balance Training", "Motor Control"]
     },
@@ -66,7 +66,7 @@ export function ServicesSection() {
       shortDesc: "Hands-On Healing",
       fullDesc: "Skilled hands-on techniques including soft tissue mobilization, joint manipulation, and myofascial release for optimal pain relief and mobility.",
       icon: "hand",
-      img: "/services/manual_therapy_v2.png",
+      img: "/services/manual_therapy_v2.webp",
       imagePosition: "object-center",
       features: ["Deep Tissue Work", "Trigger Point Release", "Spinal Adjustment"]
     },
@@ -76,7 +76,7 @@ export function ServicesSection() {
       shortDesc: "Active Aging",
       fullDesc: "Specialized programs for older adults focusing on balance improvement, fall prevention, strength maintenance, and enhanced quality of life.",
       icon: "heart",
-      img: "/services/senior_wellness_v2.png",
+      img: "/services/senior_wellness_v2.webp",
       imagePosition: "object-center",
       features: ["Fall Prevention", "Mobility Enhancement", "Strength Building"]
     }

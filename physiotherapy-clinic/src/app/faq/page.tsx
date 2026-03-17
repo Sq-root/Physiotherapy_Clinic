@@ -331,7 +331,7 @@ function Sidebar() {
           <div className="flex items-center gap-2.5">
             <div className="w-9 h-9 rounded-full bg-gray-200 overflow-hidden ring-2 ring-white ring-offset-2 ring-offset-section">
               <Image
-                src="/services/IMG_0017.jpeg"
+                src="/services/IMG_0017.webp"
                 alt="James R."
                 width={36}
                 height={36}

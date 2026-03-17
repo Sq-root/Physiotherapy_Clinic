@@ -13,7 +13,7 @@ const slides = [
     highlight: "Peak Performance",
     description:
       "Professional sports rehabilitation designed to get athletes back in the game faster with evidence-based treatment protocols.",
-    image: "/services/IMG_0114.jpeg",
+    image: "/services/IMG_0114.webp",
     imagePosition: "object-center",
   },
   {
@@ -43,7 +43,7 @@ const slides = [
     highlight: "Recovery Journey",
     description:
       "Comprehensive post-operative rehabilitation to restore function, rebuild strength, and get you back to daily activities.",
-    image: "/services/IMG_0124.jpeg",
+    image: "/services/IMG_0124.webp",
     imagePosition: "object-center",
   },
 ];

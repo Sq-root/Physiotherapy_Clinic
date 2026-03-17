@@ -62,7 +62,7 @@ export function SupportSection() {
               <div className="relative flex-shrink-0">
                 <div className="w-20 h-24 rounded-xl overflow-hidden shadow-md">
                   <img
-                    src="/services/IMG_0120.jpeg"
+                    src="/services/IMG_0120.webp"
                     alt="Physiotherapist"
                     className="w-full h-full object-cover object-center"
                   />
@@ -154,7 +154,7 @@ export function SupportSection() {
               {/* Top Right Image */}
               <div className="absolute top-0 right-0 w-[35%] h-[45%] rounded-2xl overflow-hidden shadow-xl z-10">
                 <img
-                  src="/services/IMG_0122.jpeg"
+                  src="/services/IMG_0122.webp"
                   alt="Patient Session"
                   className="w-full h-full object-cover"
                 />
@@ -163,7 +163,7 @@ export function SupportSection() {
               {/* Bottom Right Image */}
               <div className="absolute bottom-0 right-0 w-[35%] h-[45%] rounded-2xl overflow-hidden shadow-xl z-10">
                 <img
-                  src="/services/IMG_0116.jpeg"
+                  src="/services/IMG_0116.webp"
                   alt="Therapy Session"
                   className="w-full h-full object-cover"
                 />
@@ -266,7 +266,7 @@ export function SupportSection() {
               <div className="flex items-center gap-4">
                 <div className="relative">
                   <img
-                    src="/services/IMG_0017.jpeg"
+                    src="/services/IMG_0017.webp"
                     alt={siteConfig.doctorName}
                     className="size-14 rounded-full object-cover object-top border-2 border-seafoam shadow-lg"
                   />

@@ -140,7 +140,7 @@ export function PatientJourney() {
                   {/* Medical Skeleton/Anatomy Image */}
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                     <img
-                      src="/human_skeleton.png"
+                      src="/human_skeleton.webp"
                       alt="Human Anatomy Representation"
                       className="h-full w-auto max-w-full object-contain opacity-90 drop-shadow-2xl"
                     />
