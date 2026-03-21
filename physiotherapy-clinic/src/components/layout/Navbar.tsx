@@ -5,8 +5,9 @@ import { useEffect, useState, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-import { Leaf } from "lucide-react";
+import { Leaf, Sparkles } from "lucide-react";
 import { siteConfig } from "@/config/site";
+import { Logo } from "@/components/ui/Logo";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -125,38 +126,7 @@ export function Navbar() {
               )}
             >
               {/* Logo */}
-              <Link
-                href="/"
-                className="flex items-center gap-2.5 group relative z-10"
-              >
-                <motion.div
-                  className={cn(
-                    "relative flex items-center justify-center rounded-full transition-all duration-500",
-                    useDarkStyle
-                      ? "w-10 h-10 bg-[#E8EFE3] border border-[#002D04]/10"
-                      : "w-10 h-10 bg-white/20 backdrop-blur-sm border border-white/30",
-                  )}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Leaf
-                    className={cn(
-                      "w-5 h-5 transition-colors duration-500",
-                      useDarkStyle ? "text-[#002D04]" : "text-white",
-                    )}
-                  />
-                </motion.div>
-                <div className="flex flex-col justify-center">
-                  <span
-                    className={cn(
-                      "text-[22px] font-medium tracking-tight leading-none transition-colors duration-500 font-[family-name:var(--font-script)]",
-                      useDarkStyle ? "text-forest" : "text-white",
-                    )}
-                  >
-                    {siteConfig.name}
-                  </span>
-                </div>
-              </Link>
+              <Logo useDarkStyle={useDarkStyle} />
 
               {/* Desktop Navigation with Clean Design */}
               <nav className="hidden md:flex items-center relative">

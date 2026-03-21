@@ -1,7 +1,7 @@
 import { siteConfig } from "@/config/site";
 import Link from "next/link";
-import { Flower2 } from "lucide-react";
 import { GoogleMap } from "@/components/ui/GoogleMap";
+import { Logo } from "@/components/ui/Logo";
 
 export function Footer() {
   const socialLinks = [
@@ -56,19 +56,7 @@ export function Footer() {
         {/* Top Section - Logo & Social */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 pb-8 border-b border-white/10">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative flex size-10 items-center justify-center border-2 border-white/30 rounded-full bg-white/5">
-              <Flower2 className="w-5 h-5 text-seafoam" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-lg font-bold tracking-tight text-white font-sans uppercase leading-none">
-                {siteConfig.name.split(" ")[0]}
-              </span>
-              <span className="text-[10px] font-bold tracking-[0.2em] text-seafoam uppercase leading-none">
-                {siteConfig.name.split(" ").slice(1).join(" ")}
-              </span>
-            </div>
-          </Link>
+          <Logo />
 
           {/* Social Links */}
           <div className="flex items-center gap-2">
@@ -217,10 +205,10 @@ export function Footer() {
               Location
             </h4>
             <div className="relative rounded-lg overflow-hidden h-20 bg-white/5 border border-white/10 mb-2">
-              <GoogleMap 
-                height={80} 
-                grayscale={false} 
-                className="rounded-none" 
+              <GoogleMap
+                height={80}
+                grayscale={false}
+                className="rounded-none"
               />
             </div>
             <p className="text-white/50 text-[10px] leading-relaxed mt-2 text-center">
