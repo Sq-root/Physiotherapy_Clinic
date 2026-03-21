@@ -5,7 +5,8 @@
 
 -- Create enum types
 CREATE TYPE appointment_status AS ENUM ('pending', 'confirmed', 'cancelled', 'completed');
-CREATE TYPE service_type AS ENUM ('ortho', 'sports', 'neuro', 'manual', 'senior', 'surgery');
+CREATE TYPE service_type AS ENUM ('ortho', 'sports', 'neuro', 'manual', 'senior', 'surgery', 'online', 'others');
+
 CREATE TYPE time_slot AS ENUM ('morning', 'afternoon', 'evening');
 
 -- Create appointments table

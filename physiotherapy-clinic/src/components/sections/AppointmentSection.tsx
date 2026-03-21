@@ -251,7 +251,6 @@ export function AppointmentSection() {
             ? `${formData.countryCode}${formData.phone}`
             : undefined,
           service: formData.service,
-
           date: formData.date,
           timeSlot: formData.timeSlot,
           message: formData.message || undefined,

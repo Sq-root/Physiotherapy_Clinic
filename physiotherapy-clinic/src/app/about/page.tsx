@@ -72,7 +72,7 @@ export default function AboutPage() {
                   src="/services/doctor_portrait_stretgth.webp"
                   alt="Dr. Isha Shah, Founder and Lead Physiotherapist"
                   fill
-                  className="object-cover"
+                  className="object-cover object-top"
                   priority
                 />
               </motion.div>

@@ -6,7 +6,8 @@ import type { Appointment, AppointmentInsert, Database, ServiceType, TimeSlot } 
 const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 const isValidPhone = (phone: string) => /^[\d\s\-+()]{10,}$/.test(phone);
 const isValidService = (service: string): service is ServiceType =>
-  ['ortho', 'sports', 'neuro', 'manual', 'senior', 'surgery'].includes(service);
+  ['ortho', 'sports', 'neuro', 'manual', 'senior', 'surgery', 'online', 'others'].includes(service);
+
 const isValidTimeSlot = (slot: string): slot is TimeSlot =>
   ['morning', 'afternoon', 'evening'].includes(slot);
 
@@ -111,9 +112,10 @@ export async function POST(request: NextRequest) {
       }
 
       return NextResponse.json(
-        { success: false, errors: ['Failed to book appointment. Please try again.'] },
+        { success: false, errors: [insertError.message || 'Failed to book appointment. Please try again.'] },
         { status: 500 }
       );
+
     }
 
     return NextResponse.json({

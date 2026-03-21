@@ -145,8 +145,9 @@ export function SupportSection() {
                 <img
                   src="/services/doctor_portrait_stretgth.webp"
                   alt="Senior Physiotherapist"
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-full object-cover object-top"
                 />
+
                 {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-forest/30 to-transparent"></div>
               </div>
