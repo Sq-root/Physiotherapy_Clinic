@@ -1,12 +1,22 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import Link from 'next/link';
-import Image from 'next/image';
-import { cn } from '@/lib/utils';
-import { faqCategories, type FaqCategory, type FaqItem } from '@/lib/data/faq-help';
-import { Search, ChevronDown, MessageCircle, MessageSquare, Phone } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
+import {
+  faqCategories,
+  type FaqCategory,
+  type FaqItem,
+} from "@/lib/data/faq-help";
+import {
+  Search,
+  ChevronDown,
+  MessageCircle,
+  MessageSquare,
+  Phone,
+} from "lucide-react";
 
 const stagger = {
   visible: { transition: { staggerChildren: 0.08 } },
@@ -86,10 +96,10 @@ function StickyNav({
             key={cat.id}
             onClick={() => onCategoryChange(cat.id)}
             className={cn(
-              'px-6 py-2.5 rounded-full text-xs font-medium border backdrop-blur-sm transition-all duration-300 whitespace-nowrap relative',
+              "px-6 py-2.5 rounded-full text-xs font-medium border backdrop-blur-sm transition-all duration-300 whitespace-nowrap relative",
               activeCategory === cat.id
-                ? 'border-transparent bg-forest text-white shadow-xl shadow-forest/20'
-                : 'text-forest border-forest/10 hover:border-forest/30 bg-white/40 hover:bg-white/60'
+                ? "border-transparent bg-forest text-white shadow-xl shadow-forest/20"
+                : "text-forest border-forest/10 hover:border-forest/30 bg-white/40 hover:bg-white/60",
             )}
           >
             {activeCategory === cat.id && (
@@ -99,7 +109,11 @@ function StickyNav({
                 transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
               />
             )}
-            <span className={cn(activeCategory === cat.id ? "font-bold" : "font-medium")}>
+            <span
+              className={cn(
+                activeCategory === cat.id ? "font-bold" : "font-medium",
+              )}
+            >
               {cat.label}
             </span>
           </button>
@@ -124,10 +138,10 @@ function FaqAccordionItem({
   return (
     <div
       className={cn(
-        'rounded-xl border transition-all duration-300',
+        "rounded-xl border transition-all duration-300",
         isOpen
-          ? 'bg-lime border-transparent shadow-lg shadow-lime/10'
-          : 'bg-white/60 border-forest/10'
+          ? "bg-lime border-transparent shadow-lg shadow-lime/10"
+          : "bg-white/60 border-forest/10",
       )}
     >
       <button
@@ -137,8 +151,8 @@ function FaqAccordionItem({
       >
         <span
           className={cn(
-            'font-medium text-sm text-forest transition-all',
-            isOpen && 'font-bold'
+            "font-medium text-sm text-forest transition-all",
+            isOpen && "font-bold",
           )}
         >
           {item.question}
@@ -156,7 +170,7 @@ function FaqAccordionItem({
         {isOpen && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
+            animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden"
@@ -192,7 +206,7 @@ function CategorySection({
         ? sub.items.filter(
             (item) =>
               item.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-              item.answer.toLowerCase().includes(searchQuery.toLowerCase())
+              item.answer.toLowerCase().includes(searchQuery.toLowerCase()),
           )
         : sub.items,
     }))
@@ -205,13 +219,18 @@ function CategorySection({
       {/* Section Header */}
       <div className="mb-7 border-l-[3px] border-lime pl-4">
         <h2 className="text-2xl font-bold text-forest">{category.title}</h2>
-        <p className="text-forest/70 mt-1 font-light text-sm">{category.subtitle}</p>
+        <p className="text-forest/70 mt-1 font-light text-sm">
+          {category.subtitle}
+        </p>
       </div>
 
       {/* Subcategory groups */}
       <div className="space-y-7">
         {filteredSubcategories.map((sub) => (
-          <div key={sub.title} className="bg-white/40 border border-white/60 rounded-2xl p-5 md:p-8 backdrop-blur-sm shadow-sm">
+          <div
+            key={sub.title}
+            className="bg-white/40 border border-white/60 rounded-2xl p-5 md:p-8 backdrop-blur-sm shadow-sm"
+          >
             <h3 className="text-[10px] uppercase tracking-widest font-bold text-forest/40 mb-6 flex items-center gap-3">
               <span className="w-8 h-[1px] bg-forest/10" />
               {sub.title}
@@ -231,51 +250,57 @@ function CategorySection({
       </div>
 
       {/* CTA Banner */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className={cn(
-          'mt-8 p-6 rounded-xl flex flex-col md:flex-row items-center justify-between gap-5 relative overflow-hidden',
-          category.cta.variant === 'primary'
-            ? 'bg-forest text-white'
-            : 'bg-white/40 border border-white/60 backdrop-blur-sm'
-        )}
-      >
-        {category.cta.variant === 'primary' && (
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5" />
-        )}
-        <div className="relative z-10 text-center md:text-left">
-          <h4
-            className={cn(
-              'text-lg font-bold mb-1',
-              category.cta.variant === 'primary' ? 'text-white' : 'text-forest'
-            )}
-          >
-            {category.cta.heading}
-          </h4>
-          <p
-            className={cn(
-              'font-light text-xs',
-              category.cta.variant === 'primary' ? 'text-white/80' : 'text-forest/70'
-            )}
-          >
-            {category.cta.description}
-          </p>
-        </div>
-        <Link
-          href="/contact"
+      {category?.cta && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
           className={cn(
-            'relative z-10 px-6 py-2.5 rounded-full font-bold transition-all whitespace-nowrap text-xs',
-            category.cta.variant === 'primary'
-              ? 'bg-lime text-forest hover:bg-white hover:text-forest shadow-lg shadow-black/20'
-              : 'border-2 border-forest text-forest hover:bg-forest hover:text-white'
+            "mt-8 p-6 rounded-xl flex flex-col md:flex-row items-center justify-between gap-5 relative overflow-hidden",
+            category.cta.variant === "primary"
+              ? "bg-forest text-white"
+              : "bg-white/40 border border-white/60 backdrop-blur-sm",
           )}
         >
-          {category.cta.buttonText}
-        </Link>
-      </motion.div>
+          {category.cta.variant === "primary" && (
+            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5" />
+          )}
+          <div className="relative z-10 text-center md:text-left">
+            <h4
+              className={cn(
+                "text-lg font-bold mb-1",
+                category.cta.variant === "primary"
+                  ? "text-white"
+                  : "text-forest",
+              )}
+            >
+              {category.cta.heading}
+            </h4>
+            <p
+              className={cn(
+                "font-light text-xs",
+                category.cta.variant === "primary"
+                  ? "text-white/80"
+                  : "text-forest/70",
+              )}
+            >
+              {category.cta.description}
+            </p>
+          </div>
+          <Link
+            href="/contact"
+            className={cn(
+              "relative z-10 px-6 py-2.5 rounded-full font-bold transition-all whitespace-nowrap text-xs",
+              category.cta.variant === "primary"
+                ? "bg-lime text-forest hover:bg-white hover:text-forest shadow-lg shadow-black/20"
+                : "border-2 border-forest text-forest hover:bg-forest hover:text-white",
+            )}
+          >
+            {category.cta.buttonText}
+          </Link>
+        </motion.div>
+      )}
     </section>
   );
 }
@@ -295,7 +320,9 @@ function Sidebar() {
             <MessageCircle className="w-5 h-5 text-lime" />
           </div>
 
-          <h4 className="text-base font-bold mb-1 relative z-10 text-white">Quick Contact</h4>
+          <h4 className="text-base font-bold mb-1 relative z-10 text-white">
+            Quick Contact
+          </h4>
           <p className="text-xs text-white/70 mb-5 font-light relative z-10">
             Our care coordinators are available 24/7 for urgent inquiries.
           </p>
@@ -325,8 +352,8 @@ function Sidebar() {
         {/* Testimonial Card */}
         <div className="p-5 rounded-2xl bg-white/50 border border-white/60 shadow-lg shadow-forest/5 backdrop-blur-sm">
           <p className="text-sm text-forest leading-relaxed italic mb-4">
-            &quot;The tele-rehab program changed how I view recovery. Professional, convenient, and
-            incredibly effective.&quot;
+            &quot;The tele-rehab program changed how I view recovery.
+            Professional, convenient, and incredibly effective.&quot;
           </p>
           <div className="flex items-center gap-2.5">
             <div className="w-9 h-9 rounded-full bg-gray-200 overflow-hidden ring-2 ring-white ring-offset-2 ring-offset-section">
@@ -339,7 +366,9 @@ function Sidebar() {
               />
             </div>
             <div>
-              <span className="block text-xs font-bold text-forest">James R.</span>
+              <span className="block text-xs font-bold text-forest">
+                James R.
+              </span>
               <span className="block text-[10px] text-forest/60 uppercase tracking-wider font-bold">
                 Professional Athlete
               </span>
@@ -357,23 +386,24 @@ function Sidebar() {
 export default function FaqPage() {
   const [activeCategory, setActiveCategory] = useState(faqCategories[0].id);
   const [openId, setOpenId] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleToggle = (id: string) => {
     setOpenId((prev) => (prev === id ? null : id));
   };
 
+  const displayedCategories =
+    searchQuery.trim().length > 0
+      ? faqCategories
+      : faqCategories.filter((cat) => cat.id === activeCategory);
 
-  const displayedCategories = searchQuery.trim().length > 0
-    ? faqCategories
-    : faqCategories.filter(cat => cat.id === activeCategory);
-
-  const hasResults = displayedCategories.some(cat => {
-    return cat.subcategories.some(sub => 
-      sub.items.some(item => 
-        item.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.answer.toLowerCase().includes(searchQuery.toLowerCase())
-      )
+  const hasResults = displayedCategories.some((cat) => {
+    return cat.subcategories.some((sub) =>
+      sub.items.some(
+        (item) =>
+          item.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          item.answer.toLowerCase().includes(searchQuery.toLowerCase()),
+      ),
     );
   });
 
@@ -402,7 +432,7 @@ export default function FaqPage() {
             <AnimatePresence mode="wait">
               {hasResults ? (
                 <motion.div
-                  key={searchQuery ? 'search' : activeCategory}
+                  key={searchQuery ? "search" : activeCategory}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
@@ -428,12 +458,15 @@ export default function FaqPage() {
                   <div className="size-16 rounded-full bg-forest/5 flex items-center justify-center mx-auto mb-6">
                     <Search className="w-8 h-8 text-forest/20" />
                   </div>
-                  <h3 className="text-xl font-bold text-forest mb-2">No results found</h3>
+                  <h3 className="text-xl font-bold text-forest mb-2">
+                    No results found
+                  </h3>
                   <p className="text-forest/60 max-w-xs mx-auto text-sm font-light">
-                    We couldn&apos;t find any questions matching &quot;{searchQuery}&quot;. Try using different keywords.
+                    We couldn&apos;t find any questions matching &quot;
+                    {searchQuery}&quot;. Try using different keywords.
                   </p>
-                  <button 
-                    onClick={() => setSearchQuery('')}
+                  <button
+                    onClick={() => setSearchQuery("")}
                     className="mt-6 text-xs font-bold text-forest underline underline-offset-4 decoration-lime hover:text-lime transition-all"
                   >
                     Clear Search

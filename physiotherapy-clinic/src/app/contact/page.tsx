@@ -1,11 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Phone,
   Mail,
-  MapPin,
   Clock,
   Send,
   CheckCircle,
@@ -16,11 +15,15 @@ import {
   Building2,
   ArrowRight,
   Sparkles,
+  ShieldCheck,
+  Stethoscope,
+  HeartHandshake,
+  ChevronDown,
 } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import type { Easing } from "framer-motion";
 import { siteConfig } from "@/config/site";
-import { GoogleMap } from "@/components/ui/GoogleMap";
 
 // Animation variants
 const fadeInUp = {
@@ -40,11 +43,29 @@ const stagger = {
   },
 };
 
+const COUNTRY_CODES = [
+  { code: "+971", country: "UAE", flag: "🇦🇪" },
+  { code: "+91", country: "IN", flag: "🇮🇳" },
+  { code: "+44", country: "UK", flag: "🇬🇧" },
+  { code: "+1", country: "US", flag: "🇺🇸" },
+  { code: "+966", country: "SA", flag: "🇸🇦" },
+  { code: "+974", country: "QA", flag: "🇶🇦" },
+  { code: "+968", country: "OM", flag: "🇴🇲" },
+  { code: "+965", country: "KW", flag: "🇰🇼" },
+  { code: "+973", country: "BH", flag: "🇧🇭" },
+  { code: "+61", country: "AU", flag: "🇦🇺" },
+  { code: "+1", country: "CA", flag: "🇨🇦" },
+  { code: "+49", country: "DE", flag: "🇩🇪" },
+] as const;
+
+type CountryCode = (typeof COUNTRY_CODES)[number]["code"];
+
 // Form data interface
 interface FormData {
   firstName: string;
   lastName: string;
   email: string;
+  countryCode: CountryCode;
   phone: string;
   service: string;
   message: string;
@@ -58,7 +79,7 @@ const contactInfo = [
     icon: Phone,
     title: "Call Us",
     primary: siteConfig.contact.phone,
-    secondary: "Mon–Fri, 8am–6pm",
+    secondary: siteConfig.contact.timing,
     action: `tel:${siteConfig.contact.phone.replace(/[^0-9+]/g, "")}`,
     color: "bg-seafoam",
   },
@@ -70,14 +91,14 @@ const contactInfo = [
     action: `mailto:${siteConfig.contact.email}`,
     color: "bg-lime",
   },
-  {
-    icon: MapPin,
-    title: "Visit Us",
-    primary: siteConfig.contact.address.line1,
-    secondary: `${siteConfig.contact.address.city}, ${siteConfig.contact.address.zip}`,
-    action: "https://maps.google.com",
-    color: "bg-forest",
-  },
+  // {
+  //   icon: MapPin,
+  //   title: "Visit Us",
+  //   primary: siteConfig.contact.address.line1,
+  //   secondary: `${siteConfig.contact.address.city}, ${siteConfig.contact.address.zip}`,
+  //   action: "https://maps.google.com",
+  //   color: "bg-forest",
+  // },
   {
     icon: Clock,
     title: "Working Hours",
@@ -97,6 +118,8 @@ const services = [
   "Senior Care",
   "Post-Surgery Recovery",
   "General Inquiry",
+  "Online Consultation",
+  "Others",
 ];
 
 export default function ContactPage() {
@@ -104,12 +127,28 @@ export default function ContactPage() {
     firstName: "",
     lastName: "",
     email: "",
+    countryCode: "+971",
     phone: "",
     service: "",
     message: "",
   });
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errors, setErrors] = useState<Partial<FormData>>({});
+  const [showCountryDropdown, setShowCountryDropdown] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setShowCountryDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   // Validation function
   const validateForm = (): boolean => {
@@ -130,8 +169,9 @@ export default function ContactPage() {
       newErrors.email = "Please enter a valid email address";
     }
 
-    if (formData.phone && !/^[\d\s\-+()]{10,}$/.test(formData.phone)) {
-      newErrors.phone = "Please enter a valid phone number";
+    const cleanPhone = formData.phone.replace(/\D/g, "");
+    if (!cleanPhone || cleanPhone.length !== 10) {
+      newErrors.phone = "Please enter a valid 10-digit phone number";
     }
 
     if (!formData.service) {
@@ -168,6 +208,7 @@ export default function ContactPage() {
       firstName: "",
       lastName: "",
       email: "",
+      countryCode: "+971",
       phone: "",
       service: "",
       message: "",
@@ -182,45 +223,59 @@ export default function ContactPage() {
   return (
     <main className="overflow-x-clip">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden bg-section">
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-gradient-to-b from-white/40 to-section">
         {/* Background Elements */}
-        <div className="absolute inset-0 bg-section opacity-50 z-0" />
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-lime rounded-full blur-[100px] opacity-20 -translate-y-1/2 translate-x-1/2" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-seafoam rounded-full blur-[80px] opacity-20 translate-y-1/3 -translate-x-1/4" />
+        <div className="absolute top-0 right-0 w-[30rem] h-[30rem] bg-lime/10 rounded-full blur-[100px] z-0 translate-x-1/4 -translate-y-1/4" />
+        <div className="absolute bottom-0 left-0 w-[22rem] h-[22rem] bg-white/30 rounded-full blur-[80px] z-0 -translate-x-1/4 translate-y-1/4" />
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
-            className="text-center max-w-2xl mx-auto"
+            className="text-center max-w-3xl mx-auto"
             initial="hidden"
             animate="visible"
             variants={stagger}
           >
             <motion.div
               variants={fadeInUp}
-              className="inline-flex items-center gap-2 mb-4"
+              className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-white/60 border border-forest/10 shadow-sm backdrop-blur-md"
             >
-              <div className="w-8 h-8 rounded-full bg-seafoam/20 flex items-center justify-center">
-                <Sparkles className="w-4 h-4 text-seafoam" />
+              <div className="w-6 h-6 rounded-full bg-seafoam/20 flex items-center justify-center">
+                <Sparkles className="w-3.5 h-3.5 text-seafoam" />
               </div>
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-seafoam">
-                Get In Touch
+              <span className="text-xs font-bold uppercase tracking-[0.15em] text-forest/80">
+                Contact Our Team
               </span>
             </motion.div>
 
             <motion.h1
               variants={fadeInUp}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-forest mb-4 tracking-tight"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold text-forest mb-6 tracking-tight leading-[1.1]"
             >
-              Let&apos;s Start Your{" "}
-              <span className="text-lime font-serif italic">Recovery</span>
+              Let&apos;s Start Your <br className="hidden md:block" />
+              <span className="text-lime font-serif italic relative inline-block">
+                Recovery Journey
+                <svg
+                  className="absolute w-full h-3 -bottom-1 left-0 text-seafoam/30"
+                  viewBox="0 0 100 20"
+                  preserveAspectRatio="none"
+                >
+                  <path
+                    d="M0 10 Q 50 20 100 10"
+                    fill="transparent"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </span>
             </motion.h1>
 
             <motion.p
               variants={fadeInUp}
-              className="text-base md:text-lg text-forest/70 font-medium max-w-xl mx-auto leading-relaxed"
+              className="text-base md:text-xl text-forest/60 font-medium max-w-2xl mx-auto leading-relaxed"
             >
-              Have questions? Ready to book an appointment? Reach out and our
-              team will be in touch within 24 hours.
+              Have questions? Ready to book an appointment? Reach out to our
+              expert team and we’ll be in touch within 24 hours.
             </motion.p>
           </motion.div>
         </div>
@@ -230,7 +285,7 @@ export default function ContactPage() {
       <section className="py-12 md:py-16 bg-white relative">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 -mt-16 md:-mt-24 relative z-20"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -267,79 +322,113 @@ export default function ContactPage() {
       </section>
 
       {/* Main Contact Form Section */}
-      <section className="py-16 md:py-24 bg-section relative overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div
-            className="absolute inset-0 opacity-[0.02]"
-            style={{
-              backgroundImage: `radial-gradient(#002D04 1px, transparent 1px)`,
-              backgroundSize: "24px 24px",
-            }}
-          />
+      <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+        {/* Subtle Background Elements */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute -top-[20%] -right-[10%] w-[70vw] h-[70vw] rounded-full bg-forest/5 blur-[80px]" />
+          <div className="absolute top-[60%] -left-[10%] w-[50vw] h-[50vw] rounded-full bg-seafoam/5 blur-[80px]" />
         </div>
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-            {/* Left Column - Info & Map */}
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            {/* Left Column - Info & Why Choose Us */}
             <motion.div
+              className="lg:col-span-5 flex flex-col justify-center h-full"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <span className="inline-block py-1.5 px-4 rounded-full bg-white/50 border border-forest/10 backdrop-blur-sm text-forest font-bold uppercase tracking-widest text-[10px] mb-4 shadow-sm">
-                Contact Information
-              </span>
-
-              <h2 className="text-3xl md:text-4xl font-bold text-forest mb-4 tracking-tight">
-                We&apos;re Here to <span className="text-seafoam">Help</span>
-              </h2>
-
-              <p className="text-forest/70 text-base md:text-lg leading-relaxed mb-8 max-w-md">
-                Visit our clinic or reach out through any of our channels. Our
-                dedicated team is committed to your recovery journey.
-              </p>
-
-              {/* Quick Contact List */}
-              <div className="space-y-4 mb-8">
-                {contactInfo
-                  .slice(0, 3)
-                  .map(({ icon: Icon, title, primary, secondary }) => (
-                    <div key={title} className="flex items-start gap-4 group">
-                      <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
-                        <Icon className="w-5 h-5 text-seafoam" />
-                      </div>
-                      <div>
-                        <p className="font-semibold text-forest text-sm">
-                          {title}
-                        </p>
-                        <p className="text-forest/80 text-sm">{primary}</p>
-                        <p className="text-forest/50 text-xs mt-0.5">
-                          {secondary}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
+              <div className="mb-10">
+                <span className="inline-block py-1.5 px-4 rounded-full bg-forest/5 border border-forest/10 text-forest font-bold uppercase tracking-[0.15em] text-[10px] mb-4">
+                  Send a Request
+                </span>
+                <h2 className="text-3xl md:text-5xl font-bold text-forest mb-6 tracking-tight leading-[1.1]">
+                  Ready to Feel <br />
+                  <span className="text-seafoam relative inline-block">
+                    Better?
+                    <svg
+                      className="absolute w-full h-2 -bottom-0 left-0 text-lime/40"
+                      viewBox="0 0 100 20"
+                      preserveAspectRatio="none"
+                    >
+                      <path
+                        d="M0 10 Q 50 20 100 10"
+                        fill="transparent"
+                        stroke="currentColor"
+                        strokeWidth="6"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  </span>
+                </h2>
+                <p className="text-forest/70 text-base md:text-lg leading-relaxed max-w-md">
+                  Fill out the form and our care coordinators will match you
+                  with the right specialist for your needs.
+                </p>
               </div>
 
-              {/* Proper Google Map */}
-              <div className="rounded-2xl overflow-hidden border-4 border-white shadow-xl h-[280px]">
-                <GoogleMap 
-                  height={280} 
-                  title={`${siteConfig.name} Clinic Location`}
-                />
+              {/* Why Choose Us Features */}
+              <div className="space-y-6 mt-4">
+                <div className="flex gap-4">
+                  <div className="shrink-0 w-12 h-12 rounded-2xl bg-forest/5 flex items-center justify-center border border-forest/10">
+                    <Stethoscope className="w-6 h-6 text-forest" />
+                  </div>
+                  <div>
+                    <h4 className="text-forest font-bold text-base mb-1">
+                      Expert Specialists
+                    </h4>
+                    <p className="text-forest/60 text-sm leading-relaxed">
+                      Highly trained physiotherapists dedicated to your full
+                      recovery.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="shrink-0 w-12 h-12 rounded-2xl bg-seafoam/10 flex items-center justify-center border border-seafoam/20">
+                    <ShieldCheck className="w-6 h-6 text-seafoam" />
+                  </div>
+                  <div>
+                    <h4 className="text-forest font-bold text-base mb-1">
+                      Premium Facility
+                    </h4>
+                    <p className="text-forest/60 text-sm leading-relaxed">
+                      State-of-the-art equipment in a calming, hygienic
+                      environment.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="shrink-0 w-12 h-12 rounded-2xl bg-lime/10 flex items-center justify-center border border-lime/20">
+                    <HeartHandshake className="w-6 h-6 text-lime" />
+                  </div>
+                  <div>
+                    <h4 className="text-forest font-bold text-base mb-1">
+                      Personalized Care
+                    </h4>
+                    <p className="text-forest/60 text-sm leading-relaxed">
+                      Tailored treatment plans designed specifically for your
+                      body and goals.
+                    </p>
+                  </div>
+                </div>
               </div>
             </motion.div>
 
             {/* Right Column - Contact Form */}
             <motion.div
+              className="lg:col-span-7"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <div className="bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl border border-forest/5">
+              <div className="bg-white rounded-[2rem] p-6 sm:p-10 md:p-12 shadow-[0_20px_60px_rgb(0,0,0,0.06)] border border-forest/5 relative">
+                {/* Decorative corner */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-lime/10 rounded-bl-[4rem] rounded-tr-[2rem] -z-10" />
+
                 <AnimatePresence mode="wait">
                   {status === "success" ? (
                     <SuccessState onReset={resetForm} />
@@ -350,6 +439,9 @@ export default function ContactPage() {
                       errors={errors}
                       status={status}
                       onSubmit={handleSubmit}
+                      showCountryDropdown={showCountryDropdown}
+                      setShowCountryDropdown={setShowCountryDropdown}
+                      dropdownRef={dropdownRef}
                     />
                   )}
                 </AnimatePresence>
@@ -369,26 +461,37 @@ export default function ContactPage() {
 function ContactCard({ item }: { item: (typeof contactInfo)[0] }) {
   const Icon = item.icon;
   return (
-    <div
-      className={`h-full p-5 sm:p-6 rounded-2xl bg-white border-2 border-forest/5 hover:border-seafoam/30 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1`}
-    >
+    <div className="h-full p-6 sm:p-8 rounded-3xl bg-white/70 backdrop-blur-md border border-white/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:-translate-y-1.5 transition-all duration-400 group relative overflow-hidden">
       <div
-        className={`w-12 h-12 ${item.color} rounded-xl flex items-center justify-center mb-4`}
+        className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-transparent to-${item.color.replace("bg-", "")}/10 rounded-bl-full -z-10 group-hover:scale-110 transition-transform duration-500`}
+      />
+
+      <div
+        className={`w-14 h-14 ${item.color} rounded-2xl flex items-center justify-center mb-6 shadow-md shadow-${item.color.replace("bg-", "")}/20 group-hover:rotate-6 transition-transform duration-300`}
       >
-        <Icon className="w-5 h-5 text-white" />
+        <Icon className="w-6 h-6 text-white" />
       </div>
-      <h3 className="font-bold text-forest text-sm mb-1">{item.title}</h3>
-      <div className="flex items-center gap-2">
+      <h3 className="font-bold text-forest text-lg mb-2">{item.title}</h3>
+      <div className="flex flex-col gap-1 items-start">
         {item.title === "Call Us" && (
           <img
             src="/logo/ae_flag.svg"
             alt="UAE Flag"
-            className="w-6 h-auto rounded shadow-sm border border-forest/10"
+            className="w-5 h-auto rounded-[2px] shadow-sm border border-forest/5 mb-1 opacity-80"
           />
         )}
-        <p className="text-forest text-sm font-medium">{item.primary}</p>
+        <p className="text-forest text-base font-semibold group-hover:text-seafoam transition-colors">
+          {item.primary}
+        </p>
       </div>
-      <p className="text-forest/50 text-xs mt-1">{item.secondary}</p>
+      <p className="text-forest/60 text-sm mt-2">{item.secondary}</p>
+
+      {item.action && (
+        <div className="mt-6 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-forest/40 group-hover:text-forest transition-colors">
+          <span>{item.title === "Call Us" ? "Call Now" : "Send Email"}</span>
+          <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+        </div>
+      )}
     </div>
   );
 }
@@ -401,19 +504,22 @@ function SuccessState({ onReset }: { onReset: () => void }) {
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.95 }}
-      className="text-center py-12"
+      className="text-center py-16"
     >
-      <div className="w-20 h-20 bg-seafoam/10 rounded-full flex items-center justify-center mx-auto mb-6">
-        <CheckCircle className="w-10 h-10 text-seafoam" />
+      <div className="w-24 h-24 bg-lime/20 rounded-full flex items-center justify-center mx-auto mb-8 relative">
+        <div className="absolute inset-0 bg-lime/20 rounded-full animate-ping opacity-20" />
+        <CheckCircle className="w-12 h-12 text-forest" />
       </div>
-      <h3 className="text-2xl font-bold text-forest mb-3">Message Sent!</h3>
-      <p className="text-forest/60 text-base mb-8 max-w-sm mx-auto">
-        Thank you for reaching out. Our team will get back to you within 24
-        hours.
+      <h3 className="text-3xl font-bold text-forest mb-4 tracking-tight">
+        Message Received!
+      </h3>
+      <p className="text-forest/60 text-lg mb-10 max-w-sm mx-auto leading-relaxed">
+        Thank you for reaching out. Our care coordinators will get back to you
+        within 24 hours to assist you further.
       </p>
       <button
         onClick={onReset}
-        className="inline-flex items-center gap-2 text-seafoam font-semibold hover:underline"
+        className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-forest text-white font-bold hover:bg-seafoam transition-colors shadow-lg shadow-forest/20 hover:shadow-seafoam/20"
       >
         Send Another Message
         <ArrowRight className="w-4 h-4" />
@@ -429,36 +535,44 @@ function ContactForm({
   errors,
   status,
   onSubmit,
+  showCountryDropdown,
+  setShowCountryDropdown,
+  dropdownRef,
 }: {
   formData: FormData;
   setFormData: React.Dispatch<React.SetStateAction<FormData>>;
   errors: Partial<FormData>;
   status: FormStatus;
   onSubmit: (e: React.FormEvent) => void;
+  showCountryDropdown: boolean;
+  setShowCountryDropdown: (v: boolean) => void;
+  dropdownRef: React.RefObject<HTMLDivElement>;
 }) {
   const inputClasses = (hasError: boolean) =>
-    `w-full px-4 py-3.5 bg-section/30 border-2 rounded-xl text-sm text-forest placeholder:text-forest/40 focus:outline-none focus:bg-white transition-all duration-200 ${
+    `w-full px-5 py-4 bg-forest/[0.02] border rounded-2xl text-base text-forest placeholder:text-forest/30 focus:outline-none focus:bg-white transition-all duration-300 ${
       hasError
-        ? "border-red-300 focus:border-red-400 focus:ring-2 focus:ring-red-100"
-        : "border-transparent focus:border-seafoam/50 focus:ring-2 focus:ring-seafoam/10"
+        ? "border-red-300 focus:border-red-400 focus:ring-4 focus:ring-red-100"
+        : "border-forest/10 hover:border-forest/20 focus:border-seafoam focus:ring-4 focus:ring-seafoam/10"
     }`;
 
   return (
     <motion.form
       key="form"
       onSubmit={onSubmit}
-      className="space-y-5"
+      className="space-y-6"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <div className="flex items-center gap-3 mb-6">
-        <div className="w-10 h-10 bg-seafoam/10 rounded-xl flex items-center justify-center">
-          <MessageSquare className="w-5 h-5 text-seafoam" />
+      <div className="flex items-center gap-4 mb-8">
+        <div className="w-12 h-12 bg-lime/20 rounded-2xl flex items-center justify-center">
+          <MessageSquare className="w-6 h-6 text-forest" />
         </div>
         <div>
-          <h3 className="font-bold text-forest text-xl">Send Us a Message</h3>
-          <p className="text-forest/50 text-xs">
+          <h3 className="font-bold text-forest text-2xl tracking-tight">
+            Send a Message
+          </h3>
+          <p className="text-forest/50 text-sm mt-0.5">
             We&apos;ll respond within 24 hours
           </p>
         </div>
@@ -552,23 +666,101 @@ function ContactForm({
             className={inputClasses(!!errors.email)}
           />
         </div>
-        <div>
+        <div className="relative group/phone">
           <label className="block text-sm font-semibold text-forest mb-2">
             <span className="flex items-center gap-2">
               <Phone className="w-4 h-4 text-forest/40" />
-              Phone (Optional)
+              Phone Number *
             </span>
           </label>
-          <input
-            type="tel"
-            placeholder="+1 (555) 123-4567"
-            value={formData.phone}
-            onChange={(e) =>
-              setFormData({ ...formData, phone: e.target.value })
-            }
-            disabled={status === "loading"}
-            className={inputClasses(!!errors.phone)}
-          />
+          <div className="relative">
+            {/* Country Code Selection */}
+            <div
+              className="absolute left-[3px] top-[3px] bottom-[3px] z-10"
+              ref={dropdownRef}
+            >
+              <button
+                type="button"
+                onClick={() => setShowCountryDropdown(!showCountryDropdown)}
+                className="flex items-center gap-1.5 h-full px-3.5 rounded-xl border-r border-forest/5 hover:bg-forest/5 transition-colors bg-white/50"
+              >
+                <span className="text-xl leading-none">
+                  {
+                    COUNTRY_CODES.find((c) => c.code === formData.countryCode)
+                      ?.flag
+                  }
+                </span>
+                <span className="text-sm font-bold text-forest">
+                  {formData.countryCode}
+                </span>
+                <ChevronDown
+                  className={cn(
+                    "w-3.5 h-3.5 text-forest/40 transition-transform duration-200",
+                    showCountryDropdown && "rotate-180",
+                  )}
+                />
+              </button>
+
+              <AnimatePresence>
+                {showCountryDropdown && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    className="absolute top-full left-0 mt-2 w-[240px] bg-white rounded-2xl shadow-2xl border border-forest/10 py-3 z-50 overflow-hidden"
+                  >
+                    <div className="px-4 py-2 mb-2 border-b border-forest/5">
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-forest/40">
+                        Select Country
+                      </p>
+                    </div>
+                    <div className="max-h-[280px] overflow-y-auto custom-scrollbar">
+                      {COUNTRY_CODES.map((c) => (
+                        <button
+                          key={c.code + c.country}
+                          type="button"
+                          onClick={() => {
+                            setFormData({ ...formData, countryCode: c.code });
+                            setShowCountryDropdown(false);
+                          }}
+                          className={cn(
+                            "flex items-center gap-3 w-full px-4 py-3 text-left hover:bg-seafoam/5 transition-colors group",
+                            formData.countryCode === c.code && "bg-seafoam/10",
+                          )}
+                        >
+                          <span className="text-2xl leading-none">
+                            {c.flag}
+                          </span>
+                          <div className="flex flex-col">
+                            <span className="text-sm font-bold text-forest">
+                              {c.country}
+                            </span>
+                            <span className="text-xs text-forest/40">
+                              {c.code}
+                            </span>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            <input
+              type="tel"
+              placeholder="50 412 0369"
+              value={formData.phone}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  phone: e.target.value.replace(/[^\d\s\-+()]/g, ""),
+                })
+              }
+              disabled={status === "loading"}
+              className={cn(inputClasses(!!errors.phone), "pl-[120px]")}
+            />
+          </div>
         </div>
       </div>
 
@@ -623,12 +815,12 @@ function ContactForm({
         variant="primary"
         size="lg"
         disabled={status === "loading"}
-        className="w-full !bg-forest hover:!bg-seafoam"
+        className="w-full !bg-forest hover:!bg-seafoam !h-14 !rounded-2xl !text-base shadow-lg shadow-forest/10 hover:shadow-seafoam/20 transition-all duration-300"
       >
         {status === "loading" ? (
           <>
             <Loader2 className="w-5 h-5 animate-spin mr-2" />
-            Sending...
+            Sending Message...
           </>
         ) : (
           <>
@@ -667,7 +859,7 @@ function ContactFAQ() {
         "Yes, we accept most major insurance plans. We recommend contacting your insurance provider or our office to verify your coverage before your appointment.",
     },
     {
-      question: "What are your COVID-19 safety protocols?",
+      question: "What are your Hygiene protocols?",
       answer:
         "We maintain strict hygiene protocols including regular sanitization, air filtration systems, and optional mask requirements. Our facilities are thoroughly cleaned between each patient visit.",
     },
@@ -679,67 +871,88 @@ function ContactFAQ() {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-white">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <section className="py-20 md:py-28 bg-forest/5 relative">
+      <div className="absolute inset-0 bg-white/40 backdrop-blur-3xl z-0" />
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
-          className="text-center mb-12"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <span className="inline-block py-1.5 px-4 rounded-full bg-section border border-forest/10 text-forest font-bold uppercase tracking-widest text-[10px] mb-4">
+          <span className="inline-block py-1.5 px-4 rounded-full bg-white/60 border border-forest/10 text-forest font-bold uppercase tracking-widest text-[10px] mb-4 shadow-sm backdrop-blur-md">
             Common Questions
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-forest tracking-tight">
+          <h2 className="text-3xl md:text-5xl font-bold text-forest tracking-tight">
             Frequently Asked Questions
           </h2>
         </motion.div>
 
         <motion.div
-          className="space-y-3"
+          className="space-y-4"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={stagger}
         >
-          {faqs.map((faq, index) => (
-            <motion.div
-              key={index}
-              variants={fadeInUp}
-              className="border border-forest/10 rounded-2xl overflow-hidden bg-section/30 hover:bg-section/50 transition-colors"
-            >
-              <button
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full flex items-center justify-between p-5 text-left"
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index;
+            return (
+              <motion.div
+                key={index}
+                variants={fadeInUp}
+                className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
+                  isOpen
+                    ? "bg-white border-forest/10 shadow-[0_8px_30px_rgb(0,0,0,0.06)] scale-[1.02]"
+                    : "bg-white/60 border-forest/5 hover:bg-white hover:border-forest/10 hover:shadow-sm"
+                }`}
               >
-                <span className="font-semibold text-forest text-sm sm:text-base pr-4">
-                  {faq.question}
-                </span>
-                <div
-                  className={`w-8 h-8 rounded-full bg-white flex items-center justify-center flex-shrink-0 transition-transform duration-300 ${openIndex === index ? "rotate-180" : ""}`}
+                <button
+                  onClick={() => setOpenIndex(isOpen ? null : index)}
+                  className="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-seafoam/50 rounded-2xl"
                 >
-                  <ArrowRight
-                    className={`w-4 h-4 text-forest transition-transform duration-300 ${openIndex === index ? "rotate-90" : ""}`}
-                  />
-                </div>
-              </button>
-              <AnimatePresence>
-                {openIndex === index && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="overflow-hidden"
+                  <span
+                    className={`font-semibold text-base md:text-lg pr-8 transition-colors ${isOpen ? "text-forest" : "text-forest/80"}`}
                   >
-                    <p className="px-5 pb-5 text-forest/70 text-sm leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
+                    {faq.question}
+                  </span>
+                  <div
+                    className={`shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-500 border ${
+                      isOpen
+                        ? "bg-forest border-forest rotate-180"
+                        : "bg-white border-forest/10 text-forest hover:bg-forest/5"
+                    }`}
+                  >
+                    <ArrowRight
+                      className={`w-5 h-5 transition-transform duration-500 ${
+                        isOpen
+                          ? "text-white -rotate-90"
+                          : "text-forest rotate-90"
+                      }`}
+                    />
+                  </div>
+                </button>
+                <AnimatePresence>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-6 md:px-8 pb-8 pt-2">
+                        <div className="w-12 h-1 bg-seafoam/20 rounded-full mb-6" />
+                        <p className="text-forest/70 text-base leading-relaxed">
+                          {faq.answer}
+                        </p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
     </section>

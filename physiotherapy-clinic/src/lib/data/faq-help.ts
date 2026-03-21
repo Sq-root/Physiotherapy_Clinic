@@ -15,7 +15,7 @@ export interface FaqCategory {
   title: string;
   subtitle: string;
   subcategories: FaqSubcategory[];
-  cta: {
+  cta?: {
     heading: string;
     description: string;
     buttonText: string;
@@ -135,12 +135,12 @@ export const faqCategories: FaqCategory[] = [
         ]
       }
     ],
-    cta: {
-      heading: 'Prefer the clinical setting?',
-      description: 'Visit our high-end facility for specialized equipment access.',
-      buttonText: 'Book Clinic Visit',
-      variant: 'outline',
-    },
+    // cta: {
+    //   heading: 'Prefer the clinical setting?',
+    //   description: 'Visit our high-end facility for specialized equipment access.',
+    //   buttonText: 'Book Clinic Visit',
+    //   variant: 'outline',
+    // },
   },
   {
     id: 'payment-insurance',

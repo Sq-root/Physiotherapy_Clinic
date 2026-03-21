@@ -177,8 +177,8 @@ export default function AboutPage() {
               <div className="bg-section p-10 md:p-14 rounded-[3rem] border border-forest/5 shadow-inner relative group">
                 <Quote className="absolute top-8 right-8 w-12 h-12 text-seafoam opacity-20 transition-transform duration-500 group-hover:rotate-12" />
                 <p className="text-xl md:text-2xl font-serif italic leading-relaxed text-forest">
-                  &ldquo;I do not believe in high-volume care, indefinite treatment
-                  plans, or passive rehabilitation. My methodology is
+                  &ldquo;I do not believe in high-volume care, indefinite
+                  treatment plans, or passive rehabilitation. My methodology is
                   analytical, finite, and outcome-led.&rdquo;
                 </p>
               </div>
@@ -338,7 +338,7 @@ export default function AboutPage() {
             {/* Glossy Decorative Lights */}
             <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-seafoam/15 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
             <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-white/5 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2"></div>
-            
+
             <div className="relative z-10 text-center max-w-3xl mx-auto">
               <div className="inline-flex items-center gap-2 mb-8 bg-white/5 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 uppercase tracking-[0.2em] text-[10px] font-bold text-seafoam">
                 The Final Milestone
@@ -363,13 +363,6 @@ export default function AboutPage() {
                   className="group relative inline-flex items-center justify-center gap-3 bg-white text-forest px-10 py-5 rounded-full font-bold hover:bg-seafoam transition-all transition-transform hover:-translate-y-1 shadow-lg"
                 >
                   Schedule Assessment
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <Link
-                  href="/services"
-                  className="inline-flex items-center justify-center gap-3 bg-white/5 backdrop-blur-md text-white border border-white/15 px-10 py-5 rounded-full font-bold hover:bg-white/10 transition-all transition-transform hover:-translate-y-1"
-                >
-                  Our Clinical Services
                 </Link>
               </div>
             </div>

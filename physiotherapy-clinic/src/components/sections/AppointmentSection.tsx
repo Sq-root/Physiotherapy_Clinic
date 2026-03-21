@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-// import { useEffect, useCallback } from 'react'; // Commented out - for slot availability
+import { useState, useRef, useEffect } from "react";
+import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Bone,
@@ -25,7 +25,11 @@ import {
   AlertCircle,
   PartyPopper,
   MessageSquare,
+  ChevronDown,
+  Globe,
+  MoreHorizontal,
 } from "lucide-react";
+
 import type { ServiceType, TimeSlot } from "@/lib/supabase/types";
 import { siteConfig } from "@/config/site";
 
@@ -36,16 +40,37 @@ const serviceIconMap: Record<ServiceType, typeof Bone> = {
   manual: Hand,
   senior: Heart,
   surgery: Hospital,
+  online: Globe,
+  others: MoreHorizontal,
 };
 
 const serviceLabels: Record<ServiceType, string> = {
-  ortho: "Orthopedic",
-  sports: "Sports",
-  neuro: "Neuro",
-  manual: "Manual",
-  senior: "Senior",
-  surgery: "Post-Op",
+  ortho: "Orthopedic Care",
+  sports: "Sports Rehabilitation",
+  neuro: "Neurological Therapy",
+  manual: "Manual Therapy",
+  senior: "Senior Care",
+  surgery: "Post-Surgery Recovery",
+  online: "Online Consultation",
+  others: "Others",
 };
+
+const COUNTRY_CODES = [
+  { code: "+971", country: "UAE", flag: "🇦🇪" },
+  { code: "+91", country: "IN", flag: "🇮🇳" },
+  { code: "+44", country: "UK", flag: "🇬🇧" },
+  { code: "+1", country: "US", flag: "🇺🇸" },
+  { code: "+966", country: "SA", flag: "🇸🇦" },
+  { code: "+974", country: "QA", flag: "🇶🇦" },
+  { code: "+968", country: "OM", flag: "🇴🇲" },
+  { code: "+965", country: "KW", flag: "🇰🇼" },
+  { code: "+973", country: "BH", flag: "🇧🇭" },
+  { code: "+61", country: "AU", flag: "🇦🇺" },
+  { code: "+1", country: "CA", flag: "🇨🇦" },
+  { code: "+49", country: "DE", flag: "🇩🇪" },
+] as const;
+
+type CountryCode = (typeof COUNTRY_CODES)[number]["code"];
 
 // Interface for slot availability - commented out for now
 // interface SlotAvailability {
@@ -57,8 +82,10 @@ const serviceLabels: Record<ServiceType, string> = {
 interface FormData {
   name: string;
   email: string;
+  countryCode: CountryCode;
   phone: string;
   service: ServiceType | "";
+
   date: string;
   timeSlot: TimeSlot | "";
   message: string;
@@ -70,8 +97,10 @@ export function AppointmentSection() {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
+    countryCode: "+971",
     phone: "",
     service: "",
+
     date: "",
     timeSlot: "",
     message: "",
@@ -79,6 +108,22 @@ export function AppointmentSection() {
 
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errors, setErrors] = useState<string[]>([]);
+  const [showCountryDropdown, setShowCountryDropdown] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setShowCountryDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   // const [slots, setSlots] = useState<SlotAvailability[]>([]);
   // const [loadingSlots, setLoadingSlots] = useState(false);
   const [bookedAppointment, setBookedAppointment] = useState<{
@@ -95,6 +140,8 @@ export function AppointmentSection() {
     "manual",
     "senior",
     "surgery",
+    "online",
+    "others",
   ];
 
   // Get minimum date (today)
@@ -142,7 +189,7 @@ export function AppointmentSection() {
   const timeSlotOptions = [
     { slot: "morning", label: "Morning (9AM-12PM)" },
     { slot: "afternoon", label: "Afternoon (12PM-5PM)" },
-    { slot: "evening", label: "Evening (5PM-10PM)" },
+    { slot: "evening", label: "Evening (5PM-7PM)" },
   ];
 
   // Client-side validation
@@ -157,8 +204,9 @@ export function AppointmentSection() {
       validationErrors.push("Please provide a valid email address");
     }
 
-    if (formData.phone && !/^[\d\s\-+()]{10,}$/.test(formData.phone)) {
-      validationErrors.push("Please provide a valid phone number");
+    const cleanPhone = formData.phone.replace(/\D/g, "");
+    if (!cleanPhone || cleanPhone.length !== 10) {
+      validationErrors.push("Please provide a valid 10-digit phone number");
     }
 
     if (!formData.service) {
@@ -199,8 +247,11 @@ export function AppointmentSection() {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          phone: formData.phone || undefined,
+          phone: formData.phone
+            ? `${formData.countryCode}${formData.phone}`
+            : undefined,
           service: formData.service,
+
           date: formData.date,
           timeSlot: formData.timeSlot,
           message: formData.message || undefined,
@@ -221,6 +272,7 @@ export function AppointmentSection() {
         setFormData({
           name: "",
           email: "",
+          countryCode: "+971",
           phone: "",
           service: "",
           date: "",
@@ -340,7 +392,7 @@ export function AppointmentSection() {
             {/* Contact Quick Links */}
             <div className="flex items-center gap-6">
               <a
-                href={`tel:${siteConfig.contact.phone.replace(/[^0-9+]/g, '')}`}
+                href={`tel:${siteConfig.contact.phone.replace(/[^0-9+]/g, "")}`}
                 className="group flex items-center gap-2"
               >
                 <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-seafoam/20 transition-colors">
@@ -349,12 +401,14 @@ export function AppointmentSection() {
                 <div>
                   <p className="text-white text-sm font-medium">Call Us</p>
                   <div className="flex items-center gap-2">
-                    <img 
-                      src="/logo/ae_flag.svg" 
-                      alt="UAE Flag" 
-                      className="w-6 h-auto rounded shadow-sm border border-white/20" 
+                    <img
+                      src="/logo/ae_flag.svg"
+                      alt="UAE Flag"
+                      className="w-6 h-auto rounded shadow-sm border border-white/20"
                     />
-                    <p className="text-white/50 text-xs">{siteConfig.contact.phone}</p>
+                    <p className="text-white/50 text-xs">
+                      {siteConfig.contact.phone}
+                    </p>
                   </div>
                 </div>
               </a>
@@ -365,7 +419,9 @@ export function AppointmentSection() {
                 </div>
                 <div>
                   <p className="text-white text-sm font-medium">Hours</p>
-                  <p className="text-white/50 text-xs">{siteConfig.contact.timing.split(' ').slice(0, 2).join('')}</p>
+                  <p className="text-white/50 text-xs">
+                    {siteConfig.contact.timing}
+                  </p>
                 </div>
               </div>
             </div>
@@ -481,8 +537,8 @@ export function AppointmentSection() {
                       )}
                     </AnimatePresence>
 
-                    {/* Name, Email, Phone Row */}
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                    {/* Name & Email Row */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div className="relative">
                         <div className="absolute left-3 top-1/2 -translate-y-1/2">
                           <User className="w-4 h-4 text-forest/30" />
@@ -496,7 +552,7 @@ export function AppointmentSection() {
                             setFormData({ ...formData, name: e.target.value })
                           }
                           disabled={status === "loading"}
-                          className="w-full pl-9 pr-3 py-2.5 bg-section/40 border-0 rounded-lg text-sm sm:text-xs text-forest placeholder:text-forest/40 focus:outline-none focus:ring-2 focus:ring-seafoam/30 disabled:opacity-50"
+                          className="w-full pl-9 pr-3 py-3 bg-section/40 border-0 rounded-xl text-sm text-forest placeholder:text-forest/40 focus:outline-none focus:ring-2 focus:ring-seafoam/30 disabled:opacity-50 transition-all font-medium"
                         />
                       </div>
                       <div className="relative">
@@ -512,32 +568,117 @@ export function AppointmentSection() {
                             setFormData({ ...formData, email: e.target.value })
                           }
                           disabled={status === "loading"}
-                          className="w-full pl-9 pr-3 py-2.5 bg-section/40 border-0 rounded-lg text-sm sm:text-xs text-forest placeholder:text-forest/40 focus:outline-none focus:ring-2 focus:ring-seafoam/30 disabled:opacity-50"
-                        />
-                      </div>
-                      <div className="relative">
-                        <div className="absolute left-3 top-1/2 -translate-y-1/2">
-                          <Phone className="w-4 h-4 text-forest/30" />
-                        </div>
-                        <input
-                          type="tel"
-                          placeholder="Phone"
-                          value={formData.phone}
-                          onChange={(e) =>
-                            setFormData({ ...formData, phone: e.target.value })
-                          }
-                          disabled={status === "loading"}
-                          className="w-full pl-9 pr-3 py-2.5 bg-section/40 border-0 rounded-lg text-sm sm:text-xs text-forest placeholder:text-forest/40 focus:outline-none focus:ring-2 focus:ring-seafoam/30 disabled:opacity-50"
+                          className="w-full pl-9 pr-3 py-3 bg-section/40 border-0 rounded-xl text-sm text-forest placeholder:text-forest/40 focus:outline-none focus:ring-2 focus:ring-seafoam/30 disabled:opacity-50 transition-all font-medium"
                         />
                       </div>
                     </div>
 
+                    {/* Phone Row - Now full width for better space */}
+                    <div className="relative group/phone">
+                      {/* Country Code Selection */}
+                      <div className="absolute left-[3px] top-[1px] bottom-[1px] z-20">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setShowCountryDropdown(!showCountryDropdown)
+                          }
+                          disabled={status === "loading"}
+                          className="flex items-center gap-1.5 h-full px-3 rounded-xl hover:bg-forest/5 transition-colors text-forest"
+                        >
+                          <span className="text-xl leading-none">
+                            {
+                              COUNTRY_CODES.find(
+                                (c) => c.code === formData.countryCode,
+                              )?.flag
+                            }
+                          </span>
+                          <span className="text-xs font-bold font-mono">
+                            {formData.countryCode}
+                          </span>
+                          <ChevronDown
+                            className={cn(
+                              "w-3.5 h-3.5 text-forest/40 transition-transform duration-300",
+                              showCountryDropdown && "rotate-180",
+                            )}
+                          />
+                        </button>
+
+                        <AnimatePresence>
+                          {showCountryDropdown && (
+                            <motion.div
+                              initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                              animate={{ opacity: 1, y: 0, scale: 1 }}
+                              exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                              className="absolute top-full left-0 mt-3 w-56 max-h-72 overflow-y-auto bg-white rounded-2xl shadow-[0_20px_50px_rgba(0,45,4,0.15)] border border-forest/5 p-2 z-[60] scroller-hide"
+                            >
+                              <div className="px-2 py-1.5 mb-1.5 border-b border-forest/5">
+                                <span className="text-[10px] font-bold uppercase tracking-widest text-forest/40">
+                                  Select Country
+                                </span>
+                              </div>
+                              {COUNTRY_CODES.map((country) => (
+                                <button
+                                  key={`${country.country}-${country.code}`}
+                                  type="button"
+                                  onClick={() => {
+                                    setFormData({
+                                      ...formData,
+                                      countryCode: country.code,
+                                    });
+                                    setShowCountryDropdown(false);
+                                  }}
+                                  className={cn(
+                                    "flex items-center justify-between w-full p-2.5 rounded-xl text-left transition-all",
+                                    formData.countryCode === country.code
+                                      ? "bg-forest/5 text-forest"
+                                      : "hover:bg-forest/5 text-forest/70 hover:translate-x-0.5",
+                                  )}
+                                >
+                                  <div className="flex items-center gap-3">
+                                    <span className="text-xl">
+                                      {country.flag}
+                                    </span>
+                                    <div className="flex flex-col">
+                                      <span className="text-xs font-bold">
+                                        {country.country}
+                                      </span>
+                                    </div>
+                                  </div>
+                                  <span className="text-[10px] font-mono text-forest/40 bg-forest/5 px-1.5 py-0.5 rounded">
+                                    {country.code}
+                                  </span>
+                                </button>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                      <input
+                        type="tel"
+                        placeholder="Phone Number *"
+                        required
+                        value={formData.phone}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            phone: e.target.value.replace(/[^\d\s\-+()]/g, ""),
+                          })
+                        }
+                        disabled={status === "loading"}
+                        className={cn(
+                          "w-full pr-4 py-3.5 bg-section/40 border-0 rounded-xl text-sm sm:text-base text-forest placeholder:text-forest/30 focus:outline-none focus:ring-2 focus:ring-seafoam/30 disabled:opacity-50 transition-all font-medium",
+                          // Padding left adjustment: [Flag + Code + Chevron] needs ~110px
+                          "pl-[115px]",
+                        )}
+                      />
+                    </div>
                     {/* Service Selection Grid */}
+
                     <div>
                       <p className="text-[10px] text-forest/50 uppercase tracking-wider font-medium mb-2">
                         Select Service *
                       </p>
-                      <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-1.5">
+                      <div className="grid grid-cols-4 sm:grid-cols-4 gap-2 sm:gap-1.5">
                         {services.map((service) => {
                           const IconComponent = serviceIconMap[service];
                           return (
@@ -646,7 +787,7 @@ export function AppointmentSection() {
                         </>
                       ) : (
                         <>
-                          <span>Book Free Assessment</span>
+                          <span>Book Assessment</span>
                           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                         </>
                       )}
@@ -660,9 +801,9 @@ export function AppointmentSection() {
                       <span className="flex items-center gap-1 text-[10px] text-forest/40">
                         <Star className="w-3 h-3" /> 5-Star
                       </span>
-                      <span className="flex items-center gap-1 text-[10px] text-forest/40">
+                      {/* <span className="flex items-center gap-1 text-[10px] text-forest/40">
                         <Check className="w-3 h-3" /> Free
-                      </span>
+                      </span> */}
                     </div>
                   </motion.form>
                 )}

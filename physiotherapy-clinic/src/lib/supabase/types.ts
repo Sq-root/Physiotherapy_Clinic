@@ -7,7 +7,8 @@ export type Json =
   | Json[];
 
 export type AppointmentStatus = 'pending' | 'confirmed' | 'cancelled' | 'completed';
-export type ServiceType = 'ortho' | 'sports' | 'neuro' | 'manual' | 'senior' | 'surgery';
+export type ServiceType = 'ortho' | 'sports' | 'neuro' | 'manual' | 'senior' | 'surgery' | 'online' | 'others';
+
 export type TimeSlot = 'morning' | 'afternoon' | 'evening';
 
 export interface Database {

@@ -30,19 +30,19 @@ export const siteConfig = {
         phone: '+971 50 412 0369',
         whatsapp: '+971 50 412 0369',
         address: {
-            line1: '123 Healing Avenue',
-            line2: 'Wellness District',
+            line1: '',
+            line2: '',
             city: 'Dubai, United Arab Emirates',
-            zip: 'PO Box 12345'
+            zip: ''
         },
-        timing: 'Mon-Sat: 9:00 AM - 8:00 PM',
+        timing: 'Mon-Sat: 9:00 AM - 7:00 PM',
     },
 
     socialLinks: {
-        facebook: 'https://facebook.com',
-        instagram: 'https://instagram.com',
+        facebook: 'https://www.facebook.com/share/1Bs4aqivhy/?mibextid=wwXIfr',
+        instagram: 'https://www.instagram.com/drishashah_uae?igsh=MTRxanlzYTNycGppcw%3D%3D&utm_source=qr',
         twitter: 'https://twitter.com',
-        linkedin: 'https://linkedin.com',
+        linkedin: 'https://www.linkedin.com/in/dr-isha-shah-442395237?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',
         youtube: 'https://youtube.com',
     }
 } as const;
