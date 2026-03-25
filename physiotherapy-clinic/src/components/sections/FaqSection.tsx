@@ -15,106 +15,41 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { siteConfig } from "@/config/site";
+import { useTranslations, useLocale } from "next-intl";
+import { Link } from "@/i18n/routing";
 
 const categoryIconMap = {
-  "getting-started": Rocket,
-  treatment: User,
-  insurance: CreditCard,
-  aftercare: Sparkles,
+  "gettingStarted": Rocket,
+  "treatment": User,
+  "insurance": CreditCard,
+  "aftercare": Sparkles,
 };
 
 export function FaqSection() {
   const [activeCategory, setActiveCategory] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  
+  const t = useTranslations("faq");
+  const tCommon = useTranslations("common");
+  const locale = useLocale();
+  const isRTL = locale === "ar";
 
+  // Category configuration with translation keys
   const categories = [
-    {
-      id: "getting-started",
-      label: "Getting Started",
-      faqs: [
-        {
-          question: "Do I need a referral to book an appointment?",
-          answer:
-            "No referral is necessary. You can book directly through our website or by calling our clinic. We welcome self-referrals and work with most health insurance providers.",
-        },
-        {
-          question: "What should I bring to my first visit?",
-          answer:
-            "Please bring your ID, insurance card, any relevant medical records or imaging results, and a list of current medications. Comfortable clothing is recommended.",
-        },
-        {
-          question: "How do I schedule an appointment?",
-          answer:
-            "You can book online through our website, call us directly, or use our mobile app. Same-day appointments are often available for urgent cases.",
-        },
-      ],
-    },
-    {
-      id: "treatment",
-      label: "Treatment",
-      faqs: [
-        {
-          question: "How long does each session typically last?",
-          answer:
-            "Initial assessments are 60 minutes. Follow-up treatment sessions are usually 45-60 minutes depending on your condition and treatment plan.",
-        },
-        {
-          question: "Is physiotherapy treatment painful?",
-          answer:
-            "Physiotherapy should not be significantly painful. You may experience mild discomfort during treatment as we work on tight or injured tissues, but we always work within your comfort level.",
-        },
-        {
-          question: "What should I wear to my session?",
-          answer:
-            "Wear comfortable, loose-fitting clothing that allows easy access to the area being treated. For lower body issues, shorts work best. For upper body, a tank top or loose t-shirt is ideal.",
-        },
-      ],
-    },
-    {
-      id: "insurance",
-      label: "Insurance & Cost",
-      faqs: [
-        {
-          question: "Do you accept insurance?",
-          answer:
-            "Yes, we accept most major insurance plans. Contact our office with your insurance information and we'll verify your coverage and benefits before your appointment.",
-        },
-        {
-          question: "What are your payment options?",
-          answer:
-            "We accept cash, major credit & debit cards and Bank Transfer. Payment plans are available for those without insurance coverage.",
-        },
-        {
-          question: "Will my insurance cover all treatments?",
-          answer:
-            "Coverage varies by plan. Most insurance covers a certain number of physical therapy visits per year. We'll help you understand your benefits during your first visit.",
-        },
-      ],
-    },
-    {
-      id: "aftercare",
-      label: "Recovery & Aftercare",
-      faqs: [
-        {
-          question: "How many sessions will I need?",
-          answer:
-            "This varies widely depending on your condition. Some patients see significant improvement in 4-6 sessions, while chronic or complex conditions may require longer treatment plans.",
-        },
-        {
-          question: "Will I get exercises to do at home?",
-          answer:
-            "Yes! Home exercises are a crucial part of your recovery. We provide personalized exercise programs and can send video demonstrations to your phone.",
-        },
-        {
-          question: "Is physiotherapy the same as chiropractic care?",
-          answer:
-            "While there are overlaps, physiotherapy focuses on rehabilitation, movement re-education, and exercise therapy in addition to manual techniques, offering a more comprehensive approach.",
-        },
-      ],
-    },
+    { id: "gettingStarted", key: "gettingStarted" },
+    { id: "treatment", key: "treatment" },
+    { id: "insurance", key: "insurance" },
+    { id: "aftercare", key: "aftercare" },
   ];
 
-  const activeFaqs = categories[activeCategory].faqs;
+  // Get translated category content
+  const getCategoryContent = (key: string) => ({
+    label: t(`categories.${key}.label`),
+    faqs: t.raw(`categories.${key}.faqs`) as Array<{ question: string; answer: string }>,
+  });
+
+  const activeContent = getCategoryContent(categories[activeCategory].key);
+  const activeFaqs = activeContent.faqs;
 
   return (
     <section
@@ -150,16 +85,15 @@ export function FaqSection() {
               <span className="text-seafoam text-sm">?</span>
             </div>
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-seafoam">
-              FAQ
+              {t("badge")}
             </span>
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-sans text-forest font-semibold leading-[1.1] tracking-tight mb-4">
-            Questions?{" "}
-            <span className="text-seafoam">We&apos;ve Got Answers</span>
+            {t("title")}{" "}
+            <span className="text-seafoam">{t("titleHighlight")}</span>
           </h2>
           <p className="text-forest/60 text-sm md:text-base max-w-2xl mx-auto">
-            Everything you need to know about your recovery journey at{" "}
-            {siteConfig.name}
+            {t("description")}
           </p>
         </motion.div>
 
@@ -168,7 +102,9 @@ export function FaqSection() {
           {/* Left - Category Tabs */}
           <div className="lg:col-span-4">
             <div className="lg:sticky lg:top-24 space-y-3">
-              {categories.map((category, index) => (
+              {categories.map((category, index) => {
+                const categoryContent = getCategoryContent(category.key);
+                return (
                 <motion.button
                   key={category.id}
                   onClick={() => {
@@ -180,7 +116,7 @@ export function FaqSection() {
                       ? "bg-forest text-white shadow-lg"
                       : "bg-section hover:bg-forest/5 border border-transparent hover:border-forest/10"
                   }`}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
@@ -210,7 +146,7 @@ export function FaqSection() {
                             : "text-forest"
                         }`}
                       >
-                        {category.label}
+                        {categoryContent.label}
                       </h3>
                       <p
                         className={`text-xs ${
@@ -219,17 +155,17 @@ export function FaqSection() {
                             : "text-forest/50"
                         }`}
                       >
-                        {category.faqs.length} questions
+                        {categoryContent.faqs.length} questions
                       </p>
                     </div>
                     <ChevronDown
                       className={`w-5 h-5 transition-transform ${
-                        activeCategory === index ? "rotate-0" : "-rotate-90"
+                        activeCategory === index ? "rotate-0" : isRTL ? "rotate-90" : "-rotate-90"
                       } ${activeCategory === index ? "text-seafoam" : "text-forest/30"}`}
                     />
                   </div>
                 </motion.button>
-              ))}
+              );})}
 
               {/* Contact Card */}
               <motion.div
@@ -245,20 +181,20 @@ export function FaqSection() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-forest text-sm">
-                      Still have questions?
+                      {t("stillHaveQuestions")}
                     </h4>
                     <p className="text-forest/60 text-xs">
-                      Our team is here to help
+                      {t("description")}
                     </p>
                   </div>
                 </div>
-                <a
+                <Link
                   href="/contact"
                   className="inline-flex items-center gap-2 w-full justify-center px-4 py-2.5 bg-forest text-white rounded-full text-sm font-medium hover:bg-forest/90 transition-colors"
                 >
-                  Contact Support
-                  <ArrowRight className="w-4 h-4" />
-                </a>
+                  {t("contactUs")}
+                  <ArrowRight className={`w-4 h-4 ${isRTL ? 'rotate-180' : ''}`} />
+                </Link>
               </motion.div>
             </div>
           </div>
@@ -288,10 +224,10 @@ export function FaqSection() {
                   })()}
                   <div>
                     <h3 className="text-xl md:text-2xl font-bold text-forest">
-                      {categories[activeCategory].label}
+                      {activeContent.label}
                     </h3>
                     <p className="text-forest/60 text-sm">
-                      {categories[activeCategory].faqs.length} frequently asked
+                      {activeContent.faqs.length} frequently asked
                       questions
                     </p>
                   </div>

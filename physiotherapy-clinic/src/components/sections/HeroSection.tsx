@@ -1,56 +1,57 @@
-"use client";
+'use client';
 
-import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
-import { siteConfig } from "@/config/site";
+import { useState, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
+import { useTranslations, useLocale } from 'next-intl';
+import { siteConfig } from '@/config/site';
 
-const slides = [
+// Slide keys that map to translation keys
+type SlideKey = 'sportsRecovery' | 'seniorCare' | 'painRelief' | 'postSurgery';
+
+interface HeroSlide {
+  id: number;
+  key: SlideKey;
+  image: string;
+  imagePosition: string;
+}
+
+const slides: HeroSlide[] = [
   {
     id: 1,
-    badge: "Sports Recovery",
-    title: "Get Back To",
-    highlight: "Peak Performance",
-    description:
-      "Professional sports rehabilitation designed to get athletes back in the game faster with evidence-based treatment protocols.",
-    image: "/services/IMG_0114.webp",
-    imagePosition: "object-center",
+    key: 'sportsRecovery',
+    image: '/services/IMG_0114.webp',
+    imagePosition: 'object-center',
   },
   {
     id: 2,
-    badge: "Senior Care",
-    title: "Strength & Mobility Therapy",
-    highlight: "For Active Aging",
-    description:
-      "Specialized physiotherapy programs to maintain mobility,reduce fear of fall, and improve quality of life for seniors.",
-    image: "/services/senior_care.webp",
-    imagePosition: "object-[75%_center] sm:object-center",
+    key: 'seniorCare',
+    image: '/services/senior_care.webp',
+    imagePosition: 'object-[75%_center] sm:object-center',
   },
   {
     id: 3,
-    badge: "Pain Relief",
-    title: "End Chronic",
-    highlight: "Back & Neck Pain",
-    description:
-      "Advanced manual therapy techniques combined with therapeutic exercises to eliminate persistent pain at its source.",
-    image: "/services/Neck_pain.webp",
-    imagePosition: "object-right sm:object-center", // Adjust back/neck pain image to right side focal point for mobile view
+    key: 'painRelief',
+    image: '/services/Neck_pain.webp',
+    imagePosition: 'object-right sm:object-center',
   },
   {
     id: 4,
-    badge: "Post Surgery",
-    title: "Accelerate Your",
-    highlight: "Recovery Journey",
-    description:
-      "Comprehensive post-operative rehabilitation to restore function, rebuild strength, and get you back to daily activities.",
-    image: "/services/IMG_0124.webp",
-    imagePosition: "object-center",
+    key: 'postSurgery',
+    image: '/services/IMG_0124.webp',
+    imagePosition: 'object-center',
   },
 ];
 
 export function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  
+  // i18n hooks
+  const t = useTranslations('hero');
+  const tSupport = useTranslations('support');
+  const locale = useLocale();
+  const isRTL = locale === 'ar';
 
   const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -69,6 +70,7 @@ export function HeroSection() {
   }, [isAutoPlaying, nextSlide]);
 
   const slide = slides[currentSlide];
+  const slideKey = slide.key;
 
   return (
     <section className="relative h-screen min-h-[600px] max-h-[900px] overflow-hidden">
@@ -82,20 +84,22 @@ export function HeroSection() {
           transition={{ duration: 1, ease: "easeInOut" }}
           className="absolute inset-0 z-0"
         >
-          <img
+          <Image
             src={slide.image}
-            alt={slide.title}
-            className={`w-full h-full object-cover transition-all duration-700 ${slide.imagePosition}`}
+            alt={t(`slides.${slideKey}.title`)}
+            fill
+            priority
+            className={`object-cover transition-all duration-700 ${slide.imagePosition}`}
           />
-          {/* Gradient Overlays */}
-          <div className="absolute inset-0 bg-gradient-to-r from-forest/90 via-forest/60 to-transparent"></div>
+          {/* Gradient Overlays - RTL aware */}
+          <div className={`absolute inset-0 ${isRTL ? 'bg-gradient-to-l' : 'bg-gradient-to-r'} from-forest/90 via-forest/60 to-transparent`}></div>
           <div className="absolute inset-0 bg-gradient-to-t from-forest/50 via-transparent to-forest/30"></div>
         </motion.div>
       </AnimatePresence>
 
       {/* Decorative Elements */}
-      <div className="absolute top-20 left-10 w-32 h-32 border border-white/10 rounded-full pointer-events-none hidden lg:block"></div>
-      <div className="absolute bottom-40 left-20 w-20 h-20 border border-seafoam/20 rounded-full pointer-events-none hidden lg:block"></div>
+      <div className={`absolute top-20 ${isRTL ? 'right-10' : 'left-10'} w-32 h-32 border border-white/10 rounded-full pointer-events-none hidden lg:block`}></div>
+      <div className={`absolute bottom-40 ${isRTL ? 'right-20' : 'left-20'} w-20 h-20 border border-seafoam/20 rounded-full pointer-events-none hidden lg:block`}></div>
 
       {/* Main Content */}
       <div className="relative z-20 h-full flex items-center">
@@ -105,16 +109,16 @@ export function HeroSection() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={`badge-${slide.id}`}
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 20 }}
+                exit={{ opacity: 0, x: isRTL ? -20 : 20 }}
                 transition={{ duration: 0.5 }}
                 className="flex items-center gap-3 mb-6"
               >
                 <div className="w-10 h-[2px] bg-seafoam"></div>
                 <span className="inline-flex items-center gap-2 text-seafoam text-xs font-bold uppercase tracking-[0.2em]">
                   <span className="w-2 h-2 bg-seafoam rounded-full animate-pulse"></span>
-                  {slide.badge}
+                  {t(`slides.${slideKey}.badge`)}
                 </span>
               </motion.div>
             </AnimatePresence>
@@ -129,9 +133,9 @@ export function HeroSection() {
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-bold text-white leading-[1.1] mb-6">
-                  {slide.title}
+                  {t(`slides.${slideKey}.title`)}
                   <br />
-                  <span className="text-seafoam">{slide.highlight}</span>
+                  <span className="text-seafoam">{t(`slides.${slideKey}.highlight`)}</span>
                 </h1>
               </motion.div>
             </AnimatePresence>
@@ -146,7 +150,7 @@ export function HeroSection() {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="text-white/80 text-base sm:text-lg md:text-xl max-w-xl leading-relaxed mb-8"
               >
-                {slide.description}
+                {t(`slides.${slideKey}.description`)}
               </motion.p>
             </AnimatePresence>
 
@@ -220,7 +224,7 @@ export function HeroSection() {
                   {siteConfig.social.livesRestored}
                 </p>
                 <p className="text-white/60 text-xs uppercase tracking-wider">
-                  Lives Restored
+                  {tSupport('stats.patients')}
                 </p>
               </div>
               <div className="w-px h-12 bg-white/20"></div>
@@ -229,7 +233,7 @@ export function HeroSection() {
                   {siteConfig.social.yearsExperience}
                 </p>
                 <p className="text-white/60 text-xs uppercase tracking-wider">
-                  Years Experience
+                  {tSupport('stats.yearsExperience')}
                 </p>
               </div>
               <div className="w-px h-12 bg-white/20 hidden sm:block"></div>
@@ -238,7 +242,7 @@ export function HeroSection() {
                   {siteConfig.social.recoveryRate}
                 </p>
                 <p className="text-white/60 text-xs uppercase tracking-wider">
-                  Success Rate
+                  {tSupport('stats.success')}
                 </p>
               </div>
             </motion.div>
@@ -246,13 +250,13 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Slide Navigation Dots - Right Side */}
-      <div className="absolute right-6 lg:right-10 top-1/2 -translate-y-1/2 z-30 flex flex-col gap-4">
+      {/* Slide Navigation Dots */}
+      <div className={`absolute ${isRTL ? 'left-6 lg:left-10' : 'right-6 lg:right-10'} top-1/2 -translate-y-1/2 z-30 flex flex-col gap-4`}>
         {slides.map((s, i) => (
           <button
             key={s.id}
             onClick={() => goToSlide(i)}
-            className={`group relative flex items-center justify-end transition-all duration-300 ${
+            className={`group relative flex items-center ${isRTL ? 'flex-row-reverse justify-start' : 'justify-end'} transition-all duration-300 ${
               currentSlide === i ? "gap-3" : "gap-0"
             }`}
             aria-label={`Go to slide ${i + 1}`}
@@ -262,10 +266,10 @@ export function HeroSection() {
               className={`text-white text-xs font-medium whitespace-nowrap transition-all duration-300 ${
                 currentSlide === i
                   ? "opacity-100 translate-x-0"
-                  : "opacity-0 translate-x-4 group-hover:opacity-70 group-hover:translate-x-0"
+                  : `opacity-0 ${isRTL ? '-translate-x-4' : 'translate-x-4'} group-hover:opacity-70 group-hover:translate-x-0`
               }`}
             >
-              {s.badge}
+              {t(`slides.${s.key}.badge`)}
             </span>
             {/* Dot */}
             <span
@@ -288,17 +292,6 @@ export function HeroSection() {
         ))}
       </div>
 
-      {/* Progress Bar */}
-      {/* <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/10 z-30">
-        <motion.div
-          key={currentSlide}
-          initial={{ width: '0%' }}
-          animate={{ width: '100%' }}
-          transition={{ duration: 6, ease: 'linear' }}
-          className="h-full bg-seafoam"
-        />
-      </div> */}
-
       {/* Curved Bottom Edge */}
       <div className="absolute -bottom-1 left-0 right-0 z-20">
         <svg
@@ -315,7 +308,7 @@ export function HeroSection() {
       </div>
 
       {/* Slide Counter */}
-      <div className="absolute bottom-20 md:bottom-28 left-6 lg:left-8 z-30 flex items-center gap-3 text-white/60 text-sm font-medium">
+      <div className={`absolute bottom-20 md:bottom-28 ${isRTL ? 'right-6 lg:right-8' : 'left-6 lg:left-8'} z-30 flex items-center gap-3 text-white/60 text-sm font-medium`}>
         <span className="text-2xl font-bold text-white">
           {String(currentSlide + 1).padStart(2, "0")}
         </span>

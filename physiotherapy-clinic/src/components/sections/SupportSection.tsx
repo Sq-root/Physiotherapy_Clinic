@@ -1,9 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { Target, FlaskConical, Heart } from "lucide-react";
 import { siteConfig } from "@/config/site";
+import { useTranslations, useLocale } from "next-intl";
+import { Link } from "@/i18n/routing";
 
 const highlightIconMap = {
   0: Target,
@@ -12,6 +13,10 @@ const highlightIconMap = {
 };
 
 export function SupportSection() {
+  const t = useTranslations("support");
+  const locale = useLocale();
+  const isRTL = locale === "ar";
+
   const fadeInUp = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -22,9 +27,9 @@ export function SupportSection() {
   };
 
   const highlights = [
-    { label: "Global Standard Of Care" },
-    { label: "Personalized (Evidence-based)" },
-    { label: "Outcome-driven Rehabilitation" },
+    { label: t("highlights.globalStandard") },
+    { label: t("highlights.personalized") },
+    { label: t("highlights.outcomeDriven") },
   ];
 
   return (
@@ -78,11 +83,11 @@ export function SupportSection() {
                 <div className="inline-flex items-center gap-1.5 bg-seafoam/10 rounded-full px-2.5 py-1 mb-2">
                   <span className="w-1.5 h-1.5 bg-seafoam rounded-full"></span>
                   <span className="text-seafoam text-[9px] font-semibold tracking-wider uppercase">
-                    Why Us
+                    {t("badge")}
                   </span>
                 </div>
                 <h2 className="text-base font-bold text-forest leading-tight">
-                  Precision Physiotherapy for Lasting Recovery
+                  {t("title")} {t("titleHighlight")}
                 </h2>
               </div>
             </div>
@@ -207,22 +212,19 @@ export function SupportSection() {
             <div className="flex items-center gap-3 mb-5">
               <div className="w-10 h-[2px] bg-seafoam"></div>
               <span className="text-seafoam text-xs font-bold uppercase tracking-[0.2em]">
-                Why Choose Us
+                {t("badge")}
               </span>
             </div>
 
             {/* Heading */}
             <h2 className="text-3xl lg:text-4xl xl:text-5xl font-sans text-forest leading-[1.15] font-bold tracking-tight mb-6">
-              Precision Physiotherapy for{" "}
-              <span className="text-seafoam">Lasting Recovery</span>
+              {t("title")}{" "}
+              <span className="text-seafoam">{t("titleHighlight")}</span>
             </h2>
 
             {/* Description */}
             <p className="text-forest/70 text-base lg:text-lg mb-8 leading-relaxed">
-              Every session is delivered one-to-one with a focus on identifying
-              the root cause of pain. Through precise assessment and
-              evidence-based rehabilitation, we help you recover faster and move
-              with confidence again.
+              {t("description")}
             </p>
 
             {/* Highlights */}
@@ -295,12 +297,12 @@ export function SupportSection() {
 
               <Link
                 href="/about"
-                className="group inline-flex items-center gap-2 bg-seafoam text-white pl-6 pr-2 py-2.5 rounded-full font-semibold text-sm hover:bg-forest transition-colors duration-300"
+                className={`group inline-flex items-center gap-2 bg-seafoam text-white ${isRTL ? 'pr-6 pl-2' : 'pl-6 pr-2'} py-2.5 rounded-full font-semibold text-sm hover:bg-forest transition-colors duration-300`}
               >
-                <span>Meet Our Team</span>
+                <span>{t("cta")}</span>
                 <span className="size-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
                   <svg
-                    className="w-4 h-4"
+                    className={`w-4 h-4 ${isRTL ? 'rotate-180' : ''}`}
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"

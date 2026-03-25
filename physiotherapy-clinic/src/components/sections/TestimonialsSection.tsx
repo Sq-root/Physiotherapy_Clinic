@@ -5,10 +5,15 @@ import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { useState } from 'react';
 import { Check, ArrowUpRight, Heart, Star, Zap, Trophy } from 'lucide-react';
 import { siteConfig } from '@/config/site';
+import { useTranslations, useLocale } from 'next-intl';
 
 export function TestimonialsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const featuredTestimonial = testimonials[activeIndex];
+  
+  const t = useTranslations('testimonials');
+  const locale = useLocale();
+  const isRTL = locale === 'ar';
   
   const fadeInUp: Variants = {
     hidden: { opacity: 0, y: 30 },
@@ -29,8 +34,8 @@ export function TestimonialsSection() {
 
   // Trust indicators for credibility
   const trustBadges = [
-    { Icon: Check, label: 'Verified Patient' },
-    { Icon: ArrowUpRight, label: 'Full Recovery' },
+    { Icon: Check, label: t('trustBadges.verified') },
+    { Icon: ArrowUpRight, label: t('trustBadges.fullRecovery') },
   ];
 
   return (
@@ -56,15 +61,15 @@ export function TestimonialsSection() {
         >
           <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 bg-lime/10 rounded-full px-4 py-2 mb-6">
             <span className="w-2 h-2 bg-lime rounded-full animate-pulse"></span>
-            <span className="text-forest/80 text-xs font-semibold tracking-wider uppercase">Patient Success Stories</span>
+            <span className="text-forest/80 text-xs font-semibold tracking-wider uppercase">{t('badge')}</span>
           </motion.div>
           
           <motion.h2 variants={fadeInUp} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-bold text-forest mb-6 tracking-tight">
-            Real <span className="text-seafoam italic font-normal">Transformations</span>
+            {t('title')} <span className="text-seafoam italic font-normal">{t('titleHighlight')}</span>
           </motion.h2>
           
           <motion.p variants={fadeInUp} className="text-forest/60 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            Discover how our patients overcame pain and reclaimed their active lifestyles through personalized physiotherapy care.
+            {t('description')}
           </motion.p>
         </motion.div>
 

@@ -1,19 +1,42 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState, useCallback } from "react";
-import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-import { Leaf, Sparkles } from "lucide-react";
+import { Leaf, Sparkles, Globe } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { Logo } from "@/components/ui/Logo";
+import { useTranslations, useLocale } from "next-intl";
+import { Link, usePathname, useRouter } from "@/i18n/routing";
+import { localeNames, localeFlags, type Locale } from "@/i18n/config";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeHash, setActiveHash] = useState("");
+  const [showLangMenu, setShowLangMenu] = useState(false);
+  
   const pathname = usePathname();
+  const router = useRouter();
+  const t = useTranslations("nav");
+  const tCommon = useTranslations("common");
+  const locale = useLocale() as Locale;
+  const isRTL = locale === "ar";
+
+  // Navigation items with translated labels
+  const navItems = [
+    { href: "/", label: t("home") },
+    { href: "/services", label: t("services") },
+    { href: "/about", label: t("aboutUs") },
+    { href: "/faq", label: t("faq") },
+    { href: "/contact", label: t("contact") },
+  ];
+
+  // Language switcher function
+  const switchLocale = (newLocale: Locale) => {
+    router.replace(pathname, { locale: newLocale });
+    setShowLangMenu(false);
+  };
 
   // Detect active section based on scroll position (for hash links)
   const updateActiveHash = useCallback(() => {
@@ -138,7 +161,7 @@ export function Navbar() {
                       : "bg-white/10 backdrop-blur-sm border border-white/20",
                   )}
                 >
-                  {siteConfig.nav.map((link) => {
+                  {navItems.map((link) => {
                     const isActive =
                       activeLinkHref === link.href ||
                       (link.href === "/" && pathname === "/" && !activeHash) ||
@@ -193,7 +216,51 @@ export function Navbar() {
               </nav>
 
               {/* CTA Button - Improved Visibility */}
-              <div className="hidden md:block">
+              <div className="hidden md:flex items-center gap-3">
+                {/* Language Switcher */}
+                <div className="relative">
+                  <button
+                    onClick={() => setShowLangMenu(!showLangMenu)}
+                    className={cn(
+                      "flex items-center gap-2 h-10 px-3 rounded-full text-sm font-medium transition-all duration-300",
+                      useDarkStyle
+                        ? "hover:bg-forest/5 text-forest/70 hover:text-forest"
+                        : "hover:bg-white/10 text-white/80 hover:text-white"
+                    )}
+                  >
+                    <Globe className="w-4 h-4" />
+                    <span className="text-lg">{localeFlags[locale]}</span>
+                  </button>
+                  
+                  <AnimatePresence>
+                    {showLangMenu && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 8, scale: 0.95 }}
+                        transition={{ duration: 0.15 }}
+                        className={`absolute ${isRTL ? 'left-0' : 'right-0'} top-12 bg-white rounded-xl shadow-xl border border-forest/10 overflow-hidden min-w-[140px] z-50`}
+                      >
+                        {(['en', 'ar'] as Locale[]).map((loc) => (
+                          <button
+                            key={loc}
+                            onClick={() => switchLocale(loc)}
+                            className={cn(
+                              "w-full flex items-center gap-3 px-4 py-3 text-sm transition-colors",
+                              locale === loc
+                                ? "bg-seafoam/10 text-seafoam font-medium"
+                                : "text-forest/70 hover:bg-forest/5 hover:text-forest"
+                            )}
+                          >
+                            <span className="text-lg">{localeFlags[loc]}</span>
+                            <span>{localeNames[loc]}</span>
+                          </button>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
                 <motion.div
                   whileHover={{ scale: 1.03, y: -1 }}
                   whileTap={{ scale: 0.97 }}
@@ -208,9 +275,9 @@ export function Navbar() {
                         : "bg-white text-forest hover:bg-white/90 shadow-lg shadow-white/20",
                     )}
                   >
-                    <span>Book Visit</span>
+                    <span>{tCommon("bookAppointment")}</span>
                     <svg
-                      className="w-4 h-4 group-hover:translate-x-0.5 transition-transform"
+                      className={`w-4 h-4 transition-transform ${isRTL ? 'group-hover:-translate-x-0.5 rotate-180' : 'group-hover:translate-x-0.5'}`}
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -309,12 +376,34 @@ export function Navbar() {
               )}
             >
               <div className="p-6">
+                {/* Language Switcher - Mobile */}
+                <div className="flex gap-2 mb-6 pb-4 border-b border-forest/10">
+                  {(['en', 'ar'] as Locale[]).map((loc) => (
+                    <button
+                      key={loc}
+                      onClick={() => {
+                        switchLocale(loc);
+                        setMobileOpen(false);
+                      }}
+                      className={cn(
+                        "flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-sm transition-colors",
+                        locale === loc
+                          ? "bg-seafoam text-white font-medium"
+                          : "bg-forest/5 text-forest/70 hover:bg-forest/10"
+                      )}
+                    >
+                      <span>{localeFlags[loc]}</span>
+                      <span>{localeNames[loc]}</span>
+                    </button>
+                  ))}
+                </div>
+
                 {/* Mobile Nav Links */}
                 <nav className="space-y-1 mb-6">
-                  {siteConfig.nav.map((link, index) => (
+                  {navItems.map((link, index) => (
                     <motion.div
-                      key={link.label}
-                      initial={{ opacity: 0, x: -20 }}
+                      key={link.href}
+                      initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.05 }}
                     >
@@ -327,7 +416,10 @@ export function Navbar() {
                           {link.label}
                         </span>
                         <svg
-                          className="w-4 h-4 text-forest/30 group-hover:text-seafoam group-hover:translate-x-1 transition-all"
+                          className={cn(
+                            "w-4 h-4 text-forest/30 group-hover:text-seafoam transition-all",
+                            isRTL ? "group-hover:-translate-x-1 rotate-180" : "group-hover:translate-x-1"
+                          )}
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -351,13 +443,13 @@ export function Navbar() {
                   transition={{ delay: 0.3 }}
                 >
                   <Link
-                    href="#appointment"
+                    href="/contact"
                     onClick={() => setMobileOpen(false)}
                     className="flex items-center justify-center gap-2 w-full h-12 bg-forest text-white text-sm font-bold uppercase tracking-wider rounded-xl hover:bg-forest/90 transition-colors"
                   >
-                    <span>Book Appointment</span>
+                    <span>{tCommon("bookAppointment")}</span>
                     <svg
-                      className="w-4 h-4"
+                      className={`w-4 h-4 ${isRTL ? 'rotate-180' : ''}`}
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"

@@ -1,0 +1,549 @@
+{
+  "common": {
+    "bookAppointment": "Book Appointment",
+    "learnMore": "Learn More",
+    "viewAll": "View All",
+    "readMore": "Read More",
+    "submit": "Submit",
+    "loading": "Loading...",
+    "success": "Success",
+    "error": "Error",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "followUs": "Follow Us",
+    "quickLinks": "Quick Links",
+    "services": "Services",
+    "contact": "Contact",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "hours": "Hours",
+    "viewServices": "View Services"
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "aboutUs": "About Us"
+  },
+  "hero": {
+    "slides": {
+      "sportsRecovery": {
+        "badge": "Sports Recovery",
+        "title": "Get Back To",
+        "highlight": "Peak Performance",
+        "description": "Professional sports rehabilitation designed to get athletes back in the game faster with evidence-based treatment protocols."
+      },
+      "seniorCare": {
+        "badge": "Senior Care",
+        "title": "Strength & Mobility Therapy",
+        "highlight": "For Active Aging",
+        "description": "Specialized physiotherapy programs to maintain mobility, reduce fear of fall, and improve quality of life for seniors."
+      },
+      "painRelief": {
+        "badge": "Pain Relief",
+        "title": "End Chronic",
+        "highlight": "Back & Neck Pain",
+        "description": "Advanced manual therapy techniques combined with therapeutic exercises to eliminate persistent pain at its source."
+      },
+      "postSurgery": {
+        "badge": "Post Surgery",
+        "title": "Accelerate Your",
+        "highlight": "Recovery Journey",
+        "description": "Comprehensive post-operative rehabilitation to restore function, rebuild strength, and get you back to daily activities."
+      }
+    },
+    "cta": {
+      "book": "Book Now",
+      "explore": "Explore Services"
+    }
+  },
+  "support": {
+    "badge": "Why Us",
+    "title": "Precision Physiotherapy for",
+    "titleHighlight": "Lasting Recovery",
+    "description": "Led by expert therapists, we blend cutting-edge techniques with compassionate care to restore your mobility and well-being.",
+    "highlights": {
+      "globalStandard": "Global Standard Of Care",
+      "personalized": "Personalized (Evidence-based)",
+      "outcomeDriven": "Outcome-driven Rehabilitation"
+    },
+    "cta": "Start Your Recovery →",
+    "stats": {
+      "yearsExperience": "Years Experience",
+      "patients": "Patients",
+      "success": "Success"
+    }
+  },
+  "servicesSection": {
+    "badge": "Our Services",
+    "title": "Expert Care For Every",
+    "titleHighlight": "Recovery Journey",
+    "description": "From sports injuries to chronic conditions, our specialized treatments are designed to restore your mobility and enhance your quality of life.",
+    "viewAllServices": "View All Services",
+    "services": {
+      "orthopedic": {
+        "title": "Orthopedic Rehabilitation",
+        "shortDesc": "Joint & Bone Recovery",
+        "fullDesc": "Comprehensive treatment for musculoskeletal disorders including joint pain, fractures, arthritis management, and post-surgical rehabilitation protocols.",
+        "features": ["Joint Mobilization", "Post-Surgery Care", "Pain Management"]
+      },
+      "sports": {
+        "title": "Sports Medicine & Rehab",
+        "shortDesc": "Athletic Performance",
+        "fullDesc": "Expert rehabilitation for athletes of all levels - from injury diagnosis and treatment to full return-to-sport performance optimization programs.",
+        "features": ["Injury Prevention", "Performance Training", "Sport-Specific Rehab"]
+      },
+      "neurological": {
+        "title": "Neurological Therapy",
+        "shortDesc": "Brain & Nerve Care",
+        "fullDesc": "Compassionate care for neurological conditions including stroke recovery, Parkinson's disease, multiple sclerosis, and spinal cord injuries.",
+        "features": ["Stroke Recovery", "Balance Training", "Motor Control"]
+      },
+      "manual": {
+        "title": "Manual Therapy",
+        "shortDesc": "Hands-On Healing",
+        "fullDesc": "Skilled hands-on techniques including soft tissue mobilization, joint manipulation, and myofascial release for optimal pain relief and mobility.",
+        "features": ["Deep Tissue Work", "Trigger Point Release", "Spinal Adjustment"]
+      },
+      "senior": {
+        "title": "Senior Wellness Program",
+        "shortDesc": "Active Aging",
+        "fullDesc": "Specialized programs for older adults focusing on balance improvement, fall prevention, strength maintenance, and enhanced quality of life.",
+        "features": ["Fall Prevention", "Mobility Enhancement", "Strength Building"]
+      }
+    }
+  },
+  "patientJourney": {
+    "badge": "Your Path to Recovery",
+    "title": "How We Help You",
+    "titleHighlight": "Heal & Thrive",
+    "description": "A proven 4-step process designed to identify, treat, and prevent recurring injuries.",
+    "cta": "Start Your Journey →",
+    "steps": {
+      "assessment": {
+        "title": "Initial Assessment",
+        "shortTitle": "Assess",
+        "desc": "Comprehensive evaluation of your injury history, biomechanics, lifestyle factors, and personal recovery goals.",
+        "duration": "45-60 min"
+      },
+      "plan": {
+        "title": "Treatment Plan",
+        "shortTitle": "Plan",
+        "desc": "Customized therapy program designed specifically for your condition, timeline, and desired outcomes.",
+        "duration": "Personalized"
+      },
+      "therapy": {
+        "title": "Active Therapy",
+        "shortTitle": "Heal",
+        "desc": "Hands-on manual techniques combined with guided exercises to reduce pain and restore function.",
+        "duration": "2-8 weeks"
+      },
+      "recovery": {
+        "title": "Full Recovery",
+        "shortTitle": "Thrive",
+        "desc": "Return to full activity with lasting results, prevention strategies, and ongoing wellness support.",
+        "duration": "Long-term"
+      }
+    },
+    "painPoints": {
+      "neckShoulder": {
+        "title": "Neck & Shoulder",
+        "conditions": ["Stiffness", "Tension", "Whiplash"]
+      },
+      "upperBack": {
+        "title": "Upper Back",
+        "conditions": ["Posture Issues", "Muscle Strain", "Thoracic Pain"]
+      },
+      "lowerBack": {
+        "title": "Lower Back",
+        "conditions": ["Disc Issues", "Sciatica", "Chronic Pain"]
+      },
+      "kneeLeg": {
+        "title": "Knee & Leg",
+        "conditions": ["Sports Injuries", "Arthritis", "Recovery"]
+      }
+    }
+  },
+  "testimonials": {
+    "badge": "Patient Success Stories",
+    "title": "Real",
+    "titleHighlight": "Transformations",
+    "description": "Discover how our patients overcame pain and reclaimed their active lifestyles through personalized physiotherapy care.",
+    "trustBadges": {
+      "verified": "Verified Patient",
+      "fullRecovery": "Full Recovery"
+    }
+  },
+  "faq": {
+    "badge": "Frequently Asked Questions",
+    "title": "Got Questions?",
+    "titleHighlight": "We've Got Answers",
+    "description": "Find answers to common questions about our services, treatments, and what to expect during your recovery journey.",
+    "categories": {
+      "gettingStarted": {
+        "label": "Getting Started",
+        "faqs": [
+          {
+            "question": "Do I need a referral to book an appointment?",
+            "answer": "No referral is necessary. You can book directly through our website or by calling our clinic. We welcome self-referrals and work with most health insurance providers."
+          },
+          {
+            "question": "What should I bring to my first visit?",
+            "answer": "Please bring your ID, insurance card, any relevant medical records or imaging results, and a list of current medications. Comfortable clothing is recommended."
+          },
+          {
+            "question": "How do I schedule an appointment?",
+            "answer": "You can book online through our website, call us directly, or use our mobile app. Same-day appointments are often available for urgent cases."
+          }
+        ]
+      },
+      "treatment": {
+        "label": "Treatment",
+        "faqs": [
+          {
+            "question": "How long does each session typically last?",
+            "answer": "Initial assessments are 60 minutes. Follow-up treatment sessions are usually 45-60 minutes depending on your condition and treatment plan."
+          },
+          {
+            "question": "Is physiotherapy treatment painful?",
+            "answer": "Physiotherapy should not be significantly painful. You may experience mild discomfort during treatment as we work on tight or injured tissues, but we always work within your comfort level."
+          },
+          {
+            "question": "What should I wear to my session?",
+            "answer": "Wear comfortable, loose-fitting clothing that allows easy access to the area being treated. For lower body issues, shorts work best. For upper body, a tank top or loose t-shirt is ideal."
+          }
+        ]
+      },
+      "insurance": {
+        "label": "Insurance & Cost",
+        "faqs": [
+          {
+            "question": "Do you accept insurance?",
+            "answer": "Yes, we accept most major insurance plans. Contact our office with your insurance information and we'll verify your coverage and benefits before your appointment."
+          },
+          {
+            "question": "What are your payment options?",
+            "answer": "We accept cash, major credit & debit cards and Bank Transfer. Payment plans are available for those without insurance coverage."
+          },
+          {
+            "question": "Will my insurance cover all treatments?",
+            "answer": "Coverage varies by plan. Most insurance covers a certain number of physical therapy visits per year. We'll help you understand your benefits during your first visit."
+          }
+        ]
+      },
+      "aftercare": {
+        "label": "Recovery & Aftercare",
+        "faqs": [
+          {
+            "question": "How many sessions will I need?",
+            "answer": "This varies widely depending on your condition. Some patients see significant improvement in 4-6 sessions, while chronic or complex conditions may require longer treatment plans."
+          },
+          {
+            "question": "Will I get exercises to do at home?",
+            "answer": "Yes! Home exercises are a crucial part of your recovery. We provide personalized exercise programs and can send video demonstrations to your phone."
+          },
+          {
+            "question": "Is physiotherapy the same as chiropractic care?",
+            "answer": "While there are overlaps, physiotherapy focuses on rehabilitation, movement re-education, and exercise therapy in addition to manual techniques, offering a more comprehensive approach."
+          }
+        ]
+      }
+    },
+    "stillHaveQuestions": "Still Have Questions?",
+    "contactUs": "Contact Us"
+  },
+  "appointment": {
+    "badge": "Book Your Appointment",
+    "title": "Start Your",
+    "titleHighlight": "Recovery Today",
+    "description": "Take the first step towards a pain-free life. Book your consultation with our expert physiotherapists.",
+    "form": {
+      "name": "Full Name",
+      "namePlaceholder": "Enter your full name",
+      "email": "Email Address",
+      "emailPlaceholder": "your@email.com",
+      "phone": "Phone Number",
+      "phonePlaceholder": "Phone number",
+      "service": "Select Service",
+      "serviceDefault": "Choose a service",
+      "date": "Preferred Date",
+      "timeSlot": "Preferred Time",
+      "timeSlotDefault": "Select time slot",
+      "message": "Additional Message",
+      "messagePlaceholder": "Tell us about your condition or any specific concerns...",
+      "submit": "Book Appointment",
+      "submitting": "Booking...",
+      "successTitle": "Appointment Requested!",
+      "successMessage": "We'll confirm your appointment within 24 hours.",
+      "errorMessage": "Something went wrong. Please try again."
+    },
+    "serviceLabels": {
+      "ortho": "Orthopedic Care",
+      "sports": "Sports Rehabilitation",
+      "neuro": "Neurological Therapy",
+      "manual": "Manual Therapy",
+      "senior": "Senior Care",
+      "surgery": "Post-Surgery Recovery",
+      "online": "Online Consultation",
+      "others": "Others"
+    },
+    "timeSlots": {
+      "morning": "Morning (9AM - 12PM)",
+      "afternoon": "Afternoon (12PM - 4PM)",
+      "evening": "Evening (4PM - 7PM)"
+    },
+    "trustIndicators": {
+      "secure": "Secure & Confidential",
+      "response": "24hr Response",
+      "rated": "Highly Rated"
+    }
+  },
+  "footer": {
+    "followUs": "Follow Us:",
+    "quickLinks": "Quick Links",
+    "services": "Services",
+    "contact": "Contact",
+    "servicesLinks": {
+      "orthopedic": "Orthopedic Care",
+      "sports": "Sports Rehab",
+      "neurological": "Neurological",
+      "manual": "Manual Therapy",
+      "senior": "Senior Wellness"
+    },
+    "copyright": "© {year} {name}. All rights reserved.",
+    "madeWith": "Made with ❤️ in Dubai",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
+  },
+  "about": {
+    "badge": "Founder & Lead Physiotherapist",
+    "heroTitle": "Dr. Isha Shah",
+    "heroSubtitle": "I do not believe in high-volume care, indefinite treatment plans, or passive rehabilitation. My methodology is analytical, finite, and outcome-led.",
+    "heroDescription1": "Dr. Isha Shah is a physiotherapist with advanced expertise in spine rehabilitation, complex pain, post-procedure recovery, and postnatal restoration. Her work is grounded in movement diagnostics and load science rather than trends or generic protocols.",
+    "heroDescription2": "She works closely with medical teams when required, managing cases that demand precision and discretion. Every program is personally designed and progressed—without dilution.",
+    "experienceBadge": "Years of Clinical Depth",
+    "credentials": {
+      "dha": "DHA Licensed",
+      "mscotp": "MSCOTP (India)"
+    },
+    "practiceOverview": {
+      "title": "A Curated Practice",
+      "description": "This is not a scaled model. Clients accepted into care work directly under my clinical oversight—ensuring consistency, accountability, and clinical depth at every stage."
+    },
+    "clinicalFocus": {
+      "title": "Clinical Focus",
+      "items": {
+        "spine": "Spine & Persistent Pain",
+        "postSurgical": "Post-Surgical & Complex Rehab",
+        "postnatal": "Postnatal Biomechanics",
+        "highFunctioning": "High-Functioning Individuals with Recurrent Dysfunction",
+        "musculoskeletal": "Musculoskeletal & Sports Injuries"
+      }
+    },
+    "standards": {
+      "badge": "The Methodology",
+      "title": "The Standard We Operate At",
+      "subtitle": "High-precision physiotherapy for individuals who value discretion and measurable outcomes.",
+      "private": {
+        "title": "Private, Not Casual",
+        "desc": "Care is delivered one-to-one, in your space, on your schedule. No clinic chaos, no compromised attention."
+      },
+      "digital": {
+        "title": "Digital, But Exact",
+        "desc": "Online physiotherapy is assessment-driven and outcome-mapped. Live analysis, progressive load management, and constant recalibration."
+      },
+      "clinical": {
+        "title": "Clinically Aligned",
+        "desc": "Working in parallel with medical and surgical teams when required, handling complex spine and persistent pain cases."
+      }
+    },
+    "whoIsFor": {
+      "title": "Who This Is For",
+      "items": [
+        "Individuals who think long-term.",
+        "Professionals who protect their time.",
+        "Postnatal women who expect intelligent restoration.",
+        "Active bodies that refuse decline.",
+        "Patients who want decisions, not reassurance."
+      ]
+    },
+    "ethos": {
+      "badge": "Fundamental Ethos",
+      "pain": "Pain is data",
+      "movement": "Movement is strategy",
+      "recovery": "Recovery is engineered",
+      "quote": "If you expect clinical depth and uncompromising standards—welcome."
+    },
+    "cta": {
+      "badge": "The Final Milestone",
+      "title": "Ready for",
+      "titleHighlight": "intelligent",
+      "titleEnd": "recovery?",
+      "description": "Experience clinical depth and focused outcomes. Every program is personally designed for your unique recovery journey.",
+      "button": "Schedule Assessment"
+    }
+  },
+  "contact": {
+    "badge": "Get In Touch",
+    "title": "Let's Start Your",
+    "titleHighlight": "Recovery Journey",
+    "description": "Have questions or ready to book? Reach out to us. We're here to help you move better, feel better, and live better.",
+    "info": {
+      "callUs": "Call Us",
+      "emailUs": "Email Us",
+      "replyTime": "We reply within 24 hours",
+      "workingHours": "Working Hours",
+      "sundayClosed": "Sun: Closed"
+    },
+    "form": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "service": "Service",
+      "serviceDefault": "Select a service",
+      "message": "Your Message",
+      "messagePlaceholder": "Tell us how we can help you...",
+      "submit": "Send Message",
+      "submitting": "Sending...",
+      "successTitle": "Message Sent!",
+      "successMessage": "Thank you for reaching out. We'll get back to you within 24 hours.",
+      "errorMessage": "Failed to send message. Please try again."
+    },
+    "serviceOptions": {
+      "orthopedic": "Orthopedic Care",
+      "sports": "Sports Rehabilitation",
+      "neurological": "Neurological Therapy",
+      "manual": "Manual Therapy",
+      "senior": "Senior Care",
+      "postSurgery": "Post-Surgery Recovery",
+      "general": "General Inquiry",
+      "online": "Online Consultation",
+      "others": "Others"
+    },
+    "trustIndicators": {
+      "secure": "Secure & Confidential",
+      "professional": "Professional Care",
+      "personalized": "Personalized Approach"
+    },
+    "faq": {
+      "badge": "Common Questions",
+      "title": "Frequently Asked Questions",
+      "questions": [
+        {
+          "question": "How do I schedule my first appointment?",
+          "answer": "You can schedule your first appointment by calling us, filling out the contact form above, or using our online booking system. Our team will confirm your appointment within 24 hours."
+        },
+        {
+          "question": "What should I bring to my first visit?",
+          "answer": "Please bring your ID, insurance card, any relevant medical records or imaging studies, a list of current medications, and comfortable clothing that allows easy movement for your assessment."
+        },
+        {
+          "question": "Do you accept insurance?",
+          "answer": "Yes, we accept most major insurance plans. We recommend contacting your insurance provider or our office to verify your coverage before your appointment."
+        },
+        {
+          "question": "What are your hygiene protocols?",
+          "answer": "We maintain strict hygiene protocols including regular sanitization, air filtration systems, and optional mask requirements. Our facilities are thoroughly cleaned between each patient visit."
+        },
+        {
+          "question": "Can I cancel or reschedule my appointment?",
+          "answer": "Yes, we understand schedules change. Please provide at least 24 hours notice for cancellations or rescheduling to avoid any cancellation fees."
+        }
+      ]
+    }
+  },
+  "servicesPage": {
+    "badge": "The Methodology",
+    "title": "Active",
+    "titleHighlight": "Life Design",
+    "description": "A systematic approach to movement. From clinical restoration to high-performance architecture, we engineer your recovery journey with surgical precision.",
+    "bookConsultation": "Book Initial Consult",
+    "deepDive": {
+      "title": "Therapeutic",
+      "titleHighlight": "Deep Dive",
+      "description": "An analytical exploration of specialized treatment protocols designed to integrate precisely with your physiological requirements.",
+      "services": {
+        "activeAging": {
+          "category": "Clinical Mobility",
+          "title": "Active Aging",
+          "description": "Systematic maintenance of independent mobility and structural strength through personalized low-impact protocols.",
+          "quote": "Independence is being able to play with my grandkids without structural pain.",
+          "author": "Margaret, 72"
+        },
+        "hydrotherapy": {
+          "category": "Structural Recovery",
+          "title": "Hydrotherapy",
+          "description": "Precision aquatic resistance modeling to facilitate muscle hypertrophy without osteo-articular stress.",
+          "quote": "The buoyancy provided a pain-free environment to rebuild my peak power.",
+          "author": "David, 45"
+        },
+        "correctiveExercise": {
+          "category": "Functional Prevention",
+          "title": "Corrective Exercise",
+          "description": "Analytical assessment and resolution of biomechanical imbalances to mitigate long-term injury risks.",
+          "quote": "My chronic spinal dysfunction resolved entirely after correcting my base posture.",
+          "author": "Sarah, 29"
+        }
+      }
+    },
+    "faq": {
+      "badge": "Clarity",
+      "title": "Common Service Questions",
+      "description": "Understanding your treatment plan is part of the healing process.",
+      "stillHaveQuestions": "Still have questions?",
+      "questions": {
+        "acuteInjuries": {
+          "question": "Which therapy is right for acute injuries?",
+          "answer": "For acute injuries (occurring within the last 48-72 hours), we typically recommend starting with a diagnostic consultation followed by gentle Manual Therapy to manage inflammation and pain before progressing to active rehabilitation."
+        },
+        "combineTreatments": {
+          "question": "Can I combine treatments?",
+          "answer": "Absolutely. Our approach is holistic. Most successful recovery plans involve a mix of Manual Therapy for immediate relief and Corrective Exercise for long-term prevention."
+        },
+        "postOpPackages": {
+          "question": "Do you offer post-op packages?",
+          "answer": "Yes. Our Post-Surgical Rehab program is comprehensive. We bundle initial assessments, wound care checks, and a 12-week progressive strength track to get you back to normal life."
+        },
+        "sportsRecovery": {
+          "question": "Is sports recovery only for professionals?",
+          "answer": "Not at all. Whether you're a weekend warrior, a daily jogger, or an elite athlete, our Sports Recovery protocols are designed to help any active body recover faster and prevent injury."
+        }
+      }
+    }
+  },
+  "faqPage": {
+    "badge": "Help Center",
+    "title": "Frequently Asked",
+    "titleHighlight": "Questions",
+    "description": "Find answers to the most common questions about our physiotherapy services, appointments, and care approach.",
+    "searchPlaceholder": "Search questions...",
+    "noResults": "No questions found matching your search."
+  },
+  "metadata": {
+    "home": {
+      "title": "Physiotherapy Clinic",
+      "description": "Expert physiotherapy services in Dubai for sports injuries, rehabilitation, and chronic pain management."
+    },
+    "about": {
+      "title": "About Us",
+      "description": "Meet Dr. Isha Shah, founder and lead physiotherapist with 7+ years of clinical expertise."
+    },
+    "services": {
+      "title": "Our Services",
+      "description": "Comprehensive physiotherapy services including orthopedic care, sports rehabilitation, and more."
+    },
+    "contact": {
+      "title": "Contact Us",
+      "description": "Get in touch with our physiotherapy clinic in Dubai. Book your appointment today."
+    },
+    "faq": {
+      "title": "FAQ",
+      "description": "Frequently asked questions about our physiotherapy services and treatments."
+    }
+  }
+}

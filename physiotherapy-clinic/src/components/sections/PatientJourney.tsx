@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
 import { ClipboardList, Target, Dumbbell, Star, Sparkles } from "lucide-react";
 import { siteConfig } from "@/config/site";
+import { useTranslations, useLocale } from "next-intl";
+import { Link } from "@/i18n/routing";
 
 const stepIconMap = {
   1: ClipboardList,
@@ -16,68 +17,40 @@ const stepIconMap = {
 export function PatientJourney() {
   const [activeStep, setActiveStep] = useState(0);
   const [hoveredTag, setHoveredTag] = useState<number | null>(null);
+  
+  const t = useTranslations("patientJourney");
+  const locale = useLocale();
+  const isRTL = locale === "ar";
 
+  // Step configuration with translation keys
   const steps = [
-    {
-      num: 1,
-      title: "Initial Assessment",
-      shortTitle: "Assess",
-      desc: "Comprehensive evaluation of your injury history, biomechanics, lifestyle factors, and personal recovery goals.",
-      duration: "45-60 min",
-      color: "from-blue-500/20 to-blue-600/20"
-    },
-    {
-      num: 2,
-      title: "Treatment Plan",
-      shortTitle: "Plan",
-      desc: "Customized therapy program designed specifically for your condition, timeline, and desired outcomes.",
-      duration: "Personalized",
-      color: "from-purple-500/20 to-purple-600/20"
-    },
-    {
-      num: 3,
-      title: "Active Therapy",
-      shortTitle: "Heal",
-      desc: "Hands-on manual techniques combined with guided exercises to reduce pain and restore function.",
-      duration: "2-8 weeks",
-      color: "from-seafoam/20 to-lime/20"
-    },
-    {
-      num: 4,
-      title: "Full Recovery",
-      shortTitle: "Thrive",
-      desc: "Return to full activity with lasting results, prevention strategies, and ongoing wellness support.",
-      duration: "Long-term",
-      color: "from-lime/20 to-yellow-500/20"
-    },
+    { num: 1, key: "assessment", color: "from-blue-500/20 to-blue-600/20" },
+    { num: 2, key: "plan", color: "from-purple-500/20 to-purple-600/20" },
+    { num: 3, key: "therapy", color: "from-seafoam/20 to-lime/20" },
+    { num: 4, key: "recovery", color: "from-lime/20 to-yellow-500/20" },
   ];
 
+  // Pain points configuration with translation keys
   const painPoints = [
-    {
-      id: 1,
-      title: "Neck & Shoulder",
-      conditions: ["Stiffness", "Tension", "Whiplash"],
-      position: { top: "18%", left: "50%" },
-    },
-    {
-      id: 2,
-      title: "Upper Back",
-      conditions: ["Posture Issues", "Muscle Strain", "Thoracic Pain"],
-      position: { top: "27%", left: "50%" },
-    },
-    {
-      id: 3,
-      title: "Lower Back",
-      conditions: ["Disc Issues", "Sciatica", "Chronic Pain"],
-      position: { top: "42%", left: "50%" },
-    },
-    {
-      id: 4,
-      title: "Knee & Leg",
-      conditions: ["Sports Injuries", "Arthritis", "Recovery"],
-      position: { top: "75%", left: "50%" },
-    },
+    { id: 1, key: "neckShoulder", position: { top: "18%", left: "50%" } },
+    { id: 2, key: "upperBack", position: { top: "27%", left: "50%" } },
+    { id: 3, key: "lowerBack", position: { top: "42%", left: "50%" } },
+    { id: 4, key: "kneeLeg", position: { top: "75%", left: "50%" } },
   ];
+
+  // Get translated step content
+  const getStepContent = (key: string) => ({
+    title: t(`steps.${key}.title`),
+    shortTitle: t(`steps.${key}.shortTitle`),
+    desc: t(`steps.${key}.desc`),
+    duration: t(`steps.${key}.duration`),
+  });
+
+  // Get translated pain point content
+  const getPainPointContent = (key: string) => ({
+    title: t(`painPoints.${key}.title`),
+    conditions: t.raw(`painPoints.${key}.conditions`) as string[],
+  });
 
   return (
     <section className="bg-forest py-16 md:py-24 relative overflow-hidden" id="journey">
@@ -110,13 +83,13 @@ export function PatientJourney() {
             <div className="w-8 h-8 rounded-full bg-seafoam/20 flex items-center justify-center">
               <Sparkles className="w-4 h-4 text-seafoam" />
             </div>
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-seafoam">Your Recovery Path</span>
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-seafoam">{t("badge")}</span>
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-sans text-white font-semibold leading-[1.1] tracking-tight mb-4">
-            From Pain to <span className="text-lime">Peak Performance</span>
+            {t("title")} <span className="text-lime">{t("titleHighlight")}</span>
           </h2>
           <p className="text-white/60 text-sm md:text-base max-w-2xl mx-auto">
-            Our proven 4-step methodology has helped thousands of patients achieve lasting recovery
+            {t("description")}
           </p>
         </motion.div>
 
@@ -140,14 +113,16 @@ export function PatientJourney() {
                   {/* Medical Skeleton/Anatomy Image */}
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                     <img
-                      src="/human_skeleton.webp"
+                      src="/human_skeleton.png"
                       alt="Human Anatomy Representation"
                       className="h-full w-auto max-w-full object-contain opacity-90 drop-shadow-2xl"
                     />
                   </div>
 
                   {/* Pain Points */}
-                  {painPoints.map((point, index) => (
+                  {painPoints.map((point, index) => {
+                    const painContent = getPainPointContent(point.key);
+                    return (
                     <motion.button
                       key={point.id}
                       className={`absolute z-10 group`}
@@ -184,14 +159,14 @@ export function PatientJourney() {
                       <AnimatePresence>
                         {hoveredTag === point.id && (
                           <motion.div
-                            initial={{ opacity: 0, x: 10, scale: 0.9 }}
+                            initial={{ opacity: 0, x: isRTL ? -10 : 10, scale: 0.9 }}
                             animate={{ opacity: 1, x: 0, scale: 1 }}
-                            exit={{ opacity: 0, x: 10, scale: 0.9 }}
-                            className="absolute left-10 lg:left-12 top-1/2 -translate-y-1/2 bg-white rounded-xl p-3 shadow-2xl min-w-[160px] z-50 border border-forest/10"
+                            exit={{ opacity: 0, x: isRTL ? -10 : 10, scale: 0.9 }}
+                            className={`absolute ${isRTL ? 'right-10 lg:right-12' : 'left-10 lg:left-12'} top-1/2 -translate-y-1/2 bg-white rounded-xl p-3 shadow-2xl min-w-[160px] z-50 border border-forest/10`}
                           >
-                            <p className="text-forest font-bold text-sm mb-1">{point.title}</p>
+                            <p className="text-forest font-bold text-sm mb-1">{painContent.title}</p>
                             <div className="flex flex-wrap gap-1">
-                              {point.conditions.map((condition) => (
+                              {painContent.conditions.map((condition) => (
                                 <span key={condition} className="text-[10px] px-2 py-0.5 bg-section rounded-full text-forest/70">
                                   {condition}
                                 </span>
@@ -201,7 +176,7 @@ export function PatientJourney() {
                         )}
                       </AnimatePresence>
                     </motion.button>
-                  ))}
+                  )})}
                 </div>
 
                 {/* Stats */}
@@ -254,7 +229,7 @@ export function PatientJourney() {
                       <span className={`absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs font-medium whitespace-nowrap transition-colors ${
                         index === activeStep ? 'text-lime' : 'text-white/50'
                       }`}>
-                        {step.shortTitle}
+                        {getStepContent(step.key).shortTitle}
                       </span>
                     </motion.button>
                   );
@@ -273,7 +248,7 @@ export function PatientJourney() {
                 className={`relative rounded-2xl md:rounded-3xl overflow-hidden bg-gradient-to-br ${steps[activeStep].color} border border-white/10 p-4 sm:p-6 md:p-8 lg:p-10 mt-4 md:mt-16`}
               >
                 {/* Large Number Background */}
-                <div className="absolute top-2 right-2 sm:top-4 sm:right-4 md:top-6 md:right-6 text-[80px] sm:text-[120px] md:text-[180px] font-bold text-white/5 leading-none select-none">
+                <div className={`absolute top-2 ${isRTL ? 'left-2 sm:left-4 md:left-6' : 'right-2 sm:right-4 md:right-6'} text-[80px] sm:text-[120px] md:text-[180px] font-bold text-white/5 leading-none select-none`}>
                   {steps[activeStep].num}
                 </div>
 
@@ -282,19 +257,19 @@ export function PatientJourney() {
                   <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full mb-4 sm:mb-6">
                     <span className="text-white text-xs sm:text-sm font-medium">Step {steps[activeStep].num} of {steps.length}</span>
                     <span className="w-px h-3 sm:h-4 bg-white/30" />
-                    <span className="text-white/70 text-xs sm:text-sm">{steps[activeStep].duration}</span>
+                    <span className="text-white/70 text-xs sm:text-sm">{getStepContent(steps[activeStep].key).duration}</span>
                   </div>
 
                   <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4">
-                    {steps[activeStep].title}
+                    {getStepContent(steps[activeStep].key).title}
                   </h3>
                   <p className="text-white/70 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mb-6 sm:mb-8">
-                    {steps[activeStep].desc}
+                    {getStepContent(steps[activeStep].key).desc}
                   </p>
 
                   {/* Navigation */}
                   <div className="flex items-center justify-between">
-                    <div className="flex gap-1.5 sm:gap-2">
+                    <div className={`flex gap-1.5 sm:gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
                       {steps.map((_, index) => (
                         <button
                           key={index}
@@ -306,13 +281,13 @@ export function PatientJourney() {
                       ))}
                     </div>
 
-                    <div className="flex gap-2 sm:gap-3">
+                    <div className={`flex gap-2 sm:gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
                       <button
                         onClick={() => setActiveStep(Math.max(0, activeStep - 1))}
                         disabled={activeStep === 0}
                         className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                       >
-                        <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className={`w-4 h-4 sm:w-5 sm:h-5 ${isRTL ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                         </svg>
                       </button>
@@ -321,7 +296,7 @@ export function PatientJourney() {
                         disabled={activeStep === steps.length - 1}
                         className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white flex items-center justify-center text-forest hover:bg-lime transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                       >
-                        <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className={`w-4 h-4 sm:w-5 sm:h-5 ${isRTL ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
                       </button>
@@ -333,7 +308,9 @@ export function PatientJourney() {
 
             {/* Mobile Step List */}
             <div className="md:hidden mt-6 space-y-2">
-              {steps.map((step, index) => (
+              {steps.map((step, index) => {
+                const stepContent = getStepContent(step.key);
+                return (
                 <motion.button
                   key={step.num}
                   onClick={() => setActiveStep(index)}
@@ -342,7 +319,7 @@ export function PatientJourney() {
                       ? 'bg-gradient-to-r from-seafoam/20 to-lime/20 border border-white/20'
                       : 'bg-white/5 border border-transparent'
                   }`}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
@@ -363,15 +340,15 @@ export function PatientJourney() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between gap-2">
                         <h4 className={`font-semibold text-sm ${index === activeStep ? 'text-white' : 'text-white/70'}`}>
-                          {step.title}
+                          {stepContent.title}
                         </h4>
-                        <span className="text-[10px] text-white/40 flex-shrink-0">{step.duration}</span>
+                        <span className="text-[10px] text-white/40 flex-shrink-0">{stepContent.duration}</span>
                       </div>
-                      <p className="text-white/50 text-xs line-clamp-1">{step.desc}</p>
+                      <p className="text-white/50 text-xs line-clamp-1">{stepContent.desc}</p>
                     </div>
                   </div>
                 </motion.button>
-              ))}
+              );})}
             </div>
 
             {/* Bottom CTA */}
@@ -382,16 +359,16 @@ export function PatientJourney() {
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
             >
-              <div className="text-center sm:text-left">
-                <p className="text-white font-semibold text-sm sm:text-base mb-0.5 sm:mb-1">Ready to start your recovery?</p>
-                <p className="text-white/50 text-xs sm:text-sm">Book your initial assessment today</p>
+              <div className={`text-center ${isRTL ? 'sm:text-right' : 'sm:text-left'}`}>
+                <p className="text-white font-semibold text-sm sm:text-base mb-0.5 sm:mb-1">{t("cta")}</p>
+                <p className="text-white/50 text-xs sm:text-sm">{t("description")}</p>
               </div>
               <Link 
                 href="/contact"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-3 px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-seafoam to-lime text-forest font-semibold rounded-full hover:shadow-lg hover:shadow-seafoam/30 transition-all text-sm sm:text-base"
               >
-                Book Assessment
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                {t("cta")}
+                <svg className={`w-4 h-4 ${isRTL ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </Link>

@@ -2,20 +2,18 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
 import Image from "next/image";
 import { Bone, Zap, Brain, Hand, Heart, Sparkles, ArrowRight } from "lucide-react";
 import { siteConfig } from "@/config/site";
+import { useTranslations, useLocale } from "next-intl";
+import { Link } from "@/i18n/routing";
 
 interface Service {
   id: string;
-  title: string;
-  shortDesc: string;
-  fullDesc: string;
+  key: string;
   icon: string;
   img: string;
   imagePosition: string;
-  features: string[];
 }
 
 const iconMap = {
@@ -28,61 +26,61 @@ const iconMap = {
 
 export function ServicesSection() {
   const [activeService, setActiveService] = useState(0);
+  const t = useTranslations("servicesSection");
+  const tCommon = useTranslations("common");
+  const locale = useLocale();
+  const isRTL = locale === "ar";
 
-  const services = [
+  // Service configuration with translation keys
+  const services: Service[] = [
     {
       id: "01",
-      title: "Orthopedic Rehabilitation",
-      shortDesc: "Joint & Bone Recovery",
-      fullDesc: "Comprehensive treatment for musculoskeletal disorders including joint pain, fractures, arthritis management, and post-surgical rehabilitation protocols.",
+      key: "orthopedic",
       icon: "bone",
-      img: "/services/orthopedic_service_v2.webp",
+      img: "/services/IMG_0122.webp",
       imagePosition: "object-center",
-      features: ["Joint Mobilization", "Post-Surgery Care", "Pain Management"]
     },
     {
       id: "02",
-      title: "Sports Medicine & Rehab",
-      shortDesc: "Athletic Performance",
-      fullDesc: "Expert rehabilitation for athletes of all levels - from injury diagnosis and treatment to full return-to-sport performance optimization programs.",
+      key: "sports",
       icon: "zap",
-      img: "/services/sports_medicine_v2.webp",
+      img: "/services/sports_recovery_bento_hd.webp",
       imagePosition: "object-center",
-      features: ["Injury Prevention", "Performance Training", "Sport-Specific Rehab"]
     },
     {
       id: "03",
-      title: "Neurological Therapy",
-      shortDesc: "Brain & Nerve Care",
-      fullDesc: "Compassionate care for neurological conditions including stroke recovery, Parkinson's disease, multiple sclerosis, and spinal cord injuries.",
+      key: "neurological",
       icon: "brain",
-      img: "/services/neuro_service_v2.webp",
+      img: "/services/IMG_0127.webp",
       imagePosition: "object-center",
-      features: ["Stroke Recovery", "Balance Training", "Motor Control"]
     },
     {
       id: "04",
-      title: "Manual Therapy",
-      shortDesc: "Hands-On Healing",
-      fullDesc: "Skilled hands-on techniques including soft tissue mobilization, joint manipulation, and myofascial release for optimal pain relief and mobility.",
+      key: "manual",
       icon: "hand",
-      img: "/services/manual_therapy_v2.webp",
+      img: "/services/manual_therapy_hd.webp",
       imagePosition: "object-center",
-      features: ["Deep Tissue Work", "Trigger Point Release", "Spinal Adjustment"]
     },
     {
       id: "05",
-      title: "Senior Wellness Program",
-      shortDesc: "Active Aging",
-      fullDesc: "Specialized programs for older adults focusing on balance improvement, fall prevention, strength maintenance, and enhanced quality of life.",
+      key: "senior",
       icon: "heart",
-      img: "/services/senior_wellness_v2.webp",
+      img: "/services/senior_care.webp",
       imagePosition: "object-center",
-      features: ["Fall Prevention", "Mobility Enhancement", "Strength Building"]
     }
   ];
 
   const activeData = services[activeService];
+  
+  // Get translated content for active service
+  const getServiceContent = (key: string) => ({
+    title: t(`services.${key}.title`),
+    shortDesc: t(`services.${key}.shortDesc`),
+    fullDesc: t(`services.${key}.fullDesc`),
+    features: t.raw(`services.${key}.features`) as string[],
+  });
+
+  const activeContent = getServiceContent(activeData.key);
 
   return (
     <section className="relative py-16 md:py-24 bg-section overflow-hidden" id="services">
@@ -116,15 +114,15 @@ export function ServicesSection() {
               <div className="w-8 h-8 rounded-full bg-seafoam/10 flex items-center justify-center">
                 <Sparkles className="w-4 h-4 text-seafoam" />
               </div>
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-seafoam">Our Services</span>
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-seafoam">{t("badge")}</span>
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-sans text-forest font-semibold leading-[1.1] tracking-tight">
-              Expert Care For Every<br className="hidden md:block" />
-              <span className="text-seafoam">Recovery Journey</span>
+              {t("title")}<br className="hidden md:block" />
+              <span className="text-seafoam">{t("titleHighlight")}</span>
             </h2>
           </div>
           <p className="text-forest/60 text-sm md:text-base max-w-md leading-relaxed">
-            From sports injuries to chronic conditions, our specialized treatments are designed to restore your mobility and enhance your quality of life.
+            {t("description")}
           </p>
         </motion.div>
 
@@ -133,7 +131,9 @@ export function ServicesSection() {
           
           {/* Left - Service List */}
           <div className="col-span-4 space-y-3">
-            {services.map((service, index) => (
+            {services.map((service, index) => {
+              const serviceContent = getServiceContent(service.key);
+              return (
               <motion.button
                 key={service.id}
                 onClick={() => setActiveService(index)}
@@ -142,7 +142,7 @@ export function ServicesSection() {
                     ? 'bg-forest text-white shadow-lg' 
                     : 'bg-white hover:bg-forest/5 border border-forest/10'
                 }`}
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.4 }}
@@ -160,12 +160,12 @@ export function ServicesSection() {
                     <h3 className={`font-semibold text-sm xl:text-base mb-0.5 truncate ${
                       activeService === index ? 'text-white' : 'text-forest'
                     }`}>
-                      {service.title}
+                      {serviceContent.title}
                     </h3>
                     <p className={`text-xs truncate ${
                       activeService === index ? 'text-white/70' : 'text-forest/50'
                     }`}>
-                      {service.shortDesc}
+                      {serviceContent.shortDesc}
                     </p>
                   </div>
 
@@ -183,13 +183,13 @@ export function ServicesSection() {
                 {/* Active Indicator */}
                 {activeService === index && (
                   <motion.div 
-                    className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-seafoam rounded-r-full"
+                    className={`absolute ${isRTL ? 'right-0' : 'left-0'} top-1/2 -translate-y-1/2 w-1 h-8 bg-seafoam ${isRTL ? 'rounded-l-full' : 'rounded-r-full'}`}
                     layoutId="activeIndicator"
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   />
                 )}
               </motion.button>
-            ))}
+            );})}
 
             {/* Stats Mini Card */}
             <motion.div 
@@ -238,7 +238,7 @@ export function ServicesSection() {
                 >
                   <Image 
                     src={activeData.img} 
-                    alt={activeData.title}
+                    alt={activeContent.title}
                     fill
                     className={`object-cover ${activeData.imagePosition || 'object-center'}`}
                     priority={activeService === 0}
@@ -252,7 +252,7 @@ export function ServicesSection() {
                 <div className="absolute inset-0 p-8 xl:p-10 flex flex-col justify-end">
                   {/* Top Badge */}
                   <motion.div 
-                    className="absolute top-8 left-8 inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20"
+                    className={`absolute top-8 ${isRTL ? 'right-8' : 'left-8'} inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20`}
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
@@ -261,7 +261,7 @@ export function ServicesSection() {
                       const IconComponent = iconMap[activeData.icon as keyof typeof iconMap];
                       return IconComponent ? <IconComponent className="w-5 h-5 text-white" /> : null;
                     })()}
-                    <span className="text-white text-sm font-medium">{activeData.shortDesc}</span>
+                    <span className="text-white text-sm font-medium">{activeContent.shortDesc}</span>
                   </motion.div>
 
                   {/* Main Text */}
@@ -274,15 +274,15 @@ export function ServicesSection() {
                       {activeData.id}
                     </span>
                     <h3 className="text-3xl xl:text-4xl font-bold text-white mb-4 leading-tight">
-                      {activeData.title}
+                      {activeContent.title}
                     </h3>
                     <p className="text-white/80 text-base xl:text-lg max-w-xl mb-6 leading-relaxed">
-                      {activeData.fullDesc}
+                      {activeContent.fullDesc}
                     </p>
 
                     {/* Features Tags */}
                     <div className="flex flex-wrap gap-2 mb-8">
-                      {activeData.features.map((feature, i) => (
+                      {activeContent.features.map((feature, i) => (
                         <motion.span
                           key={feature}
                           className="px-4 py-2 bg-white/10 backdrop-blur-sm text-white text-sm rounded-full border border-white/10"
@@ -296,16 +296,18 @@ export function ServicesSection() {
                     </div>
 
                     {/* CTA Button */}
-                    <motion.button
-                      className="inline-flex items-center gap-3 px-6 py-3 bg-white text-forest font-semibold rounded-full hover:bg-seafoam hover:text-white transition-colors group/btn"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      Learn More About This Service
-                      <span className="size-8 rounded-full bg-forest/10 flex items-center justify-center group-hover/btn:bg-white/20 transition-colors">
-                        <ArrowRight className="w-4 h-4" />
-                      </span>
-                    </motion.button>
+                    <Link href="/services">
+                      <motion.span
+                        className={`inline-flex items-center gap-3 px-6 py-3 bg-white text-forest font-semibold rounded-full hover:bg-seafoam hover:text-white transition-colors group/btn cursor-pointer`}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        {tCommon("learnMore")}
+                        <span className="size-8 rounded-full bg-forest/10 flex items-center justify-center group-hover/btn:bg-white/20 transition-colors">
+                          <ArrowRight className={`w-4 h-4 ${isRTL ? 'rotate-180' : ''}`} />
+                        </span>
+                      </motion.span>
+                    </Link>
                   </motion.div>
                 </div>
 
@@ -331,8 +333,10 @@ export function ServicesSection() {
         {/* Mobile Layout */}
         <div className="lg:hidden">
           {/* Service Pills - Horizontal Scroll */}
-          <div className="flex gap-2 overflow-x-auto pb-4 mb-6 scrollbar-hide -mx-4 px-4">
-            {services.map((service, index) => (
+          <div className={`flex gap-2 overflow-x-auto pb-4 mb-6 scrollbar-hide -mx-4 px-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
+            {services.map((service, index) => {
+              const serviceContent = getServiceContent(service.key);
+              return (
               <button
                 key={service.id}
                 onClick={() => setActiveService(index)}
@@ -346,9 +350,9 @@ export function ServicesSection() {
                   const IconComponent = iconMap[service.icon as keyof typeof iconMap];
                   return IconComponent ? <IconComponent className="w-4 h-4" /> : null;
                 })()}
-                {service.title}
+                {serviceContent.title}
               </button>
-            ))}
+            );})}
           </div>
 
           {/* Active Service Card */}
@@ -363,7 +367,7 @@ export function ServicesSection() {
             >
               <Image 
                 src={activeData.img} 
-                alt={activeData.title}
+                alt={activeContent.title}
                 fill
                 className={`object-cover ${activeData.imagePosition || 'object-center'}`}
               />
@@ -371,37 +375,37 @@ export function ServicesSection() {
               
               <div className="absolute inset-0 p-6 flex flex-col justify-end">
                 {/* Badge */}
-                <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
+                <div className={`absolute top-4 ${isRTL ? 'right-4' : 'left-4'} inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-md rounded-full border border-white/20`}>
                   {(() => {
                     const IconComponent = iconMap[activeData.icon as keyof typeof iconMap];
                     return IconComponent ? <IconComponent className="w-4 h-4 text-white" /> : null;
                   })()}
-                  <span className="text-white text-xs font-medium">{activeData.shortDesc}</span>
+                  <span className="text-white text-xs font-medium">{activeContent.shortDesc}</span>
                 </div>
 
                 {/* Number */}
                 <span className="text-5xl font-bold text-seafoam/30 mb-2">{activeData.id}</span>
                 
-                <h3 className="text-2xl font-bold text-white mb-2">{activeData.title}</h3>
-                <p className="text-white/70 text-sm mb-4 line-clamp-3">{activeData.fullDesc}</p>
+                <h3 className="text-2xl font-bold text-white mb-2">{activeContent.title}</h3>
+                <p className="text-white/70 text-sm mb-4 line-clamp-3">{activeContent.fullDesc}</p>
                 
                 {/* Features */}
                 <div className="flex flex-wrap gap-1.5 mb-4">
-                  {activeData.features.map((feature) => (
+                  {activeContent.features.map((feature) => (
                     <span key={feature} className="px-3 py-1 bg-white/10 text-white text-xs rounded-full">
                       {feature}
                     </span>
                   ))}
                 </div>
 
-                <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-forest font-semibold rounded-full text-sm w-fit">
-                  Learn More
-                  <ArrowRight className="w-4 h-4" />
-                </button>
+                <Link href="/services" className={`inline-flex items-center gap-2 px-5 py-2.5 bg-white text-forest font-semibold rounded-full text-sm w-fit`}>
+                  {tCommon("learnMore")}
+                  <ArrowRight className={`w-4 h-4 ${isRTL ? 'rotate-180' : ''}`} />
+                </Link>
               </div>
 
               {/* Slide Indicators */}
-              <div className="absolute bottom-6 right-6 flex gap-1.5">
+              <div className={`absolute bottom-6 ${isRTL ? 'left-6' : 'right-6'} flex gap-1.5`}>
                 {services.map((_, i) => (
                   <button
                     key={i}
@@ -418,7 +422,7 @@ export function ServicesSection() {
           {/* Mobile Stats */}
           <div className="mt-6 grid grid-cols-3 gap-3">
             {[
-              { value: siteConfig.social.servicesCount, label: "Services" },
+              { value: siteConfig.social.servicesCount, label: tCommon("services") },
               { value: siteConfig.social.livesRestored, label: "Patients" },
               { value: siteConfig.social.recoveryRate, label: "Success" }
             ].map((stat) => (
@@ -442,9 +446,9 @@ export function ServicesSection() {
             href="/services"
             className="inline-flex items-center gap-4 px-6 md:px-8 py-3 bg-forest text-white hover:bg-forest/90 transition-colors rounded-full text-sm font-medium tracking-wide group"
           >
-            Explore All Services
+            {t("viewAllServices")}
             <span className="size-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-seafoam transition-colors">
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className={`w-4 h-4 ${isRTL ? 'rotate-180' : ''}`} />
             </span>
           </Link>
         </motion.div>
