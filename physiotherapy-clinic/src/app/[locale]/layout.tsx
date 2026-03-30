@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Lexend, Great_Vibes, Cairo } from 'next/font/google';
+import localFont from 'next/font/local';
 import '../globals.css';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
@@ -10,22 +10,32 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { localeDirection } from '@/i18n/config';
 
-const lexend = Lexend({
-  subsets: ['latin'],
+const lexend = localFont({
+  src: '../../../public/fonts/Lexend-Variable-latin.woff2',
   variable: '--font-sans',
   display: 'swap',
+  weight: '100 900',
 });
 
-const greatVibes = Great_Vibes({
-  subsets: ['latin'],
-  weight: ['400'],
+const greatVibes = localFont({
+  src: '../../../public/fonts/GreatVibes-Regular-latin.woff2',
   variable: '--font-script',
   display: 'swap',
+  weight: '400',
 });
 
 // Cairo font for Arabic text
-const cairo = Cairo({
-  subsets: ['arabic', 'latin'],
+const cairo = localFont({
+  src: [
+    {
+      path: '../../../public/fonts/Cairo-Variable-arabic.woff2',
+      weight: '200 1000',
+    },
+    {
+      path: '../../../public/fonts/Cairo-Variable-latin.woff2',
+      weight: '200 1000',
+    },
+  ],
   variable: '--font-arabic',
   display: 'swap',
 });
@@ -77,8 +87,12 @@ export default async function LocaleLayout({
   // Enable static rendering
   setRequestLocale(locale);
 
-  // Get messages for the current locale
+  // Get messages for the current locale — scope to only shared client namespaces
   const messages = await getMessages();
+  const sharedMessages = {
+    common: messages.common,
+    nav: messages.nav,
+  };
   const dir = localeDirection[locale as Locale];
   const isArabic = locale === 'ar';
 
@@ -97,7 +111,7 @@ export default async function LocaleLayout({
       <body 
         className={`${isArabic ? 'font-arabic' : 'font-sans'} antialiased overflow-x-hidden selection:bg-seafoam selection:text-forest`}
       >
-        <NextIntlClientProvider locale={locale} messages={messages}>
+        <NextIntlClientProvider locale={locale} messages={sharedMessages}>
           <Navbar />
           <main>{children}</main>
           <Footer />

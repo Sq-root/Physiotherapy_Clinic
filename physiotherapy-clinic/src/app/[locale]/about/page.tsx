@@ -1,7 +1,4 @@
-"use client";
-
 import Image from "next/image";
-import { motion } from "framer-motion";
 import {
   ShieldCheck,
   Target,
@@ -15,12 +12,13 @@ import {
   Scaling,
   Quote,
 } from "lucide-react";
-import { useTranslations, useLocale } from "next-intl";
+import { getTranslations, getLocale } from "next-intl/server";
 import { Link } from "@/i18n/routing";
+import { AnimateOnView } from "@/components/ui/AnimateOnView";
 
-export default function AboutPage() {
-  const t = useTranslations("about");
-  const locale = useLocale();
+export default async function AboutPage() {
+  const t = await getTranslations("about");
+  const locale = await getLocale();
   const isRTL = locale === "ar";
 
   const clinicalFocus = [
@@ -50,10 +48,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
             {/* Image Column */}
             <div className="lg:col-span-5 order-2 lg:order-1 relative">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1, ease: "easeOut" }}
+              <AnimateOnView
                 className="aspect-[5/6] relative rounded-[2.5rem] overflow-hidden shadow-2xl border-[10px] border-white ring-1 ring-forest/5"
               >
                 <Image
@@ -63,13 +58,12 @@ export default function AboutPage() {
                   className="object-cover"
                   priority
                 />
-              </motion.div>
+              </AnimateOnView>
 
               {/* Experience Badge */}
-              <motion.div
-                initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
+              <AnimateOnView
+                delay={0.5}
+                direction={isRTL ? "right" : "left"}
                 className={`absolute -bottom-4 ${isRTL ? '-right-4' : '-left-4'} bg-forest text-white p-6 rounded-[2rem] shadow-2xl flex items-center gap-4`}
               >
                 <span className="text-3xl font-bold font-serif leading-none">
@@ -78,16 +72,12 @@ export default function AboutPage() {
                 <p className={`text-[10px] font-bold uppercase tracking-[0.2em] leading-tight ${isRTL ? 'border-r border-white/20 pr-4' : 'border-l border-white/20 pl-4'}`}>
                   {t("experienceBadge")}
                 </p>
-              </motion.div>
+              </AnimateOnView>
             </div>
 
             {/* Text Column */}
             <div className="lg:col-span-7 order-1 lg:order-2">
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-              >
+              <AnimateOnView>
                 <div className="inline-flex items-center gap-3 mb-6">
                   <span className="w-6 h-px bg-seafoam"></span>
                   <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-seafoam">
@@ -119,7 +109,7 @@ export default function AboutPage() {
                     </span>
                   </div>
                 </div>
-              </motion.div>
+              </AnimateOnView>
             </div>
           </div>
         </div>
@@ -130,12 +120,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             {/* Practice Overview */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="space-y-10"
-            >
+            <AnimateOnView className="space-y-10">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">
                   {t("practiceOverview.title")}
@@ -152,15 +137,10 @@ export default function AboutPage() {
                   &ldquo;{t("heroSubtitle")}&rdquo;
                 </p>
               </div>
-            </motion.div>
+            </AnimateOnView>
 
             {/* Clinical Focus List */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="space-y-8 lg:pt-4"
-            >
+            <AnimateOnView delay={0.1} className="space-y-8 lg:pt-4">
               <h2 className="text-3xl font-bold tracking-tight">
                 {t("clinicalFocus.title")}
               </h2>
@@ -182,7 +162,7 @@ export default function AboutPage() {
                   );
                 })}
               </div>
-            </motion.div>
+            </AnimateOnView>
           </div>
         </div>
       </section>
@@ -210,12 +190,9 @@ export default function AboutPage() {
             {standards.map((s, i) => {
               const Icon = s.icon;
               return (
-                <motion.div
+                <AnimateOnView
                   key={i}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.08 }}
+                  delay={i * 0.08}
                   className="p-7 lg:p-8 group hover:bg-section transition-colors duration-300"
                 >
                   <div className="flex items-center gap-3 mb-5">
@@ -232,7 +209,7 @@ export default function AboutPage() {
                   <p className="text-forest/55 leading-relaxed text-[13px] font-light">
                     {t(`standards.${s.key}.desc`)}
                   </p>
-                </motion.div>
+                </AnimateOnView>
               );
             })}
           </div>
@@ -248,19 +225,17 @@ export default function AboutPage() {
                 </h3>
                 <div className="grid gap-4">
                   {whoIsForItems.map((item, i) => (
-                    <motion.div
+                    <AnimateOnView
                       key={i}
-                      initial={{ opacity: 0, x: isRTL ? 10 : -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.1 }}
+                      delay={i * 0.1}
+                      direction={isRTL ? "right" : "left"}
                       className="flex items-center gap-4 bg-white/5 p-5 rounded-2xl border border-white/5 backdrop-blur-sm hover:bg-white/10 transition-colors"
                     >
                       <CheckCircle2 className="w-5 h-5 text-seafoam shrink-0" />
                       <span className="text-white/80 font-medium text-sm md:text-base">
                         {item}
                       </span>
-                    </motion.div>
+                    </AnimateOnView>
                   ))}
                 </div>
               </div>
@@ -290,11 +265,7 @@ export default function AboutPage() {
       {/* 4. Final CTA */}
       <section className="relative py-24 md:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <AnimateOnView
             className="relative bg-forest rounded-[3rem] p-8 md:p-16 lg:p-24 overflow-hidden shadow-2xl"
           >
             {/* Glossy Decorative Lights */}
@@ -327,7 +298,7 @@ export default function AboutPage() {
                 </Link>
               </div>
             </div>
-          </motion.div>
+          </AnimateOnView>
         </div>
       </section>
     </main>

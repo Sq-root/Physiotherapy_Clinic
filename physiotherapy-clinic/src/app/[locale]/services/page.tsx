@@ -1,8 +1,27 @@
-import { setRequestLocale } from "next-intl/server";
+import { setRequestLocale, getMessages } from "next-intl/server";
+import { NextIntlClientProvider } from "next-intl";
+import ServicesPageClient from "./ServicesPageClient";
 
-// Re-export the services page component
-// For now keeping it simple - the services page component will handle translations
-export { default } from "./ServicesPageClient";
+export default async function ServicesPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const messages = await getMessages();
+  const servicesMessages = {
+    servicesPage: messages.servicesPage,
+    servicesSection: messages.servicesSection,
+  };
+
+  return (
+    <NextIntlClientProvider messages={servicesMessages}>
+      <ServicesPageClient />
+    </NextIntlClientProvider>
+  );
+}
 
 export async function generateMetadata({
   params,

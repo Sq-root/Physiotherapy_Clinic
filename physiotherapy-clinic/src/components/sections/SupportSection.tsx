@@ -1,9 +1,7 @@
-"use client";
-
-import { motion } from "framer-motion";
+import { AnimateOnView } from "@/components/ui/AnimateOnView";
 import { Target, FlaskConical, Heart } from "lucide-react";
 import { siteConfig } from "@/config/site";
-import { useTranslations, useLocale } from "next-intl";
+import { getTranslations, getLocale } from "next-intl/server";
 import { Link } from "@/i18n/routing";
 
 const highlightIconMap = {
@@ -12,19 +10,10 @@ const highlightIconMap = {
   2: Heart,
 };
 
-export function SupportSection() {
-  const t = useTranslations("support");
-  const locale = useLocale();
+export async function SupportSection() {
+  const t = await getTranslations("support");
+  const locale = await getLocale();
   const isRTL = locale === "ar";
-
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
-    },
-  };
 
   const highlights = [
     { label: t("highlights.globalStandard") },
@@ -55,12 +44,8 @@ export function SupportSection() {
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 relative z-10">
         {/* Mobile Layout */}
         <div className="md:hidden">
-          <motion.div
+          <AnimateOnView
             className="bg-gradient-to-br from-section to-white rounded-2xl p-5 shadow-card border border-forest/5"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
           >
             {/* Header Row */}
             <div className="flex items-start gap-4 mb-4">
@@ -128,19 +113,13 @@ export function SupportSection() {
                 );
               })}
             </div>
-          </motion.div>
+          </AnimateOnView>
         </div>
 
         {/* Desktop Layout */}
         <div className="hidden md:grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left - Image Collage */}
-          <motion.div
-            className="relative"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-          >
+          <AnimateOnView className="relative">
             <div
               className="relative w-full max-w-lg mx-auto"
               style={{ aspectRatio: "1/0.85" }}
@@ -199,15 +178,10 @@ export function SupportSection() {
               <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-lime/10 rounded-full blur-xl pointer-events-none"></div>
               <div className="absolute -top-4 -right-4 w-20 h-20 bg-seafoam/10 rounded-full blur-xl pointer-events-none"></div>
             </div>
-          </motion.div>
+          </AnimateOnView>
 
           {/* Right - Content */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-          >
+          <AnimateOnView delay={0.1}>
             {/* Badge */}
             <div className="flex items-center gap-3 mb-5">
               <div className="w-10 h-[2px] bg-seafoam"></div>
@@ -317,7 +291,7 @@ export function SupportSection() {
                 </span>
               </Link>
             </div>
-          </motion.div>
+          </AnimateOnView>
         </div>
       </div>
     </section>

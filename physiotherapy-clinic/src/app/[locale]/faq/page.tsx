@@ -1,7 +1,26 @@
-import { setRequestLocale } from "next-intl/server";
+import { setRequestLocale, getMessages } from "next-intl/server";
+import { NextIntlClientProvider } from "next-intl";
+import FaqPageClient from "./FaqPageClient";
 
-// Re-export the FAQ page component
-export { default } from "./FaqPageClient";
+export default async function FaqPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const messages = await getMessages();
+  const faqMessages = {
+    faqPage: messages.faqPage,
+  };
+
+  return (
+    <NextIntlClientProvider messages={faqMessages}>
+      <FaqPageClient />
+    </NextIntlClientProvider>
+  );
+}
 
 export async function generateMetadata({
   params,

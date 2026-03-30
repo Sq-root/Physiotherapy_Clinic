@@ -1,7 +1,27 @@
-import { setRequestLocale } from "next-intl/server";
+import { setRequestLocale, getMessages } from "next-intl/server";
+import { NextIntlClientProvider } from "next-intl";
+import ContactPageClient from "./ContactPageClient";
 
-// Re-export the contact page component
-export { default } from "./ContactPageClient";
+export default async function ContactPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const messages = await getMessages();
+  const contactMessages = {
+    contact: messages.contact,
+    common: messages.common,
+  };
+
+  return (
+    <NextIntlClientProvider messages={contactMessages}>
+      <ContactPageClient />
+    </NextIntlClientProvider>
+  );
+}
 
 export async function generateMetadata({
   params,
