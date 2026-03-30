@@ -48,14 +48,12 @@ export default async function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
             {/* Image Column */}
             <div className="lg:col-span-5 order-2 lg:order-1 relative">
-              <AnimateOnView
-                className="aspect-[5/6] relative rounded-[2.5rem] overflow-hidden shadow-2xl border-[10px] border-white ring-1 ring-forest/5"
-              >
+              <AnimateOnView className="aspect-[5/6] relative rounded-[2.5rem] overflow-hidden shadow-2xl border-[10px] border-white ring-1 ring-forest/5">
                 <Image
                   src="/services/doctor_portrait_stretgth.webp"
                   alt="Dr. Isha Shah, Founder and Lead Physiotherapist"
                   fill
-                  className="object-cover"
+                  className="object-cover object-top"
                   priority
                 />
               </AnimateOnView>
@@ -64,12 +62,14 @@ export default async function AboutPage() {
               <AnimateOnView
                 delay={0.5}
                 direction={isRTL ? "right" : "left"}
-                className={`absolute -bottom-4 ${isRTL ? '-right-4' : '-left-4'} bg-forest text-white p-6 rounded-[2rem] shadow-2xl flex items-center gap-4`}
+                className={`absolute -bottom-4 ${isRTL ? "-right-4" : "-left-4"} bg-forest text-white p-6 rounded-[2rem] shadow-2xl flex items-center gap-4`}
               >
                 <span className="text-3xl font-bold font-serif leading-none">
                   7<span className="text-seafoam">+</span>
                 </span>
-                <p className={`text-[10px] font-bold uppercase tracking-[0.2em] leading-tight ${isRTL ? 'border-r border-white/20 pr-4' : 'border-l border-white/20 pl-4'}`}>
+                <p
+                  className={`text-[10px] font-bold uppercase tracking-[0.2em] leading-tight ${isRTL ? "border-r border-white/20 pr-4" : "border-l border-white/20 pl-4"}`}
+                >
                   {t("experienceBadge")}
                 </p>
               </AnimateOnView>
@@ -131,8 +131,12 @@ export default async function AboutPage() {
                 </p>
               </div>
 
-              <div className={`bg-section p-10 md:p-14 rounded-[3rem] border border-forest/5 shadow-inner relative group`}>
-                <Quote className={`absolute top-8 ${isRTL ? 'left-8' : 'right-8'} w-12 h-12 text-seafoam opacity-20 transition-transform duration-500 group-hover:rotate-12`} />
+              <div
+                className={`bg-section p-10 md:p-14 rounded-[3rem] border border-forest/5 shadow-inner relative group`}
+              >
+                <Quote
+                  className={`absolute top-8 ${isRTL ? "left-8" : "right-8"} w-12 h-12 text-seafoam opacity-20 transition-transform duration-500 group-hover:rotate-12`}
+                />
                 <p className="text-xl md:text-2xl font-serif italic leading-relaxed text-forest">
                   &ldquo;{t("heroSubtitle")}&rdquo;
                 </p>
@@ -155,7 +159,9 @@ export default async function AboutPage() {
                       <div className="w-12 h-12 shrink-0 rounded-2xl bg-forest text-white transition-colors group-hover:bg-seafoam group-hover:text-forest flex items-center justify-center">
                         <Icon className="w-5 h-5" />
                       </div>
-                      <h3 className={`text-base font-bold text-forest ${isRTL ? 'group-hover:-translate-x-1' : 'group-hover:translate-x-1'} transition-transform`}>
+                      <h3
+                        className={`text-base font-bold text-forest ${isRTL ? "group-hover:-translate-x-1" : "group-hover:translate-x-1"} transition-transform`}
+                      >
                         {t(`clinicalFocus.items.${focus.key}`)}
                       </h3>
                     </div>
@@ -186,7 +192,9 @@ export default async function AboutPage() {
           </div>
 
           {/* Standards Grid */}
-          <div className={`grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x ${isRTL ? 'md:divide-x-reverse' : ''} divide-forest/10 border border-forest/10 bg-white rounded-2xl overflow-hidden mb-16`}>
+          <div
+            className={`grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x ${isRTL ? "md:divide-x-reverse" : ""} divide-forest/10 border border-forest/10 bg-white rounded-2xl overflow-hidden mb-16`}
+          >
             {standards.map((s, i) => {
               const Icon = s.icon;
               return (
@@ -216,7 +224,9 @@ export default async function AboutPage() {
 
           {/* Who Is For & Ethos */}
           <div className="bg-forest rounded-[3.5rem] p-8 md:p-16 lg:p-20 overflow-hidden relative">
-            <div className={`absolute top-0 ${isRTL ? 'left-0' : 'right-0'} w-1/2 h-full bg-white/[0.03] -skew-x-12 ${isRTL ? '-translate-x-1/4' : 'translate-x-1/4'} pointer-events-none`}></div>
+            <div
+              className={`absolute top-0 ${isRTL ? "left-0" : "right-0"} w-1/2 h-full bg-white/[0.03] -skew-x-12 ${isRTL ? "-translate-x-1/4" : "translate-x-1/4"} pointer-events-none`}
+            ></div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 relative z-10 items-center">
               <div className="lg:col-span-7">
@@ -240,7 +250,9 @@ export default async function AboutPage() {
                 </div>
               </div>
 
-              <div className={`lg:col-span-5 ${isRTL ? 'border-r border-white/10 lg:pr-12' : 'border-l border-white/10 lg:pl-12'}`}>
+              <div
+                className={`lg:col-span-5 ${isRTL ? "border-r border-white/10 lg:pr-12" : "border-l border-white/10 lg:pl-12"}`}
+              >
                 <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/40 mb-8 block">
                   {t("ethos.badge")}
                 </span>
@@ -253,7 +265,9 @@ export default async function AboutPage() {
                     </div>
                   ))}
                 </div>
-                <div className={`mt-12 p-6 rounded-2xl bg-white/[0.03] border border-white/5 italic text-white/50 text-[13px] leading-relaxed`}>
+                <div
+                  className={`mt-12 p-6 rounded-2xl bg-white/[0.03] border border-white/5 italic text-white/50 text-[13px] leading-relaxed`}
+                >
                   {t("ethos.quote")}
                 </div>
               </div>
@@ -265,12 +279,14 @@ export default async function AboutPage() {
       {/* 4. Final CTA */}
       <section className="relative py-24 md:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <AnimateOnView
-            className="relative bg-forest rounded-[3rem] p-8 md:p-16 lg:p-24 overflow-hidden shadow-2xl"
-          >
+          <AnimateOnView className="relative bg-forest rounded-[3rem] p-8 md:p-16 lg:p-24 overflow-hidden shadow-2xl">
             {/* Glossy Decorative Lights */}
-            <div className={`absolute top-0 ${isRTL ? 'left-0' : 'right-0'} w-[400px] h-[400px] bg-seafoam/15 rounded-full blur-[100px] -translate-y-1/2 ${isRTL ? '-translate-x-1/2' : 'translate-x-1/2'}`}></div>
-            <div className={`absolute bottom-0 ${isRTL ? 'right-0' : 'left-0'} w-[300px] h-[300px] bg-white/5 rounded-full blur-[80px] translate-y-1/2 ${isRTL ? 'translate-x-1/2' : '-translate-x-1/2'}`}></div>
+            <div
+              className={`absolute top-0 ${isRTL ? "left-0" : "right-0"} w-[400px] h-[400px] bg-seafoam/15 rounded-full blur-[100px] -translate-y-1/2 ${isRTL ? "-translate-x-1/2" : "translate-x-1/2"}`}
+            ></div>
+            <div
+              className={`absolute bottom-0 ${isRTL ? "right-0" : "left-0"} w-[300px] h-[300px] bg-white/5 rounded-full blur-[80px] translate-y-1/2 ${isRTL ? "translate-x-1/2" : "-translate-x-1/2"}`}
+            ></div>
 
             <div className="relative z-10 text-center max-w-3xl mx-auto">
               <div className="inline-flex items-center gap-2 mb-8 bg-white/5 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 uppercase tracking-[0.2em] text-[10px] font-bold text-seafoam">

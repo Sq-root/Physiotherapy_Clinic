@@ -93,7 +93,7 @@ export function Logo({
           ) : (
             <span
               className={cn(
-                "font-medium tracking-tight leading-none transition-colors duration-300",
+                "font-medium tracking-tight leading-none whitespace-nowrap transition-colors duration-300",
                 textClasses[size],
                 useDarkStyle ? "text-forest" : "text-white"
               )}

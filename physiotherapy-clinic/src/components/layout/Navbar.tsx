@@ -116,7 +116,6 @@ export function Navbar() {
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out",
-          scrolled && "pointer-events-none",
         )}
       >
         {/* Background layer for non-scrolled state */}
@@ -149,7 +148,9 @@ export function Navbar() {
               )}
             >
               {/* Logo */}
-              <Logo useDarkStyle={useDarkStyle} />
+              <div className="shrink-0">
+                <Logo useDarkStyle={useDarkStyle} />
+              </div>
 
               {/* Desktop Navigation with Clean Design */}
               <nav className="hidden md:flex items-center relative">
@@ -172,7 +173,7 @@ export function Navbar() {
                       <Link
                         key={link.label}
                         href={link.href}
-                        className="relative px-5 py-2.5 rounded-full group"
+                        className="relative px-4 py-2 rounded-full group"
                       >
                         {/* Animated Active Background */}
                         {isActive && (
@@ -197,7 +198,7 @@ export function Navbar() {
                         {/* Link Text - Refined Scale */}
                         <span
                           className={cn(
-                            "relative z-10 text-[12px] font-semibold uppercase tracking-[0.12em] transition-all duration-200",
+                            "relative z-10 text-[11px] font-semibold uppercase tracking-[0.1em] whitespace-nowrap transition-all duration-200",
                             isActive
                               ? useDarkStyle
                                 ? "text-white"
@@ -265,11 +266,12 @@ export function Navbar() {
                   whileHover={{ scale: 1.03, y: -1 }}
                   whileTap={{ scale: 0.97 }}
                   transition={{ type: "spring", stiffness: 400 }}
+                  className="shrink-0"
                 >
                   <Link
                     href="/contact"
                     className={cn(
-                      "inline-flex items-center justify-center gap-2 h-10 px-5 text-[11px] font-bold uppercase tracking-widest rounded-full transition-all duration-300 group",
+                      "inline-flex items-center justify-center gap-2 h-10 px-5 text-[11px] font-bold uppercase tracking-widest rounded-full whitespace-nowrap transition-all duration-300 group",
                       useDarkStyle
                         ? "bg-forest text-white hover:bg-forest/90 shadow-lg shadow-forest/20"
                         : "bg-white text-forest hover:bg-white/90 shadow-lg shadow-white/20",
