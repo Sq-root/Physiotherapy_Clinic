@@ -27,7 +27,22 @@
     "services": "الخدمات",
     "faq": "الأسئلة الشائعة",
     "contact": "تواصل معنا",
-    "aboutUs": "من نحن"
+    "aboutUs": "من نحن",
+    "servicesMenu": {
+      "primary": "الرعاية الأساسية",
+      "therapeutic": "العلاجية",
+      "specialized": "المتخصصة",
+      "viewAll": "عرض جميع الخدمات",
+      "manualTherapy": "العلاج اليدوي",
+      "sportsRecovery": "التعافي الرياضي",
+      "painManagement": "إدارة الألم",
+      "postSurgical": "ما بعد الجراحة",
+      "activeAging": "الشيخوخة النشطة",
+      "hydrotherapy": "العلاج المائي",
+      "correctiveExercise": "التمارين التصحيحية",
+      "neurological": "الأعصاب",
+      "pediatric": "الأطفال"
+    }
   },
   "hero": {
     "slides": {

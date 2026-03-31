@@ -7,6 +7,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Leaf, Sparkles, Globe } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { Logo } from "@/components/ui/Logo";
+import { NavbarServicesDropdown } from "@/components/layout/NavbarServicesDropdown";
+import { MobileServicesAccordion } from "@/components/layout/MobileServicesAccordion";
 import { useTranslations, useLocale } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/routing";
 import { localeNames, localeFlags, type Locale } from "@/i18n/config";
@@ -169,6 +171,20 @@ export function Navbar() {
                       (link.href === "/" && pathname === "/" && !activeHash) ||
                       (link.href === "/services" &&
                         pathname?.startsWith("/services"));
+
+                    // Render dropdown for Services
+                    if (link.href === "/services") {
+                      return (
+                        <NavbarServicesDropdown
+                          key={link.label}
+                          label={link.label}
+                          isActive={isActive}
+                          useDarkStyle={useDarkStyle}
+                          isRTL={isRTL}
+                          t={(key) => t(`servicesMenu.${key}`)}
+                        />
+                      );
+                    }
 
                     return (
                       <Link
@@ -403,40 +419,56 @@ export function Navbar() {
 
                 {/* Mobile Nav Links */}
                 <nav className="space-y-1 mb-6">
-                  {navItems.map((link, index) => (
-                    <motion.div
-                      key={link.href}
-                      initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.05 }}
-                    >
-                      <Link
-                        href={link.href}
-                        onClick={() => setMobileOpen(false)}
-                        className="flex items-center justify-between py-3 px-4 rounded-xl text-forest hover:bg-forest/5 transition-colors group"
+                  {navItems.map((link, index) => {
+                    // Render accordion for Services
+                    if (link.href === "/services") {
+                      return (
+                        <MobileServicesAccordion
+                          key={link.href}
+                          label={link.label}
+                          isRTL={isRTL}
+                          t={t}
+                          onNavigate={() => setMobileOpen(false)}
+                          index={index}
+                        />
+                      );
+                    }
+
+                    return (
+                      <motion.div
+                        key={link.href}
+                        initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.05 }}
                       >
-                        <span className="text-sm font-semibold uppercase tracking-wider">
-                          {link.label}
-                        </span>
-                        <svg
-                          className={cn(
-                            "w-4 h-4 text-forest/30 group-hover:text-seafoam transition-all",
-                            isRTL ? "group-hover:-translate-x-1 rotate-180" : "group-hover:translate-x-1"
-                          )}
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
+                        <Link
+                          href={link.href}
+                          onClick={() => setMobileOpen(false)}
+                          className="flex items-center justify-between py-3 px-4 rounded-xl text-forest hover:bg-forest/5 transition-colors group"
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M9 5l7 7-7 7"
-                          />
-                        </svg>
-                      </Link>
-                    </motion.div>
-                  ))}
+                          <span className="text-sm font-semibold uppercase tracking-wider">
+                            {link.label}
+                          </span>
+                          <svg
+                            className={cn(
+                              "w-4 h-4 text-forest/30 group-hover:text-seafoam transition-all",
+                              isRTL ? "group-hover:-translate-x-1 rotate-180" : "group-hover:translate-x-1"
+                            )}
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 5l7 7-7 7"
+                            />
+                          </svg>
+                        </Link>
+                      </motion.div>
+                    );
+                  })}
                 </nav>
 
                 {/* Mobile CTA */}

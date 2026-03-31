@@ -27,7 +27,22 @@
     "services": "Services",
     "faq": "FAQ",
     "contact": "Contact",
-    "aboutUs": "About Us"
+    "aboutUs": "About Us",
+    "servicesMenu": {
+      "primary": "Primary Care",
+      "therapeutic": "Therapeutic",
+      "specialized": "Specialized",
+      "viewAll": "View All Services",
+      "manualTherapy": "Manual Therapy",
+      "sportsRecovery": "Sports Recovery",
+      "painManagement": "Pain Management",
+      "postSurgical": "Post-Surgical",
+      "activeAging": "Active Aging",
+      "hydrotherapy": "Hydrotherapy",
+      "correctiveExercise": "Corrective Exercise",
+      "neurological": "Neurological",
+      "pediatric": "Pediatric"
+    }
   },
   "hero": {
     "slides": {

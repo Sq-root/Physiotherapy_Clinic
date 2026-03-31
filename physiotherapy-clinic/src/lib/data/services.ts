@@ -162,3 +162,40 @@ export const getServicesByCategory = (category: Service['category']) =>
 export const getPrimaryServices = () => getServicesByCategory('primary');
 export const getTherapeuticServices = () => getServicesByCategory('therapeutic');
 export const getSpecializedServices = () => getServicesByCategory('specialized');
+
+// Service categories for navigation dropdown
+export const serviceCategories = [
+    {
+        id: 'primary' as const,
+        labelKey: 'servicesMenu.primary',
+        icon: '🎯',
+        color: 'bg-lime/10',
+        services: [
+            { id: 'manual-therapy', slug: 'manual-therapy', icon: '🤲', labelKey: 'servicesMenu.manualTherapy' },
+            { id: 'sports-recovery', slug: 'sports-recovery', icon: '⚡', labelKey: 'servicesMenu.sportsRecovery' },
+            { id: 'pain-management', slug: 'pain-management', icon: '💆', labelKey: 'servicesMenu.painManagement' },
+            { id: 'post-surgical', slug: 'post-surgical', icon: '🏥', labelKey: 'servicesMenu.postSurgical' },
+        ],
+    },
+    {
+        id: 'therapeutic' as const,
+        labelKey: 'servicesMenu.therapeutic',
+        icon: '💆',
+        color: 'bg-seafoam/10',
+        services: [
+            { id: 'active-aging', slug: 'active-aging', icon: '🧓', labelKey: 'servicesMenu.activeAging' },
+            { id: 'hydrotherapy', slug: 'hydrotherapy', icon: '🌊', labelKey: 'servicesMenu.hydrotherapy' },
+            { id: 'corrective-exercise', slug: 'corrective-exercise', icon: '🎯', labelKey: 'servicesMenu.correctiveExercise' },
+        ],
+    },
+    {
+        id: 'specialized' as const,
+        labelKey: 'servicesMenu.specialized',
+        icon: '🧠',
+        color: 'bg-forest/5',
+        services: [
+            { id: 'neurological', slug: 'neurological', icon: '🧠', labelKey: 'servicesMenu.neurological' },
+            { id: 'pediatric', slug: 'pediatric', icon: '👶', labelKey: 'servicesMenu.pediatric' },
+        ],
+    },
+];
