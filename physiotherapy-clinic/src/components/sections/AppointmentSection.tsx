@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -56,18 +57,18 @@ const serviceLabels: Record<ServiceType, string> = {
 };
 
 const COUNTRY_CODES = [
-  { code: "+971", country: "UAE", flag: "🇦🇪" },
-  { code: "+91", country: "IN", flag: "🇮🇳" },
-  { code: "+44", country: "UK", flag: "🇬🇧" },
-  { code: "+1", country: "US", flag: "🇺🇸" },
-  { code: "+966", country: "SA", flag: "🇸🇦" },
-  { code: "+974", country: "QA", flag: "🇶🇦" },
-  { code: "+968", country: "OM", flag: "🇴🇲" },
-  { code: "+965", country: "KW", flag: "🇰🇼" },
-  { code: "+973", country: "BH", flag: "🇧🇭" },
-  { code: "+61", country: "AU", flag: "🇦🇺" },
-  { code: "+1", country: "CA", flag: "🇨🇦" },
-  { code: "+49", country: "DE", flag: "🇩🇪" },
+  { code: "+971", country: "UAE", flag: "" },
+  { code: "+91", country: "IN", flag: "" },
+  { code: "+44", country: "UK", flag: "" },
+  { code: "+1", country: "US", flag: "" },
+  { code: "+966", country: "SA", flag: "" },
+  { code: "+974", country: "QA", flag: "" },
+  { code: "+968", country: "OM", flag: "" },
+  { code: "+965", country: "KW", flag: "" },
+  { code: "+973", country: "BH", flag: "" },
+  { code: "+61", country: "AU", flag: "" },
+  { code: "+1", country: "CA", flag: "" },
+  { code: "+49", country: "DE", flag: "" },
 ] as const;
 
 type CountryCode = (typeof COUNTRY_CODES)[number]["code"];
@@ -400,10 +401,12 @@ export function AppointmentSection() {
                 <div>
                   <p className="text-white text-sm font-medium">Call Us</p>
                   <div className="flex items-center gap-2">
-                    <img
+                    <Image
                       src="/logo/ae_flag.svg"
                       alt="UAE Flag"
-                      className="w-6 h-auto rounded shadow-sm border border-white/20"
+                      width={24}
+                      height={14}
+                      className="rounded shadow-sm border border-white/20"
                     />
                     <p className="text-white/50 text-xs">
                       {siteConfig.contact.phone}
@@ -451,7 +454,7 @@ export function AppointmentSection() {
                     <h3 className="text-xl font-bold text-forest mb-2">
                       Appointment Booked!
                     </h3>
-                    <p className="text-forest/60 text-sm mb-6">
+                    <p className="text-forest/80 text-sm mb-6">
                       We&apos;ve received your booking request. A confirmation
                       email will be sent to your inbox shortly.
                     </p>
@@ -462,7 +465,7 @@ export function AppointmentSection() {
                       </h4>
                       <div className="space-y-2">
                         <div className="flex justify-between">
-                          <span className="text-sm text-forest/60">
+                          <span className="text-sm text-forest/80">
                             Service
                           </span>
                           <span className="text-sm font-medium text-forest">
@@ -474,19 +477,19 @@ export function AppointmentSection() {
                           </span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-sm text-forest/60">Date</span>
+                          <span className="text-sm text-forest/80">Date</span>
                           <span className="text-sm font-medium text-forest">
                             {formatDate(bookedAppointment.date)}
                           </span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-sm text-forest/60">Time</span>
+                          <span className="text-sm text-forest/80">Time</span>
                           <span className="text-sm font-medium text-forest">
                             {getTimeSlotLabel(bookedAppointment.timeSlot)}
                           </span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-sm text-forest/60">
+                          <span className="text-sm text-forest/80">
                             Reference
                           </span>
                           <span className="text-xs font-mono text-forest/50">
@@ -544,6 +547,7 @@ export function AppointmentSection() {
                         </div>
                         <input
                           type="text"
+                          aria-label="Name"
                           placeholder="Name *"
                           required
                           value={formData.name}
@@ -560,6 +564,7 @@ export function AppointmentSection() {
                         </div>
                         <input
                           type="email"
+                          aria-label="Email Address"
                           placeholder="Email *"
                           required
                           value={formData.email}
@@ -630,7 +635,7 @@ export function AppointmentSection() {
                                     "flex items-center justify-between w-full p-2.5 rounded-xl text-left transition-all",
                                     formData.countryCode === country.code
                                       ? "bg-forest/5 text-forest"
-                                      : "hover:bg-forest/5 text-forest/70 hover:translate-x-0.5",
+                                      : "hover:bg-forest/5 text-forest/80 hover:translate-x-0.5",
                                   )}
                                 >
                                   <div className="flex items-center gap-3">
@@ -654,6 +659,7 @@ export function AppointmentSection() {
                       </div>
                       <input
                         type="tel"
+                        aria-label="Phone Number"
                         placeholder="Phone Number *"
                         required
                         value={formData.phone}
@@ -691,7 +697,7 @@ export function AppointmentSection() {
                               className={`flex flex-col items-center p-2.5 sm:p-2 rounded-lg transition-all duration-200 disabled:opacity-50 ${
                                 formData.service === service
                                   ? "bg-forest text-white shadow-md"
-                                  : "bg-section/40 text-forest/60 hover:bg-section"
+                                  : "bg-section/40 text-forest/80 hover:bg-section"
                               }`}
                             >
                               <IconComponent className="w-5 h-5 sm:w-4 sm:h-4 mb-1 sm:mb-0.5" />
@@ -712,6 +718,7 @@ export function AppointmentSection() {
                         </div>
                         <input
                           type="date"
+                          aria-label="Appointment Date"
                           required
                           min={getMinDate()}
                           max={getMaxDate()}
@@ -733,6 +740,7 @@ export function AppointmentSection() {
                         ) : ( */}
                         <select
                           required
+                          aria-label="Time Slot"
                           value={formData.timeSlot}
                           onChange={(e) =>
                             setFormData({
@@ -761,6 +769,7 @@ export function AppointmentSection() {
                       </div>
                       <textarea
                         placeholder="Additional notes or concerns (optional)"
+                        aria-label="Additional Message"
                         value={formData.message}
                         onChange={(e) =>
                           setFormData({ ...formData, message: e.target.value })

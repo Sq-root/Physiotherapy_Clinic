@@ -26,7 +26,7 @@ export function AccordionItem({ question, answer, isOpen, onClick }: AccordionIt
           )} />
           <span className={cn(
             "text-[17px] font-bold tracking-tight transition-colors duration-300",
-            isOpen ? "text-forest" : "text-forest/70 group-hover:text-forest"
+            isOpen ? "text-forest" : "text-forest/80 group-hover:text-forest"
           )}>
             {question}
           </span>
@@ -52,7 +52,7 @@ export function AccordionItem({ question, answer, isOpen, onClick }: AccordionIt
             className="overflow-hidden"
           >
             <div className="pb-6 pl-5.5">
-              <p className="text-forest/60 leading-relaxed max-w-2xl text-[15px] font-medium">
+              <p className="text-forest/80 leading-relaxed max-w-2xl text-[15px] font-medium">
                 {answer}
               </p>
             </div>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/config/site";
 
@@ -65,9 +66,11 @@ export function Logo({
             : "bg-white/20 backdrop-blur-sm border border-white/30"
         )}
       >
-        <img
+        <Image
           src="/logo/Dr_isha_Logo.png"
           alt="Company Logo"
+          width={size === "sm" ? 28 : size === "md" ? 36 : 44}
+          height={size === "sm" ? 28 : size === "md" ? 36 : 44}
           className={cn("object-contain p-1", sizeClasses[size])}
         />
       </div>
@@ -85,7 +88,7 @@ export function Logo({
               <span className={cn(
                 "font-bold tracking-[0.2em] uppercase leading-none mt-1 transition-colors duration-300",
                 size === "sm" ? "text-[8px]" : "text-[10px]",
-                useDarkStyle ? "text-forest/60" : "text-seafoam"
+                useDarkStyle ? "text-forest/80" : "text-seafoam"
               )}>
                 {otherNames}
               </span>
@@ -93,7 +96,7 @@ export function Logo({
           ) : (
             <span
               className={cn(
-                "font-medium tracking-tight leading-none transition-colors duration-300",
+                "font-medium tracking-tight leading-none whitespace-nowrap transition-colors duration-300",
                 textClasses[size],
                 useDarkStyle ? "text-forest" : "text-white"
               )}

@@ -1,9 +1,9 @@
-"use client";
-
-import { motion } from "framer-motion";
-import Link from "next/link";
+import Image from "next/image";
+import { AnimateOnView } from "@/components/ui/AnimateOnView";
 import { Target, FlaskConical, Heart } from "lucide-react";
 import { siteConfig } from "@/config/site";
+import { getTranslations, getLocale } from "next-intl/server";
+import { Link } from "@/i18n/routing";
 
 const highlightIconMap = {
   0: Target,
@@ -11,20 +11,15 @@ const highlightIconMap = {
   2: Heart,
 };
 
-export function SupportSection() {
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
-    },
-  };
+export async function SupportSection() {
+  const t = await getTranslations("support");
+  const locale = await getLocale();
+  const isRTL = locale === "ar";
 
   const highlights = [
-    { label: "Global Standard Of Care" },
-    { label: "Personalized (Evidence-based)" },
-    { label: "Outcome-driven Rehabilitation" },
+    { label: t("highlights.globalStandard") },
+    { label: t("highlights.personalized") },
+    { label: t("highlights.outcomeDriven") },
   ];
 
   return (
@@ -50,21 +45,19 @@ export function SupportSection() {
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 relative z-10">
         {/* Mobile Layout */}
         <div className="md:hidden">
-          <motion.div
+          <AnimateOnView
             className="bg-gradient-to-br from-section to-white rounded-2xl p-5 shadow-card border border-forest/5"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
           >
             {/* Header Row */}
             <div className="flex items-start gap-4 mb-4">
               <div className="relative flex-shrink-0">
-                <div className="w-20 h-24 rounded-xl overflow-hidden shadow-md">
-                  <img
+                <div className="w-20 h-24 rounded-xl overflow-hidden shadow-md relative">
+                  <Image
                     src="/services/IMG_0120.webp"
                     alt="Physiotherapist"
-                    className="w-full h-full object-cover object-center"
+                    fill
+                    className="object-cover object-center"
+                    sizes="80px"
                   />
                 </div>
                 <div className="absolute -bottom-2 -right-2 size-10 bg-seafoam rounded-full flex items-center justify-center shadow-lg border-2 border-white">
@@ -78,11 +71,11 @@ export function SupportSection() {
                 <div className="inline-flex items-center gap-1.5 bg-seafoam/10 rounded-full px-2.5 py-1 mb-2">
                   <span className="w-1.5 h-1.5 bg-seafoam rounded-full"></span>
                   <span className="text-seafoam text-[9px] font-semibold tracking-wider uppercase">
-                    Why Us
+                    {t("badge")}
                   </span>
                 </div>
                 <h2 className="text-base font-bold text-forest leading-tight">
-                  Precision Physiotherapy for Lasting Recovery
+                  {t("title")} {t("titleHighlight")}
                 </h2>
               </div>
             </div>
@@ -123,29 +116,25 @@ export function SupportSection() {
                 );
               })}
             </div>
-          </motion.div>
+          </AnimateOnView>
         </div>
 
         {/* Desktop Layout */}
         <div className="hidden md:grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left - Image Collage */}
-          <motion.div
-            className="relative"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-          >
+          <AnimateOnView className="relative">
             <div
               className="relative w-full max-w-lg mx-auto"
               style={{ aspectRatio: "1/0.85" }}
             >
               {/* Main Large Image */}
               <div className="absolute top-0 left-0 w-[62%] h-[88%] rounded-3xl overflow-hidden shadow-2xl z-10">
-                <img
+                <Image
                   src="/services/doctor_portrait_stretgth.webp"
                   alt="Senior Physiotherapist"
-                  className="w-full h-full object-cover object-top"
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 768px) 50vw, 30vw"
                 />
 
                 {/* Gradient Overlay */}
@@ -154,19 +143,23 @@ export function SupportSection() {
 
               {/* Top Right Image */}
               <div className="absolute top-0 right-0 w-[35%] h-[45%] rounded-2xl overflow-hidden shadow-xl z-10">
-                <img
+                <Image
                   src="/services/IMG_0122.webp"
                   alt="Patient Session"
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 30vw, 15vw"
                 />
               </div>
 
               {/* Bottom Right Image */}
               <div className="absolute bottom-0 right-0 w-[35%] h-[45%] rounded-2xl overflow-hidden shadow-xl z-10">
-                <img
+                <Image
                   src="/services/IMG_0116.webp"
                   alt="Therapy Session"
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 30vw, 15vw"
                 />
               </div>
 
@@ -194,35 +187,27 @@ export function SupportSection() {
               <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-lime/10 rounded-full blur-xl pointer-events-none"></div>
               <div className="absolute -top-4 -right-4 w-20 h-20 bg-seafoam/10 rounded-full blur-xl pointer-events-none"></div>
             </div>
-          </motion.div>
+          </AnimateOnView>
 
           {/* Right - Content */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-          >
+          <AnimateOnView delay={0.1}>
             {/* Badge */}
             <div className="flex items-center gap-3 mb-5">
               <div className="w-10 h-[2px] bg-seafoam"></div>
               <span className="text-seafoam text-xs font-bold uppercase tracking-[0.2em]">
-                Why Choose Us
+                {t("badge")}
               </span>
             </div>
 
             {/* Heading */}
             <h2 className="text-3xl lg:text-4xl xl:text-5xl font-sans text-forest leading-[1.15] font-bold tracking-tight mb-6">
-              Precision Physiotherapy for{" "}
-              <span className="text-seafoam">Lasting Recovery</span>
+              {t("title")}{" "}
+              <span className="text-seafoam">{t("titleHighlight")}</span>
             </h2>
 
             {/* Description */}
-            <p className="text-forest/70 text-base lg:text-lg mb-8 leading-relaxed">
-              Every session is delivered one-to-one with a focus on identifying
-              the root cause of pain. Through precise assessment and
-              evidence-based rehabilitation, we help you recover faster and move
-              with confidence again.
+            <p className="text-forest/80 text-base lg:text-lg mb-8 leading-relaxed">
+              {t("description")}
             </p>
 
             {/* Highlights */}
@@ -266,9 +251,11 @@ export function SupportSection() {
             <div className="flex items-center justify-between flex-wrap gap-4">
               <div className="flex items-center gap-4">
                 <div className="relative">
-                  <img
+                  <Image
                     src="/services/IMG_0017.webp"
                     alt={siteConfig.doctorName}
+                    width={56}
+                    height={56}
                     className="size-14 rounded-full object-cover object-top border-2 border-seafoam shadow-lg"
                   />
                   <div className="absolute -bottom-1 -right-1 size-5 bg-lime rounded-full flex items-center justify-center border-2 border-white">
@@ -295,12 +282,12 @@ export function SupportSection() {
 
               <Link
                 href="/about"
-                className="group inline-flex items-center gap-2 bg-seafoam text-white pl-6 pr-2 py-2.5 rounded-full font-semibold text-sm hover:bg-forest transition-colors duration-300"
+                className={`group inline-flex items-center gap-2 bg-seafoam text-white ${isRTL ? 'pr-6 pl-2' : 'pl-6 pr-2'} py-2.5 rounded-full font-semibold text-sm hover:bg-forest transition-colors duration-300`}
               >
-                <span>Meet Our Team</span>
+                <span>{t("cta")}</span>
                 <span className="size-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
                   <svg
-                    className="w-4 h-4"
+                    className={`w-4 h-4 ${isRTL ? 'rotate-180' : ''}`}
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -315,7 +302,7 @@ export function SupportSection() {
                 </span>
               </Link>
             </div>
-          </motion.div>
+          </AnimateOnView>
         </div>
       </div>
     </section>

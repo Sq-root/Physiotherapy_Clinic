@@ -11,6 +11,8 @@ export type Service = {
     image?: string;
     category: 'primary' | 'therapeutic' | 'specialized';
     features?: string[];
+    /** Translation key used in serviceDetail namespace */
+    translationKey: string;
 };
 
 export const services: Service[] = [
@@ -21,11 +23,12 @@ export const services: Service[] = [
         title: 'Manual Therapy',
         shortTitle: 'Manual',
         description: 'Hands-on mobilization for immediate pain relief and joint function.',
+        translationKey: 'manualTherapy',
         longDescription: 'Our certified manual therapists use evidence-based techniques including joint mobilization, soft tissue manipulation, and myofascial release to restore optimal movement and reduce pain.',
-        icon: '🤲',
+        icon: '',
         materialIcon: 'back_hand',
         color: '#A4C639',
-        image: '/services/manual_therapy_v2.webp',
+        image: '/services/manual_therapy_hd.webp',
         category: 'primary',
         features: ['Joint Mobilization', 'Soft Tissue Work', 'Trigger Point Release', 'Myofascial Techniques'],
     },
@@ -35,8 +38,9 @@ export const services: Service[] = [
         title: 'Sports Recovery',
         shortTitle: 'Sports',
         description: 'Biomechanics analysis to return to your peak performance safely.',
+        translationKey: 'sportsRecovery',
         longDescription: 'From weekend warriors to professional athletes, our sports rehabilitation program combines cutting-edge diagnostics with personalized recovery protocols.',
-        icon: '⚡',
+        icon: '',
         materialIcon: 'exercise',
         color: '#66A182',
         image: '/services/sports_recovery_bento_hd.webp',
@@ -49,8 +53,9 @@ export const services: Service[] = [
         title: 'Pain Mgmt',
         shortTitle: 'Pain',
         description: 'Comprehensive pain management strategies for chronic conditions.',
+        translationKey: 'painManagement',
         longDescription: 'Our multidisciplinary approach addresses the root causes of chronic pain through targeted interventions and holistic wellness strategies.',
-        icon: '💆',
+        icon: '',
         materialIcon: 'self_improvement',
         color: '#002D04',
         image: '/services/pain_management_bento_hd.webp',
@@ -63,8 +68,9 @@ export const services: Service[] = [
         title: 'Post-Surgical',
         shortTitle: 'Post-Op',
         description: 'Specialized rehabilitation following orthopedic surgeries.',
+        translationKey: 'postSurgical',
         longDescription: 'Our post-surgical protocols are designed in collaboration with leading orthopedic surgeons to ensure optimal recovery timelines and outcomes.',
-        icon: '🏥',
+        icon: '',
         materialIcon: 'medical_services',
         color: '#A4C639',
         image: '/services/post_surgical_bento_hd.webp',
@@ -77,8 +83,9 @@ export const services: Service[] = [
         slug: 'active-aging',
         title: 'Active Aging',
         description: 'Maintaining independence and strength through tailored low-impact movement strategies.',
+        translationKey: 'activeAging',
         longDescription: 'Our senior wellness program focuses on maintaining mobility, preventing falls, and enhancing quality of life through gentle, effective exercises.',
-        icon: '🧓',
+        icon: '',
         materialIcon: 'elderly',
         color: '#66A182',
         image: '/services/active_aging_deep_dive_hd.webp',
@@ -90,8 +97,9 @@ export const services: Service[] = [
         slug: 'hydrotherapy',
         title: 'Hydrotherapy',
         description: 'Low-impact aquatic resistance training to rebuild muscle without joint stress.',
+        translationKey: 'hydrotherapy',
         longDescription: 'Our state-of-the-art aquatic therapy pool provides the ideal environment for rehabilitation, using water buoyancy to reduce joint loading.',
-        icon: '🌊',
+        icon: '',
         materialIcon: 'pool',
         color: '#66A182',
         image: '/services/hydrotherapy_deep_dive_hd.webp',
@@ -103,8 +111,9 @@ export const services: Service[] = [
         slug: 'corrective-exercise',
         title: 'Corrective Exercise',
         description: 'Fixing imbalances and posture issues before they become injuries.',
+        translationKey: 'correctiveExercise',
         longDescription: 'Our corrective exercise specialists identify and address movement dysfunctions through targeted exercises and postural retraining.',
-        icon: '🎯',
+        icon: '',
         materialIcon: 'sports_gymnastics',
         color: '#A4C639',
         image: '/services/corrective_exercise_deep_dive_hd.webp',
@@ -117,8 +126,9 @@ export const services: Service[] = [
         slug: 'neurological',
         title: 'Neurological',
         description: 'Compassionate care for neurological conditions including stroke and Parkinson\'s.',
+        translationKey: 'neurological',
         longDescription: 'Our neurological rehabilitation team specializes in helping patients regain function and independence following strokes, brain injuries, and progressive conditions.',
-        icon: '🧠',
+        icon: '',
         materialIcon: 'psychology',
         color: '#002D04',
         category: 'specialized',
@@ -129,8 +139,9 @@ export const services: Service[] = [
         slug: 'pediatric',
         title: 'Pediatric',
         description: 'Gentle, play-based therapy tailored for children\'s developmental needs.',
+        translationKey: 'pediatric',
         longDescription: 'Our pediatric specialists create fun, engaging therapy sessions that help children reach their developmental milestones.',
-        icon: '👶',
+        icon: '',
         materialIcon: 'child_care',
         color: '#A4C639',
         category: 'specialized',
@@ -162,3 +173,43 @@ export const getServicesByCategory = (category: Service['category']) =>
 export const getPrimaryServices = () => getServicesByCategory('primary');
 export const getTherapeuticServices = () => getServicesByCategory('therapeutic');
 export const getSpecializedServices = () => getServicesByCategory('specialized');
+
+export const getServiceBySlug = (slug: string) => services.find(s => s.slug === slug);
+export const getAllServiceSlugs = () => services.map(s => s.slug);
+
+// Service categories for navigation dropdown
+export const serviceCategories = [
+    {
+        id: 'primary' as const,
+        labelKey: 'servicesMenu.primary',
+        icon: '',
+        color: 'bg-lime/10',
+        services: [
+            { id: 'manual-therapy', slug: 'manual-therapy', icon: '', labelKey: 'servicesMenu.manualTherapy' },
+            { id: 'sports-recovery', slug: 'sports-recovery', icon: '', labelKey: 'servicesMenu.sportsRecovery' },
+            { id: 'pain-management', slug: 'pain-management', icon: '', labelKey: 'servicesMenu.painManagement' },
+            { id: 'post-surgical', slug: 'post-surgical', icon: '', labelKey: 'servicesMenu.postSurgical' },
+        ],
+    },
+    {
+        id: 'therapeutic' as const,
+        labelKey: 'servicesMenu.therapeutic',
+        icon: '',
+        color: 'bg-seafoam/10',
+        services: [
+            { id: 'active-aging', slug: 'active-aging', icon: '', labelKey: 'servicesMenu.activeAging' },
+            { id: 'hydrotherapy', slug: 'hydrotherapy', icon: '', labelKey: 'servicesMenu.hydrotherapy' },
+            { id: 'corrective-exercise', slug: 'corrective-exercise', icon: '', labelKey: 'servicesMenu.correctiveExercise' },
+        ],
+    },
+    {
+        id: 'specialized' as const,
+        labelKey: 'servicesMenu.specialized',
+        icon: '',
+        color: 'bg-forest/5',
+        services: [
+            { id: 'neurological', slug: 'neurological', icon: '', labelKey: 'servicesMenu.neurological' },
+            { id: 'pediatric', slug: 'pediatric', icon: '', labelKey: 'servicesMenu.pediatric' },
+        ],
+    },
+];

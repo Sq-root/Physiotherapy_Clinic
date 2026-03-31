@@ -1,19 +1,45 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState, useCallback } from "react";
-import { usePathname } from "next/navigation";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-import { Leaf, Sparkles } from "lucide-react";
+import { Leaf, Sparkles, Globe } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { Logo } from "@/components/ui/Logo";
+import { NavbarServicesDropdown } from "@/components/layout/NavbarServicesDropdown";
+import { MobileServicesAccordion } from "@/components/layout/MobileServicesAccordion";
+import { useTranslations, useLocale } from "next-intl";
+import { Link, usePathname, useRouter } from "@/i18n/routing";
+import { localeNames, localeFlags, type Locale } from "@/i18n/config";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeHash, setActiveHash] = useState("");
+  const [showLangMenu, setShowLangMenu] = useState(false);
+  
   const pathname = usePathname();
+  const router = useRouter();
+  const t = useTranslations("nav");
+  const tCommon = useTranslations("common");
+  const locale = useLocale() as Locale;
+  const isRTL = locale === "ar";
+
+  // Navigation items with translated labels
+  const navItems = [
+    { href: "/", label: t("home") },
+    { href: "/services", label: t("services") },
+    { href: "/about", label: t("aboutUs") },
+    { href: "/faq", label: t("faq") },
+    { href: "/contact", label: t("contact") },
+  ];
+
+  // Language switcher function
+  const switchLocale = (newLocale: Locale) => {
+    router.replace(pathname, { locale: newLocale });
+    setShowLangMenu(false);
+  };
 
   // Detect active section based on scroll position (for hash links)
   const updateActiveHash = useCallback(() => {
@@ -93,7 +119,6 @@ export function Navbar() {
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out",
-          scrolled && "pointer-events-none",
         )}
       >
         {/* Background layer for non-scrolled state */}
@@ -126,7 +151,9 @@ export function Navbar() {
               )}
             >
               {/* Logo */}
-              <Logo useDarkStyle={useDarkStyle} />
+              <div className="shrink-0">
+                <Logo useDarkStyle={useDarkStyle} />
+              </div>
 
               {/* Desktop Navigation with Clean Design */}
               <nav className="hidden md:flex items-center relative">
@@ -138,18 +165,32 @@ export function Navbar() {
                       : "bg-white/10 backdrop-blur-sm border border-white/20",
                   )}
                 >
-                  {siteConfig.nav.map((link) => {
+                  {navItems.map((link) => {
                     const isActive =
                       activeLinkHref === link.href ||
                       (link.href === "/" && pathname === "/" && !activeHash) ||
                       (link.href === "/services" &&
                         pathname?.startsWith("/services"));
 
+                    // Render dropdown for Services
+                    if (link.href === "/services") {
+                      return (
+                        <NavbarServicesDropdown
+                          key={link.label}
+                          label={link.label}
+                          isActive={isActive}
+                          useDarkStyle={useDarkStyle}
+                          isRTL={isRTL}
+                          t={t}
+                        />
+                      );
+                    }
+
                     return (
                       <Link
                         key={link.label}
                         href={link.href}
-                        className="relative px-5 py-2.5 rounded-full group"
+                        className="relative px-4 py-2 rounded-full group"
                       >
                         {/* Animated Active Background */}
                         {isActive && (
@@ -174,13 +215,13 @@ export function Navbar() {
                         {/* Link Text - Refined Scale */}
                         <span
                           className={cn(
-                            "relative z-10 text-[12px] font-semibold uppercase tracking-[0.12em] transition-all duration-200",
+                            "relative z-10 text-[11px] font-semibold uppercase tracking-[0.1em] whitespace-nowrap transition-all duration-200",
                             isActive
                               ? useDarkStyle
                                 ? "text-white"
                                 : "text-forest"
                               : useDarkStyle
-                                ? "text-forest/60 group-hover:text-forest"
+                                ? "text-forest/80 group-hover:text-forest"
                                 : "text-white/80 group-hover:text-white",
                           )}
                         >
@@ -193,24 +234,71 @@ export function Navbar() {
               </nav>
 
               {/* CTA Button - Improved Visibility */}
-              <div className="hidden md:block">
+              <div className="hidden md:flex items-center gap-3">
+                {/* Language Switcher */}
+                <div className="relative">
+                  <button
+                    aria-label="Toggle language menu"
+                    aria-expanded={showLangMenu}
+                    onClick={() => setShowLangMenu(!showLangMenu)}
+                    className={cn(
+                      "flex items-center gap-2 h-10 px-3 rounded-full text-sm font-medium transition-all duration-300",
+                      useDarkStyle
+                        ? "hover:bg-forest/5 text-forest/80 hover:text-forest"
+                        : "hover:bg-white/10 text-white/80 hover:text-white"
+                    )}
+                  >
+                    <Globe className="w-4 h-4" />
+                    <span className="text-lg">{localeFlags[locale]}</span>
+                  </button>
+                  
+                  <AnimatePresence>
+                    {showLangMenu && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 8, scale: 0.95 }}
+                        transition={{ duration: 0.15 }}
+                        className={`absolute ${isRTL ? 'left-0' : 'right-0'} top-12 bg-white rounded-xl shadow-xl border border-forest/10 overflow-hidden min-w-[140px] z-50`}
+                      >
+                        {(['en', 'ar'] as Locale[]).map((loc) => (
+                          <button
+                            key={loc}
+                            onClick={() => switchLocale(loc)}
+                            className={cn(
+                              "w-full flex items-center gap-3 px-4 py-3 text-sm transition-colors",
+                              locale === loc
+                                ? "bg-seafoam/10 text-seafoam font-medium"
+                                : "text-forest/80 hover:bg-forest/5 hover:text-forest"
+                            )}
+                          >
+                            <span className="text-lg">{localeFlags[loc]}</span>
+                            <span>{localeNames[loc]}</span>
+                          </button>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
                 <motion.div
                   whileHover={{ scale: 1.03, y: -1 }}
                   whileTap={{ scale: 0.97 }}
                   transition={{ type: "spring", stiffness: 400 }}
+                  className="shrink-0"
                 >
                   <Link
                     href="/contact"
                     className={cn(
-                      "inline-flex items-center justify-center gap-2 h-10 px-5 text-[11px] font-bold uppercase tracking-widest rounded-full transition-all duration-300 group",
+                      "inline-flex items-center justify-center gap-2 h-10 px-5 text-[11px] font-bold uppercase tracking-widest rounded-full whitespace-nowrap transition-all duration-300 group",
                       useDarkStyle
                         ? "bg-forest text-white hover:bg-forest/90 shadow-lg shadow-forest/20"
                         : "bg-white text-forest hover:bg-white/90 shadow-lg shadow-white/20",
                     )}
                   >
-                    <span>Book Visit</span>
+                    <span>{tCommon("bookAppointment")}</span>
                     <svg
-                      className="w-4 h-4 group-hover:translate-x-0.5 transition-transform"
+                      className={`w-4 h-4 transition-transform ${isRTL ? 'group-hover:-translate-x-0.5 rotate-180' : 'group-hover:translate-x-0.5'}`}
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -309,39 +397,80 @@ export function Navbar() {
               )}
             >
               <div className="p-6">
+                {/* Language Switcher - Mobile */}
+                <div className="flex gap-2 mb-6 pb-4 border-b border-forest/10">
+                  {(['en', 'ar'] as Locale[]).map((loc) => (
+                    <button
+                      key={loc}
+                      onClick={() => {
+                        switchLocale(loc);
+                        setMobileOpen(false);
+                      }}
+                      className={cn(
+                        "flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-sm transition-colors",
+                        locale === loc
+                          ? "bg-seafoam text-white font-medium"
+                          : "bg-forest/5 text-forest/80 hover:bg-forest/10"
+                      )}
+                    >
+                      <span>{localeFlags[loc]}</span>
+                      <span>{localeNames[loc]}</span>
+                    </button>
+                  ))}
+                </div>
+
                 {/* Mobile Nav Links */}
                 <nav className="space-y-1 mb-6">
-                  {siteConfig.nav.map((link, index) => (
-                    <motion.div
-                      key={link.label}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.05 }}
-                    >
-                      <Link
-                        href={link.href}
-                        onClick={() => setMobileOpen(false)}
-                        className="flex items-center justify-between py-3 px-4 rounded-xl text-forest hover:bg-forest/5 transition-colors group"
+                  {navItems.map((link, index) => {
+                    // Render accordion for Services
+                    if (link.href === "/services") {
+                      return (
+                        <MobileServicesAccordion
+                          key={link.href}
+                          label={link.label}
+                          isRTL={isRTL}
+                          t={t}
+                          onNavigate={() => setMobileOpen(false)}
+                          index={index}
+                        />
+                      );
+                    }
+
+                    return (
+                      <motion.div
+                        key={link.href}
+                        initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.05 }}
                       >
-                        <span className="text-sm font-semibold uppercase tracking-wider">
-                          {link.label}
-                        </span>
-                        <svg
-                          className="w-4 h-4 text-forest/30 group-hover:text-seafoam group-hover:translate-x-1 transition-all"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
+                        <Link
+                          href={link.href}
+                          onClick={() => setMobileOpen(false)}
+                          className="flex items-center justify-between py-3 px-4 rounded-xl text-forest hover:bg-forest/5 transition-colors group"
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M9 5l7 7-7 7"
-                          />
-                        </svg>
-                      </Link>
-                    </motion.div>
-                  ))}
+                          <span className="text-sm font-semibold uppercase tracking-wider">
+                            {link.label}
+                          </span>
+                          <svg
+                            className={cn(
+                              "w-4 h-4 text-forest/30 group-hover:text-seafoam transition-all",
+                              isRTL ? "group-hover:-translate-x-1 rotate-180" : "group-hover:translate-x-1"
+                            )}
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 5l7 7-7 7"
+                            />
+                          </svg>
+                        </Link>
+                      </motion.div>
+                    );
+                  })}
                 </nav>
 
                 {/* Mobile CTA */}
@@ -351,13 +480,13 @@ export function Navbar() {
                   transition={{ delay: 0.3 }}
                 >
                   <Link
-                    href="#appointment"
+                    href="/contact"
                     onClick={() => setMobileOpen(false)}
                     className="flex items-center justify-center gap-2 w-full h-12 bg-forest text-white text-sm font-bold uppercase tracking-wider rounded-xl hover:bg-forest/90 transition-colors"
                   >
-                    <span>Book Appointment</span>
+                    <span>{tCommon("bookAppointment")}</span>
                     <svg
-                      className="w-4 h-4"
+                      className={`w-4 h-4 ${isRTL ? 'rotate-180' : ''}`}
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -379,7 +508,7 @@ export function Navbar() {
                   transition={{ delay: 0.4 }}
                   className="mt-6 pt-6 border-t border-forest/10"
                 >
-                  <div className="flex flex-col gap-3 text-forest/60">
+                  <div className="flex flex-col gap-3 text-forest/80">
                     <a
                       href={`tel:${siteConfig.contact.phone.replace(/[^0-9+]/g, "")}`}
                       className="flex items-center gap-2 text-xs hover:text-seafoam transition-colors"
@@ -398,10 +527,12 @@ export function Navbar() {
                         />
                       </svg>
                       <div className="flex items-center gap-2">
-                        <img
+                        <Image
                           src="/logo/ae_flag.svg"
                           alt="UAE Flag"
-                          className="w-6 h-auto rounded shadow-sm border border-forest/10"
+                          width={24}
+                          height={14}
+                          className="rounded shadow-sm border border-forest/10"
                         />
                         <span>{siteConfig.contact.phone}</span>
                       </div>
