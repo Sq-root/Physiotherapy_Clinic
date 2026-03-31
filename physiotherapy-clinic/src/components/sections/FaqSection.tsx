@@ -55,7 +55,7 @@ export async function FaqSection() {
             {t("title")}{" "}
             <span className="text-seafoam">{t("titleHighlight")}</span>
           </h2>
-          <p className="text-forest/60 text-sm md:text-base max-w-2xl mx-auto">
+          <p className="text-forest/80 text-sm md:text-base max-w-2xl mx-auto">
             {t("description")}
           </p>
         </AnimateOnView>

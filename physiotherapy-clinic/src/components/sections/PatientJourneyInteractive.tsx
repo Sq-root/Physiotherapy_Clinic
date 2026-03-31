@@ -86,7 +86,8 @@ export function PatientJourneyInteractive({
               {painPoints.map((point, index) => (
                 <motion.button
                   key={point.id}
-                  className="absolute z-10 group"
+                  aria-label={`View information for ${point.title}`}
+                  className="absolute z-10 group min-w-[48px] min-h-[48px] flex items-center justify-center"
                   style={{
                     top: point.position.top,
                     left: point.position.left,
@@ -140,7 +141,7 @@ export function PatientJourneyInteractive({
                           {point.conditions.map((condition) => (
                             <span
                               key={condition}
-                              className="text-[10px] px-2 py-0.5 bg-section rounded-full text-forest/70"
+                              className="text-[10px] px-2 py-0.5 bg-section rounded-full text-forest/80"
                             >
                               {condition}
                             </span>
@@ -266,16 +267,21 @@ export function PatientJourneyInteractive({
                 <div
                   className={`flex gap-1.5 sm:gap-2 ${isRTL ? "flex-row-reverse" : ""}`}
                 >
-                  {steps.map((_, index) => (
+                  {steps.map((step, index) => (
                     <button
                       key={index}
+                      aria-label={`Go to step ${index + 1}: ${step.title}`}
                       onClick={() => setActiveStep(index)}
-                      className={`h-2 rounded-full transition-all duration-300 ${
-                        index === activeStep
-                          ? "bg-lime w-6 sm:w-8"
-                          : "bg-white/30 hover:bg-white/50 w-2"
-                      }`}
-                    />
+                      className="min-h-[48px] min-w-[48px] flex items-center justify-center -mx-4 group/step"
+                    >
+                      <div
+                        className={`h-2 rounded-full transition-all duration-300 ${
+                          index === activeStep
+                            ? "bg-lime w-6 sm:w-8"
+                            : "bg-white/30 group-hover/step:bg-white/50 w-2"
+                        }`}
+                      />
+                    </button>
                   ))}
                 </div>
 
@@ -283,6 +289,7 @@ export function PatientJourneyInteractive({
                   className={`flex gap-2 sm:gap-3 ${isRTL ? "flex-row-reverse" : ""}`}
                 >
                   <button
+                    aria-label="Previous step"
                     onClick={() =>
                       setActiveStep(Math.max(0, activeStep - 1))
                     }
@@ -304,6 +311,7 @@ export function PatientJourneyInteractive({
                     </svg>
                   </button>
                   <button
+                    aria-label="Next step"
                     onClick={() =>
                       setActiveStep(
                         Math.min(steps.length - 1, activeStep + 1)

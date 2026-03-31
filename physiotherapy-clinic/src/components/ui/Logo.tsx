@@ -88,7 +88,7 @@ export function Logo({
               <span className={cn(
                 "font-bold tracking-[0.2em] uppercase leading-none mt-1 transition-colors duration-300",
                 size === "sm" ? "text-[8px]" : "text-[10px]",
-                useDarkStyle ? "text-forest/60" : "text-seafoam"
+                useDarkStyle ? "text-forest/80" : "text-seafoam"
               )}>
                 {otherNames}
               </span>

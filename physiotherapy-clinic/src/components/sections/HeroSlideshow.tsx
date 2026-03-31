@@ -133,10 +133,10 @@ export function HeroSlideshow({ slides, isRTL }: HeroSlideshowProps) {
           <button
             key={s.id}
             onClick={() => goToSlide(i)}
-            className={`group relative flex items-center ${isRTL ? "flex-row-reverse justify-start" : "justify-end"} transition-all duration-300 ${
+            className={`group relative flex items-center py-2 ${isRTL ? "flex-row-reverse justify-start" : "justify-end"} transition-all duration-300 ${
               currentSlide === i ? "gap-3" : "gap-0"
             }`}
-            aria-label={`Go to slide ${i + 1}`}
+            aria-label={`${s.badge}, Go to slide ${i + 1}`}
           >
             {/* Label on hover */}
             <span

@@ -120,7 +120,7 @@ export function MobileServicesAccordion({
                           href={`/services/${slug}`}
                           onClick={onNavigate}
                           className={cn(
-                            "flex items-center gap-3 px-3 py-2.5 rounded-xl text-forest/60 hover:text-forest hover:bg-forest/[0.04] transition-colors group",
+                            "flex items-center gap-3 px-3 py-2.5 rounded-xl text-forest/80 hover:text-forest hover:bg-forest/[0.04] transition-colors group",
                             isRTL ? "mr-2" : "ml-2"
                           )}
                         >

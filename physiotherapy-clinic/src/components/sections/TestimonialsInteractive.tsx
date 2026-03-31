@@ -103,9 +103,9 @@ export function TestimonialsInteractive({
                       </div>
                     </div>
                     <div>
-                      <h4 className="text-white font-bold text-lg md:text-xl">
+                      <h3 className="text-white font-bold text-lg md:text-xl">
                         {featuredTestimonial.name}
-                      </h4>
+                      </h3>
                       <p className="text-lime text-sm font-medium">
                         {featuredTestimonial.role}
                       </p>
@@ -184,7 +184,7 @@ export function TestimonialsInteractive({
                           <p
                             className={`text-xs truncate ${
                               activeIndex === i
-                                ? "text-forest/70"
+                                ? "text-forest/80"
                                 : "text-white/50"
                             }`}
                           >

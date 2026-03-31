@@ -221,7 +221,7 @@ export function Navbar() {
                                 ? "text-white"
                                 : "text-forest"
                               : useDarkStyle
-                                ? "text-forest/60 group-hover:text-forest"
+                                ? "text-forest/80 group-hover:text-forest"
                                 : "text-white/80 group-hover:text-white",
                           )}
                         >
@@ -238,11 +238,13 @@ export function Navbar() {
                 {/* Language Switcher */}
                 <div className="relative">
                   <button
+                    aria-label="Toggle language menu"
+                    aria-expanded={showLangMenu}
                     onClick={() => setShowLangMenu(!showLangMenu)}
                     className={cn(
                       "flex items-center gap-2 h-10 px-3 rounded-full text-sm font-medium transition-all duration-300",
                       useDarkStyle
-                        ? "hover:bg-forest/5 text-forest/70 hover:text-forest"
+                        ? "hover:bg-forest/5 text-forest/80 hover:text-forest"
                         : "hover:bg-white/10 text-white/80 hover:text-white"
                     )}
                   >
@@ -267,7 +269,7 @@ export function Navbar() {
                               "w-full flex items-center gap-3 px-4 py-3 text-sm transition-colors",
                               locale === loc
                                 ? "bg-seafoam/10 text-seafoam font-medium"
-                                : "text-forest/70 hover:bg-forest/5 hover:text-forest"
+                                : "text-forest/80 hover:bg-forest/5 hover:text-forest"
                             )}
                           >
                             <span className="text-lg">{localeFlags[loc]}</span>
@@ -408,7 +410,7 @@ export function Navbar() {
                         "flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-sm transition-colors",
                         locale === loc
                           ? "bg-seafoam text-white font-medium"
-                          : "bg-forest/5 text-forest/70 hover:bg-forest/10"
+                          : "bg-forest/5 text-forest/80 hover:bg-forest/10"
                       )}
                     >
                       <span>{localeFlags[loc]}</span>
@@ -506,7 +508,7 @@ export function Navbar() {
                   transition={{ delay: 0.4 }}
                   className="mt-6 pt-6 border-t border-forest/10"
                 >
-                  <div className="flex flex-col gap-3 text-forest/60">
+                  <div className="flex flex-col gap-3 text-forest/80">
                     <a
                       href={`tel:${siteConfig.contact.phone.replace(/[^0-9+]/g, "")}`}
                       className="flex items-center gap-2 text-xs hover:text-seafoam transition-colors"

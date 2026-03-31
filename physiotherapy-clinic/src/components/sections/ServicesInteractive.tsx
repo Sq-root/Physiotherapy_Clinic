@@ -106,7 +106,7 @@ export function ServicesInteractive({
                       className={`w-6 h-6 transition-transform ${
                         activeService === index
                           ? "scale-110 text-seafoam"
-                          : "text-forest/60 group-hover:scale-110"
+                          : "text-forest/80 group-hover:scale-110"
                       }`}
                     />
                   ) : null;
@@ -140,7 +140,7 @@ export function ServicesInteractive({
                 <p className="text-2xl font-bold text-forest">
                   {siteConfig.social.servicesCount}
                 </p>
-                <p className="text-[10px] text-forest/60 uppercase tracking-wider">
+                <p className="text-[10px] text-forest/80 uppercase tracking-wider">
                   {servicesLabel}
                 </p>
               </div>
@@ -149,7 +149,7 @@ export function ServicesInteractive({
                 <p className="text-2xl font-bold text-forest">
                   {siteConfig.social.livesRestored}
                 </p>
-                <p className="text-[10px] text-forest/60 uppercase tracking-wider">
+                <p className="text-[10px] text-forest/80 uppercase tracking-wider">
                   Patients
                 </p>
               </div>
@@ -158,7 +158,7 @@ export function ServicesInteractive({
                 <p className="text-2xl font-bold text-forest">
                   {siteConfig.social.recoveryRate}
                 </p>
-                <p className="text-[10px] text-forest/60 uppercase tracking-wider">
+                <p className="text-[10px] text-forest/80 uppercase tracking-wider">
                   Success
                 </p>
               </div>
@@ -249,6 +249,7 @@ export function ServicesInteractive({
                       whileTap={{ scale: 0.98 }}
                     >
                       {learnMoreLabel}
+                      <span className="sr-only"> about {activeData.title}</span>
                       <span className="size-8 rounded-full bg-forest/10 flex items-center justify-center group-hover/btn:bg-white/20 transition-colors">
                         <ArrowRight
                           className={`w-4 h-4 ${isRTL ? "rotate-180" : ""}`}
@@ -259,17 +260,22 @@ export function ServicesInteractive({
                 </motion.div>
               </div>
 
-              <div className="absolute top-1/2 right-6 -translate-y-1/2 flex flex-col gap-2">
-                {services.map((_, i) => (
+              <div className="absolute top-1/2 right-4 -translate-y-1/2 flex flex-col gap-0">
+                {services.map((s, i) => (
                   <button
                     key={i}
+                    aria-label={`View ${s.title}`}
                     onClick={() => setActiveService(i)}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      i === activeService
-                        ? "bg-white h-6"
-                        : "bg-white/30 hover:bg-white/50"
-                    }`}
-                  />
+                    className="min-w-[48px] min-h-[48px] flex items-center justify-center group/dot"
+                  >
+                    <div
+                      className={`w-2 rounded-full transition-all duration-300 ${
+                        i === activeService
+                          ? "bg-white h-6 w-2.5"
+                          : "bg-white/30 h-2 group-hover/dot:bg-white/50"
+                      }`}
+                    />
+                  </button>
                 ))}
               </div>
             </motion.div>
@@ -363,6 +369,7 @@ export function ServicesInteractive({
                 className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-forest font-semibold rounded-full text-sm w-fit"
               >
                 {learnMoreLabel}
+                <span className="sr-only"> about {activeData.title}</span>
                 <ArrowRight
                   className={`w-4 h-4 ${isRTL ? "rotate-180" : ""}`}
                 />
@@ -370,16 +377,21 @@ export function ServicesInteractive({
             </div>
 
             <div
-              className={`absolute bottom-6 ${isRTL ? "left-6" : "right-6"} flex gap-1.5`}
+              className={`absolute bottom-6 ${isRTL ? "left-6" : "right-6"} flex gap-0`}
             >
-              {services.map((_, i) => (
+              {services.map((s, i) => (
                 <button
                   key={i}
+                  aria-label={`View ${s.title}`}
                   onClick={() => setActiveService(i)}
-                  className={`w-1.5 h-1.5 rounded-full transition-all ${
-                    i === activeService ? "bg-white w-4" : "bg-white/40"
-                  }`}
-                />
+                  className="min-w-[48px] min-h-[48px] flex items-center justify-center group/dot"
+                >
+                  <div
+                    className={`h-1.5 rounded-full transition-all ${
+                      i === activeService ? "bg-white w-4" : "bg-white/40 w-1.5"
+                    }`}
+                  />
+                </button>
               ))}
             </div>
           </motion.div>
@@ -400,7 +412,7 @@ export function ServicesInteractive({
               className="text-center p-3 bg-white rounded-xl border border-forest/10"
             >
               <p className="text-xl font-bold text-forest">{stat.value}</p>
-              <p className="text-[10px] text-forest/60 uppercase tracking-wider">
+              <p className="text-[10px] text-forest/80 uppercase tracking-wider">
                 {stat.label}
               </p>
             </div>

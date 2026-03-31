@@ -90,7 +90,7 @@ function HeroSection({
           className="max-w-xl mx-auto relative group"
         >
           <div className={`absolute inset-y-0 ${isRTL ? "right-5" : "left-5"} flex items-center pointer-events-none`}>
-            <Search className="w-5 h-5 text-forest/60" />
+            <Search className="w-5 h-5 text-forest/80" />
           </div>
           <input
             type="text"
@@ -178,7 +178,7 @@ function FaqAccordionItem({
           {item.question}
         </span>
         <motion.div
-          className="text-forest/60 shrink-0 ms-4"
+          className="text-forest/80 shrink-0 ms-4"
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3 }}
         >
@@ -239,7 +239,7 @@ function CategorySection({
       {/* Section Header */}
       <div className={`mb-7 ${isRTL ? "border-e-[3px] pe-4" : "border-s-[3px] ps-4"} border-lime`}>
         <h2 className="text-2xl font-bold text-forest">{category.title}</h2>
-        <p className="text-forest/70 mt-1 font-light text-sm">{category.subtitle}</p>
+        <p className="text-forest/80 mt-1 font-light text-sm">{category.subtitle}</p>
       </div>
 
       {/* Subcategory groups */}
@@ -296,7 +296,7 @@ function CategorySection({
             <p
               className={cn(
                 "font-light text-xs",
-                category.cta.variant === "primary" ? "text-white/80" : "text-forest/70"
+                category.cta.variant === "primary" ? "text-white/80" : "text-forest/80"
               )}
             >
               {category.cta.description}
@@ -409,7 +409,7 @@ export default function FaqInteractiveIsland({
                   <h3 className="text-xl font-bold text-forest mb-2">
                     {labels.noResults}
                   </h3>
-                  <p className="text-forest/60 max-w-xs mx-auto text-sm font-light">
+                  <p className="text-forest/80 max-w-xs mx-auto text-sm font-light">
                     We couldn&apos;t find any questions matching &quot;{searchQuery}&quot;. Try using different keywords.
                   </p>
                   <button

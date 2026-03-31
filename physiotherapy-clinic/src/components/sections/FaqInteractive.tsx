@@ -78,7 +78,7 @@ export function FaqInteractive({
                       className={`w-6 h-6 transition-transform ${
                         activeCategory === index
                           ? "scale-110 text-seafoam"
-                          : "text-forest/60 group-hover:scale-110"
+                          : "text-forest/80 group-hover:scale-110"
                       }`}
                     />
                   ) : null;
@@ -130,7 +130,7 @@ export function FaqInteractive({
                 <h4 className="font-semibold text-forest text-sm">
                   {stillHaveQuestions}
                 </h4>
-                <p className="text-forest/60 text-xs">{description}</p>
+                <p className="text-forest/80 text-xs">{description}</p>
               </div>
             </div>
             <Link
@@ -169,7 +169,7 @@ export function FaqInteractive({
                 <h3 className="text-xl md:text-2xl font-bold text-forest">
                   {activeContent.label}
                 </h3>
-                <p className="text-forest/60 text-sm">
+                <p className="text-forest/80 text-sm">
                   {activeContent.faqs.length} frequently asked questions
                 </p>
               </div>
@@ -251,7 +251,7 @@ export function FaqInteractive({
                         className="overflow-hidden"
                       >
                         <div className="px-4 md:px-5 pb-5 pl-16 md:pl-[4.5rem]">
-                          <p className="text-forest/60 text-sm leading-relaxed">
+                          <p className="text-forest/80 text-sm leading-relaxed">
                             {faq.answer}
                           </p>
                         </div>

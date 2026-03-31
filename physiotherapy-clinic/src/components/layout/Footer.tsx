@@ -93,9 +93,9 @@ export async function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 py-8 border-b border-white/10">
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold text-[10px] uppercase tracking-[0.15em] text-seafoam mb-4">
+            <h2 className="font-semibold text-[10px] uppercase tracking-[0.15em] text-seafoam mb-4">
               {t("quickLinks")}
-            </h4>
+            </h2>
             <ul className="space-y-2">
               {navLinks.map((link) => (
                 <li key={link.href}>
@@ -113,9 +113,9 @@ export async function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="font-semibold text-[10px] uppercase tracking-[0.15em] text-seafoam mb-4">
+            <h2 className="font-semibold text-[10px] uppercase tracking-[0.15em] text-seafoam mb-4">
               {t("services")}
-            </h4>
+            </h2>
             <ul className="space-y-2">
               {services.map((service) => (
                 <li key={service}>
@@ -133,9 +133,9 @@ export async function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-semibold text-[10px] uppercase tracking-[0.15em] text-seafoam mb-4">
+            <h2 className="font-semibold text-[10px] uppercase tracking-[0.15em] text-seafoam mb-4">
               {t("contact")}
-            </h4>
+            </h2>
             <ul className="space-y-2">
               <li>
                 <a
@@ -211,9 +211,9 @@ export async function Footer() {
 
           {/* Location Mini Map */}
           <div>
-            <h4 className="font-semibold text-[10px] uppercase tracking-[0.15em] text-seafoam mb-4">
+            <h2 className="font-semibold text-[10px] uppercase tracking-[0.15em] text-seafoam mb-4">
               Location
-            </h4>
+            </h2>
             <div className="relative rounded-lg overflow-hidden h-20 bg-white/5 border border-white/10 mb-2">
               <GoogleMap
                 height={80}

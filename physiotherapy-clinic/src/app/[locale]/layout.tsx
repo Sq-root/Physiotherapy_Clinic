@@ -2,8 +2,10 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import '../globals.css';
 import { Navbar } from '@/components/layout/Navbar';
-import { Footer } from '@/components/layout/Footer';
+import dynamic from 'next/dynamic';
 import { siteConfig } from '@/config/site';
+
+const Footer = dynamic(() => import('@/components/layout/Footer').then(m => ({ default: m.Footer })));
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';

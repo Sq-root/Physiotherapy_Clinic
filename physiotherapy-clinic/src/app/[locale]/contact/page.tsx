@@ -110,7 +110,7 @@ export default async function ContactPage({
             </AnimateOnView>
 
             <AnimateOnView delay={0.2}>
-              <p className="text-base md:text-xl text-forest/60 font-medium max-w-2xl mx-auto leading-relaxed">
+              <p className="text-base md:text-xl text-forest/80 font-medium max-w-2xl mx-auto leading-relaxed">
                 {t("description")}
               </p>
             </AnimateOnView>
@@ -154,7 +154,7 @@ export default async function ContactPage({
                 Ready to Feel<br />
                 <span className="text-seafoam font-serif italic">Better?</span>
               </h2>
-              <p className="text-forest/60 text-base leading-relaxed max-w-sm">
+              <p className="text-forest/80 text-base leading-relaxed max-w-sm">
                 Fill out the form and our care coordinators will match you with the right specialist for your needs.
               </p>
 
@@ -165,7 +165,7 @@ export default async function ContactPage({
                   </div>
                   <div>
                     <h4 className="text-forest font-bold">{t("trustIndicators.professional")}</h4>
-                    <p className="text-forest/60 text-sm">
+                    <p className="text-forest/80 text-sm">
                       Highly trained physiotherapists dedicated to your full recovery.
                     </p>
                   </div>
@@ -176,7 +176,7 @@ export default async function ContactPage({
                   </div>
                   <div>
                     <h4 className="text-forest font-bold">{t("trustIndicators.secure")}</h4>
-                    <p className="text-forest/60 text-sm">
+                    <p className="text-forest/80 text-sm">
                       State-of-the-art equipment in a calming, hygienic environment.
                     </p>
                   </div>
@@ -187,7 +187,7 @@ export default async function ContactPage({
                   </div>
                   <div>
                     <h4 className="text-forest font-bold">{t("trustIndicators.personalized")}</h4>
-                    <p className="text-forest/60 text-sm">
+                    <p className="text-forest/80 text-sm">
                       Tailored treatment plans designed specifically for your body and goals.
                     </p>
                   </div>

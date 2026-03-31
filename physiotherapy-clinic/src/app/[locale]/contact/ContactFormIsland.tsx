@@ -15,6 +15,7 @@ import {
   MessageCircle,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Link } from "@/i18n/routing";
 
 // ── Country codes (flag text replaced with ISO country code text after emoji removal) ──
 const COUNTRY_CODES = [
@@ -147,7 +148,7 @@ export default function ContactFormIsland({ labels, services }: ContactFormIslan
             <CheckCircle className="w-10 h-10 text-seafoam" />
           </div>
           <h3 className="text-2xl font-bold text-forest mb-3">{labels.successTitle}</h3>
-          <p className="text-forest/60 max-w-xs mx-auto">{labels.successMessage}</p>
+          <p className="text-forest/80 max-w-xs mx-auto">{labels.successMessage}</p>
           <button
             onClick={() => setStatus("idle")}
             className="mt-8 px-8 py-3 bg-forest text-white rounded-full font-bold hover:bg-seafoam hover:text-forest transition-all"
@@ -171,7 +172,7 @@ export default function ContactFormIsland({ labels, services }: ContactFormIslan
             </div>
             <div>
               <h3 className="text-lg font-bold text-forest leading-tight">Send a Message</h3>
-              <p className="text-xs text-forest/45 mt-0.5">We'll respond within 24 hours</p>
+              <p className="text-xs text-forest/45 mt-0.5">We&apos;ll respond within 24 hours</p>
             </div>
           </div>
 
@@ -181,7 +182,7 @@ export default function ContactFormIsland({ labels, services }: ContactFormIslan
             {/* Row 1: First Name + Last Name */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="flex items-center gap-1.5 text-xs font-semibold text-forest/60 uppercase tracking-wider mb-2">
+                <label className="flex items-center gap-1.5 text-xs font-semibold text-forest/80 uppercase tracking-wider mb-2">
                   <User className="w-3.5 h-3.5" />
                   {labels.firstName} <span className="text-red-400">*</span>
                 </label>
@@ -194,7 +195,7 @@ export default function ContactFormIsland({ labels, services }: ContactFormIslan
                 {errors.firstName && <p className="text-red-400 text-xs mt-1">{errors.firstName}</p>}
               </div>
               <div>
-                <label className="flex items-center gap-1.5 text-xs font-semibold text-forest/60 uppercase tracking-wider mb-2">
+                <label className="flex items-center gap-1.5 text-xs font-semibold text-forest/80 uppercase tracking-wider mb-2">
                   <User className="w-3.5 h-3.5" />
                   {labels.lastName} <span className="text-red-400">*</span>
                 </label>
@@ -212,7 +213,7 @@ export default function ContactFormIsland({ labels, services }: ContactFormIslan
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Email */}
               <div>
-                <label className="flex items-center gap-1.5 text-xs font-semibold text-forest/60 uppercase tracking-wider mb-2">
+                <label className="flex items-center gap-1.5 text-xs font-semibold text-forest/80 uppercase tracking-wider mb-2">
                   <Mail className="w-3.5 h-3.5" />
                   {labels.email} <span className="text-red-400">*</span>
                 </label>
@@ -227,7 +228,7 @@ export default function ContactFormIsland({ labels, services }: ContactFormIslan
 
               {/* Phone with country code */}
               <div>
-                <label className="flex items-center gap-1.5 text-xs font-semibold text-forest/60 uppercase tracking-wider mb-2">
+                <label className="flex items-center gap-1.5 text-xs font-semibold text-forest/80 uppercase tracking-wider mb-2">
                   <Phone className="w-3.5 h-3.5" />
                   {labels.phone} <span className="text-red-400">*</span>
                 </label>
@@ -308,7 +309,7 @@ export default function ContactFormIsland({ labels, services }: ContactFormIslan
 
             {/* Service of Interest */}
             <div>
-              <label className="flex items-center gap-1.5 text-xs font-semibold text-forest/60 uppercase tracking-wider mb-2">
+              <label className="flex items-center gap-1.5 text-xs font-semibold text-forest/80 uppercase tracking-wider mb-2">
                 <Stethoscope className="w-3.5 h-3.5" />
                 {labels.service} <span className="text-red-400">*</span>
               </label>
@@ -335,7 +336,7 @@ export default function ContactFormIsland({ labels, services }: ContactFormIslan
 
             {/* Message */}
             <div>
-              <label className="flex items-center gap-1.5 text-xs font-semibold text-forest/60 uppercase tracking-wider mb-2">
+              <label className="flex items-center gap-1.5 text-xs font-semibold text-forest/80 uppercase tracking-wider mb-2">
                 <MessageCircle className="w-3.5 h-3.5" />
                 {labels.message} <span className="text-red-400">*</span>
               </label>
@@ -376,13 +377,13 @@ export default function ContactFormIsland({ labels, services }: ContactFormIslan
             {/* Privacy notice */}
             <p className="text-center text-[11px] text-forest/35 leading-relaxed">
               By submitting this form, you agree to our{" "}
-              <a href="/privacy" className="underline underline-offset-2 hover:text-forest/60 transition-colors">
+              <Link href="/privacy" className="underline underline-offset-2 hover:text-forest/80 transition-colors">
                 Privacy Policy
-              </a>{" "}
+              </Link>{" "}
               and{" "}
-              <a href="/terms" className="underline underline-offset-2 hover:text-forest/60 transition-colors">
+              <Link href="/terms" className="underline underline-offset-2 hover:text-forest/80 transition-colors">
                 Terms of Service
-              </a>
+              </Link>
               .
             </p>
           </form>

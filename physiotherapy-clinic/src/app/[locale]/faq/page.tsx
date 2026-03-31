@@ -65,7 +65,7 @@ function Sidebar({ isRTL }: { isRTL: boolean }) {
             </div>
             <div>
               <span className="block text-xs font-bold text-forest">James R.</span>
-              <span className="block text-[10px] text-forest/60 uppercase tracking-wider font-bold">
+              <span className="block text-[10px] text-forest/80 uppercase tracking-wider font-bold">
                 Professional Athlete
               </span>
             </div>

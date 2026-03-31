@@ -74,7 +74,7 @@ export default async function ServicesPage({
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-forest mb-6 tracking-tight leading-[1.05]">
               {t("title")} <span className="text-lime font-script">{t("titleHighlight")}</span>
             </h1>
-            <p className="text-lg md:text-xl text-forest/70 font-light max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-forest/80 font-light max-w-2xl mx-auto leading-relaxed">
               {t("description")}
             </p>
           </AnimateOnView>
@@ -122,7 +122,7 @@ export default async function ServicesPage({
                   <h3 className="text-2xl text-forest font-bold mb-4 tracking-tight">
                     {tServices("services.sports.title")}
                   </h3>
-                  <p className="text-forest/60 font-light leading-relaxed text-sm">
+                  <p className="text-forest/80 font-light leading-relaxed text-sm">
                     {tServices("services.sports.shortDesc")}
                   </p>
                 </div>
@@ -183,7 +183,7 @@ export default async function ServicesPage({
                 {t("deepDive.title")} <br />
                 <span className="text-lime font-script">{t("deepDive.titleHighlight")}</span>
               </h2>
-              <p className="text-forest/60 text-lg font-light max-w-xl leading-relaxed">
+              <p className="text-forest/80 text-lg font-light max-w-xl leading-relaxed">
                 {t("deepDive.description")}
               </p>
             </div>
@@ -224,7 +224,7 @@ export default async function ServicesPage({
                   <h3 className="text-3xl font-bold text-forest mb-4 tracking-tight group-hover:text-seafoam transition-colors duration-500">
                     {t(`deepDive.services.${service.key}.title`)}
                   </h3>
-                  <p className="text-forest/60 font-light leading-relaxed mb-10 text-base">
+                  <p className="text-forest/80 font-light leading-relaxed mb-10 text-base">
                     {t(`deepDive.services.${service.key}.description`)}
                   </p>
 

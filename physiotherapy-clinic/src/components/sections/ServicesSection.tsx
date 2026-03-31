@@ -70,7 +70,7 @@ export async function ServicesSection() {
               <span className="text-seafoam">{t("titleHighlight")}</span>
             </h2>
           </div>
-          <p className="text-forest/60 text-sm md:text-base max-w-md leading-relaxed">
+          <p className="text-forest/80 text-sm md:text-base max-w-md leading-relaxed">
             {t("description")}
           </p>
         </AnimateOnView>

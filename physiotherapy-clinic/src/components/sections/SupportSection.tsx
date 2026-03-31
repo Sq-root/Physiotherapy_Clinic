@@ -206,7 +206,7 @@ export async function SupportSection() {
             </h2>
 
             {/* Description */}
-            <p className="text-forest/70 text-base lg:text-lg mb-8 leading-relaxed">
+            <p className="text-forest/80 text-base lg:text-lg mb-8 leading-relaxed">
               {t("description")}
             </p>
 

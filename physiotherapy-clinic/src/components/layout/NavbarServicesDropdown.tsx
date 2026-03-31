@@ -208,7 +208,7 @@ export function NavbarServicesDropdown({
             "relative z-10 text-[11px] font-semibold uppercase tracking-[0.1em] whitespace-nowrap transition-all duration-200",
             isActive || isOpen
               ? useDarkStyle ? "text-white" : "text-forest"
-              : useDarkStyle ? "text-forest/60 group-hover:text-forest" : "text-white/80 group-hover:text-white"
+              : useDarkStyle ? "text-forest/80 group-hover:text-forest" : "text-white/80 group-hover:text-white"
           )}
         >
           {label}
@@ -219,7 +219,7 @@ export function NavbarServicesDropdown({
             "relative z-10 w-3 h-3 transition-transform duration-200",
             isOpen && "rotate-180",
             isActive || isOpen
-              ? useDarkStyle ? "text-white/70" : "text-forest/70"
+              ? useDarkStyle ? "text-white/70" : "text-forest/80"
               : useDarkStyle ? "text-forest/40" : "text-white/60"
           )}
         />
@@ -347,7 +347,7 @@ export function NavbarServicesDropdown({
                             className={cn(
                               "w-9 h-9 rounded-xl flex items-center justify-center shrink-0 transition-colors duration-175 border",
                               "bg-section border-forest/[0.08] group-hover:bg-forest group-hover:border-forest group-hover:text-white",
-                              "text-forest/60"
+                              "text-forest/80"
                             )}
                           >
                             <Icon className="w-4 h-4" />

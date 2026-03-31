@@ -89,7 +89,7 @@ export default function ContactFAQIsland({ faqs }: ContactFAQIslandProps) {
                 >
                   <div className="px-6 md:px-8 pb-8 pt-2">
                     <div className="w-12 h-1 bg-seafoam/20 rounded-full mb-6" />
-                    <p className="text-forest/70 text-base leading-relaxed">
+                    <p className="text-forest/80 text-base leading-relaxed">
                       {faq.answer}
                     </p>
                   </div>

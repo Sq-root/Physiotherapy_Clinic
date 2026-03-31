@@ -89,7 +89,7 @@ export default async function AboutPage() {
                   {t("heroTitle")}
                 </h1>
 
-                <div className="space-y-6 text-base md:text-lg text-forest/70 font-light leading-relaxed max-w-xl mb-10">
+                <div className="space-y-6 text-base md:text-lg text-forest/80 font-light leading-relaxed max-w-xl mb-10">
                   <p className="text-forest font-medium">{t("heroSubtitle")}</p>
                   <p>{t("heroDescription1")}</p>
                   <p>{t("heroDescription2")}</p>
@@ -126,7 +126,7 @@ export default async function AboutPage() {
                   {t("practiceOverview.title")}
                 </h2>
                 <div className="h-1 w-12 bg-seafoam mb-8"></div>
-                <p className="text-forest/70 text-lg leading-relaxed font-light">
+                <p className="text-forest/80 text-lg leading-relaxed font-light">
                   {t("practiceOverview.description")}
                 </p>
               </div>

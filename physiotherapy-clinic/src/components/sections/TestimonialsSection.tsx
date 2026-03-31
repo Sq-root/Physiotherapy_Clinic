@@ -38,7 +38,7 @@ export async function TestimonialsSection() {
             {t('title')} <span className="text-seafoam italic font-normal">{t('titleHighlight')}</span>
           </h2>
           
-          <p className="text-forest/60 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+          <p className="text-forest/80 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
             {t('description')}
           </p>
         </AnimateOnView>
@@ -64,14 +64,14 @@ export async function TestimonialsSection() {
             >
               <stat.Icon className="w-6 h-6 mx-auto mb-2 text-seafoam" />
               <p className="text-3xl md:text-4xl font-bold text-forest mb-1">{stat.value}</p>
-              <p className="text-forest/60 text-xs md:text-sm font-medium">{stat.label}</p>
+              <p className="text-forest/80 text-xs md:text-sm font-medium">{stat.label}</p>
             </AnimateOnView>
           ))}
         </div>
 
         {/* Bottom CTA — Server Rendered */}
         <AnimateOnView className="text-center mt-16 md:mt-20">
-          <p className="text-forest/60 text-sm md:text-base mb-6">{t('cta.prompt')}</p>
+          <p className="text-forest/80 text-sm md:text-base mb-6">{t('cta.prompt')}</p>
           <a 
             href="#contact" 
             className="inline-flex items-center gap-3 bg-forest text-white px-8 py-4 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-forest/90 hover:shadow-glow transition-all duration-300 group"
