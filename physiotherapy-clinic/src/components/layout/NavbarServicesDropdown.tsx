@@ -337,7 +337,7 @@ export function NavbarServicesDropdown({
                       return (
                         <Link
                           key={service.id}
-                          href={`/services#${service.slug}`}
+                          href={`/services/${service.slug}`}
                           onClick={handleClose}
                           className="flex items-center gap-4 px-3 py-3 rounded-xl hover:bg-forest/[0.04] transition-all duration-175 group"
                           role="menuitem"
