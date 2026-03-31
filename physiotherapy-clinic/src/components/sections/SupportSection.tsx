@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
 import { Target, FlaskConical, Heart } from "lucide-react";
 import { siteConfig } from "@/config/site";
@@ -50,11 +51,13 @@ export async function SupportSection() {
             {/* Header Row */}
             <div className="flex items-start gap-4 mb-4">
               <div className="relative flex-shrink-0">
-                <div className="w-20 h-24 rounded-xl overflow-hidden shadow-md">
-                  <img
+                <div className="w-20 h-24 rounded-xl overflow-hidden shadow-md relative">
+                  <Image
                     src="/services/IMG_0120.webp"
                     alt="Physiotherapist"
-                    className="w-full h-full object-cover object-center"
+                    fill
+                    className="object-cover object-center"
+                    sizes="80px"
                   />
                 </div>
                 <div className="absolute -bottom-2 -right-2 size-10 bg-seafoam rounded-full flex items-center justify-center shadow-lg border-2 border-white">
@@ -126,10 +129,12 @@ export async function SupportSection() {
             >
               {/* Main Large Image */}
               <div className="absolute top-0 left-0 w-[62%] h-[88%] rounded-3xl overflow-hidden shadow-2xl z-10">
-                <img
+                <Image
                   src="/services/doctor_portrait_stretgth.webp"
                   alt="Senior Physiotherapist"
-                  className="w-full h-full object-cover object-top"
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 768px) 50vw, 30vw"
                 />
 
                 {/* Gradient Overlay */}
@@ -138,19 +143,23 @@ export async function SupportSection() {
 
               {/* Top Right Image */}
               <div className="absolute top-0 right-0 w-[35%] h-[45%] rounded-2xl overflow-hidden shadow-xl z-10">
-                <img
+                <Image
                   src="/services/IMG_0122.webp"
                   alt="Patient Session"
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 30vw, 15vw"
                 />
               </div>
 
               {/* Bottom Right Image */}
               <div className="absolute bottom-0 right-0 w-[35%] h-[45%] rounded-2xl overflow-hidden shadow-xl z-10">
-                <img
+                <Image
                   src="/services/IMG_0116.webp"
                   alt="Therapy Session"
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 30vw, 15vw"
                 />
               </div>
 
@@ -242,9 +251,11 @@ export async function SupportSection() {
             <div className="flex items-center justify-between flex-wrap gap-4">
               <div className="flex items-center gap-4">
                 <div className="relative">
-                  <img
+                  <Image
                     src="/services/IMG_0017.webp"
                     alt={siteConfig.doctorName}
+                    width={56}
+                    height={56}
                     className="size-14 rounded-full object-cover object-top border-2 border-seafoam shadow-lg"
                   />
                   <div className="absolute -bottom-1 -right-1 size-5 bg-lime rounded-full flex items-center justify-center border-2 border-white">

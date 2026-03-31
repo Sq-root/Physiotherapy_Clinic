@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/config/site";
 
@@ -65,9 +66,11 @@ export function Logo({
             : "bg-white/20 backdrop-blur-sm border border-white/30"
         )}
       >
-        <img
+        <Image
           src="/logo/Dr_isha_Logo.png"
           alt="Company Logo"
+          width={size === "sm" ? 28 : size === "md" ? 36 : 44}
+          height={size === "sm" ? 28 : size === "md" ? 36 : 44}
           className={cn("object-contain p-1", sizeClasses[size])}
         />
       </div>

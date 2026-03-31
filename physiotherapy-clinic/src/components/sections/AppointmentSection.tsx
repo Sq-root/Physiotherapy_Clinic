@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -400,10 +401,12 @@ export function AppointmentSection() {
                 <div>
                   <p className="text-white text-sm font-medium">Call Us</p>
                   <div className="flex items-center gap-2">
-                    <img
+                    <Image
                       src="/logo/ae_flag.svg"
                       alt="UAE Flag"
-                      className="w-6 h-auto rounded shadow-sm border border-white/20"
+                      width={24}
+                      height={14}
+                      className="rounded shadow-sm border border-white/20"
                     />
                     <p className="text-white/50 text-xs">
                       {siteConfig.contact.phone}

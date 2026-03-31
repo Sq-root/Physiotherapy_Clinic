@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { Leaf, Sparkles, Globe } from "lucide-react";
@@ -492,10 +493,12 @@ export function Navbar() {
                         />
                       </svg>
                       <div className="flex items-center gap-2">
-                        <img
+                        <Image
                           src="/logo/ae_flag.svg"
                           alt="UAE Flag"
-                          className="w-6 h-auto rounded shadow-sm border border-forest/10"
+                          width={24}
+                          height={14}
+                          className="rounded shadow-sm border border-forest/10"
                         />
                         <span>{siteConfig.contact.phone}</span>
                       </div>

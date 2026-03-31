@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ClipboardList, Target, Dumbbell, Star } from "lucide-react";
 import { siteConfig } from "@/config/site";
@@ -72,9 +73,11 @@ export function PatientJourneyInteractive({
             {/* Body Silhouette with Points */}
             <div className="relative h-[450px] lg:h-[415px] w-full flex items-center justify-center">
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <img
+                <Image
                   src="/human_skeleton.png"
                   alt="Human Anatomy Representation"
+                  width={200}
+                  height={415}
                   className="h-full w-auto max-w-full object-contain opacity-90 drop-shadow-2xl"
                 />
               </div>

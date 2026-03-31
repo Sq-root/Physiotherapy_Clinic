@@ -2,38 +2,66 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
+import { Search, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
-import {
-  faqCategories,
-  type FaqCategory,
-  type FaqItem,
-} from "@/lib/data/faq-help";
-import {
-  Search,
-  ChevronDown,
-  MessageCircle,
-  MessageSquare,
-  Phone,
-} from "lucide-react";
-import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
+
+// Types
+interface FaqItem {
+  id: string;
+  question: string;
+  answer: string;
+}
+
+interface FaqSubcategory {
+  title: string;
+  items: FaqItem[];
+}
+
+interface FaqCategory {
+  id: string;
+  label: string;
+  title: string;
+  subtitle: string;
+  subcategories: FaqSubcategory[];
+  cta?: {
+    heading: string;
+    description: string;
+    buttonText: string;
+    variant: "primary" | "outline";
+  };
+}
+
+interface FaqInteractiveIslandProps {
+  categories: FaqCategory[];
+  labels: {
+    badge: string;
+    title: string;
+    titleHighlight: string;
+    searchPlaceholder: string;
+    noResults: string;
+    clearSearch: string;
+  };
+  isRTL: boolean;
+  children?: React.ReactNode; // Sidebar slot
+}
 
 const stagger = {
   visible: { transition: { staggerChildren: 0.08 } },
 };
 
+/* Hero Section */
 function HeroSection({
   searchQuery,
   onSearchChange,
+  labels,
+  isRTL,
 }: {
   searchQuery: string;
   onSearchChange: (v: string) => void;
+  labels: FaqInteractiveIslandProps["labels"];
+  isRTL: boolean;
 }) {
-  const t = useTranslations("faqPage");
-  const locale = useLocale();
-  const isRTL = locale === "ar";
-
   return (
     <section className="relative pt-32 pb-10 overflow-hidden bg-gradient-to-b from-white/40 to-section">
       <div className="mx-auto max-w-6xl px-6 lg:px-8 text-center relative z-10">
@@ -43,7 +71,7 @@ function HeroSection({
           transition={{ duration: 0.4 }}
           className="text-forest font-bold tracking-[0.2em] text-[10px] uppercase mb-3 block"
         >
-          {t("badge")}
+          {labels.badge}
         </motion.span>
 
         <motion.h1
@@ -52,7 +80,7 @@ function HeroSection({
           transition={{ duration: 0.5, delay: 0.1 }}
           className="text-3xl md:text-5xl font-bold text-forest mb-6 tracking-tight"
         >
-          {t("title")} <span className="text-seafoam">{t("titleHighlight")}</span>
+          {labels.title} <span className="text-seafoam">{labels.titleHighlight}</span>
         </motion.h1>
 
         <motion.div
@@ -61,22 +89,22 @@ function HeroSection({
           transition={{ duration: 0.5, delay: 0.2 }}
           className="max-w-xl mx-auto relative group"
         >
-          <div className={`absolute inset-y-0 ${isRTL ? 'right-5' : 'left-5'} flex items-center pointer-events-none`}>
+          <div className={`absolute inset-y-0 ${isRTL ? "right-5" : "left-5"} flex items-center pointer-events-none`}>
             <Search className="w-5 h-5 text-forest/60" />
           </div>
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
-            className={`w-full h-12 ${isRTL ? 'pr-12 pl-5' : 'pl-12 pr-5'} rounded-2xl bg-white/90 backdrop-blur-md border border-forest/10 ring-0 focus:ring-2 focus:ring-lime focus:outline-none transition-all text-sm font-light shadow-lg shadow-forest/5 placeholder:text-forest/40 text-forest`}
-            placeholder={t("searchPlaceholder")}
+            className={`w-full h-12 ${isRTL ? "pr-12 pl-5" : "pl-12 pr-5"} rounded-2xl bg-white/90 backdrop-blur-md border border-forest/10 ring-0 focus:ring-2 focus:ring-lime focus:outline-none transition-all text-sm font-light shadow-lg shadow-forest/5 placeholder:text-forest/40 text-forest`}
+            placeholder={labels.searchPlaceholder}
           />
         </motion.div>
       </div>
 
       {/* Decorative Blobs */}
-      <div className={`absolute top-0 ${isRTL ? 'left-0' : 'right-0'} w-[30rem] h-[30rem] bg-lime/10 rounded-full blur-[100px] -z-0 ${isRTL ? '-translate-x-1/4' : 'translate-x-1/4'} -translate-y-1/4`} />
-      <div className={`absolute bottom-0 ${isRTL ? 'right-0' : 'left-0'} w-[22rem] h-[22rem] bg-white/30 rounded-full blur-[80px] -z-0 ${isRTL ? 'translate-x-1/4' : '-translate-x-1/4'} translate-y-1/4`} />
+      <div className={`absolute top-0 ${isRTL ? "left-0" : "right-0"} w-[30rem] h-[30rem] bg-lime/10 rounded-full blur-[100px] -z-0 ${isRTL ? "-translate-x-1/4" : "translate-x-1/4"} -translate-y-1/4`} />
+      <div className={`absolute bottom-0 ${isRTL ? "right-0" : "left-0"} w-[22rem] h-[22rem] bg-white/30 rounded-full blur-[80px] -z-0 ${isRTL ? "translate-x-1/4" : "-translate-x-1/4"} translate-y-1/4`} />
     </section>
   );
 }
@@ -183,15 +211,14 @@ function CategorySection({
   openId,
   onToggle,
   searchQuery,
+  isRTL,
 }: {
   category: FaqCategory;
   openId: string | null;
   onToggle: (id: string) => void;
   searchQuery: string;
+  isRTL: boolean;
 }) {
-  const locale = useLocale();
-  const isRTL = locale === "ar";
-
   const filteredSubcategories = category.subcategories
     .map((sub) => ({
       ...sub,
@@ -210,7 +237,7 @@ function CategorySection({
   return (
     <section className="scroll-mt-40" id={category.id}>
       {/* Section Header */}
-      <div className={`mb-7 ${isRTL ? 'border-e-[3px] pe-4' : 'border-s-[3px] ps-4'} border-lime`}>
+      <div className={`mb-7 ${isRTL ? "border-e-[3px] pe-4" : "border-s-[3px] ps-4"} border-lime`}>
         <h2 className="text-2xl font-bold text-forest">{category.title}</h2>
         <p className="text-forest/70 mt-1 font-light text-sm">{category.subtitle}</p>
       </div>
@@ -292,84 +319,14 @@ function CategorySection({
   );
 }
 
-/* Sidebar */
-function Sidebar() {
-  const locale = useLocale();
-  const isRTL = locale === "ar";
-
-  return (
-    <aside className="w-full lg:w-72 xl:w-80 shrink-0">
-      <div className="sticky top-36 space-y-4">
-        {/* Quick Contact Card */}
-        <div className="bg-forest p-5 rounded-2xl shadow-xl shadow-forest/20 text-white relative overflow-hidden">
-          <div className={`absolute ${isRTL ? '-left-8' : '-right-8'} -top-8 w-32 h-32 bg-lime/20 rounded-full blur-2xl`} />
-
-          <div className="size-10 rounded-xl bg-white/10 flex items-center justify-center mb-4 backdrop-blur-sm border border-white/10 relative z-10">
-            <MessageCircle className="w-5 h-5 text-lime" />
-          </div>
-
-          <h4 className="text-base font-bold mb-1 relative z-10 text-white">
-            Quick Contact
-          </h4>
-          <p className="text-xs text-white/70 mb-5 font-light relative z-10">
-            Our care coordinators are available 24/7 for urgent inquiries.
-          </p>
-
-          <div className="space-y-2.5 relative z-10">
-            <Link
-              href="/contact"
-              className="flex items-center justify-center gap-2 w-full py-2.5 rounded-full bg-lime text-forest font-bold text-xs hover:bg-white transition-all shadow-md shadow-black/10"
-            >
-              <MessageSquare className="w-4 h-4" />
-              WhatsApp Us
-            </Link>
-            <a
-              href="tel:+"
-              className="flex items-center justify-center gap-2 w-full py-2.5 rounded-full bg-white/10 border border-white/20 text-white font-bold text-xs hover:bg-white hover:text-forest transition-all backdrop-blur-sm"
-            >
-              <Phone className="w-4 h-4" />
-              Call Directly
-            </a>
-          </div>
-
-          <div className="mt-5 pt-4 border-t border-white/10 text-center relative z-10">
-            <p className="text-[10px] text-lime">Response time: &lt; 5 mins</p>
-          </div>
-        </div>
-
-        {/* Testimonial Card */}
-        <div className="p-5 rounded-2xl bg-white/50 border border-white/60 shadow-lg shadow-forest/5 backdrop-blur-sm">
-          <p className="text-sm text-forest leading-relaxed italic mb-4">
-            &quot;The tele-rehab program changed how I view recovery.
-            Professional, convenient, and incredibly effective.&quot;
-          </p>
-          <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-full bg-gray-200 overflow-hidden ring-2 ring-white ring-offset-2 ring-offset-section">
-              <Image
-                src="/services/IMG_0017.webp"
-                alt="James R."
-                width={36}
-                height={36}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div>
-              <span className="block text-xs font-bold text-forest">James R.</span>
-              <span className="block text-[10px] text-forest/60 uppercase tracking-wider font-bold">
-                Professional Athlete
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </aside>
-  );
-}
-
-/* Main FAQ Page */
-export default function FaqPageClient() {
-  const t = useTranslations("faqPage");
-  const [activeCategory, setActiveCategory] = useState(faqCategories[0].id);
+/* Main FAQ Interactive Island */
+export default function FaqInteractiveIsland({
+  categories,
+  labels,
+  isRTL,
+  children,
+}: FaqInteractiveIslandProps) {
+  const [activeCategory, setActiveCategory] = useState(categories[0]?.id || "");
   const [openId, setOpenId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -379,8 +336,8 @@ export default function FaqPageClient() {
 
   const displayedCategories =
     searchQuery.trim().length > 0
-      ? faqCategories
-      : faqCategories.filter((cat) => cat.id === activeCategory);
+      ? categories
+      : categories.filter((cat) => cat.id === activeCategory);
 
   const hasResults = displayedCategories.some((cat) => {
     return cat.subcategories.some((sub) =>
@@ -393,27 +350,32 @@ export default function FaqPageClient() {
   });
 
   return (
-    <div className="bg-section text-forest font-sans antialiased overflow-x-hidden">
+    <>
       {/* Hero */}
-      <HeroSection searchQuery={searchQuery} onSearchChange={setSearchQuery} />
+      <HeroSection
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+        labels={labels}
+        isRTL={isRTL}
+      />
 
       {/* Sticky Category Nav */}
       <StickyNav
-        categories={faqCategories}
+        categories={categories}
         activeCategory={activeCategory}
         onCategoryChange={setActiveCategory}
       />
 
       {/* Main Content */}
-      <motion.main
-        initial="hidden"
-        animate="visible"
-        variants={stagger}
-        className="mx-auto max-w-6xl px-6 lg:px-8 py-16 relative z-10"
-      >
+      <main className="mx-auto max-w-6xl px-6 lg:px-8 py-16 relative z-10">
         <div className="flex flex-col lg:flex-row gap-12">
           {/* FAQ Sections */}
-          <div className="flex-1">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={stagger}
+            className="flex-1"
+          >
             <AnimatePresence mode="wait">
               {hasResults ? (
                 <motion.div
@@ -431,6 +393,7 @@ export default function FaqPageClient() {
                       openId={openId}
                       onToggle={handleToggle}
                       searchQuery={searchQuery}
+                      isRTL={isRTL}
                     />
                   ))}
                 </motion.div>
@@ -444,7 +407,7 @@ export default function FaqPageClient() {
                     <Search className="w-8 h-8 text-forest/20" />
                   </div>
                   <h3 className="text-xl font-bold text-forest mb-2">
-                    {t("noResults")}
+                    {labels.noResults}
                   </h3>
                   <p className="text-forest/60 max-w-xs mx-auto text-sm font-light">
                     We couldn&apos;t find any questions matching &quot;{searchQuery}&quot;. Try using different keywords.
@@ -453,17 +416,17 @@ export default function FaqPageClient() {
                     onClick={() => setSearchQuery("")}
                     className="mt-6 text-xs font-bold text-forest underline underline-offset-4 decoration-lime hover:text-lime transition-all"
                   >
-                    Clear Search
+                    {labels.clearSearch}
                   </button>
                 </motion.div>
               )}
             </AnimatePresence>
-          </div>
+          </motion.div>
 
-          {/* Sidebar */}
-          <Sidebar />
+          {/* Sidebar slot */}
+          {children}
         </div>
-      </motion.main>
-    </div>
+      </main>
+    </>
   );
 }
