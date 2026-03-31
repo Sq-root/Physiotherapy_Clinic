@@ -14,8 +14,8 @@ export const localeDirection: Record<Locale, 'ltr' | 'rtl'> = {
 };
 
 export const localeFlags: Record<Locale, string> = {
-  en: '🇬🇧',
-  ar: '🇦🇪',
+  en: '',
+  ar: '',
 };
 
 // Helper function to get direction for a locale

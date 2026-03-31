@@ -7,15 +7,22 @@ import {
   CheckCircle,
   Loader2,
   ChevronDown,
+  MessageSquare,
+  User,
+  Mail,
+  Phone,
+  Stethoscope,
+  MessageCircle,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+// ── Country codes (flag text replaced with ISO country code text after emoji removal) ──
 const COUNTRY_CODES = [
-  { code: "+971", country: "UAE", flag: "🇦🇪" },
-  { code: "+91", country: "IN", flag: "🇮🇳" },
-  { code: "+44", country: "UK", flag: "🇬🇧" },
-  { code: "+1", country: "US", flag: "🇺🇸" },
-  { code: "+966", country: "SA", flag: "🇸🇦" },
+  { code: "+971", country: "AE", label: "UAE" },
+  { code: "+91",  country: "IN", label: "India" },
+  { code: "+44",  country: "GB", label: "UK" },
+  { code: "+1",   country: "US", label: "USA" },
+  { code: "+966", country: "SA", label: "KSA" },
 ] as const;
 
 type CountryCode = (typeof COUNTRY_CODES)[number]["code"];
@@ -56,6 +63,10 @@ interface ContactFormIslandProps {
   services: Service[];
 }
 
+// ── Shared input class ──────────────────────────────────────────────────────────
+const inputBase =
+  "w-full h-12 px-4 rounded-xl bg-white border text-forest text-sm placeholder:text-forest/30 outline-none transition-all duration-200 focus:border-seafoam focus:ring-2 focus:ring-seafoam/10";
+
 export default function ContactFormIsland({ labels, services }: ContactFormIslandProps) {
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
@@ -67,16 +78,14 @@ export default function ContactFormIsland({ labels, services }: ContactFormIslan
     message: "",
   });
   const [status, setStatus] = useState<FormStatus>("idle");
-  const [errors, setErrors] = useState<Partial<FormData>>({});
+  const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
   const [showCountryDropdown, setShowCountryDropdown] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  // Close country dropdown on outside click
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setShowCountryDropdown(false);
       }
     };
@@ -84,70 +93,61 @@ export default function ContactFormIsland({ labels, services }: ContactFormIslan
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // ── Validation ────────────────────────────────────────────────────────────────
   const validateForm = (): boolean => {
-    const newErrors: Partial<FormData> = {};
-
-    if (!formData.firstName.trim() || formData.firstName.trim().length < 2) {
-      newErrors.firstName = "First name is required";
-    }
-    if (!formData.lastName.trim() || formData.lastName.trim().length < 2) {
-      newErrors.lastName = "Last name is required";
-    }
-    if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+    const newErrors: Partial<Record<keyof FormData, string>> = {};
+    if (!formData.firstName.trim() || formData.firstName.trim().length < 2)
+      newErrors.firstName = "Required";
+    if (!formData.lastName.trim() || formData.lastName.trim().length < 2)
+      newErrors.lastName = "Required";
+    if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
       newErrors.email = "Valid email required";
-    }
     const cleanPhone = formData.phone.replace(/\D/g, "");
-    if (!cleanPhone || cleanPhone.length !== 10) {
+    if (!cleanPhone || cleanPhone.length < 7)
       newErrors.phone = "Valid phone required";
-    }
-    if (!formData.service) {
+    if (!formData.service)
       newErrors.service = "Please select a service";
-    }
-    if (!formData.message.trim() || formData.message.trim().length < 10) {
-      newErrors.message = "Message must be at least 10 characters";
-    }
-
+    if (!formData.message.trim() || formData.message.trim().length < 10)
+      newErrors.message = "At least 10 characters";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
+  // ── Submit ────────────────────────────────────────────────────────────────────
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!validateForm()) {
-      setStatus("error");
-      return;
-    }
-
+    if (!validateForm()) { setStatus("error"); return; }
     setStatus("loading");
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise((r) => setTimeout(r, 2000));
     setStatus("success");
-
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      countryCode: "+971",
-      phone: "",
-      service: "",
-      message: "",
-    });
+    setFormData({ firstName: "", lastName: "", email: "", countryCode: "+971", phone: "", service: "", message: "" });
   };
+
+  const selectedCountry = COUNTRY_CODES.find((c) => c.code === formData.countryCode) ?? COUNTRY_CODES[0];
+
+  // ── Helpers ──────────────────────────────────────────────────────────────────
+  const field = (name: keyof FormData) => ({
+    onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
+      setFormData((prev) => ({ ...prev, [name]: e.target.value })),
+    className: cn(inputBase, errors[name] ? "border-red-400 focus:border-red-400 focus:ring-red-100" : "border-forest/10"),
+  });
 
   return (
     <AnimatePresence mode="wait">
+      {/* ── Success State ──────────────────────────────────────────────────────── */}
       {status === "success" ? (
         <motion.div
           key="success"
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="bg-section rounded-3xl p-12 text-center"
+          exit={{ opacity: 0, scale: 0.95 }}
+          className="bg-white rounded-3xl border border-forest/[0.08] shadow-xl p-12 text-center"
         >
-          <div className="w-20 h-20 rounded-full bg-seafoam/20 mx-auto mb-6 flex items-center justify-center">
+          <div className="w-20 h-20 rounded-full bg-seafoam/15 mx-auto mb-6 flex items-center justify-center">
             <CheckCircle className="w-10 h-10 text-seafoam" />
           </div>
           <h3 className="text-2xl font-bold text-forest mb-3">{labels.successTitle}</h3>
-          <p className="text-forest/70">{labels.successMessage}</p>
+          <p className="text-forest/60 max-w-xs mx-auto">{labels.successMessage}</p>
           <button
             onClick={() => setStatus("idle")}
             className="mt-8 px-8 py-3 bg-forest text-white rounded-full font-bold hover:bg-seafoam hover:text-forest transition-all"
@@ -156,145 +156,237 @@ export default function ContactFormIsland({ labels, services }: ContactFormIslan
           </button>
         </motion.div>
       ) : (
-        <motion.form
+        /* ── Form Card ─────────────────────────────────────────────────────── */
+        <motion.div
           key="form"
-          onSubmit={handleSubmit}
-          className="bg-section rounded-3xl p-8 md:p-12"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -12 }}
+          className="bg-white rounded-3xl border border-forest/[0.08] shadow-xl overflow-hidden"
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-forest font-medium text-sm mb-2">{labels.firstName}</label>
-              <input
-                type="text"
-                value={formData.firstName}
-                onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                className={cn(
-                  "w-full h-14 px-5 rounded-2xl bg-white border transition-all text-forest",
-                  errors.firstName ? "border-red-400" : "border-forest/10 focus:border-seafoam"
-                )}
-              />
+          {/* Card Header */}
+          <div className="flex items-center gap-4 px-8 pt-7 pb-6 border-b border-forest/[0.06]">
+            <div className="w-11 h-11 rounded-2xl bg-seafoam/10 flex items-center justify-center shrink-0">
+              <MessageSquare className="w-5 h-5 text-seafoam" />
             </div>
             <div>
-              <label className="block text-forest font-medium text-sm mb-2">{labels.lastName}</label>
-              <input
-                type="text"
-                value={formData.lastName}
-                onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                className={cn(
-                  "w-full h-14 px-5 rounded-2xl bg-white border transition-all text-forest",
-                  errors.lastName ? "border-red-400" : "border-forest/10 focus:border-seafoam"
-                )}
-              />
+              <h3 className="text-lg font-bold text-forest leading-tight">Send a Message</h3>
+              <p className="text-xs text-forest/45 mt-0.5">We'll respond within 24 hours</p>
             </div>
           </div>
 
-          <div className="mt-6">
-            <label className="block text-forest font-medium text-sm mb-2">{labels.email}</label>
-            <input
-              type="email"
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className={cn(
-                "w-full h-14 px-5 rounded-2xl bg-white border transition-all text-forest",
-                errors.email ? "border-red-400" : "border-forest/10 focus:border-seafoam"
-              )}
-            />
-          </div>
+          {/* Form Body */}
+          <form onSubmit={handleSubmit} noValidate className="px-8 pt-6 pb-8 space-y-5">
 
-          <div className="mt-6">
-            <label className="block text-forest font-medium text-sm mb-2">{labels.phone}</label>
-            <div className="flex gap-3">
-              <div ref={dropdownRef} className="relative">
-                <button
-                  type="button"
-                  onClick={() => setShowCountryDropdown(!showCountryDropdown)}
-                  className="h-14 px-4 rounded-2xl bg-white border border-forest/10 flex items-center gap-2 min-w-[100px]"
-                >
-                  <span>{COUNTRY_CODES.find(c => c.code === formData.countryCode)?.flag}</span>
-                  <span className="text-forest font-medium">{formData.countryCode}</span>
-                  <ChevronDown className="w-4 h-4 text-forest/50" />
-                </button>
-                {showCountryDropdown && (
-                  <div className="absolute top-full mt-2 bg-white rounded-xl shadow-lg border border-forest/10 py-2 z-50 min-w-[160px]">
-                    {COUNTRY_CODES.map((country) => (
-                      <button
-                        key={country.code + country.country}
-                        type="button"
-                        onClick={() => {
-                          setFormData({ ...formData, countryCode: country.code });
-                          setShowCountryDropdown(false);
-                        }}
-                        className="w-full px-4 py-2 flex items-center gap-3 hover:bg-section transition-colors text-start"
-                      >
-                        <span>{country.flag}</span>
-                        <span className="text-forest font-medium">{country.code}</span>
-                        <span className="text-forest/50 text-sm">{country.country}</span>
-                      </button>
-                    ))}
-                  </div>
-                )}
+            {/* Row 1: First Name + Last Name */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="flex items-center gap-1.5 text-xs font-semibold text-forest/60 uppercase tracking-wider mb-2">
+                  <User className="w-3.5 h-3.5" />
+                  {labels.firstName} <span className="text-red-400">*</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="John"
+                  value={formData.firstName}
+                  {...field("firstName")}
+                />
+                {errors.firstName && <p className="text-red-400 text-xs mt-1">{errors.firstName}</p>}
               </div>
-              <input
-                type="tel"
-                value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+              <div>
+                <label className="flex items-center gap-1.5 text-xs font-semibold text-forest/60 uppercase tracking-wider mb-2">
+                  <User className="w-3.5 h-3.5" />
+                  {labels.lastName} <span className="text-red-400">*</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Doe"
+                  value={formData.lastName}
+                  {...field("lastName")}
+                />
+                {errors.lastName && <p className="text-red-400 text-xs mt-1">{errors.lastName}</p>}
+              </div>
+            </div>
+
+            {/* Row 2: Email + Phone */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* Email */}
+              <div>
+                <label className="flex items-center gap-1.5 text-xs font-semibold text-forest/60 uppercase tracking-wider mb-2">
+                  <Mail className="w-3.5 h-3.5" />
+                  {labels.email} <span className="text-red-400">*</span>
+                </label>
+                <input
+                  type="email"
+                  placeholder="john@example.com"
+                  value={formData.email}
+                  {...field("email")}
+                />
+                {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
+              </div>
+
+              {/* Phone with country code */}
+              <div>
+                <label className="flex items-center gap-1.5 text-xs font-semibold text-forest/60 uppercase tracking-wider mb-2">
+                  <Phone className="w-3.5 h-3.5" />
+                  {labels.phone} <span className="text-red-400">*</span>
+                </label>
+                <div className="flex gap-2">
+                  {/* Country Code Picker */}
+                  <div ref={dropdownRef} className="relative shrink-0">
+                    <button
+                      type="button"
+                      onClick={() => setShowCountryDropdown(!showCountryDropdown)}
+                      className={cn(
+                        "h-12 px-3 rounded-xl bg-white border flex items-center gap-1.5 text-sm font-semibold text-forest outline-none transition-all duration-200",
+                        showCountryDropdown
+                          ? "border-seafoam ring-2 ring-seafoam/10"
+                          : "border-forest/10 hover:border-forest/30"
+                      )}
+                    >
+                      <span className="text-[10px] font-bold text-forest/50 tracking-wider">
+                        {selectedCountry.country}
+                      </span>
+                      <span>{selectedCountry.code}</span>
+                      <ChevronDown
+                        className={cn(
+                          "w-3 h-3 text-forest/40 transition-transform duration-200",
+                          showCountryDropdown && "rotate-180"
+                        )}
+                      />
+                    </button>
+
+                    {/* Dropdown */}
+                    <AnimatePresence>
+                      {showCountryDropdown && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 4, scale: 0.97 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 4, scale: 0.97 }}
+                          transition={{ duration: 0.15 }}
+                          className="absolute top-full mt-2 left-0 bg-white rounded-xl shadow-lg border border-forest/10 py-1.5 z-50 min-w-[160px]"
+                        >
+                          {COUNTRY_CODES.map((c) => (
+                            <button
+                              key={c.code + c.country}
+                              type="button"
+                              onClick={() => {
+                                setFormData((prev) => ({ ...prev, countryCode: c.code }));
+                                setShowCountryDropdown(false);
+                              }}
+                              className={cn(
+                                "w-full px-4 py-2 flex items-center gap-3 hover:bg-section transition-colors text-start text-sm",
+                                c.code === formData.countryCode && "bg-section"
+                              )}
+                            >
+                              <span className="text-[10px] font-bold text-forest/50 w-6">{c.country}</span>
+                              <span className="text-forest font-semibold">{c.code}</span>
+                              <span className="text-forest/40">{c.label}</span>
+                            </button>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+
+                  {/* Phone number input */}
+                  <input
+                    type="tel"
+                    placeholder="50 412 0369"
+                    value={formData.phone}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, phone: e.target.value }))}
+                    className={cn(
+                      inputBase,
+                      "flex-1",
+                      errors.phone ? "border-red-400 focus:border-red-400 focus:ring-red-100" : "border-forest/10"
+                    )}
+                  />
+                </div>
+                {errors.phone && <p className="text-red-400 text-xs mt-1">{errors.phone}</p>}
+              </div>
+            </div>
+
+            {/* Service of Interest */}
+            <div>
+              <label className="flex items-center gap-1.5 text-xs font-semibold text-forest/60 uppercase tracking-wider mb-2">
+                <Stethoscope className="w-3.5 h-3.5" />
+                {labels.service} <span className="text-red-400">*</span>
+              </label>
+              <div className="relative">
+                <select
+                  value={formData.service}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, service: e.target.value }))}
+                  className={cn(
+                    inputBase,
+                    "appearance-none pr-10 cursor-pointer",
+                    errors.service ? "border-red-400 focus:border-red-400 focus:ring-red-100" : "border-forest/10",
+                    !formData.service && "text-forest/30"
+                  )}
+                >
+                  <option value="" disabled>{labels.serviceDefault}</option>
+                  {services.map((s) => (
+                    <option key={s.key} value={s.key}>{s.label}</option>
+                  ))}
+                </select>
+                <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-forest/40 pointer-events-none" />
+              </div>
+              {errors.service && <p className="text-red-400 text-xs mt-1">{errors.service}</p>}
+            </div>
+
+            {/* Message */}
+            <div>
+              <label className="flex items-center gap-1.5 text-xs font-semibold text-forest/60 uppercase tracking-wider mb-2">
+                <MessageCircle className="w-3.5 h-3.5" />
+                {labels.message} <span className="text-red-400">*</span>
+              </label>
+              <textarea
+                rows={4}
+                placeholder={labels.messagePlaceholder}
+                value={formData.message}
+                onChange={(e) => setFormData((prev) => ({ ...prev, message: e.target.value }))}
                 className={cn(
-                  "flex-1 h-14 px-5 rounded-2xl bg-white border transition-all text-forest",
-                  errors.phone ? "border-red-400" : "border-forest/10 focus:border-seafoam"
+                  "w-full p-4 rounded-xl bg-white border text-forest text-sm placeholder:text-forest/30 outline-none transition-all duration-200 resize-none focus:ring-2 focus:ring-seafoam/10",
+                  errors.message
+                    ? "border-red-400 focus:border-red-400 focus:ring-red-100"
+                    : "border-forest/10 focus:border-seafoam"
                 )}
               />
+              {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message}</p>}
             </div>
-          </div>
 
-          <div className="mt-6">
-            <label className="block text-forest font-medium text-sm mb-2">{labels.service}</label>
-            <select
-              value={formData.service}
-              onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-              className={cn(
-                "w-full h-14 px-5 rounded-2xl bg-white border transition-all text-forest",
-                errors.service ? "border-red-400" : "border-forest/10 focus:border-seafoam"
-              )}
+            {/* Submit */}
+            <button
+              type="submit"
+              disabled={status === "loading"}
+              className="w-full h-14 bg-forest text-white font-bold text-sm uppercase tracking-widest rounded-2xl hover:bg-forest/90 active:scale-[0.98] transition-all duration-200 disabled:opacity-50 flex items-center justify-center gap-3"
             >
-              <option value="">{labels.serviceDefault}</option>
-              {services.map((s) => (
-                <option key={s.key} value={s.key}>{s.label}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="mt-6">
-            <label className="block text-forest font-medium text-sm mb-2">{labels.message}</label>
-            <textarea
-              value={formData.message}
-              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              rows={4}
-              placeholder={labels.messagePlaceholder}
-              className={cn(
-                "w-full p-5 rounded-2xl bg-white border transition-all text-forest resize-none",
-                errors.message ? "border-red-400" : "border-forest/10 focus:border-seafoam"
+              {status === "loading" ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  {labels.submitting}
+                </>
+              ) : (
+                <>
+                  <Send className="w-4 h-4" />
+                  {labels.submit}
+                </>
               )}
-            />
-          </div>
+            </button>
 
-          <button
-            type="submit"
-            disabled={status === "loading"}
-            className="mt-8 w-full h-16 bg-forest text-white font-bold text-lg rounded-2xl hover:bg-seafoam hover:text-forest transition-all disabled:opacity-50 flex items-center justify-center gap-3"
-          >
-            {status === "loading" ? (
-              <>
-                <Loader2 className="w-5 h-5 animate-spin" />
-                {labels.submitting}
-              </>
-            ) : (
-              <>
-                <Send className="w-5 h-5" />
-                {labels.submit}
-              </>
-            )}
-          </button>
-        </motion.form>
+            {/* Privacy notice */}
+            <p className="text-center text-[11px] text-forest/35 leading-relaxed">
+              By submitting this form, you agree to our{" "}
+              <a href="/privacy" className="underline underline-offset-2 hover:text-forest/60 transition-colors">
+                Privacy Policy
+              </a>{" "}
+              and{" "}
+              <a href="/terms" className="underline underline-offset-2 hover:text-forest/60 transition-colors">
+                Terms of Service
+              </a>
+              .
+            </p>
+          </form>
+        </motion.div>
       )}
     </AnimatePresence>
   );

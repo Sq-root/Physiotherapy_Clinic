@@ -181,7 +181,7 @@ export function Navbar() {
                           isActive={isActive}
                           useDarkStyle={useDarkStyle}
                           isRTL={isRTL}
-                          t={(key) => t(`servicesMenu.${key}`)}
+                          t={t}
                         />
                       );
                     }

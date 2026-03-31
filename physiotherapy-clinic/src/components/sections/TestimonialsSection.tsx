@@ -10,7 +10,7 @@ export async function TestimonialsSection() {
 
   // Pre-resolve trust badges (serializable for client)
   const trustBadges = [
-    { icon: "✓", label: t('trustBadges.verified') },
+    { icon: "", label: t('trustBadges.verified') },
     { icon: "↗", label: t('trustBadges.fullRecovery') },
   ];
 

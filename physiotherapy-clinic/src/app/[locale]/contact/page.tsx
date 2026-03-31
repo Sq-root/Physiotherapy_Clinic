@@ -144,11 +144,18 @@ export default async function ContactPage({
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             {/* Left Column - Server Rendered */}
             <AnimateOnView className="lg:col-span-5" direction="left">
-              <h2 className="text-3xl md:text-5xl font-bold text-forest mb-6 tracking-tight leading-[1.1]">
-                {t("title")} <span className="text-seafoam">{t("titleHighlight")}</span>
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 mb-5 px-3 py-1.5 rounded-full bg-seafoam/10 border border-seafoam/20">
+                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-seafoam">
+                  Send a Request
+                </span>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-bold text-forest mb-5 tracking-tight leading-[1.1]">
+                Ready to Feel<br />
+                <span className="text-seafoam font-serif italic">Better?</span>
               </h2>
-              <p className="text-forest/70 text-base md:text-lg leading-relaxed max-w-md">
-                {t("description")}
+              <p className="text-forest/60 text-base leading-relaxed max-w-sm">
+                Fill out the form and our care coordinators will match you with the right specialist for your needs.
               </p>
 
               <div className="mt-10 space-y-6">
@@ -158,7 +165,9 @@ export default async function ContactPage({
                   </div>
                   <div>
                     <h4 className="text-forest font-bold">{t("trustIndicators.professional")}</h4>
-                    <p className="text-forest/60 text-sm">{t("description")}</p>
+                    <p className="text-forest/60 text-sm">
+                      Highly trained physiotherapists dedicated to your full recovery.
+                    </p>
                   </div>
                 </div>
                 <div className="flex gap-4">
@@ -167,7 +176,20 @@ export default async function ContactPage({
                   </div>
                   <div>
                     <h4 className="text-forest font-bold">{t("trustIndicators.secure")}</h4>
-                    <p className="text-forest/60 text-sm">{t("trustIndicators.personalized")}</p>
+                    <p className="text-forest/60 text-sm">
+                      State-of-the-art equipment in a calming, hygienic environment.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <div className="shrink-0 w-12 h-12 rounded-2xl bg-lime/15 flex items-center justify-center">
+                    <Sparkles className="w-6 h-6 text-forest" />
+                  </div>
+                  <div>
+                    <h4 className="text-forest font-bold">{t("trustIndicators.personalized")}</h4>
+                    <p className="text-forest/60 text-sm">
+                      Tailored treatment plans designed specifically for your body and goals.
+                    </p>
                   </div>
                 </div>
               </div>

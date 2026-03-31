@@ -57,18 +57,18 @@ const serviceLabels: Record<ServiceType, string> = {
 };
 
 const COUNTRY_CODES = [
-  { code: "+971", country: "UAE", flag: "🇦🇪" },
-  { code: "+91", country: "IN", flag: "🇮🇳" },
-  { code: "+44", country: "UK", flag: "🇬🇧" },
-  { code: "+1", country: "US", flag: "🇺🇸" },
-  { code: "+966", country: "SA", flag: "🇸🇦" },
-  { code: "+974", country: "QA", flag: "🇶🇦" },
-  { code: "+968", country: "OM", flag: "🇴🇲" },
-  { code: "+965", country: "KW", flag: "🇰🇼" },
-  { code: "+973", country: "BH", flag: "🇧🇭" },
-  { code: "+61", country: "AU", flag: "🇦🇺" },
-  { code: "+1", country: "CA", flag: "🇨🇦" },
-  { code: "+49", country: "DE", flag: "🇩🇪" },
+  { code: "+971", country: "UAE", flag: "" },
+  { code: "+91", country: "IN", flag: "" },
+  { code: "+44", country: "UK", flag: "" },
+  { code: "+1", country: "US", flag: "" },
+  { code: "+966", country: "SA", flag: "" },
+  { code: "+974", country: "QA", flag: "" },
+  { code: "+968", country: "OM", flag: "" },
+  { code: "+965", country: "KW", flag: "" },
+  { code: "+973", country: "BH", flag: "" },
+  { code: "+61", country: "AU", flag: "" },
+  { code: "+1", country: "CA", flag: "" },
+  { code: "+49", country: "DE", flag: "" },
 ] as const;
 
 type CountryCode = (typeof COUNTRY_CODES)[number]["code"];
