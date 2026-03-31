@@ -52,10 +52,10 @@ export async function TestimonialsSection() {
         {/* Stats Bar — Server Rendered */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-16 mt-12">
           {[
-            { value: siteConfig.social.recoveryRate, label: 'Patient Satisfaction', Icon: Heart },
-            { value: siteConfig.social.livesRestored, label: 'Lives Restored', Icon: Star },
-            { value: '30%', label: 'Faster Recovery', Icon: Zap },
-            { value: siteConfig.social.yearsExperience, label: 'Years Experience', Icon: Trophy },
+            { value: siteConfig.social.recoveryRate, label: t('stats.patientSatisfaction'), Icon: Heart },
+            { value: siteConfig.social.livesRestored, label: t('stats.livesRestored'), Icon: Star },
+            { value: '30%', label: t('stats.fasterRecovery'), Icon: Zap },
+            { value: siteConfig.social.yearsExperience, label: t('stats.yearsExperience'), Icon: Trophy },
           ].map((stat, i) => (
             <AnimateOnView
               key={i}
@@ -71,12 +71,12 @@ export async function TestimonialsSection() {
 
         {/* Bottom CTA — Server Rendered */}
         <AnimateOnView className="text-center mt-16 md:mt-20">
-          <p className="text-forest/60 text-sm md:text-base mb-6">Ready to start your own transformation journey?</p>
+          <p className="text-forest/60 text-sm md:text-base mb-6">{t('cta.prompt')}</p>
           <a 
             href="#contact" 
             className="inline-flex items-center gap-3 bg-forest text-white px-8 py-4 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-forest/90 hover:shadow-glow transition-all duration-300 group"
           >
-            <span>Share Your Story With Us</span>
+            <span>{t('cta.button')}</span>
             <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>

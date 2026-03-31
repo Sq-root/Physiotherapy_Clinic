@@ -61,8 +61,8 @@ export async function generateMetadata({
       : siteConfig.description,
     alternates: {
       languages: {
-        'en': '/en',
-        'ar': '/ar',
+        'en': `${siteConfig.url}/en`,
+        'ar': `${siteConfig.url}/ar`,
       },
     },
   };
@@ -102,12 +102,6 @@ export default async function LocaleLayout({
       dir={dir}
       className={`${lexend.variable} ${greatVibes.variable} ${cairo.variable}`}
     >
-      <head>
-        {/* Hreflang tags for SEO */}
-        <link rel="alternate" hrefLang="en" href="/en" />
-        <link rel="alternate" hrefLang="ar" href="/ar" />
-        <link rel="alternate" hrefLang="x-default" href="/en" />
-      </head>
       <body 
         className={`${isArabic ? 'font-arabic' : 'font-sans'} antialiased overflow-x-hidden selection:bg-seafoam selection:text-forest`}
       >

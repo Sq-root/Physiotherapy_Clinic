@@ -176,6 +176,16 @@
     "trustBadges": {
       "verified": "مريض موثق",
       "fullRecovery": "تعافٍ كامل"
+    },
+    "stats": {
+      "patientSatisfaction": "رضا المرضى",
+      "livesRestored": "حياة استُعيدت",
+      "fasterRecovery": "تعافٍ أسرع",
+      "yearsExperience": "سنوات الخبرة"
+    },
+    "cta": {
+      "prompt": "هل أنت مستعد لبدء رحلة تحولك؟",
+      "button": "شاركنا قصتك"
     }
   },
   "faq": {

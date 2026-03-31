@@ -176,6 +176,16 @@
     "trustBadges": {
       "verified": "Verified Patient",
       "fullRecovery": "Full Recovery"
+    },
+    "stats": {
+      "patientSatisfaction": "Patient Satisfaction",
+      "livesRestored": "Lives Restored",
+      "fasterRecovery": "Faster Recovery",
+      "yearsExperience": "Years Experience"
+    },
+    "cta": {
+      "prompt": "Ready to start your own transformation journey?",
+      "button": "Share Your Story With Us"
     }
   },
   "faq": {
