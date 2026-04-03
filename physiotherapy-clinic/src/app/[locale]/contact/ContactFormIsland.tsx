@@ -118,10 +118,30 @@ export default function ContactFormIsland({ labels, services }: ContactFormIslan
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) { setStatus("error"); return; }
+    
     setStatus("loading");
-    await new Promise((r) => setTimeout(r, 2000));
-    setStatus("success");
-    setFormData({ firstName: "", lastName: "", email: "", countryCode: "+971", phone: "", service: "", message: "" });
+    setErrors({});
+    
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to submit form");
+      }
+
+      setStatus("success");
+      setFormData({ firstName: "", lastName: "", email: "", countryCode: "+971", phone: "", service: "", message: "" });
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setStatus("error");
+      setErrors({ message: error instanceof Error ? error.message : "Something went wrong. Please try again." });
+    }
   };
 
   const selectedCountry = COUNTRY_CODES.find((c) => c.code === formData.countryCode) ?? COUNTRY_CODES[0];

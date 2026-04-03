@@ -8,6 +8,9 @@ import {
   Users,
   Sparkles,
   ChevronRight,
+  AlertCircle,
+  Target,
+  Quote,
 } from "lucide-react";
 import { setRequestLocale, getTranslations, getLocale } from "next-intl/server";
 import { Link } from "@/i18n/routing";
@@ -65,7 +68,14 @@ export default async function ServiceDetailPage({
   // Pre-resolve data for client islands
   const benefits = t.raw(`${key}.benefits`) as string[];
   const idealFor = t.raw(`${key}.idealFor`) as string[];
-  const process = t.raw(`${key}.process`) as string[];
+
+  // Safely get new fields (symptoms, clinicalApproach, outcome)
+  let symptoms: string[] = [];
+  let clinicalApproach: string[] = [];
+  let outcome = "";
+  try { symptoms = t.raw(`${key}.symptoms`) as string[]; } catch {}
+  try { clinicalApproach = t.raw(`${key}.clinicalApproach`) as string[]; } catch {}
+  try { outcome = t(`${key}.outcome`); } catch {}
 
   // Get related services (same category, excluding current)
   const relatedServices = services
@@ -145,12 +155,8 @@ export default async function ServiceDetailPage({
                 {t(`${key}.title`)}
               </h1>
 
-              <p className="text-lg md:text-xl text-seafoam font-medium mb-6">
+              <p className="text-lg md:text-xl text-seafoam font-medium mb-6 italic">
                 {t(`${key}.heroSubtitle`)}
-              </p>
-
-              <p className="text-base md:text-lg text-forest/70 font-light leading-relaxed mb-8 max-w-xl">
-                {t(`${key}.overview`)}
               </p>
 
               {/* Quick Stats */}
@@ -230,11 +236,140 @@ export default async function ServiceDetailPage({
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
+          THE THEORY / MECHANISM SECTION
+          ═══════════════════════════════════════════════════════════════ */}
+      <section className="py-20 md:py-28 bg-forest relative overflow-hidden rounded-b-[4rem]">
+        <div className="absolute top-0 end-0 w-[600px] h-[600px] bg-seafoam rounded-full blur-[150px] opacity-5 -translate-y-1/2 translate-x-1/3 rtl:-translate-x-1/3 pointer-events-none" />
+        <div className="absolute bottom-0 start-0 w-[400px] h-[400px] bg-lime rounded-full blur-[120px] opacity-5 translate-y-1/3 -translate-x-1/4 rtl:translate-x-1/4 pointer-events-none" />
+
+        <div className="mx-auto max-w-5xl px-6 lg:px-8 relative z-10">
+          <AnimateOnView className="text-center mb-16">
+            <span className="text-seafoam font-bold uppercase tracking-[0.3em] text-xs">
+              {t("mechanism")}
+            </span>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mt-4 tracking-tight">
+              {t("mechanismSubtitle")}
+            </h2>
+          </AnimateOnView>
+
+          <AnimateOnView>
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-[2.5rem] p-8 md:p-12">
+              <p className="text-white/90 text-lg md:text-xl font-light leading-relaxed">
+                {t(`${key}.overview`)}
+              </p>
+            </div>
+          </AnimateOnView>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════
+          SYMPTOMS SECTION
+          ═══════════════════════════════════════════════════════════════ */}
+      {symptoms.length > 0 && (
+        <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+          <div className="absolute top-0 start-0 w-full h-24 bg-section/30" style={{ borderRadius: "0 0 200px 200px" }} />
+
+          <div className="mx-auto max-w-6xl px-6 lg:px-8 pt-8 relative z-10">
+            <AnimateOnView className="text-center mb-16">
+              <span className="text-seafoam font-bold uppercase tracking-[0.3em] text-xs">
+                {t("symptoms")}
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold text-forest mt-4 tracking-tight">
+                {t("symptomsSubtitle")}
+              </h2>
+            </AnimateOnView>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {symptoms.map((symptom, index) => (
+                <AnimateOnView
+                  key={index}
+                  delay={index * 0.1}
+                  className="flex items-start gap-5 p-6 rounded-[2rem] bg-section/50 border border-forest/5 hover:bg-section hover:shadow-lg hover:border-seafoam/20 transition-all duration-300"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center shrink-0 mt-0.5">
+                    <AlertCircle className="w-5 h-5 text-red-400" />
+                  </div>
+                  <p className="text-forest font-medium leading-relaxed">{symptom}</p>
+                </AnimateOnView>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ═══════════════════════════════════════════════════════════════
+          CLINICAL APPROACH SECTION
+          ═══════════════════════════════════════════════════════════════ */}
+      {clinicalApproach.length > 0 && (
+        <section className="py-20 md:py-28 bg-section relative overflow-hidden">
+          <div className="absolute top-0 end-0 w-[500px] h-[500px] bg-seafoam rounded-full blur-[150px] opacity-5 -translate-y-1/2 translate-x-1/3 rtl:-translate-x-1/3 pointer-events-none" />
+
+          <div className="mx-auto max-w-5xl px-6 lg:px-8 relative z-10">
+            <AnimateOnView className="text-center mb-16">
+              <span className="text-lime font-bold uppercase tracking-[0.3em] text-xs">
+                {t("clinicalApproach")}
+              </span>
+              <h2 className="text-3xl md:text-5xl font-bold text-forest mt-4 tracking-tight">
+                {t(`${key}.title`)}
+              </h2>
+            </AnimateOnView>
+
+            {/* Approach Timeline */}
+            <div className="relative">
+              {/* Vertical line */}
+              <div className={`absolute top-0 bottom-0 ${isRTL ? "right-6 md:right-1/2" : "left-6 md:left-1/2"} w-px bg-forest/10`} />
+
+              <div className="space-y-12">
+                {clinicalApproach.map((step, index) => {
+                  const parts = step.split(": ");
+                  const stepTitle = parts.length > 1 ? parts[0] : `Step ${index + 1}`;
+                  const stepDesc = parts.length > 1 ? parts.slice(1).join(": ") : step;
+
+                  return (
+                    <AnimateOnView
+                      key={index}
+                      delay={index * 0.1}
+                      direction={!isRTL && index % 2 === 0 ? "right" : "left"}
+                      className={`relative flex items-start gap-6 md:gap-12 ${
+                        index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                      }`}
+                    >
+                      {/* Step Number */}
+                      <div
+                        className={`absolute ${isRTL ? "right-0" : "left-0"} md:left-1/2 md:-translate-x-1/2 w-12 h-12 rounded-full bg-white border-2 border-lime flex items-center justify-center z-10 shadow-lg shadow-lime/20`}
+                      >
+                        <span className="text-forest font-bold text-sm">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                      </div>
+
+                      {/* Content Card */}
+                      <div
+                        className={`${isRTL ? "mr-16 md:mr-0" : "ml-16 md:ml-0"} md:w-[calc(50%-3rem)] ${
+                          index % 2 === 0 ? "" : "md:text-end"
+                        }`}
+                      >
+                        <div className="bg-white backdrop-blur-sm border border-forest/5 rounded-2xl p-6 hover:shadow-lg hover:border-seafoam/20 transition-all duration-300">
+                          <h3 className="text-forest font-bold text-lg mb-2">{stepTitle}</h3>
+                          <p className="text-forest/70 font-light leading-relaxed">{stepDesc}</p>
+                        </div>
+                      </div>
+
+                      {/* Spacer for alternating layout */}
+                      <div className="hidden md:block md:w-[calc(50%-3rem)]" />
+                    </AnimateOnView>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ═══════════════════════════════════════════════════════════════
           BENEFITS + IDEAL FOR SECTION
           ═══════════════════════════════════════════════════════════════ */}
       <section className="py-20 md:py-28 bg-white relative overflow-hidden">
-        <div className="absolute top-0 start-0 w-full h-24 bg-section/30" style={{ borderRadius: "0 0 200px 200px" }} />
-
         <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Key Benefits */}
@@ -289,65 +424,29 @@ export default async function ServiceDetailPage({
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          TREATMENT PROCESS SECTION
+          OUTCOME SECTION
           ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-20 md:py-28 bg-forest relative overflow-hidden rounded-t-[4rem]">
-        {/* Decorative elements */}
-        <div className="absolute top-0 end-0 w-[500px] h-[500px] bg-seafoam rounded-full blur-[150px] opacity-5 -translate-y-1/2 translate-x-1/3 rtl:-translate-x-1/3 pointer-events-none" />
-
-        <div className="mx-auto max-w-5xl px-6 lg:px-8 relative z-10">
-          <AnimateOnView className="text-center mb-16">
-            <span className="text-seafoam font-bold uppercase tracking-[0.3em] text-xs">
-              {t("treatmentProcess")}
-            </span>
-            <h2 className="text-3xl md:text-5xl font-bold text-white mt-4 tracking-tight">
-              {t(`${key}.title`)}
-            </h2>
-          </AnimateOnView>
-
-          {/* Process Timeline */}
-          <div className="relative">
-            {/* Vertical line */}
-            <div className={`absolute top-0 bottom-0 ${isRTL ? "right-6 md:right-1/2" : "left-6 md:left-1/2"} w-px bg-white/10`} />
-
-            <div className="space-y-12">
-              {process.map((step, index) => (
-                <AnimateOnView
-                  key={index}
-                  delay={index * 0.1}
-                  direction={!isRTL && index % 2 === 0 ? "right" : "left"}
-                  className={`relative flex items-start gap-6 md:gap-12 ${
-                    index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                  }`}
-                >
-                  {/* Step Number */}
-                  <div
-                    className={`absolute ${isRTL ? "right-0" : "left-0"} md:left-1/2 md:-translate-x-1/2 w-12 h-12 rounded-full bg-forest border-2 border-seafoam flex items-center justify-center z-10 shadow-lg shadow-seafoam/20`}
-                  >
-                    <span className="text-white font-bold text-sm">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                  </div>
-
-                  {/* Content Card */}
-                  <div
-                    className={`${isRTL ? "mr-16 md:mr-0" : "ml-16 md:ml-0"} md:w-[calc(50%-3rem)] ${
-                      index % 2 === 0 ? "" : "md:text-end"
-                    }`}
-                  >
-                    <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300">
-                      <p className="text-white font-medium leading-relaxed">{step}</p>
-                    </div>
-                  </div>
-
-                  {/* Spacer for alternating layout */}
-                  <div className="hidden md:block md:w-[calc(50%-3rem)]" />
-                </AnimateOnView>
-              ))}
-            </div>
+      {outcome && (
+        <section className="py-16 md:py-24 bg-forest relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#66A182_0%,_transparent_70%)] opacity-10" />
+          <div className="mx-auto max-w-4xl px-6 lg:px-8 relative z-10">
+            <AnimateOnView className="text-center">
+              <div className="flex justify-center mb-6">
+                <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center">
+                  <Target className="w-7 h-7 text-seafoam" />
+                </div>
+              </div>
+              <span className="text-seafoam font-bold uppercase tracking-[0.3em] text-xs block mb-6">
+                {t("outcome")}
+              </span>
+              <blockquote className="text-2xl md:text-3xl lg:text-4xl font-light text-white leading-relaxed tracking-tight">
+                <Quote className="w-8 h-8 text-white/20 mx-auto mb-4" />
+                {outcome}
+              </blockquote>
+            </AnimateOnView>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ═══════════════════════════════════════════════════════════════
           WHAT TO EXPECT + INTERACTIVE SECTION
