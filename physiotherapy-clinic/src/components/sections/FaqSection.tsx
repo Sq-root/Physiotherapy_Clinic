@@ -1,8 +1,4 @@
-import {
-  PersonStanding,
-  Zap,
-  CheckCircle,
-} from "lucide-react";
+// import { PersonStanding, Zap, CheckCircle } from "lucide-react";
 import { getTranslations, getLocale } from "next-intl/server";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
 import { FaqInteractive } from "./FaqInteractive";
@@ -13,13 +9,21 @@ export async function FaqSection() {
   const isRTL = locale === "ar";
 
   // Category configuration with translation keys
-  const categoryKeys = ["gettingStarted", "treatment", "insurance", "aftercare"];
+  const categoryKeys = [
+    "gettingStarted",
+    "treatment",
+    "insurance",
+    "aftercare",
+  ];
 
   // Pre-resolve translations to pass as serializable props
   const categories = categoryKeys.map((key) => ({
     id: key,
     label: t(`categories.${key}.label`),
-    faqs: t.raw(`categories.${key}.faqs`) as Array<{ question: string; answer: string }>,
+    faqs: t.raw(`categories.${key}.faqs`) as Array<{
+      question: string;
+      answer: string;
+    }>,
   }));
 
   return (
@@ -70,7 +74,7 @@ export async function FaqSection() {
         />
 
         {/* Quick Stats — Server Rendered */}
-        <AnimateOnView delay={0.3} className="mt-6 grid grid-cols-3 gap-3">
+        {/* <AnimateOnView delay={0.3} className="mt-6 grid grid-cols-3 gap-3">
           <div className="text-center p-4 bg-section/50 rounded-2xl border border-forest/5">
             <PersonStanding className="w-5 h-5 mx-auto mb-2 text-seafoam" />
             <p className="text-lg md:text-xl font-bold text-forest">15+</p>
@@ -94,7 +98,7 @@ export async function FaqSection() {
               Resolution Rate
             </p>
           </div>
-        </AnimateOnView>
+        </AnimateOnView> */}
       </div>
     </section>
   );

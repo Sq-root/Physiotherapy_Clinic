@@ -12,10 +12,8 @@ import {
   Heart,
   Hospital,
   Stethoscope,
-  CheckCircle,
   Lock,
   Star,
-  Check,
   Phone,
   Clock,
   User,
@@ -784,19 +782,19 @@ export function AppointmentSection() {
                     <motion.button
                       type="submit"
                       disabled={status === "loading"}
-                      className="w-full py-3 bg-forest text-white font-semibold rounded-xl flex items-center justify-center gap-2 hover:bg-forest/90 transition-all duration-300 group disabled:opacity-70 disabled:cursor-not-allowed"
-                      whileHover={{ scale: status === "loading" ? 1 : 1.01 }}
-                      whileTap={{ scale: status === "loading" ? 1 : 0.99 }}
+                      className="w-full py-4 bg-forest text-white font-bold uppercase tracking-widest rounded-xl flex items-center justify-center gap-3 transition-all duration-300 shadow-[4px_4px_0px_0px_#A4C639] hover:bg-seafoam hover:translate-x-[2.5px] hover:translate-y-[2.5px] hover:shadow-none hover:text-forest active:translate-x-[4px] active:translate-y-[4px] disabled:opacity-70 disabled:cursor-not-allowed outline-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2"
+                      whileHover={{ scale: 1 }}
+                      whileTap={{ scale: 1 }}
                     >
                       {status === "loading" ? (
                         <>
-                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <Loader2 className="w-5 h-5 animate-spin" />
                           <span>Booking...</span>
                         </>
                       ) : (
                         <>
                           <span>Book Assessment</span>
-                          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </>
                       )}
                     </motion.button>

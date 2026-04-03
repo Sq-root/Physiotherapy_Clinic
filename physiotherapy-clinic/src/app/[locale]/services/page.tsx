@@ -1,26 +1,37 @@
-import { setRequestLocale, getTranslations, getLocale } from "next-intl/server";
+import { setRequestLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
-import {
-  Hand,
-  ArrowRight,
-  Activity,
-  Brain,
-  ArrowDown,
-  ArrowLeft,
-  Quote,
-} from "lucide-react";
+import { ArrowRight, Quote } from "lucide-react";
 import { Link } from "@/i18n/routing";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
 import { ServiceFAQInteractive } from "./ServiceFAQInteractive";
+import { ServicesGrid, type ServiceTranslation } from "@/components/sections/ServicesGrid";
+import { services } from "@/lib/data/services";
 
 // ─── Static service data ────────────────────────────────────────────
 const deepDiveServices = [
-  { image: "/services/active_aging_deep_dive_hd.webp", key: "activeAging", avatar: "/services/IMG_0017.webp" },
-  { image: "/services/hydrotherapy_deep_dive_hd.webp", key: "hydrotherapy", avatar: "/services/IMG_0120.webp" },
-  { image: "/services/corrective_exercise_deep_dive_hd.webp", key: "correctiveExercise", avatar: "/services/IMG_0119.webp" },
+  {
+    image: "/services/active_aging_deep_dive_hd.webp",
+    key: "activeAging",
+    avatar: "/services/IMG_0017.webp",
+  },
+  {
+    image: "/services/hydrotherapy_deep_dive_hd.webp",
+    key: "hydrotherapy",
+    avatar: "/services/IMG_0120.webp",
+  },
+  {
+    image: "/services/corrective_exercise_deep_dive_hd.webp",
+    key: "correctiveExercise",
+    avatar: "/services/IMG_0119.webp",
+  },
 ];
 
-const faqKeys = ["acuteInjuries", "combineTreatments", "postOpPackages", "sportsRecovery"];
+const faqKeys = [
+  "acuteInjuries",
+  "combineTreatments",
+  "postOpPackages",
+  "sportsRecovery",
+];
 
 // ─── Page Component (Server) ────────────────────────────────────────
 export default async function ServicesPage({
@@ -32,8 +43,9 @@ export default async function ServicesPage({
   setRequestLocale(locale);
 
   const t = await getTranslations("servicesPage");
-  const tServices = await getTranslations("servicesSection");
-  const currentLocale = await getLocale();
+  const tDetail = await getTranslations("serviceDetail");
+  const tCommon = await getTranslations("common");
+  const currentLocale = locale;
   const isRTL = currentLocale === "ar";
 
   // Pre-resolve FAQ data for the client island
@@ -42,12 +54,90 @@ export default async function ServicesPage({
     answer: t(`faq.questions.${key}.answer`),
   }));
 
+  const serviceTranslations: Record<string, ServiceTranslation> = {};
+  for (const service of services) {
+    const key = service.translationKey;
+    try {
+      serviceTranslations[key] = {
+        title: tDetail(`${key}.title`),
+        heroSubtitle: tDetail(`${key}.heroSubtitle`),
+        overview: tDetail(`${key}.overview`),
+        duration: tDetail(`${key}.duration`),
+        frequency: tDetail(`${key}.frequency`),
+        benefits: tDetail.raw(`${key}.benefits`),
+        idealFor: tDetail.raw(`${key}.idealFor`),
+      };
+      // Optionally include new fields
+      try {
+        serviceTranslations[key].symptoms = tDetail.raw(`${key}.symptoms`);
+      } catch {}
+      try {
+        serviceTranslations[key].clinicalApproach = tDetail.raw(
+          `${key}.clinicalApproach`,
+        );
+      } catch {}
+      try {
+        serviceTranslations[key].outcome = tDetail(`${key}.outcome`);
+      } catch {}
+    } catch {
+      // Fallback for services without translation data yet
+      serviceTranslations[key] = {
+        title: service.title,
+        heroSubtitle: service.description,
+        overview: service.description,
+        duration: "45-60 min",
+        frequency: "2x per week",
+        benefits: [],
+        idealFor: [],
+      };
+    }
+  }
+
+  // Category labels
+  let categoryLabels: Record<string, string> = {};
+  try {
+    categoryLabels = {
+      all: t("categories.all"),
+      pain: t("categories.pain"),
+      techniques: t("categories.techniques"),
+      "injury-prevention": t("categories.injury-prevention"),
+      "womens-health": t("categories.womens-health"),
+      geriatric: t("categories.geriatric"),
+      specialized: t("categories.specialized"),
+    };
+  } catch {
+    categoryLabels = {
+      all: "All Services",
+      pain: "Pain & Conditions",
+      techniques: "Techniques",
+      "injury-prevention": "Prevention & Sports",
+      "womens-health": "Women's Health",
+      geriatric: "Geriatric",
+      specialized: "Specialized",
+    };
+  }
+
+  // UI labels for grid component
+  const uiLabels = {
+    quickView: t("quickView"),
+    viewDetails: t("viewDetails"),
+    closeModal: t("closeModal"),
+    bookAppointment: tCommon("bookAppointment"),
+    serviceCount: t("serviceCount", { count: 9999 }).replace("9999", "{count}"),
+    mechanism: tDetail("mechanism"),
+    symptoms: tDetail("symptoms"),
+    clinicalApproach: tDetail("clinicalApproach"),
+    outcome: tDetail("outcome"),
+    benefits: tDetail("benefits"),
+    idealFor: tDetail("idealFor"),
+  };
+
   return (
     <main className="overflow-x-clip">
       {/* ═══════════════════════════════════════════════════════════════
-          SECTION 1: Bento Hero
+          SECTION 1: Hero
           ═══════════════════════════════════════════════════════════════ */}
-      <section className="relative pt-32 pb-20 overflow-hidden min-h-screen flex flex-col justify-center bg-section">
+      <section className="relative pt-32 pb-20 overflow-hidden bg-section">
         <div className="absolute inset-0 z-0">
           <Image
             src="/services/active_life_design_hero_bg.webp"
@@ -72,184 +162,142 @@ export default async function ServicesPage({
               </span>
             </div>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-forest mb-6 tracking-tight leading-[1.05]">
-              {t("title")} <span className="text-lime font-script">{t("titleHighlight")}</span>
+              {t("title")}{" "}
+              <span className="text-lime font-script">
+                {t("titleHighlight")}
+              </span>
             </h1>
             <p className="text-lg md:text-xl text-forest/80 font-light max-w-2xl mx-auto leading-relaxed">
               {t("description")}
             </p>
           </AnimateOnView>
 
-          {/* Bento Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 auto-rows-[240px]">
-            {/* Manual Therapy Card */}
-            <AnimateOnView className="lg:col-span-6 row-span-2 group relative overflow-hidden rounded-[3rem] border border-forest/5 shadow-2xl cursor-pointer">
-              <Image
-                src="/services/manual_therapy_bento_hd.webp"
-                alt="Manual Therapy"
-                fill
-                className="object-cover transition-transform duration-1000 group-hover:scale-110"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
-              <div className="absolute bottom-0 start-0 p-10 w-full z-10">
-                <div className="inline-flex items-center gap-2 mb-4 bg-seafoam px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider text-forest">
-                  <Hand className="w-3.5 h-3.5" />
-                  {tServices("services.manual.shortDesc")}
-                </div>
-                <h3 className="text-3xl md:text-4xl text-white font-bold mb-3 tracking-tight">
-                  {tServices("services.manual.title")}
-                </h3>
-                <p className="text-white/80 text-base font-light max-w-md leading-relaxed">
-                  {tServices("services.manual.fullDesc")}
-                </p>
-              </div>
-            </AnimateOnView>
-
-            {/* Sports Recovery Card */}
-            <AnimateOnView delay={0.1} className="lg:col-span-3 row-span-2 group relative overflow-hidden rounded-[2.5rem] border border-forest/10 shadow-lg cursor-pointer bg-white">
-              <Image
-                src="/services/sports_recovery_bento_hd.webp"
-                alt="Sports Recovery"
-                fill
-                className="object-cover opacity-10 group-hover:opacity-[0.15] transition-all duration-700 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, 25vw"
-              />
-              <div className="relative h-full flex flex-col justify-between p-8">
-                <div>
-                  <div className="w-12 h-12 rounded-2xl bg-forest text-seafoam flex items-center justify-center mb-6 shadow-xl group-hover:bg-seafoam group-hover:text-forest transition-colors duration-500">
-                    <Activity className="w-6 h-6" />
-                  </div>
-                  <h3 className="text-2xl text-forest font-bold mb-4 tracking-tight">
-                    {tServices("services.sports.title")}
-                  </h3>
-                  <p className="text-forest/80 font-light leading-relaxed text-sm">
-                    {tServices("services.sports.shortDesc")}
-                  </p>
-                </div>
-              </div>
-            </AnimateOnView>
-
-            {/* Neurological Card */}
-            <AnimateOnView delay={0.2} className="lg:col-span-3 row-span-1 group relative overflow-hidden rounded-[2.5rem] bg-seafoam border border-forest/5 shadow-lg cursor-pointer p-6">
-              <div className="relative h-full flex flex-col justify-center items-center text-center">
-                <div className="bg-forest/5 p-3 rounded-xl mb-3">
-                  <Brain className="w-8 h-8 text-forest group-hover:scale-110 transition-transform duration-500" />
-                </div>
-                <h3 className="text-xl text-forest font-bold tracking-tight">
-                  {tServices("services.neurological.title")}
-                </h3>
-                <ArrowDown className="w-4 h-4 text-forest mt-2 opacity-0 group-hover:opacity-100 transition-all duration-300" />
-              </div>
-            </AnimateOnView>
-
-            {/* Orthopedic Card */}
-            <AnimateOnView delay={0.3} className="lg:col-span-3 row-span-1 group relative overflow-hidden rounded-[2.5rem] bg-forest border border-white/5 shadow-2xl cursor-pointer">
-              <Image
-                src="/services/post_surgical_bento_hd.webp"
-                alt="Orthopedic"
-                fill
-                className="object-cover opacity-50 group-hover:opacity-30 transition-opacity duration-1000"
-                sizes="(max-width: 768px) 100vw, 25vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-forest to-transparent opacity-60" />
-              <div className="absolute inset-0 flex flex-col justify-end p-8 z-10">
-                <span className="text-[9px] text-seafoam font-bold uppercase tracking-[0.3em] mb-2">
-                  {tServices("services.orthopedic.shortDesc")}
-                </span>
-                <h3 className="text-xl text-white font-bold tracking-tight">
-                  {tServices("services.orthopedic.title")}
-                </h3>
-              </div>
-            </AnimateOnView>
-          </div>
+          {/* Quick CTA */}
+          <AnimateOnView delay={0.2} className="flex justify-center">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-forest text-white font-bold uppercase tracking-wider rounded-full transition-all duration-300 shadow-[4px_4px_0px_0px_#A4C639] hover:bg-seafoam hover:text-forest hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[3px] active:translate-y-[3px] active:shadow-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 outline-none"
+            >
+              {t("bookConsultation")}
+              <ArrowRight className={`w-5 h-5 ${isRTL ? "rotate-180" : ""}`} />
+            </Link>
+          </AnimateOnView>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          SECTION 2: Therapeutic Deep Dive
+          SECTION 2: Full Service Grid with Category Filter
           ═══════════════════════════════════════════════════════════════ */}
+      <section className="py-24 bg-section relative overflow-hidden">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
+          <ServicesGrid
+            translations={serviceTranslations}
+            categoryLabels={categoryLabels}
+            uiLabels={uiLabels}
+          />
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════
+          SECTION 3: Therapeutic Deep Dive
+          ═══════════════════════════════════════════════════════════════ */}
+      {/* Hidden for now: The 22 service cards cover the scope effectively. */}
+      {false && (
       <section className="py-24 bg-white relative overflow-hidden">
+        {/* Top shape separator */}
         <div
           className="absolute top-0 start-0 w-full h-32 bg-section/30"
           style={{ borderRadius: "0 0 200px 200px" }}
         />
 
         <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-12 relative z-10">
-          {/* Header */}
-          <AnimateOnView className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-            <div className="max-w-2xl">
-              <div className="h-px w-20 bg-seafoam mb-6" />
-              <h2 className="text-5xl md:text-6xl font-bold text-forest mb-6 tracking-tight">
-                {t("deepDive.title")} <br />
-                <span className="text-lime font-script">{t("deepDive.titleHighlight")}</span>
-              </h2>
-              <p className="text-forest/80 text-lg font-light max-w-xl leading-relaxed">
-                {t("deepDive.description")}
-              </p>
-            </div>
-            <div className={`flex gap-3 ${isRTL ? "flex-row-reverse" : ""}`}>
-              <button className="w-14 h-14 rounded-full border border-forest/10 flex items-center justify-center hover:bg-forest hover:text-white transition-all duration-300">
-                <ArrowLeft className={`w-5 h-5 ${isRTL ? "rotate-180" : ""}`} />
-              </button>
-              <button className="w-14 h-14 rounded-full bg-forest text-white flex items-center justify-center hover:bg-seafoam hover:text-forest transition-all duration-300 shadow-xl">
-                <ArrowRight className={`w-5 h-5 ${isRTL ? "rotate-180" : ""}`} />
-              </button>
-            </div>
+          {/* Section Header */}
+          <AnimateOnView className="max-w-2xl mb-16">
+            <div className="h-px w-20 bg-seafoam mb-6" />
+            <h2 className="text-5xl md:text-6xl font-bold text-forest mb-4 tracking-tight">
+              {t("deepDive.title")} <br />
+              <span className="text-lime font-script">
+                {t("deepDive.titleHighlight")}
+              </span>
+            </h2>
+            <p className="text-forest/70 text-lg font-light max-w-xl leading-relaxed">
+              {t("deepDive.description")}
+            </p>
           </AnimateOnView>
 
-          {/* Service Cards Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {deepDiveServices.map((service, index) => (
+          {/* Premium Portrait Card Grid — matches reference image */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+            {deepDiveServices.map((srv, index) => (
               <AnimateOnView
-                key={service.key}
-                delay={index * 0.1}
-                className="bg-section p-4 rounded-[3.5rem] group hover:bg-white transition-all duration-700 hover:shadow-2xl border border-forest/5"
+                key={srv.key}
+                delay={index * 0.15}
+                className="group cursor-pointer"
               >
-                {/* Image Container */}
-                <div className="relative aspect-[5/4] overflow-hidden rounded-[3rem] mb-8 shadow-inner border-[6px] border-white">
-                  <Image
-                    src={service.image}
-                    alt={t(`deepDive.services.${service.key}.title`)}
-                    fill
-                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
-                  <div className={`absolute top-4 ${isRTL ? "right-4" : "left-4"} bg-white/95 backdrop-blur-md px-4 py-2 rounded-full text-[9px] font-bold uppercase tracking-[0.2em] text-forest shadow-sm`}>
-                    {t(`deepDive.services.${service.key}.category`)}
-                  </div>
-                </div>
+                {/* Card container — tall portrait with heavily rounded corners */}
+                <div className="relative rounded-[2.5rem] overflow-hidden shadow-xl hover:shadow-[0_32px_72px_rgba(0,45,4,0.28)] transition-all duration-700">
+                  {/* Portrait image */}
+                  <div
+                    className="relative"
+                    style={{
+                      minHeight: "520px",
+                      height: "clamp(460px,70vw,620px)",
+                    }}
+                  >
+                    <Image
+                      src={srv.image}
+                      alt={t(`deepDive.services.${srv.key}.title`)}
+                      fill
+                      className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
 
-                {/* Content */}
-                <div className="px-5 pb-6">
-                  <h3 className="text-3xl font-bold text-forest mb-4 tracking-tight group-hover:text-seafoam transition-colors duration-500">
-                    {t(`deepDive.services.${service.key}.title`)}
-                  </h3>
-                  <p className="text-forest/80 font-light leading-relaxed mb-10 text-base">
-                    {t(`deepDive.services.${service.key}.description`)}
-                  </p>
+                    {/* Multi-layer gradient — match reference: dark at bottom, slight tint mid, clear at top */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#030e04] via-[#030e04]/55 to-[#030e04]/0 opacity-95" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#030e04]/30 via-transparent to-transparent" />
 
-                  {/* Testimonial Card */}
-                  <div className="bg-white p-6 rounded-[2.5rem] shadow-sm border border-forest/5 relative group-hover:border-seafoam/20 transition-all duration-700">
-                    <div className={`absolute -top-3 ${isRTL ? "-left-3" : "-right-3"} bg-seafoam text-forest rounded-full p-2.5 shadow-xl`}>
-                      <Quote className="w-4 h-4" />
+                    {/* Category badge — top left like reference */}
+                    <div className="absolute top-5 left-5">
+                      <span className="text-[9px] font-bold text-seafoam uppercase tracking-[0.3em] bg-white/10 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/10">
+                        {t(`deepDive.services.${srv.key}.category`)}
+                      </span>
                     </div>
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-section p-0.5">
-                        <Image
-                          src={service.avatar}
-                          alt={t(`deepDive.services.${service.key}.author`)}
-                          width={48}
-                          height={48}
-                          className="rounded-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
-                        />
-                      </div>
-                      <div>
-                        <p className="text-[13px] italic text-forest font-serif leading-snug">
-                          &ldquo;{t(`deepDive.services.${service.key}.quote`)}&rdquo;
-                        </p>
-                        <p className="text-[10px] font-bold text-forest/40 mt-3 uppercase tracking-widest">
-                          — {t(`deepDive.services.${service.key}.author`)}
-                        </p>
+                  </div>
+
+                  {/* Text overlay — absolutely positioned at bottom */}
+                  <div className="absolute bottom-0 inset-x-0 p-7 z-10">
+                    {/* Title */}
+                    <h3 className="text-[1.75rem] md:text-[2rem] font-extrabold text-white tracking-tight leading-tight mb-2">
+                      {t(`deepDive.services.${srv.key}.title`)}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-white/65 text-sm font-light leading-relaxed mb-5 max-w-[90%]">
+                      {t(`deepDive.services.${srv.key}.description`)}
+                    </p>
+
+                    {/* Glass quote widget — exactly like reference */}
+                    <div className="bg-[#0a1f0a]/70 backdrop-blur-xl rounded-2xl p-4 border border-white/[0.08]">
+                      <div className="flex items-start gap-3">
+                        {/* Circular avatar */}
+                        <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white/25 shrink-0 shadow-lg">
+                          <Image
+                            src={srv.avatar}
+                            alt="Patient"
+                            width={40}
+                            height={40}
+                            className="object-cover w-full h-full"
+                          />
+                        </div>
+                        {/* Quote text + author */}
+                        <div className="flex-1 min-w-0">
+                          <p className="text-white/85 text-xs italic leading-relaxed">
+                            <Quote className="w-3 h-3 inline-block mr-1 text-seafoam opacity-80" />
+                            {t(`deepDive.services.${srv.key}.quote`)}
+                          </p>
+                          <p className="text-seafoam text-[10px] font-semibold mt-1.5 tracking-wide">
+                            {t(`deepDive.services.${srv.key}.author`)}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -259,84 +307,69 @@ export default async function ServicesPage({
           </div>
         </div>
       </section>
+      )}
 
       {/* ═══════════════════════════════════════════════════════════════
-          SECTION 3: FAQ (Server shell + Client island for accordion)
+          SECTION 4: FAQ
           ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-24 relative" id="faq">
-        <div className="absolute inset-x-0 bottom-0 h-full bg-forest rounded-t-[5rem] z-0" />
+      <section className="py-24 bg-section relative overflow-hidden">
+        <div className="absolute top-0 end-0 w-[500px] h-[500px] bg-seafoam rounded-full blur-[120px] opacity-5 -translate-y-1/2 translate-x-1/3 rtl:-translate-x-1/3 pointer-events-none" />
 
-        <div className="mx-auto max-w-5xl px-6 lg:px-8 relative z-10">
-          {/* Header — Server Rendered */}
-          <AnimateOnView className="text-center mb-12 md:mb-16">
-            <span className="text-seafoam font-bold uppercase tracking-[0.3em] text-xs md:text-sm">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 relative z-10">
+          <AnimateOnView className="text-center mb-16">
+            <span className="py-1.5 px-5 rounded-full bg-forest text-white font-bold uppercase tracking-[0.25em] text-[9px] shadow-lg">
               {t("faq.badge")}
             </span>
-            <h2 className="text-3xl md:text-5xl font-bold text-white mt-4 mb-6 tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-forest mt-6 tracking-tight">
               {t("faq.title")}
             </h2>
-            <p className="text-white/70 text-base md:text-lg max-w-2xl mx-auto font-light">
+            <p className="text-forest/60 text-base font-light mt-4 max-w-xl mx-auto">
               {t("faq.description")}
             </p>
           </AnimateOnView>
 
-          {/* Interactive FAQ Accordion — Client Island */}
           <ServiceFAQInteractive faqs={faqData} />
 
-          <AnimateOnView delay={0.3} className="mt-16 text-center">
+          <AnimateOnView delay={0.3} className="text-center mt-12">
+            <p className="text-forest/50 text-sm font-light mb-4">
+              {t("faq.stillHaveQuestions")}
+            </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-seafoam text-forest font-bold uppercase tracking-widest rounded-full hover:bg-white transition-all shadow-lg hover:scale-105"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-white text-forest font-bold uppercase tracking-wider rounded-full border border-forest/10 hover:bg-forest hover:text-white transition-all duration-300 text-[11px] shadow-sm hover:shadow-md active:translate-y-[1px]"
             >
-              {t("faq.stillHaveQuestions")}
-              <ArrowRight className={`w-5 h-5 ${isRTL ? "rotate-180" : ""}`} />
+              Contact Us
+              <ArrowRight className={`w-4 h-4 ${isRTL ? "rotate-180" : ""}`} />
             </Link>
           </AnimateOnView>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          SECTION 4: CTA
+          SECTION 5: CTA
           ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-20 bg-section relative overflow-hidden">
-        <div className="absolute top-0 end-0 w-[400px] h-[400px] bg-white opacity-40 rounded-full blur-3xl translate-x-1/2 rtl:-translate-x-1/2 -translate-y-1/2" />
+      <section className="py-20 bg-forest relative overflow-hidden rounded-t-[4rem]">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#66A182_0%,_transparent_70%)] opacity-10" />
 
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center relative z-10">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 text-center relative z-10">
           <AnimateOnView>
-            <h2 className="text-5xl md:text-8xl font-bold text-forest mb-8 tracking-tighter">
-              {t("title")}{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-forest to-seafoam">
-                {t("titleHighlight")}
-              </span>
+            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tighter">
+              Ready to Start?
             </h2>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <Link
-                href="/contact"
-                className="h-16 px-12 bg-forest text-white font-bold uppercase tracking-wider text-lg min-w-[200px] hover:bg-seafoam hover:text-forest transition-all shadow-[6px_6px_0px_0px_#A4C639] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] rounded-full flex items-center justify-center"
-              >
-                {t("bookConsultation")}
-              </Link>
-            </div>
+            <p className="text-white/60 text-lg font-light max-w-2xl mx-auto mb-10 leading-relaxed">
+              Take the first step toward recovery. Book your personalized
+              consultation today.
+            </p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-3 px-10 py-5 bg-forest text-white font-bold uppercase tracking-widest rounded-full transition-all duration-300 shadow-[4px_4px_0px_0px_#A4C639] hover:bg-seafoam hover:text-forest hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[3px] active:translate-y-[3px] active:shadow-none"
+            >
+              {tCommon("bookAppointment")}
+              <ArrowRight className={`w-5 h-5 ${isRTL ? "rotate-180" : ""}`} />
+            </Link>
           </AnimateOnView>
         </div>
       </section>
     </main>
   );
-}
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-
-  return {
-    title: locale === "ar" ? "خدماتنا" : "Our Services",
-    description:
-      locale === "ar"
-        ? "خدمات علاج طبيعي شاملة تشمل رعاية العظام وإعادة التأهيل الرياضي والمزيد."
-        : "Comprehensive physiotherapy services including orthopedic care, sports rehabilitation, and more.",
-  };
 }

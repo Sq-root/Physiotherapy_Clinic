@@ -118,10 +118,30 @@ export default function ContactFormIsland({ labels, services }: ContactFormIslan
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) { setStatus("error"); return; }
+    
     setStatus("loading");
-    await new Promise((r) => setTimeout(r, 2000));
-    setStatus("success");
-    setFormData({ firstName: "", lastName: "", email: "", countryCode: "+971", phone: "", service: "", message: "" });
+    setErrors({});
+    
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to submit form");
+      }
+
+      setStatus("success");
+      setFormData({ firstName: "", lastName: "", email: "", countryCode: "+971", phone: "", service: "", message: "" });
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setStatus("error");
+      setErrors({ message: error instanceof Error ? error.message : "Something went wrong. Please try again." });
+    }
   };
 
   const selectedCountry = COUNTRY_CODES.find((c) => c.code === formData.countryCode) ?? COUNTRY_CODES[0];
@@ -359,7 +379,7 @@ export default function ContactFormIsland({ labels, services }: ContactFormIslan
             <button
               type="submit"
               disabled={status === "loading"}
-              className="w-full h-14 bg-forest text-white font-bold text-sm uppercase tracking-widest rounded-2xl hover:bg-forest/90 active:scale-[0.98] transition-all duration-200 disabled:opacity-50 flex items-center justify-center gap-3"
+              className="w-full py-4.5 bg-forest text-white font-bold text-sm uppercase tracking-widest rounded-2xl transition-all duration-300 shadow-[4px_4px_0px_0px_#A4C639] hover:bg-seafoam hover:text-forest hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[3.5px] active:translate-y-[3.5px] active:shadow-none disabled:opacity-50 flex items-center justify-center gap-3 outline-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2"
             >
               {status === "loading" ? (
                 <>

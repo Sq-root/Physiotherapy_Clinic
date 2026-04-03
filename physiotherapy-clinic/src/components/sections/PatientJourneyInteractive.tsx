@@ -4,7 +4,6 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ClipboardList, Target, Dumbbell, Star } from "lucide-react";
-import { siteConfig } from "@/config/site";
 import { Link } from "@/i18n/routing";
 
 const stepIconMap = {
@@ -216,9 +215,7 @@ export function PatientJourneyInteractive({
                   </div>
                   <span
                     className={`absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs font-medium whitespace-nowrap transition-colors ${
-                      index === activeStep
-                        ? "text-lime"
-                        : "text-white/50"
+                      index === activeStep ? "text-lime" : "text-white/50"
                     }`}
                   >
                     {step.shortTitle}
@@ -290,9 +287,7 @@ export function PatientJourneyInteractive({
                 >
                   <button
                     aria-label="Previous step"
-                    onClick={() =>
-                      setActiveStep(Math.max(0, activeStep - 1))
-                    }
+                    onClick={() => setActiveStep(Math.max(0, activeStep - 1))}
                     disabled={activeStep === 0}
                     className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                   >
@@ -313,9 +308,7 @@ export function PatientJourneyInteractive({
                   <button
                     aria-label="Next step"
                     onClick={() =>
-                      setActiveStep(
-                        Math.min(steps.length - 1, activeStep + 1)
-                      )
+                      setActiveStep(Math.min(steps.length - 1, activeStep + 1))
                     }
                     disabled={activeStep === steps.length - 1}
                     className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white flex items-center justify-center text-forest hover:bg-lime transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
@@ -412,22 +405,24 @@ export function PatientJourneyInteractive({
           </div>
           <Link
             href="/contact"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-3 px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-seafoam to-lime text-forest font-semibold rounded-full hover:shadow-lg hover:shadow-seafoam/30 transition-all text-sm sm:text-base"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 sm:gap-4 px-6 sm:px-8 py-3.5 sm:py-4 bg-forest text-white font-bold uppercase tracking-widest rounded-full transition-all duration-300 shadow-[4px_4px_0px_0px_#A4C639] hover:bg-seafoam hover:text-forest hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[3px] active:translate-y-[3px] active:shadow-none outline-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2"
           >
             {ctaLabel}
-            <svg
-              className={`w-4 h-4 ${isRTL ? "rotate-180" : ""}`}
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
-            </svg>
+            <div className="size-8 sm:size-10 rounded-full bg-white/20 flex items-center justify-center transition-colors">
+              <svg
+                className={`w-4 h-4 sm:w-5 sm:h-5 ${isRTL ? "rotate-180" : ""}`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="3"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </div>
           </Link>
         </motion.div>
       </div>

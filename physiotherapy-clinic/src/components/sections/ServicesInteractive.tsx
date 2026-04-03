@@ -3,17 +3,10 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { Bone, Zap, Brain, Hand, Heart, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { Link } from "@/i18n/routing";
-
-const iconMap = {
-  bone: Bone,
-  zap: Zap,
-  brain: Brain,
-  hand: Hand,
-  heart: Heart,
-};
+import { DynamicIcon } from "@/components/ui/DynamicIcon";
 
 interface ServiceData {
   id: string;
@@ -98,19 +91,14 @@ export function ServicesInteractive({
                   </p>
                 </div>
 
-                {(() => {
-                  const IconComponent =
-                    iconMap[service.icon as keyof typeof iconMap];
-                  return IconComponent ? (
-                    <IconComponent
-                      className={`w-6 h-6 transition-transform ${
-                        activeService === index
-                          ? "scale-110 text-seafoam"
-                          : "text-forest/80 group-hover:scale-110"
-                      }`}
-                    />
-                  ) : null;
-                })()}
+                <DynamicIcon
+                  name={service.icon}
+                  className={`w-6 h-6 transition-transform ${
+                    activeService === index
+                      ? "scale-110 text-seafoam"
+                      : "text-forest/80 group-hover:scale-110"
+                  }`}
+                />
               </div>
 
               {activeService === index && (
@@ -175,104 +163,98 @@ export function ServicesInteractive({
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.98 }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="relative h-[560px] xl:h-[600px] rounded-3xl overflow-hidden group"
+              className="relative h-[560px] xl:h-[600px] rounded-[2rem] overflow-hidden group shadow-xl shadow-forest/5"
             >
+              {/* Image Background */}
               <motion.div
                 className="absolute inset-0"
-                initial={{ scale: 1.1 }}
+                initial={{ scale: 1.05 }}
                 animate={{ scale: 1 }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.8 }}
               >
                 <Image
                   src={activeData.img}
                   alt={activeData.title}
                   fill
-                  className={`object-cover ${activeData.imagePosition || "object-center"}`}
+                  className={`object-cover ${activeData.imagePosition || "object-center"} group-hover:scale-105 transition-transform duration-700`}
                   priority={activeService === 0}
                 />
               </motion.div>
 
-              <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/50 to-transparent" />
+              {/* Gradient Overlays */}
+              <div className="absolute inset-0 bg-gradient-to-t from-forest/90 via-forest/30 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-b from-forest/40 via-transparent to-transparent opacity-60" />
 
-              <div className="absolute inset-0 p-8 xl:p-10 flex flex-col justify-end">
-                <motion.div
-                  className={`absolute top-8 ${isRTL ? "right-8" : "left-8"} inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20`}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                >
-                  {(() => {
-                    const IconComponent =
-                      iconMap[activeData.icon as keyof typeof iconMap];
-                    return IconComponent ? (
-                      <IconComponent className="w-5 h-5 text-white" />
-                    ) : null;
-                  })()}
-                  <span className="text-white text-sm font-medium">
-                    {activeData.shortDesc}
-                  </span>
-                </motion.div>
+              {/* Content Container */}
+              <div className="absolute inset-0 p-8 xl:p-12 flex flex-col justify-between">
+                {/* Top Section: Badge & ID */}
+                <div className="flex justify-between items-start">
+                  <motion.div
+                    className="inline-flex items-center gap-2.5 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 shadow-lg"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                  >
+                    <DynamicIcon name={activeData.icon} className="w-5 h-5 text-seafoam" />
+                    <span className="text-white text-sm font-medium tracking-wide">
+                      {activeData.shortDesc}
+                    </span>
+                  </motion.div>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 }}
-                >
-                  <span className="text-seafoam text-6xl xl:text-7xl font-bold opacity-30 mb-2 block">
+                  <motion.span
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="text-white/20 text-6xl xl:text-8xl font-bold leading-none select-none drop-shadow-sm"
+                  >
                     {activeData.id}
-                  </span>
-                  <h3 className="text-3xl xl:text-4xl font-bold text-white mb-4 leading-tight">
-                    {activeData.title}
-                  </h3>
-                  <p className="text-white/80 text-base xl:text-lg max-w-xl mb-6 leading-relaxed">
-                    {activeData.fullDesc}
-                  </p>
+                  </motion.span>
+                </div>
 
-                  <div className="flex flex-wrap gap-2 mb-8">
-                    {activeData.features.map((feature, i) => (
-                      <motion.span
-                        key={feature}
-                        className="px-4 py-2 bg-white/10 backdrop-blur-sm text-white text-sm rounded-full border border-white/10"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.2 + i * 0.1 }}
-                      >
-                        {feature}
-                      </motion.span>
-                    ))}
-                  </div>
+                {/* Bottom Section: Title & CTA */}
+                <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-8">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="max-w-lg"
+                  >
+                    <h3 className="text-3xl xl:text-5xl font-bold text-white leading-[1.1] tracking-tight">
+                      {activeData.title}
+                    </h3>
+                  </motion.div>
 
-                  <Link href="/services">
-                    <motion.span
-                      className="inline-flex items-center gap-3 px-6 py-3 bg-white text-forest font-semibold rounded-full hover:bg-seafoam hover:text-white transition-colors group/btn cursor-pointer"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      {learnMoreLabel}
-                      <span className="sr-only"> about {activeData.title}</span>
-                      <span className="size-8 rounded-full bg-forest/10 flex items-center justify-center group-hover/btn:bg-white/20 transition-colors">
-                        <ArrowRight
-                          className={`w-4 h-4 ${isRTL ? "rotate-180" : ""}`}
-                        />
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                  >
+                    <Link href="/services">
+                      <span className="inline-flex items-center justify-center gap-4 px-8 py-4 bg-white text-forest font-bold uppercase tracking-[0.15em] rounded-full transition-all duration-300 shadow-[4px_4px_0px_0px_#A4C639] hover:bg-seafoam hover:text-forest hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[3px] active:translate-y-[3px] active:shadow-none group/cta">
+                        <span className="text-sm">{learnMoreLabel || "Discover"}</span>
+                        <span className="size-8 rounded-full bg-forest/10 flex items-center justify-center group-hover/cta:bg-white/30 transition-colors">
+                          <ArrowRight className={`w-4 h-4 ${isRTL ? "rotate-180" : ""}`} />
+                        </span>
                       </span>
-                    </motion.span>
-                  </Link>
-                </motion.div>
+                    </Link>
+                  </motion.div>
+                </div>
               </div>
 
-              <div className="absolute top-1/2 right-4 -translate-y-1/2 flex flex-col gap-0">
+              {/* Navigation Indicators */}
+              <div className="absolute top-1/2 right-4 -translate-y-1/2 hidden xl:flex flex-col gap-2">
                 {services.map((s, i) => (
                   <button
                     key={i}
                     aria-label={`View ${s.title}`}
                     onClick={() => setActiveService(i)}
-                    className="min-w-[48px] min-h-[48px] flex items-center justify-center group/dot"
+                    className="w-10 h-10 flex items-center justify-center group/dot"
                   >
                     <div
-                      className={`w-2 rounded-full transition-all duration-300 ${
+                      className={`w-1.5 rounded-full transition-all duration-500 ease-out ${
                         i === activeService
-                          ? "bg-white h-6 w-2.5"
-                          : "bg-white/30 h-2 group-hover/dot:bg-white/50"
+                          ? "bg-white h-8"
+                          : "bg-white/30 h-2 group-hover/dot:bg-white/60 group-hover/dot:h-4"
                       }`}
                     />
                   </button>
@@ -298,13 +280,7 @@ export function ServicesInteractive({
                   : "bg-white text-forest border border-forest/20"
               }`}
             >
-              {(() => {
-                const IconComponent =
-                  iconMap[service.icon as keyof typeof iconMap];
-                return IconComponent ? (
-                  <IconComponent className="w-4 h-4" />
-                ) : null;
-              })()}
+              <DynamicIcon name={service.icon} className="w-4 h-4" />
               {service.title}
             </button>
           ))}
@@ -319,80 +295,77 @@ export function ServicesInteractive({
             transition={{ duration: 0.3 }}
             className="relative rounded-2xl overflow-hidden aspect-[4/5]"
           >
-            <Image
-              src={activeData.img}
-              alt={activeData.title}
-              fill
-              className={`object-cover ${activeData.imagePosition || "object-center"}`}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/60 to-transparent" />
+            {/* Image Background */}
+            <motion.div
+              className="absolute inset-0"
+              initial={{ scale: 1.05 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.8 }}
+            >
+              <Image
+                src={activeData.img}
+                alt={activeData.title}
+                fill
+                className={`object-cover ${activeData.imagePosition || "object-center"}`}
+              />
+            </motion.div>
 
-            <div className="absolute inset-0 p-6 flex flex-col justify-end">
-              <div
-                className={`absolute top-4 ${isRTL ? "right-4" : "left-4"} inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-md rounded-full border border-white/20`}
-              >
-                {(() => {
-                  const IconComponent =
-                    iconMap[activeData.icon as keyof typeof iconMap];
-                  return IconComponent ? (
-                    <IconComponent className="w-4 h-4 text-white" />
-                  ) : null;
-                })()}
-                <span className="text-white text-xs font-medium">
-                  {activeData.shortDesc}
+            {/* Gradient Overlays */}
+            <div className="absolute inset-0 bg-gradient-to-t from-forest/90 via-forest/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-b from-forest/40 via-transparent to-transparent opacity-60" />
+
+            {/* Content Container */}
+            <div className="absolute inset-0 p-6 flex flex-col justify-between">
+              {/* Top Section: Badge & ID */}
+              <div className="flex justify-between items-start">
+                <div
+                  className={`inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-md rounded-full border border-white/20 shadow-lg`}
+                >
+                  <DynamicIcon name={activeData.icon} className="w-4 h-4 text-seafoam" />
+                  <span className="text-white text-xs font-medium tracking-wide">
+                    {activeData.shortDesc}
+                  </span>
+                </div>
+                
+                <span className="text-white/20 text-5xl font-bold leading-none select-none drop-shadow-sm">
+                  {activeData.id}
                 </span>
               </div>
 
-              <span className="text-5xl font-bold text-seafoam/30 mb-2">
-                {activeData.id}
-              </span>
-              <h3 className="text-2xl font-bold text-white mb-2">
-                {activeData.title}
-              </h3>
-              <p className="text-white/70 text-sm mb-4 line-clamp-3">
-                {activeData.fullDesc}
-              </p>
+              {/* Bottom Section: Title & CTA */}
+              <div className="flex flex-col gap-4">
+                <h3 className="text-2xl font-bold text-white leading-tight">
+                  {activeData.title}
+                </h3>
 
-              <div className="flex flex-wrap gap-1.5 mb-4">
-                {activeData.features.map((feature) => (
-                  <span
-                    key={feature}
-                    className="px-3 py-1 bg-white/10 text-white text-xs rounded-full"
+                <div className="flex items-center justify-between">
+                  <Link
+                    href="/services"
+                    className="inline-flex items-center justify-center gap-3 px-6 py-3 bg-white text-forest font-bold uppercase tracking-[0.1em] rounded-full transition-all duration-300 shadow-[2px_2px_0px_0px_#A4C639] hover:bg-seafoam hover:text-forest active:translate-x-[2px] active:translate-y-[2px] active:shadow-none min-h-[44px]"
                   >
-                    {feature}
-                  </span>
-                ))}
+                    <span className="text-xs">{learnMoreLabel || "Discover"}</span>
+                    <ArrowRight className={`w-4 h-4 ${isRTL ? "rotate-180" : ""}`} />
+                  </Link>
+
+                  {/* Mobile Navigation Indicators */}
+                  <div className="flex gap-1.5">
+                    {services.map((s, i) => (
+                      <button
+                        key={i}
+                        aria-label={`View ${s.title}`}
+                        onClick={() => setActiveService(i)}
+                        className="py-2"
+                      >
+                        <div
+                          className={`h-1.5 rounded-full transition-all duration-500 ${
+                            i === activeService ? "bg-white w-4" : "bg-white/40 w-1.5"
+                          }`}
+                        />
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </div>
-
-              <Link
-                href="/services"
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-forest font-semibold rounded-full text-sm w-fit"
-              >
-                {learnMoreLabel}
-                <span className="sr-only"> about {activeData.title}</span>
-                <ArrowRight
-                  className={`w-4 h-4 ${isRTL ? "rotate-180" : ""}`}
-                />
-              </Link>
-            </div>
-
-            <div
-              className={`absolute bottom-6 ${isRTL ? "left-6" : "right-6"} flex gap-0`}
-            >
-              {services.map((s, i) => (
-                <button
-                  key={i}
-                  aria-label={`View ${s.title}`}
-                  onClick={() => setActiveService(i)}
-                  className="min-w-[48px] min-h-[48px] flex items-center justify-center group/dot"
-                >
-                  <div
-                    className={`h-1.5 rounded-full transition-all ${
-                      i === activeService ? "bg-white w-4" : "bg-white/40 w-1.5"
-                    }`}
-                  />
-                </button>
-              ))}
             </div>
           </motion.div>
         </AnimatePresence>

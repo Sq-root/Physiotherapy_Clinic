@@ -3,37 +3,35 @@ import { getTranslations, getLocale } from "next-intl/server";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
 import { ServicesInteractive } from "./ServicesInteractive";
 import { Link } from "@/i18n/routing";
-
-interface Service {
-  id: string;
-  key: string;
-  icon: string;
-  img: string;
-  imagePosition: string;
-}
-
-// Service configuration (static)
-const services: Service[] = [
-  { id: "01", key: "orthopedic", icon: "bone", img: "/services/IMG_0122.webp", imagePosition: "object-center" },
-  { id: "02", key: "sports", icon: "zap", img: "/services/sports_recovery_bento_hd.webp", imagePosition: "object-center" },
-  { id: "03", key: "neurological", icon: "brain", img: "/services/IMG_0127.webp", imagePosition: "object-center" },
-  { id: "04", key: "manual", icon: "hand", img: "/services/manual_therapy_hd.webp", imagePosition: "object-center" },
-  { id: "05", key: "senior", icon: "heart", img: "/services/senior_care.webp", imagePosition: "object-center" },
-];
+import { services } from "@/lib/data/services";
 
 export async function ServicesSection() {
   const t = await getTranslations("servicesSection");
+  const tDetail = await getTranslations("serviceDetail");
   const tCommon = await getTranslations("common");
   const locale = await getLocale();
   const isRTL = locale === "ar";
 
+  // Pick top 5 featured services
+  const featuredServices = [
+    services.find(s => s.id === "neck-pain"),
+    services.find(s => s.id === "disc-prolapse-sciatica"),
+    services.find(s => s.id === "shoulder-impingement"),
+    services.find(s => s.id === "post-surgical-rehab"),
+    services.find(s => s.id === "geriatric-mobility"),
+  ].filter(Boolean) as typeof services;
+
   // Pre-resolve all service content on the server (serializable for client)
-  const servicesData = services.map((s) => ({
-    ...s,
-    title: t(`services.${s.key}.title`),
-    shortDesc: t(`services.${s.key}.shortDesc`),
-    fullDesc: t(`services.${s.key}.fullDesc`),
-    features: t.raw(`services.${s.key}.features`) as string[],
+  const servicesData = featuredServices.map((s, index) => ({
+    id: `0${index + 1}`,
+    key: s.id,
+    icon: s.icon,
+    img: s.image || "/services/IMG_0122.webp",
+    imagePosition: "object-center",
+    title: tDetail(`${s.translationKey}.title`),
+    shortDesc: tDetail(`${s.translationKey}.heroSubtitle`),
+    fullDesc: tDetail(`${s.translationKey}.overview`),
+    features: tDetail.raw(`${s.translationKey}.benefits`) as string[],
   }));
 
   return (
@@ -87,11 +85,11 @@ export async function ServicesSection() {
         <AnimateOnView delay={0.3} className="mt-12 md:mt-16 flex justify-center">
           <Link
             href="/services"
-            className="inline-flex items-center gap-4 px-6 md:px-8 py-3 bg-forest text-white hover:bg-forest/90 transition-colors rounded-full text-sm font-medium tracking-wide group"
+            className="inline-flex items-center gap-4 px-6 md:px-8 py-4 bg-forest text-white font-bold uppercase tracking-[0.15em] rounded-full transition-all duration-300 shadow-[4px_4px_0px_0px_#A4C639] hover:bg-seafoam hover:text-forest hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[3px] active:translate-y-[3px] active:shadow-none group outline-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2"
           >
-            {t("viewAllServices")}
-            <span className="size-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-seafoam transition-colors">
-              <ArrowRight className={`w-4 h-4 ${isRTL ? "rotate-180" : ""}`} />
+            <span className="text-sm md:text-base">{t("viewAllServices")}</span>
+            <span className="size-8 md:size-10 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-forest/10 transition-colors">
+              <ArrowRight className={`w-4 h-4 md:w-5 md:h-5 ${isRTL ? "rotate-180" : ""}`} />
             </span>
           </Link>
         </AnimateOnView>

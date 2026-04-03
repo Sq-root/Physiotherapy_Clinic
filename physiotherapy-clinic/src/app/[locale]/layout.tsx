@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import '../globals.css';
 import { Navbar } from '@/components/layout/Navbar';
+const WhatsAppButton = dynamic(() => import('@/components/layout/WhatsAppButton').then(m => ({ default: m.WhatsAppButton })));
 import dynamic from 'next/dynamic';
 import { siteConfig } from '@/config/site';
 
@@ -111,6 +112,7 @@ export default async function LocaleLayout({
           <Navbar />
           <main>{children}</main>
           <Footer />
+          <WhatsAppButton />
         </NextIntlClientProvider>
       </body>
     </html>
