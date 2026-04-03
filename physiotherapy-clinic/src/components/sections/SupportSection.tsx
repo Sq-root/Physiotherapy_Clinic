@@ -24,7 +24,7 @@ export async function SupportSection() {
 
   return (
     <section
-      className="relative bg-white pt-4 pb-16 md:pt-8 md:pb-24 overflow-hidden"
+      className="relative bg-white pt-20 pb-10 md:pt-8 md:pb-24 overflow-x-hidden"
       id="about"
     >
       {/* Subtle Background Pattern */}
@@ -43,80 +43,134 @@ export async function SupportSection() {
       <div className="absolute top-1/2 -left-40 w-80 h-80 bg-lime/5 rounded-full blur-3xl pointer-events-none"></div>
 
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 relative z-10">
-        {/* Mobile Layout */}
+        {/* Mobile Layout - Premium Redesign */}
         <div className="md:hidden">
-          <AnimateOnView
-            className="bg-gradient-to-br from-section to-white rounded-2xl p-5 shadow-card border border-forest/5"
-          >
-            {/* Header Row */}
-            <div className="flex items-start gap-4 mb-4">
-              <div className="relative flex-shrink-0">
-                <div className="w-20 h-24 rounded-xl overflow-hidden shadow-md relative">
-                  <Image
-                    src="/services/IMG_0120.webp"
-                    alt="Physiotherapist"
-                    fill
-                    className="object-cover object-center"
-                    sizes="80px"
-                  />
-                </div>
-                <div className="absolute -bottom-2 -right-2 size-10 bg-seafoam rounded-full flex items-center justify-center shadow-lg border-2 border-white">
-                  <span className="text-white text-[10px] font-bold">
-                    {siteConfig.social.yearsExperience}
-                  </span>
+          <AnimateOnView className="relative pt-12">
+            {/* Main Content Card */}
+            <div className="bg-white/80 backdrop-blur-xl rounded-[40px] p-6 pt-16 shadow-glow border border-forest/5 relative">
+              
+              {/* Floating Avatar Header */}
+              <div className="absolute -top-12 left-1/2 -translate-x-1/2">
+                <div className="relative">
+                  {/* Decorative Outer Ring */}
+                  <div className="absolute inset-0 -m-2 border border-seafoam/20 rounded-full animate-pulse"></div>
+                  
+                  {/* Portrait Circle */}
+                  <div className="size-28 rounded-full overflow-hidden border-4 border-white shadow-2xl relative z-10">
+                    <Image
+                      src="/services/doctor_portrait_stretgth.webp"
+                      alt="Lead Physiotherapist"
+                      fill
+                      className="object-cover object-top"
+                      priority
+                    />
+                  </div>
+
+                  {/* Expertise Label - Floating */}
+                  <div className="absolute -top-6 -left-12 z-20">
+                    <span className="font-script text-4xl text-forest drop-shadow-sm -rotate-12 block">
+                      Expertise
+                    </span>
+                  </div>
+
+                  {/* Experience Badge - Attached to Avatar */}
+                  <div className="absolute -bottom-2 -right-4 size-14 bg-lime rounded-full flex flex-col items-center justify-center shadow-xl border-4 border-white z-20">
+                    <span className="text-forest text-sm font-bold leading-none">
+                      {siteConfig.social.yearsExperience}
+                    </span>
+                    <span className="text-forest/60 text-[6px] font-bold uppercase tracking-tighter">
+                      Years
+                    </span>
+                  </div>
                 </div>
               </div>
 
-              <div className="flex-1 pt-1">
-                <div className="inline-flex items-center gap-1.5 bg-seafoam/10 rounded-full px-2.5 py-1 mb-2">
-                  <span className="w-1.5 h-1.5 bg-seafoam rounded-full"></span>
-                  <span className="text-seafoam text-[9px] font-semibold tracking-wider uppercase">
+              {/* Card Content */}
+              <div className="text-center">
+                <div className="inline-flex items-center gap-2 bg-seafoam/10 rounded-full px-3 py-1 mb-4">
+                  <span className="w-1.5 h-1.5 bg-seafoam rounded-full animate-pulse"></span>
+                  <span className="text-seafoam text-[10px] font-bold tracking-[0.1em] uppercase">
                     {t("badge")}
                   </span>
                 </div>
-                <h2 className="text-base font-bold text-forest leading-tight">
-                  {t("title")} {t("titleHighlight")}
+                
+                <h2 className="text-2xl font-bold text-forest leading-tight mb-3">
+                  {t("title")} <span className="text-seafoam">{t("titleHighlight")}</span>
                 </h2>
-              </div>
-            </div>
+                
+                <p className="text-forest/70 text-xs leading-relaxed mb-6 mx-auto max-w-[280px]">
+                  {t("description")}
+                </p>
 
-            {/* Stats Row */}
-            {/* <div className="flex items-center justify-between bg-white rounded-xl p-3 mb-4">
-              <div className="text-center flex-1">
-                <p className="text-forest text-lg font-bold">5K+</p>
-                <p className="text-forest/50 text-[8px] uppercase">Patients</p>
-              </div>
-              <div className="w-px h-8 bg-forest/10"></div>
-              <div className="text-center flex-1">
-                <p className="text-forest text-lg font-bold">98%</p>
-                <p className="text-forest/50 text-[8px] uppercase">Success</p>
-              </div>
-              <div className="w-px h-8 bg-forest/10"></div>
-              <div className="text-center flex-1">
-                <p className="text-forest text-lg font-bold">4.9</p>
-                <p className="text-forest/50 text-[8px] uppercase">Rating</p>
-              </div>
-            </div> */}
+                {/* Highlights Grid - Compact Horizontal Scroll or 2-column */}
+                <div className="grid grid-cols-2 gap-2 mb-6">
+                  {highlights.slice(0, 2).map((item, i) => {
+                    const IconComponent = highlightIconMap[i as keyof typeof highlightIconMap];
+                    return (
+                      <div
+                        key={i}
+                        className="flex flex-col items-center gap-2 bg-forest/5 rounded-2xl p-3 border border-forest/5"
+                      >
+                        <div className="size-8 bg-white rounded-xl flex items-center justify-center shadow-sm text-seafoam">
+                          {IconComponent && <IconComponent className="w-4 h-4" />}
+                        </div>
+                        <span className="text-[10px] font-bold text-forest text-center leading-tight">
+                          {item.label}
+                        </span>
+                      </div>
+                    );
+                  })}
+                  <div className="col-span-2 flex items-center justify-center gap-3 bg-forest/5 rounded-2xl p-2 border border-forest/5">
+                        <div className="size-6 bg-white rounded-lg flex items-center justify-center shadow-xs text-seafoam">
+                           <Heart className="w-3.5 h-3.5" />
+                        </div>
+                        <span className="text-[10px] font-bold text-forest">
+                          {highlights[2].label}
+                        </span>
+                  </div>
+                </div>
 
-            {/* Highlights */}
-            <div className="flex flex-wrap gap-1.5">
-              {highlights.map((item, i) => {
-                const IconComponent =
-                  highlightIconMap[i as keyof typeof highlightIconMap];
-                return (
-                  <span
-                    key={i}
-                    className="inline-flex items-center gap-1 bg-white rounded-full px-2.5 py-1 text-[10px] font-medium text-forest shadow-sm border border-forest/5"
-                  >
-                    {IconComponent && (
-                      <IconComponent className="w-3 h-3 text-seafoam" />
-                    )}
-                    {item.label}
-                  </span>
-                );
-              })}
+                {/* Mobile CTA */}
+                <Link
+                  href="/about"
+                  className={`flex items-center justify-between w-full bg-forest text-white p-1.5 rounded-full font-bold text-sm shadow-lg active:scale-95 transition-all`}
+                >
+                  <span className={isRTL ? 'pr-6' : 'pl-6'}>{t("cta")}</span>
+                  <div className="size-10 bg-lime rounded-full flex items-center justify-center text-forest">
+                    <svg
+                      className={`w-5 h-5 ${isRTL ? 'rotate-180' : ''}`}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </div>
+                </Link>
+              </div>
             </div>
           </AnimateOnView>
+
+          {/* Secondary Mobile Element: Trust Indicators */}
+          <div className="px-2 mt-4">
+             <div className="flex items-center justify-center gap-8 py-3 bg-section/30 rounded-3xl border border-forest/5">
+                <div className="text-center">
+                  <p className="text-forest text-lg font-bold">1.2K+</p>
+                  <p className="text-forest/50 text-[9px] uppercase font-bold tracking-wider">Patients</p>
+                </div>
+                <div className="w-px h-8 bg-forest/10"></div>
+                <div className="text-center">
+                  <p className="text-forest text-lg font-bold">98%</p>
+                  <p className="text-forest/50 text-[9px] uppercase font-bold tracking-wider">Success</p>
+                </div>
+                <div className="w-px h-8 bg-forest/10"></div>
+                <div className="text-center">
+                  <p className="text-forest text-lg font-bold">4.9</p>
+                  <p className="text-forest/50 text-[9px] uppercase font-bold tracking-wider">Rating</p>
+                </div>
+             </div>
+          </div>
         </div>
 
         {/* Desktop Layout */}
