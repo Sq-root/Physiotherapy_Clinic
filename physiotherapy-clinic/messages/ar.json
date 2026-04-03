@@ -20,7 +20,8 @@
     "email": "البريد الإلكتروني",
     "address": "العنوان",
     "hours": "ساعات العمل",
-    "viewServices": "عرض الخدمات"
+    "viewServices": "عرض الخدمات",
+    "whatsappMessage": "مرحباً دكتورة إيشا، أود حجز موعد لاستشارة في العلاج الطبيعي. يرجى إعلامي بالمواعيد المتاحة."
   },
   "nav": {
     "home": "الرئيسية",
@@ -577,18 +578,18 @@
       }
     },
     "categories": {
-      "all": "All Services",
-      "pain": "Pain & Conditions",
-      "techniques": "Techniques",
-      "injury-prevention": "Prevention & Sports",
-      "womens-health": "Women's Health",
-      "geriatric": "Geriatric",
-      "specialized": "Specialized"
+      "all": "جميع الخدمات",
+      "pain": "الألم والحالات",
+      "techniques": "التقنيات",
+      "injury-prevention": "الوقاية والرياضة",
+      "womens-health": "صحة المرأة",
+      "geriatric": "رعاية كبار السن",
+      "specialized": "متخصص"
     },
-    "serviceCount": "{count} Services",
-    "quickView": "Quick View",
-    "viewDetails": "View Full Details",
-    "closeModal": "Close"
+    "serviceCount": "{count} خدمات",
+    "quickView": "عرض سريع",
+    "viewDetails": "عرض التفاصيل الكاملة",
+    "closeModal": "إغلاق"
   },
   "faqPage": {
     "badge": "مركز المساعدة",
@@ -891,913 +892,932 @@
       ],
       "whatToExpect": "الجلسات مصممة لتشعر باللعب لا بالعمل. نقيّم مرحلة طفلك التنموية ونبتكر ألعاباً تستهدف أهدافاً محددة وندرب الوالدين على دعم التقدم في المنزل."
     },
-    "mechanism": "The Theory",
-    "mechanismSubtitle": "What is Actually Happening?",
-    "symptoms": "The Experience",
-    "symptomsSubtitle": "Common Symptoms",
-    "clinicalApproach": "Our Clinical Approach",
-    "outcome": "The Outcome We Work Toward",
-    "audienceTitle": "Who Is This For?",
+    "mechanism": "النظرية",
+    "mechanismSubtitle": "ما الذي يحدث فعلاً؟",
+    "symptoms": "التجربة",
+    "symptomsSubtitle": "الأعراض الشائعة",
+    "clinicalApproach": "نهجنا السريري",
+    "outcome": "النتيجة التي نسعى إليها",
+    "audienceTitle": "لمن هذا؟",
     "neckPain": {
-      "title": "Neck Pain & Cervical Spondylosis",
-      "metaTitle": "Neck Pain & Cervical Spondylosis Treatment",
-      "metaDescription": "Expert treatment for neck pain and cervical spondylosis. We address the root cause — sustained load and unvarying posture.",
-      "heroSubtitle": "Neck pain is rarely just neck pain.",
-      "overview": "Cervical Spondylosis is not a disease. It is an adaptation. When the neck is subjected to constant, unvarying loads—often from sustained screen time or poor ergonomics—the structures adapt. Discs narrow. Facet joints undergo changes. Muscles designed for movement are forced into roles of sustained stabilization, leading to fatigue, guarding, and pain.",
-      "duration": "45–60 min",
-      "frequency": "2–3× per week",
+      "title": "آلام الرقبة وداء الفقار العنقي",
+      "metaTitle": "علاج آلام الرقبة وداء الفقار العنقي",
+      "metaDescription": "علاج متخصص لآلام الرقبة وتيبسها وانضغاط الأعصاب. استعد قدرتك على الحركة براحة وتخلص من الألم.",
+      "heroSubtitle": "عندما يصبح تدوير رأسك صراعًا، فإننا نعيد له حرية الحركة.",
+      "overview": "لا يقتصر ألم الرقبة على العضلات المشدودة فحسب؛ بل غالبًا ما يتعلق بآليات محاذاة العمود الفقري، وتحمل الأقراص، والتهيج العصبي. العمود الفقري العنقي عبارة عن هيكل معقد عالي الحركة يدعم وزن رأسك. يمكن للوضعية السيئة أو الصدمات أو التآكل المرتبط بالعمر أن يخل بهذا التوازن بسهولة، مما يؤدي إلى الألم والتيبس والأعراض العصبية.",
+      "duration": "45–60 دقيقة",
+      "frequency": "مرتان أسبوعياً (في البداية)",
       "symptoms": [
-        "A deep, persistent ache that intensifies as the day progresses",
-        "Restricted rotation — difficulty checking blind spots while driving",
-        "Headaches originating at the base of the skull",
-        "Tightness or tingling radiating into the shoulders, jaw, or arms"
+        "ألم خفيف مستمر في أسفل الرقبة",
+        "ألم حاد وصاعق عند الالتفاف أو النظر للأعلى",
+        "صداع التوتر الذي يبدأ من قاعدة الجمجمة",
+        "وخز أو خدر أو ضعف يمتد إلى الذراع (اعتلال الجذور)",
+        "تيبس شديد خاصة في الصباح"
       ],
       "clinicalApproach": [
-        "Systemic Assessment: Full upper quadrant evaluation including thoracic spine mobility and shoulder mechanics",
-        "Targeted Intervention: Precise manual therapy and dry needling to release acute guarding and restore joint mobility",
-        "Rebuilding Capacity: Progressive retraining of deep cervical stabilizers for your specific daily demands",
-        "Ergonomic Strategy: Real-world adjustments to your environment to prevent load accumulation"
+        "التقييم: تقييم تفصيلي لتحديد مصدر الألم (عضلي، مفصلي، أو عصبي)",
+        "التهدئة: تقنيات العلاج اليدوي لتقليل التشنج العضلي وتخفيف الضغط عن المفاصل",
+        "استعادة الحركة: تعبئة المفاصل المحددة لاستعادة المدى الحركي الكامل",
+        "إعادة التأهيل التدريجي: تمارين تقوية محددة لعضلات الرقبة الدقيقة (المثبتات العميقة)",
+        "التعليم الوضعي: استراتيجيات عملية لتحسين بيئة العمل وتقليل الإجهاد اليومي"
       ],
       "benefits": [
-        "Restored movement quality",
-        "Improved load tolerance",
-        "Reduced headache frequency",
-        "Structural confidence replacing fear of movement",
-        "Long-term postural correction"
+        "تقليل الألم والتيبس بشكل ملحوظ",
+        "استعادة المدى الحركي الكامل الخالي من الألم",
+        "القضاء على توتر الرقبة والصداع",
+        "تحسين محاذاة الوضعية",
+        "القدرة على العمل واستخدام الأجهزة بدون ألم"
       ],
       "idealFor": [
-        "Professionals with desk-intensive careers",
-        "Frequent long-haul travelers",
-        "Anyone with chronic neck tension that massage fails to resolve"
+        "المهنيين الذين يعملون لساعات طويلة على المكاتب",
+        "الأفراد الذين يعانون من آلام الرقبة المزمنة أو التيبس",
+        "الأشخاص المصابين بانحطاط العمود الفقري العنقي (الفقار)",
+        "المرضى الذين يجدون صعوبة في النوم من الألم"
       ],
       "process": [
-        "Full upper quadrant assessment",
-        "Manual therapy & dry needling",
-        "Deep cervical stabilizer retraining",
-        "Ergonomic strategy implementation"
+        "التقييم البيوميكانيكي التفصيلي",
+        "تخفيف الألم الموجه",
+        "استعادة الحركة والعلاج اليدوي",
+        "برنامج تقوية شخصي"
       ],
-      "whatToExpect": "We evaluate the full upper quadrant—including your thoracic spine mobility and shoulder mechanics—to understand why the neck is overloaded. Treatment begins with targeted manual therapy, progressing to deep stabilizer retraining.",
-      "outcome": "Restored movement quality, improved load tolerance, and an accurate understanding of your physical capacity. We replace the fear of movement with structural confidence."
+      "whatToExpect": "سنقوم بتقييم الميكانيكا الحيوية للرقبة لتحديد السبب الجذري - سواء كان وضعية سيئة، أو قيودًا في المفاصل، أو تهيجًا عصبيًا. سيتضمن العلاج مزيجًا من التقنيات اليدوية الدقيقة وتصحيح الوضعية والتمارين المستهدفة لبناء المرونة ومنع الألم في المستقبل.",
+      "outcome": "تخفيف كبير للألم، وضعية أفضل، ورقبة قوية ومرنة يمكنها التعامل مع متطلبات يومك بسهولة."
     },
     "discProlapse": {
-      "title": "Disc Prolapse & Sciatica",
-      "metaTitle": "Disc Prolapse, Herniation & Sciatica Treatment",
-      "metaDescription": "Expert rehabilitation for disc prolapse and sciatica. We address the cumulative overload causing structural failure.",
-      "heroSubtitle": "A disc does not fail overnight.",
-      "overview": "The intervertebral disc is designed to withstand massive force. But when movement mechanics are flawed—when the hips lack mobility or the deep core lacks control—the spine absorbs repetitive, uncontrolled shear and compression. Eventually, the outer wall of the disc compromises, encroaching on sensitive neural structures nearby, creating the burning, traveling pain known as sciatica.",
-      "duration": "45–60 min",
-      "frequency": "2–3× per week",
+      "title": "الانزلاق الغضروفي وعرق النسا",
+      "metaTitle": "علاج الانزلاق الغضروفي والأقراص المنفتقة",
+      "metaDescription": "علاج متخصص للانزلاق الغضروفي. تقليل الضغط على العصب وعلاج عرق النسا وتخفيف آلام الظهر.",
+      "heroSubtitle": "عندما يضغط القرص على العصب، نقوم نحن بفك الضغط.",
+      "overview": "يحدث الانزلاق الغضروفي (القرص المنفتق) عندما يتمزق الجزء الخارجي من القرص الفقري، مما يسمح للجزء الداخلي بالبروز، وعادة ما يضغط على العصب الشوكي القريب. قد يتسبب هذا في ألم موضعي شديد في الظهر، فضلاً عن ألم عصبي ينتشر أسفل الساق (عرق النسا) أو الذراع.",
+      "duration": "45–60 دقيقة",
+      "frequency": "2-3 مرات أسبوعياً",
       "symptoms": [
-        "Deep lumbar pain aggravated by sitting, bending, or lifting",
-        "Burning, electrical, or tingling sensations radiating into the hip, leg, or foot",
-        "Altered sensation or sudden muscular weakness",
-        "Significant movement restriction and protective muscle guarding"
+        "ألم حاد ومفاجئ في أسفل الظهر أو الرقبة",
+        "ألم جذري ينتشر أسفل الساق (عرق النسا) أو إلى الذراع",
+        "تفاقم الألم مع الانحناء والجلوس أو السعال",
+        "وخز وضعف أو خدر في الأطراف",
+        "الإحساس بميل ملحوظ في العمود الفقري بعيدًا عن الألم"
       ],
       "clinicalApproach": [
-        "Neural Offloading: Immediate strategies and manual therapy to reduce nerve sensitivity",
-        "Mechanical Correction: Assessing pelvis, hips, and thoracic spine to identify failing load transfer",
-        "Progressive Loading: Rebuilding deep spinal and pelvic control around real-life demands",
-        "Functional Strength: Not generic core exercises — functional, load-bearing strength"
+        "تخفيف الضغط: وضعيات واستراتيجيات للحد من الألم الحاد السريع",
+        "النهج الميكانيكي: حركات متكررة متخصصة لتقليل بروز القرص",
+        "العلاج اليدوي: التعبئة اللطيفة للعمود الفقري وتقنيات الأنسجة الرخوة",
+        "استقرار المركز: تقوية طبقة العضلات التي تحمي العمود الفقري",
+        "التوجيه الحركي: تعليمات حول كيفية الحركة بأمان وتقليل إجهاد القرص"
       ],
       "benefits": [
-        "Reduced neural sensitivity",
-        "Corrected mechanical overload",
-        "Restored functional capacity",
-        "Durable long-term recovery",
-        "Return to full activity"
+        "تخفيف كبير لآلام الأعصاب",
+        "انخفاض الخدر والوخز تدريجيًا",
+        "العودة إلى النوم بشكل مريح",
+        "القدرة على الحركة الجسدية بحرية",
+        "بناء حماية أقوى للعمود الفقري لمنع الانتكاسات"
       ],
       "idealFor": [
-        "Individuals with prolonged sitting habits",
-        "Athletes with high training demands lacking foundational control",
-        "Those returning to performance after a break"
+        "الأفراد الذين تم تشخيصهم حديثاً بانزلاق غضروفي",
+        "من يعانون من نوبات ألم الظهر الحادة وعرق النسا",
+        "الأشخاص الذين تتأثر أنشطتهم اليومية بشدة",
+        "المرضى الباحثون عن علاج غير جراحي للمشاكل المستعصية"
       ],
       "process": [
-        "Neural sensitivity assessment",
-        "Pelvic & hip mechanical correction",
-        "Progressive spinal loading program",
-        "Functional capacity restoration"
+        "تقييم عصبي وميكانيكي شامل",
+        "إدارة الألم الحاد وإزالة الضغط",
+        "التمارين الموجهة وتقليل البروز",
+        "إعادة التأهيل وتقوية الجذع الأساسية"
       ],
-      "whatToExpect": "We assess where load transfer is failing across your pelvis, hips, and thoracic spine. Treatment begins with neural offloading strategies, then progressively rebuilds deep spinal control.",
-      "outcome": "Durable recovery. We aim to reduce neural sensitivity, address the cumulative overload that caused the issue, and return you to full activity based on objective capacity."
+      "whatToExpect": "نقوم بإجراء فحص عصبي شامل ويتبعه العلاج السريع للألم الحاد. نستخدم حركات مخصصة لتخفيف ضغط الأنسجة المنفتقة من العصب، ونركز على إزالة الألم المشع. ثم نبني درعًا للعمود الفقري لمنع المشكلات المستقبلية.",
+      "outcome": "تخفيف جذري للألم المرتبط بالعصب، وحرية في الحركة، واستراتيجيات عملية لإدارة وحماية العمود الفقري بشكل دائم."
     },
     "shoulderImpingement": {
-      "title": "Shoulder Impingement & Rotator Cuff",
-      "metaTitle": "Shoulder Impingement, Rotator Cuff & Frozen Shoulder",
-      "metaDescription": "Expert treatment for shoulder impingement, rotator cuff tears, and frozen shoulder. Restoring the shoulder's intricate balance.",
-      "heroSubtitle": "The shoulder sacrifices stability for mobility.",
-      "overview": "Impingement and cuff tears arise from inadequate load distribution. When the scapula doesn't move correctly, or the thoracic spine is stiff, the rotator cuff absorbs forces it wasn't designed for. Frozen Shoulder involves an inflammatory cascade leading to profound capsular restriction, completely locking the joint's mechanics.",
-      "duration": "45–60 min",
-      "frequency": "2–3× per week",
+      "title": "متلازمة انحشار الكتف",
+      "metaTitle": "علاج متلازمة انحشار الكتف",
+      "metaDescription": "علاج احترافي لاستعادة الحركة العلوية بحرية وبدون ألم، وعلاج انحشار الكتف وآلام الكفة المدورة بشكل جذري.",
+      "heroSubtitle": "معالجة السبب المخفي عندما يكون رفع ذراعك مؤلمًا.",
+      "overview": "تعد متلازمة انحشار الكتف حالة شائعة ومؤلمة تحدث عندما يتم قرص أوتار الكفة المدورة أثناء مرورها عبر المساحة الضيقة تحت عظمة أعلى الكتف (الأخرم). في كل مرة ترفع فيها ذراعك، تحتك الأوتار، مما يؤدي إلى الالتهاب والتآكل وصعوبة الحركة في نهاية المطاف.",
+      "duration": "45–60 دقيقة",
+      "frequency": "مرتان أسبوعياً",
       "symptoms": [
-        "Sharp pain when reaching overhead or behind the back",
-        "Night discomfort that severely disrupts sleep",
-        "Weakness or a 'giving way' sensation under load",
-        "Progressive or sudden, dramatic loss of range of motion"
+        "ألم مبهم حول منطقة الكتف العلوية والخارجية",
+        "ألم حاد ملحوظ عند محاولة رفع الذراعين للأعلى",
+        "تفاقم الألم بشكل واضح عند الاستلقاء على الجانب المصاب",
+        "ضعف ووجع ملحوظ مع الأنشطة اليومية مثل ارتداء الملابس",
+        "إحساس بالقرص أو التوقف والالتقاط أثناء الحركة"
       ],
       "clinicalApproach": [
-        "Accurate Staging: Identifying exactly what phase of pathology the tissue is in",
-        "Whole-System Assessment: Evaluating cervical spine, thoracic spine, and scapular mechanics",
-        "Mechanical Restoration: Manual therapy to restore joint play with progressive cuff rebuilding",
-        "Full-Range Rehabilitation: Rebuilding the rotator cuff through its complete range of motion"
+        "التحليل البيوميكانيكي: تحديد السبب الجذري للانسداد الحركي",
+        "تهدئة الالتهابات: المعالجة اليدوية للأنسجة لتخفيف الضغط وتخفيف الالتهاب",
+        "إعادة موازنة القوة المحددة: تعزيز استقرار الكفة المدورة وعضلات لوح الكتف",
+        "استعادة المساحة: تمارين محددة لفتح الحيّز وتحسين ميكانيكا الكتف",
+        "التدريب الحركي: استراتيجيات تعديل أوزان وحركة للأنشطة المختلفة"
       ],
       "benefits": [
-        "Restored joint mechanics",
-        "Improved structural capacity",
-        "Pain-free overhead movement",
-        "Planned return to sport demands",
-        "Night pain resolution"
+        "استعادة نطاق حركي علوي كامل وخالٍ من الألم",
+        "القدرة على النوم براحة على الجانب",
+        "العودة بثقة إلى رياضات الرفع والوصول العالي",
+        "ميكانيكا أفضل لكامل الكتف والظهر",
+        "منع تلف أو تمزق الكفة المدورة على المدى الطويل"
       ],
       "idealFor": [
-        "Individuals with repetitive overhead demands",
-        "Asymmetrical training loads",
-        "Prolonged desk posture",
-        "Unexplained progressive shoulder stiffness"
+        "الرياضيون في رياضات التنس والسباحة والرمي",
+        "مرتادو الصالات الرياضية وممارسو رفع الأثقال",
+        "أصحاب المهن التي تتطلب جهداً ذراعياً ورفعاً متكرراً",
+        "أي شخص يعاني من ألم كتف مستمر ومزعج"
       ],
       "process": [
-        "Pathology staging assessment",
-        "Cervical & thoracic evaluation",
-        "Joint play restoration",
-        "Progressive rotator cuff rebuilding"
+        "تحليل حركي وتيكنيكي للكتف",
+        "السيطرة على الألم الحاد وتخفيف الالتهاب",
+        "تقوية عضلات الكفة المدورة العميقة",
+        "تدريب وظيفي لكامل الكتف والذراع"
       ],
-      "whatToExpect": "We identify the exact phase of your shoulder pathology and evaluate the entire chain — cervical spine, thoracic spine, and scapula. Treatment restores joint play first, then rebuilds cuff capacity.",
-      "outcome": "Restored joint mechanics, improved structural capacity, and a planned, confident return to the loads your life and sport demand."
+      "whatToExpect": "خطوتنا الأولى هي إيجاد السبب الأساسي للألم: لماذا تم تضييق المساحة حول الوتر؟ نعمل سريعًا لتخفيف الالتهاب ونعيد بناء التوازن الدقيق لقوة الكتف لضمان عدم عودة المشكلة من جديد.",
+      "outcome": "كتف يتحرك بسلاسة وبدون اختناق في القوة، واستعادة كاملة لميكانيكا الرفع العلوي الخاصة بك وبدون ألم."
     },
     "tennisElbow": {
-      "title": "Tennis & Golfer's Elbow",
-      "metaTitle": "Tennis Elbow & Golfer's Elbow Treatment",
-      "metaDescription": "Expert treatment for elbow tendinopathy. We correct the load imbalances across the entire upper limb chain.",
-      "heroSubtitle": "Elbow pain is rarely just an elbow problem.",
-      "overview": "Tennis and Golfer's elbow are forms of tendinopathy. They occur when the demand placed on the tendon exceeds its current capacity. This is sustained by a load imbalance across the upper limb chain, causing localized micro-trauma and reactive pain at the medial or lateral epicondyle.",
-      "duration": "40–50 min",
-      "frequency": "2× per week",
+      "title": "مرفق التنس (التهاب اللقيمة الجانبي)",
+      "metaTitle": "علاج ألم مرفق التنس (التهاب اللقيمة الجانبي)",
+      "metaDescription": "علاج فعال لألم الكوع، والمركز على الأسباب الجذرية وراء التحميل الزائد للوتر في التهاب اللقيمة الجانبي للعودة للأنشطة دون ألم.",
+      "heroSubtitle": "ألم الكوع الخارجي يقلل من قوى قبضتك وحياتك، نحن نقوم بتغيير هذا المسار.",
+      "overview": "مرفق التنس (التهاب اللقيمة الجانبي) ليس مجرد التهاب؛ بل هو تدهور دقيق في الأوتار المسؤولة عن تمديد الرسغ والأصابع. يحدث هذا عادة نتيجة التحميل المتكرر وفشل الوتر في التكيف، مما يؤدي إلى ألم حاد وموضع يقلل من قوة القبضة ويقيد ممارسة التمارين أو حتى حمل الأشياء البسيطة كالقهوة.",
+      "duration": "45–60 دقيقة",
+      "frequency": "1-2 مرة أسبوعياً",
       "symptoms": [
-        "Pain and weakness specifically when gripping or lifting",
-        "Persistent, deep aching after activity",
-        "Extreme sensitivity to light contact over the elbow bone",
-        "Progressive erosion of tolerance in simple daily tasks (e.g., pouring a kettle, turning a doorknob)"
+        "ألم وحرقان في الجزء الخارجي من الكوع",
+        "ألم يزداد بشكل كبير مع قبضة قوية أو فتح باب",
+        "ضعف ملحوظ (صعوبة في حمل غرض ثقيل أو برطمان)",
+        "ألم عند تمديد الرسغ للخلف بقوة",
+        "تصلب الكوع في الصباح وخصوصا بعد الاستخدام الكثيف"
       ],
       "clinicalApproach": [
-        "Kinetic Chain Assessment: Evaluating grip, wrist, and shoulder to find the true source of overload",
-        "Progressive Tendon Loading: Precisely dosed exercises to build structural capacity back into the tendon",
-        "Neural Mobility: Manual therapy and nerve glides where indicated to reduce local sensitivity",
-        "Load Redistribution: Correcting the upper limb chain to share force appropriately"
+        "تعديل التحميل: الاستراتيجية الأهم لمنع الاستمرار في تدهور الأنسجة",
+        "إدارة الأنسجة: تقنيات الأنسجة لتخفيف الألم الموضعي وتسريع الشفاء",
+        "بناء قدرة الأوتار: برنامج التدريب اللامركزي (Eccentric) والتسقي (Isometric)",
+        "التحليل البيوميكانيكي: فحص كامل الذراع للتأكد من خلوه من أي مشاكل كامنة تزيد الحمل على الكوع",
+        "دعم الأوتار: استخدام شرائط الأربطة المساعدة في المرحلة الأولى"
       ],
       "benefits": [
-        "Corrected load imbalances",
-        "Fully restored tendon capacity",
-        "Durable recovery without relapse",
-        "Return to gripping activities",
-        "Resolved daily task limitations"
+        "حل قوي وشامل للألم اليومي المبرح",
+        "استرداد قوة قبضة عالية وبدون عوائق لحمل الأشياء",
+        "القدرة على ممارسة الأعمال اليدوية بأمان",
+        "إعادة هيكلة قوة الكتفين والمرفق والرسغ بمتانة عالية",
+        "تقليل فرصة التعرض للانتكاسات المتكررة"
       ],
       "idealFor": [
-        "Repetitive gripping professions",
-        "Racquet sports players",
-        "Manual trades workers",
-        "Desk-intensive work requiring heavy mouse/keyboard use"
+        "لاعبي رياضات المضرب (التنس، البادل، الاسكواش)",
+        "مستخدمي الكمبيوتر بشكل مكثف",
+        "المهنيين والأعمال اليدوية والرافعين",
+        "كل من يعاني من ألم خارج الكوع مستمر رغم أخذ الراحة"
       ],
       "process": [
-        "Full kinetic chain assessment",
-        "Tendon capacity baseline testing",
-        "Progressive eccentric loading",
-        "Return-to-activity graduated protocol"
+        "تقييم و تشخيص لأسباب الألم والتحليل البيوميكانيكي",
+        "التحكم الحاد في الألم وتحرير التوتر",
+        "برنامج بناء متطور لقدرات الأوتار",
+        "تطبيق تمارين للعودة الكاملة للنشاط"
       ],
-      "whatToExpect": "We evaluate your grip, wrist, and shoulder to find where the overload originates. Treatment involves precisely dosed tendon loading to rebuild capacity from the inside out.",
-      "outcome": "Corrected load imbalances and fully restored tendon capacity, ensuring a durable recovery without relying on temporary symptom suppression."
+      "whatToExpect": "العلاج لا يعتمد على الراحة الصرفة؛ فالأوتار لا تتعافى فقط بالراحة بل بالقوة المحملة والمُحكمة. ستحصل على خطة تدريجية وموجهة لإعادة تأهيل أوتارك مع تقنيات لتحرير الشد العضلي لكي تقوى أوتارك على تحمل الأحمال.",
+      "outcome": "ذراع قوية وثابتة، تستطيع الصمود للعمل الرياضي واليومي بكفاءة عالية دون التسبب في الإزعاج أو الألم، وقبضة قوية ثابتة وخالية من الشكاوى."
     },
     "kneePain": {
-      "title": "Knee Pain, ACL & MCL Injury",
-      "metaTitle": "Knee Pain, ACL & MCL Injury Treatment",
-      "metaDescription": "Expert rehabilitation for knee pain and ligament injuries. The knee is rarely the culprit — it's the victim.",
-      "heroSubtitle": "The knee is a hinge caught between two highly mobile joints.",
-      "overview": "Whether it's an acute ligament tear from a sudden direction change, or chronic anterior knee pain from poor tracking, the root cause is often a failure to absorb and distribute force. If the glutes fail to stabilize the hip, or the foot pronates uncontrollably, the knee absorbs rotational and shear forces that destroy cartilage and tear ligaments.",
-      "duration": "45–60 min",
-      "frequency": "2–3× per week",
+      "title": "آلام الركبة وتمزق الأربطة وإصابات الهلالي",
+      "metaTitle": "علاج آلام الركبة وإصابات الأربطة",
+      "metaDescription": "علاج متخصص لآلام الركبة وتمزق الأربطة. تقليل الاستنزاف والتورم، استعادة التوازن البيوميكانيكي والعودة للأنشطة بسرعة وبدون ألم.",
+      "heroSubtitle": "عندما تفقد ركبتك استقرارها وحركتها، نحن نبنيها لتكون صلبة وتحتمل كل الخطوات.",
+      "overview": "ألم الركبة غالبًا ما يكون العرض، وليس المصدر الأساسي للمشكلة. مفصل الركبة عالق بين مفصل الورك والكاحل ويعاني غالبًا بسبب ضعف الميكانيكا الحيوية أو ضعف القوة أو نقص الأداء فيهما. نتعامل مع ألم الركبة وإصاباتها عبر منظور حركي كامل لضمان التشافي.",
+      "duration": "45–60 دقيقة",
+      "frequency": "1-3 مرات أسبوعياً",
       "symptoms": [
-        "Instability, giving way, or apprehension during movement",
-        "Rapid swelling following activity or acute trauma",
-        "Pain navigating stairs, squatting, or decelerating",
-        "Catching, clicking, or neuromuscular hesitation"
+        "ألم حاد تحت الرضفة وخصوصًا عند النزول على الدرج",
+        "تورم ملحوظ وضعف وتصلب بعد الأنشطة",
+        "إحساس بالانغلاق والطرقعة الداخلية مع بعض الحركات",
+        "ألم حاد خلف الركبة عند الجلوس بوضعية القرفصاء"
       ],
       "clinicalApproach": [
-        "Integrated Evaluation: Assessing the foot, ankle, hip, and pelvis",
-        "Acute Management: Immediate control of swelling and restoration of basic joint mechanics",
-        "Neuromuscular Prioritization: Rebuilding single-leg stability and proprioception",
-        "Return to Sport Profiling: Progressive rotational and sport-specific strength retraining"
+        "التحليل الحركي: تقييم ميكانيكا الورك والقدم وتأثيرها على الركبة",
+        "تقليل التحميل والالتهاب: إدارة مبكرة وتدخلات يدوية وتقنيات لتخفيف التورم",
+        "استعادة الحركة المتنامية: استعادة حركة تمديد الركبة",
+        "التقوية الوظيفية: تمارين لتقوية العضلات الرباعية والخلفية والوركين"
       ],
       "benefits": [
-        "Complete single-leg capacity",
-        "Movement confidence",
-        "Return to high-level activity",
-        "Objectively measured capability",
-        "Injury recurrence prevention"
+        "تخفيف الألم والتورم بسرعة",
+        "القدرة على صعود الدرج ونزوله بدون ألم",
+        "استعادة القدرة على الرياضة والأنشطة",
+        "تحسين التوازن والثقة بالحركة",
+        "تجنب الحاجة إلى الجراحة للإصابات المتوسطة"
       ],
       "idealFor": [
-        "Athletes recovering from acute trauma",
-        "Active individuals with nagging pain on runs",
-        "Anyone whose knee unreliability dictates their lifestyle"
+        "الرياضيون والعداؤون الذين يعانون من آلام مستمرة",
+        "الأفراد المصابون بالتهاب المفاصل المتوسط وتشوه الحركة",
+        "من يعانون من آلام عند صعود ونزول السلالم",
+        "الأشخاص الذين يسعون لتجنب التدخلات الجراحية"
       ],
       "process": [
-        "Foot-to-pelvis integrated evaluation",
-        "Swelling control & joint mechanics restoration",
-        "Single-leg stability rebuilding",
-        "Sport-specific return protocol"
+        "تقييم حركة السلسلة السفلية",
+        "بروتوكول السيطرة على الالتهاب والألم",
+        "التقوية الأساسية والتحكم العضلي",
+        "التأهيل للرياضة والأنشطة المكثفة"
       ],
-      "whatToExpect": "We assess the entire chain from foot to pelvis to find where force distribution is failing. Treatment rebuilds single-leg stability and proprioception before graduating to sport-specific demands.",
-      "outcome": "Complete single-leg capacity, movement confidence, and a return to high-level activity backed by objective, measured physical capability."
+      "whatToExpect": "أولويتنا الأولى هي حماية الركبة وإزالة العوامل المسببة للألم الحاد، بعد ذلك نستخدم برامج التمارين لتقوية الأنسجة الضعيفة وتحسين القوة. ستتعلم حركات جديدة لتقليل الضغط على مفاصلك.",
+      "outcome": "ركبة قوية وخالية من الألم وموثوقة، تتعامل بشكل ممتاز مع المطالب اليومية والتمارين الرياضية."
     },
     "plantarFasciitis": {
-      "title": "Plantar Fasciitis & Achilles Tendinopathy",
-      "metaTitle": "Plantar Fasciitis & Achilles Tendinopathy Treatment",
-      "metaDescription": "Expert treatment for heel pain and Achilles tendinopathy. Restoring how your body absorbs shock with every step.",
-      "heroSubtitle": "Foot and heel pain fundamentally alters how you interact with the ground.",
-      "overview": "Plantar fasciitis and Achilles tendinopathy are tissue overload conditions. When there is a rapid increase in training volume, or a mechanical failure higher up in the kinetic chain, the fascia and tendon at the foot absorb excessive, uncontrolled load until they become reactive, thickened, and painful.",
-      "duration": "40–50 min",
-      "frequency": "2× per week",
+      "title": "التهاب اللفافة الأخمصية (آلام كعب القدم)",
+      "metaTitle": "علاج التهاب اللفافة الأخمصية وآلام الكعب",
+      "metaDescription": "علاج متقدم لألم كعب القدم، التهاب اللفافة الأخمصية ومشاكل الأوتار في القدم. استعد قدراتك و استمتع بخطوات بدون ألم.",
+      "heroSubtitle": "الخطوات الأولى في الصباح لا يجب أن تكون مؤلمة. نحن نزيل ألم الكعب من الجذور.",
+      "overview": "التهاب اللفافة الأخمصية هو حالة تدهور وتلف غير التهابي لنسيج اللفافة الثخين الذي يدعم قوس القدم، وليس مجرد التهاب عابر. يحدث هذا بسبب التحميل غير المتوازن على القدم لمدد طويلة والميكانيكا الحيوية الضعيفة، مما يصعّب الوقوف والمشي.",
+      "duration": "45 دقيقة",
+      "frequency": "1-2 مرة أسبوعياً",
       "symptoms": [
-        "Sharp, localized heel pain during the first steps in the morning",
-        "Stiffness that accumulates throughout the day or after resting",
-        "A visibly thickened or reactive Achilles tendon",
-        "Compensatory limping or alterations in your natural gait"
+        "ألم حاد وثاقب في أسفل الكعب عند خطواتك الأولى في الصباح",
+        "ألم يعود من جديد بعد فترات طويلة من الجلوس أو الراحة",
+        "تفاقم شديد للألم بعد وليس أثناء نوبات التمارين والفترات الطويلة من الوقوف",
+        "تصلب ملحوظ وصعوبة فرد القدم"
       ],
       "clinicalApproach": [
-        "Gait & Lower Limb Assessment: Analyzing how force travels from your foot to your hip",
-        "Active Rehabilitation: Load-based protocols to restore tendon and fascial tolerance",
-        "Load Management: Precision management of daily steps, training load, and footwear",
-        "Kinetic Chain Correction: Addressing mechanical failures higher up the chain"
+        "التحميل الميكانيكي والعلاجي: استراتيجيات وتقنيات تمارين إطالة محددة ومخصصة",
+        "العلاج اليدوي للإفراج عن الأنسجة: الأنسجة الرخوة وتقنيات الكشط والتعبئة على طول قوس القدم والربلة",
+        "تحسين وظيفة وبناء السلسلة الخلفية: تدريبات موجهة لمعالجة أي خلل في القوة من عضلة الساق والورك للتأثير الإيجابي على القدم"
       ],
       "benefits": [
-        "Restored tendon tolerance",
-        "Corrected compensatory patterns",
-        "Safe return to running",
-        "Morning pain resolution",
-        "Long-term recurrence prevention"
+        "تخلص من معاناة ألم الخطوات الصباحية الأولى",
+        "استعادة القدرة على المشي والوقوف لساعات",
+        "زيادة القدرة على التحميل وتحسين الأداء الرياضي",
+        "أقواس أقدام قوية مرنة"
       ],
       "idealFor": [
-        "Runners",
-        "Athletes escalating training volume",
-        "Professionals who stand for prolonged periods on hard surfaces"
+        "العداؤون والرياضيون ذوي أنشطة الركض المستمرة",
+        "المعلمين، الطاقم الطبي والممرضات الذين يقفون لساعات",
+        "الأفراد الذين زاد وزنهم مؤخراً بشكل ملحوظ",
+        "من يعانون من تسطح مستمر ومؤلم للقدمين"
       ],
       "process": [
-        "Gait & force transfer analysis",
-        "Tendon/fascial tolerance baseline",
-        "Progressive load-based rehabilitation",
-        "Return-to-running protocol"
+        "تحليل هيكلي للقدم وحركة الجزء السفلي كاملاً",
+        "إجراء تحرير الألم الموضعي وتخفيف إجهاد الأنسجة",
+        "تقوية مكثفة وحيوية للساق ومنظومة اللياقة الخاصة بالقدم",
+        "دمج أعباء الحياة بشكل مرن وبمراحل آمنة"
       ],
-      "whatToExpect": "We analyze how force travels from your foot to your hip to find the mechanical failure point. Treatment uses load-based protocols to rebuild tolerance progressively.",
-      "outcome": "Restored tendon tolerance and corrected compensatory movement patterns, allowing a safe and objective return to running and sport without recurrence."
+      "whatToExpect": "نعالج أكثر من مجرد إزالة الألم المؤقتة للقوس، ننتقل للعمل من المسببات الجذرية للتحميل الزائد وتطبق تقنيات علاجية وتدريبات إعادة بناء القوة المتوقفة لمساعدتك في استرجاع متانة ونشاط أقوى.",
+      "outcome": "قدم رشيقة وأقواس تمتص الصدمات بكفاءة وبدون ألم يعطلك عن روتين حياتك اليومي."
     },
     "osteoarthritis": {
-      "title": "Osteoarthritis",
-      "metaTitle": "Osteoarthritis Management & Treatment",
-      "metaDescription": "Progressive loading and pain education for osteoarthritis. A diagnosis is not a mandate to stop moving.",
-      "heroSubtitle": "Wear and tear is normal. Debilitating pain is not.",
-      "overview": "Osteoarthritis involves age-related tissue adaptation, but the pain is largely driven by cumulative mechanical loading on joints that have lost their necessary muscular support. When muscles around a joint weaken, the bone and cartilage absorb the brunt of daily impact, leading to inflammation, stiffness, and structural breakdown.",
-      "duration": "45–60 min",
-      "frequency": "2× per week",
+      "title": "الفصال العظمي ورعاية المفاصل (الخشونة)",
+      "metaTitle": "إدارة الفصال العظمي والخشونة المتقدمة",
+      "metaDescription": "علاج الخشونة والتهاب المفاصل. التقوية الاستراتيجية للحفاظ على صحة ومدة المفصل وتقليل الأدوية.",
+      "heroSubtitle": "التآكل والمفاضل المجهدة ليسوا النهاية، عزز قوتك وحافظ على مرونة حركتك.",
+      "overview": "الخشونة هي حالة من تنكس المفصل مع تآكل الغضروف بمرور الوقت وتقليل المسافة المفصلية. وعلى الرغم من أننا لا يمكننا إعادة بناء الغضاريف، لكن العمل العلاجي على الميكانيكا الحيوية والمحافظة على المفصل يقوي العضلات حول المفصل مما يفصل الضغط بشكل جذري.",
+      "duration": "45-60 دقيقة",
+      "frequency": "1-2 مرة أسبوعياً",
       "symptoms": [
-        "Profound stiffness after periods of rest (especially in the morning)",
-        "Deep, aching joint pain during or after activity",
-        "Swelling after physical demand",
-        "A progressive, quiet reduction in functional capabilities and daily independence"
+        "تصلب المفصل الصباحي، والذي يتحسن مع الحركة والتمدد",
+        "أوجاع عميقة ومستمرة في الركبتين، أو الوركين، أو اليدين بعد الاستخدام",
+        "الطقطقة والفرقعة والصرير الذي يترافق مع الألم",
+        "فقدان قوة ونطاق الحركة بشكل متزايد ومزعج بمرور الوقت"
       ],
       "clinicalApproach": [
-        "Regional Mechanics: Assessing the joint and all surrounding structures",
-        "Progressive Loading: Deliberate restoration of movement quality and muscular support to offload the joint",
-        "Reframing Pain: Education to remove catastrophic thinking — hurt does not always equal harm",
-        "Functional Independence: Building the strength to maintain your lifestyle"
+        "استعادة الحركة الدقيقة: علاج المفاصل اليدوي لتجنب التصلب والانغلاق",
+        "تخفيف الضغط المستهدف: تقوية العضلات وبناء القدرة على امتصاص الصدمات",
+        "تخفيف الألم المستدام: الوخز بالإبر والعلاج اليدوي والتدليك وتخفيف الانكماشات",
+        "التثقيف والتخطيط: مساعدة و تمكين المريض بطرق التعامل ومراقبة الإجهاد"
       ],
       "benefits": [
-        "Maintained activity levels",
-        "Reduced dependence on passive treatments",
-        "Confident joint function",
-        "Pain education mastery",
-        "Preserved independence"
+        "الحد بشكل فعال ومدهش من آلام المفاصل وإدارة الحدث",
+        "تقليل الاعتماد الكامل على العقاقير الدوائية أو الإبر الكورتيزون",
+        "تأخير الحاجة إلى استبدال بعض المفاصل المنهكة",
+        "تعميق الشعور بالاستقرار والحركة الواثقة"
       ],
       "idealFor": [
-        "Older adults",
-        "Individuals with a history of joint injury",
-        "Those experiencing functional decline who refuse to rely solely on painkillers"
+        "الأفراد المصابين بآلام مفاصل تم تشخيصها بخشونة (الورك/الركبة/اليدين)",
+        "مرضى يحاولون إطالة عمر المفصل وتجنب العمليات الجراحية",
+        "أي شخص قيد التحضير المسبق لعملية استبدال ورك أو ركبة"
       ],
       "process": [
-        "Regional mechanics assessment",
-        "Muscular support restoration",
-        "Pain neuroscience education",
-        "Progressive functional loading"
+        "التقييم المفصلي ونطاق الحركة والحمل الآمن",
+        "تقنيات إزالة التصلب وتحسين المرونة",
+        "تنمية القدرة العضلية المتجاورة لإنقاص العبء المفصلي",
+        "هيكلة نمط النشاط والاستقلالية في التحرك"
       ],
-      "whatToExpect": "We assess the joint and surrounding structures, then deliberately restore muscular support to offload the affected area. Education is central — understanding that hurt doesn't always equal harm.",
-      "outcome": "Maintained and improved activity levels, a drastic reduction in dependence on passive treatments, and confident joint function within your biological limits."
+      "whatToExpect": "نستخدم طرق مدروسة لدعم بيئة التئام وحيوية المفصل على المستوى الميكانيكي لتأمين الحركة بسلاسة في مفصلك وتعليمك أساليب مخصصة لحمل وزنك بطريقة تحمي أطرافك.",
+      "outcome": "مفاصل معززة ومحفوظة وأقوى تمنحك القدرات اللازمة والراحة في التحكم واسترداد جزء كبير من كفاءة الحركة الأساسية."
     },
     "meniscusInjury": {
-      "title": "Meniscus Injury",
-      "metaTitle": "Meniscus Injury Treatment & Rehabilitation",
-      "metaDescription": "Conservative management and rehabilitation for meniscus tears. Surgery is not always the answer.",
-      "heroSubtitle": "A meniscus tear does not automatically equal surgery.",
-      "overview": "The meniscus can be damaged via acute trauma (pivoting or twisting under load) or through degenerative cumulative compressive loading in joints lacking muscular support. When the knee experiences sudden, unplanned movement without the glutes and hamstrings stabilizing it, the meniscus bears the brunt of the rotational shear.",
-      "duration": "45–60 min",
-      "frequency": "2–3× per week",
+      "title": "إصابات الغضروف المفصلي (تمزق الهلالي)",
+      "metaTitle": "إصابات وتمزقات الغضروف المفصلي الهلالي",
+      "metaDescription": "تأهيل إصابات الغضروف المفصلي في الركبة وتمزقاته. تجاوز الحاجة للجراحات واسترجع قوة التحمل العالية.",
+      "heroSubtitle": "الإصلاح دون جراحة والعودة للرياضة دون ألم مبرح أو انقطاع.",
+      "overview": "يعمل الغضروف الهلالي كممتص صدمات رئيسي في الركبة. يمكن أن تحدث التمزقات بشكل مفاجئ مع حوادث الالتواء والالتحام في الرياضة، أو بصورة تدريجية مع تقدم وتيرة التآكل. تتراوح الأعراض من تهيج خفيف إلى تعثر كامل بالركبة.",
+      "duration": "45-60 دقيقة",
+      "frequency": "2-3 مرات أسبوعياً",
       "symptoms": [
-        "Pinpoint medial or lateral joint line tenderness",
-        "Catching, locking, or clicking sensations within the knee",
-        "Swelling that appears hours after an activity",
-        "A persistent sense of the joint being 'unreliable' or about to give way"
+        "ألم موضعي وحاد على خط مفصل الركبة",
+        "شعور بتعطيل أو توقف الحركة أو الانغلاق المفاجئ",
+        "تورم مستمر، خاصة بعد المشات ومحاولات الركض",
+        "فقدان الثقة والقدرة والإحساس الدائم بخطر اختلال الركبة وعدم ثباتها"
       ],
       "clinicalApproach": [
-        "Clinical Staging: Accurately diagnosing the type and severity to determine if conservative management is viable",
-        "Early Management: Controlling swelling and modifying load immediately",
-        "Neuromuscular Control: Progressive single-leg and rotational capacity building",
-        "Joint Stabilization: Permanently stabilizing the joint through targeted strengthening"
+        "ضبط الالتهابات الحادة وتخفيف السوائل داخل المفصل",
+        "توظيف التقنيات اليدوية لاسترداد المرونة ومحاصرة الألم",
+        "إعادة تأهيل الثبات الجانبي وتوعية الميكانيكا العصبية الحيوية",
+        "التحكم بالحمل ودمج الحركات المتقدمة والتأهيل المتصاعد للأحمال"
       ],
       "benefits": [
-        "Restored rotational control",
-        "Elimination of catching/locking",
-        "Movement confidence",
-        "Potential avoidance of surgery",
-        "Long-term joint stability"
+        "عودة النشاطات دون خوف أو ألم متأزم",
+        "القضاء على أحداث الانغلاق والتشققات ومظاهر الألم",
+        "استبعاد احتمالات التدخل الجراحي بفاعلية",
+        "مؤشر لياقة وحركة لا يتراجع واستدامة جيدة للمفصل"
       ],
       "idealFor": [
-        "Athletes dealing with acute twisting injuries",
-        "Individuals developing gradual joint pain from cumulative loading"
+        "الرياضيون المتأثرون بالإصابات الجانبية والالتوائية والارتطام",
+        "الأفراد الناشطون الراغبون بتلافي جراحة الغضروف الهلالي",
+        "البالغون بتشخيص التمزق التنكسي للغضروف الهلالي",
+        "مرضى يحتاجون لخطة ما بعد العلاج وإصدار قرار جراحي مبدئي"
       ],
       "process": [
-        "Tear type & severity assessment",
-        "Swelling control & load modification",
-        "Single-leg stability progression",
-        "Rotational capacity building"
+        "فحص التمزق وتقييم الاحتياج الجراحي المتقدم",
+        "إطار العمل للسيطرة على التورم وفك قفل المدى",
+        "تقوية المفصل الرباعي الأبعاد والتأكد من إمكانية الثبات",
+        "محاكاة الضغوط الوظيفية لإقرار الجاهزية والصلابة الرياضية"
       ],
-      "whatToExpect": "We accurately diagnose the type and severity of your tear to determine if conservative management is viable. Treatment focuses on controlling swelling immediately, then progressively building rotational capacity.",
-      "outcome": "Restored rotational control, elimination of catching and locking, and movement confidence — often successfully preventing unnecessary surgical intervention."
+      "whatToExpect": "نحن نقوم بعمل دقيق لتثبيت القوة والأنسجة الضامة المحيطة بغضروف الركبة للحد من التحمل عليه، وتخفيز النسيج التالف بحمولة تدريجية ليتحسن ويصبح أفضل، وكل ذلك دون الإنزعاج المؤلم.",
+      "outcome": "سيطرة عالية وموثوقة لركبتك وقوة ممتازة تدفع بك لمباشرة عملك واللعب الميداني بدون معوقات وتقليل حدوث الصدمات المؤلمة بشكل مؤكد."
     },
     "postSurgicalRehab": {
-      "title": "Post-Surgical Rehabilitation",
-      "metaTitle": "Total Knee & Hip Replacement Rehabilitation",
-      "metaDescription": "Post-surgical rehabilitation for joint replacements. The surgeon replaces the joint; we rebuild the function.",
-      "heroSubtitle": "The surgeon replaces the joint; we rebuild the function.",
-      "overview": "Joint replacement surgery involves significant tissue trauma. Patients often spend years altering their gait and allowing muscles to deteriorate to avoid arthritic pain prior to surgery. Post-surgery, profound muscular inhibition prevents normal movement unless systematically retrained.",
-      "duration": "45–60 min",
-      "frequency": "3× per week initially",
+      "title": "إعادة التأهيل بعد الجراحة",
+      "metaTitle": "إعادة التأهيل بعد الجراحة والعلاج الطبيعي",
+      "metaDescription": "استعد عافيتك بعد الجراحة من خلال برنامج إعادة تأهيل متخصص. رعاية ما بعد الجراحة لاستعادة الحركة والقوة والتمكين.",
+      "heroSubtitle": "الجراحة هي البداية، وإعادة التأهيل هي المكان الذي يحدث فيه الشفاء الفعلي.",
+      "overview": "تعد الفترة التي تلي الجراحة (مثل استبدال المفاصل، أو خياطة الأربطة، أو جراحات العمود الفقري) فترة حرجة جداً. يعتمد نجاح الجراحة على مدى التزامك وجودة برنامج إعادة التأهيل الخاص بك. نحن نعمل بالتوازن مع توجيهات جراحك لاستعادة الحركة بأسرع وقت وأكثر أمان.",
+      "duration": "45–60 دقيقة",
+      "frequency": "2-4 مرات أسبوعياً (حسب المرحلة)",
       "symptoms": [
-        "Post-operative swelling and profound stiffness",
-        "Muscular inhibition — the inability to 'turn on' muscles around the new joint",
-        "Heavily altered, compensatory walking patterns (limping)",
-        "Apprehension on stairs, uneven ground, or when transitioning from sitting to standing"
+        "تصلب شديد في المفصل بعد الجراحة",
+        "تورم وألم مستمر حول مكان الجرح والعملية",
+        "ضعف عضلي ملحوظ وصعوبة في البدء بالحركة",
+        "الخوف من الحركة أو تحميل الوزن على الطرف المصاب"
       ],
       "clinicalApproach": [
-        "Early Phase Control: Immediate management of swelling and muscular reactivation",
-        "Kinetic Chain Evaluation: Identifying compensations built up over years of arthritis",
-        "Gait Retraining: Breaking old habits to ensure symmetrical loading",
-        "Progressive Rebuilding: Systematic strength building to maximize implant longevity"
+        "إدارة الألم والتورم: استخدام تقنيات يدوية لطيفة ووسائل علاجية للتحكم بالالتهاب",
+        "استعادة المدى الحركي المبكر: تحريك المفاصل الخاضعة للجراحة ببطء وحذر",
+        "التنشيط العضلي: البدء في تفعيل العضلات المحيطة بالعملية دون تعريض الجرح للخطر",
+        "التدريب الوظيفي والحيوي: الانتقال تدريجيًا للمشي والمهام اليومية والاستقلالية"
       ],
       "benefits": [
-        "Resolved muscular inhibition",
-        "Corrected lifelong compensatory habits",
-        "Maximized implant longevity",
-        "True movement independence",
-        "Symmetrical gait restoration"
+        "الوصول لأقصى فائدة من الجراحة التي أجريتها",
+        "تقليل فرصة تكوين الالتصاقات والتصلبات الدائمة",
+        "بناء القوة والثقة في العودة للحياة الطبيعية",
+        "تسريع عملية الالتئام الوظيفي بشكل آمن",
+        "تلقي التوجيه الصحيح حول الأنشطة المسموحة والممنوعة"
       ],
       "idealFor": [
-        "Patients who have undergone or are preparing for total hip or knee arthroplasty",
-        "Those wanting to maximize their surgical outcome"
+        "مرضى استبدال الركبة أو الورك الكامل",
+        "الأفراد بعد عمليات الرباط الصليبي (ACL) أو الغضاريف",
+        "أي شخص أجرى جراحة في العمود الفقري (تحلل الأقراص أو دمج الفقرات)",
+        "بعد عمليات الكسور المعقدة والتثبيت الداخلي"
       ],
       "process": [
-        "Post-operative baseline assessment",
-        "Swelling control & muscle reactivation",
-        "Gait pattern retraining",
-        "Progressive strength & independence building"
+        "مراجعة تقرير الجراحة والبروتوكول الطبي",
+        "السيطرة على التورم وحماية الجرح",
+        "البدء في استعادة نطاق الحركة السلبي والنشط",
+        "برنامج تقوية تدريجي للعودة للوظائف الكاملة"
       ],
-      "whatToExpect": "We begin with immediate swelling control and muscular reactivation, then systematically identify and correct the compensatory patterns built up over years of arthritis. Discharge is based on true capability, not timelines.",
-      "outcome": "Completely resolved muscular inhibition, corrected lifelong compensatory habits, and discharge based on true movement capability and independence."
+      "whatToExpect": "نحن نتبع بروتوكولات جراحية دقيقة مع لمسة علاجية شخصية. سنساعدك في كل خطوة، من اليوم الأول الذي تحاول فيه التحرك، وحتى اليوم الذي تعود فيه لممارسة أنشطتك المفضلة، مع مراعاة كاملة لمراحل التئام نسيجك.",
+      "outcome": "استعادة كاملة تقريباً للحركة والقوة، وتلاشي مظاهر العجز الجسدي، والوصول للنتائج المثلى للجراحة التي خضعت لها."
     },
     "dryNeedling": {
-      "title": "Dry Needling",
-      "metaTitle": "Dry Needling Therapy",
-      "metaDescription": "Precision dry needling to reset the nervous system and release chronic muscle guarding from the inside out.",
-      "heroSubtitle": "Resetting the nervous system from the inside out.",
-      "overview": "When tissues are injured or overloaded, muscles enter a state of chronic guarding, developing trigger points. The nervous system becomes hyper-sensitized. Dry needling inserts fine solid filament needles directly into overactive muscles, creating a localized micro-lesion that triggers increased blood flow and forces a neurophysiological 'reset.'",
-      "duration": "30–45 min",
-      "frequency": "1–2× per week",
+      "title": "الإبر الجافة (Dry Needling)",
+      "metaTitle": "العلاج بالإبر الجافة للنقاط الزنادية",
+      "metaDescription": "تخلص من شد العضلات المزمن باستخدام تقنية الإبر الجافة. علاج فعال للنقاط الزنادية والألم العضلي اللفافي.",
+      "heroSubtitle": "استهداف عميق للشد العضلي ليسكن الألم من الداخل.",
+      "overview": "الإبر الجافة هي تقنية علاجية حديثة تستخدم إبرًا رفيعة جدًا لاختراق الجلد واستهداف العضلات الأساسية (النقاط الزنادية) والأنسجة الضامة. هذه النقاط هي عقد عضلية مشدودة تسبب الألم وتحد من الحركة؛ الإبرة تساعد في \"إعادة ضبط\" العضلة وتحريرها فوراً.",
+      "duration": "15-30 دقيقة (كجزء من الجلسة)",
+      "frequency": "مرة واحدة أسبوعياً أو حسب الحاجة",
       "symptoms": [
-        "Stubborn, restricted movement that stretching cannot fix",
-        "Hard, overactive muscle knots that refer pain to other areas",
-        "Sensitized nervous systems where even light pressure feels painful",
-        "Chronic tension patterns unresponsive to standard massage"
+        "عقد عضلية مؤلمة عند اللمس (النقاط الزنادية)",
+        "ألم عضلي مزمن في الرقبة أو الظهر أو الأكتاف",
+        "تصلب يمنعك من التمدد بشكل كامل",
+        "ألم مشع أو صداع سببه شد عضلي خلف الرأس"
       ],
       "clinicalApproach": [
-        "Precise Targeting: Identifying specific trigger points and overactive muscle groups",
-        "Neurophysiological Intervention: Fine needle insertion to create a controlled reset response",
-        "Integration with Active Rehab: Not a standalone cure — part of a broader rehabilitation plan",
-        "Progressive Desensitization: Systematic reduction of nervous system hypersensitivity"
+        "تحديد الموقع: فحص دقيق للبحث عن العقد العضلية المسببة للألم",
+        "التطبيق الدقيق: إدخال الإبرة المعقمة في النقطة الزنادية لإحداث رد فعل \"ارتباك\" محلي",
+        "إعادة التوازن: تحفيز تدفق الدم وإطلاق المواد الكيميائية الطبيعية المسكنة في منطقة الألم",
+        "الدمج الوظيفي: يتبعها عادة تمارين إطالة وحركة لاستغلال الارتخاء العضلي الحادث"
       ],
       "benefits": [
-        "Normalized muscle tone",
-        "Instantly modulated pain sensitivity",
-        "Mechanical environment ready for strengthening",
-        "Rapid neurophysiological reset",
-        "Breaking chronic tension cycles"
+        "ارتخاء عضلي سريع وعميق جداً لا تصله الأيدي أحياناً",
+        "تحسين فوري في نطاق الحركة والمرونة",
+        "تقليل الألم الموضعي والمشع",
+        "تسريع عملية التعافي من الإصابات الرياضية المزمنة"
       ],
       "idealFor": [
-        "Patients with chronic tension patterns",
-        "Those unresponsive to standard manual therapy",
-        "Athletes needing rapid neurophysiological reset post-injury"
+        "الأفراد المصابون بآلام الرقبة والظهر الناتجة عن الإجهاد",
+        "الرياضيون الذين يعانون من تشنجات عضلية مستمرة",
+        "من يعانون من \"عقد الكتف\" المستعصية",
+        "المرضى الذين لم يستجيبوا جيداً للمساج التقليدي وحده"
       ],
       "process": [
-        "Trigger point identification",
-        "Targeted needle insertion",
-        "Neurophysiological reset response",
-        "Active rehabilitation integration"
+        "فحص يدوي لتحديد النقاط النشطة",
+        "تعقيم المنطقة والتطبيق الاحترافي للإبر",
+        "مراقبة استجابة الجهاز العصبي والعضلي",
+        "تمارين الإطالة المكملة بعد الجلسة"
       ],
-      "whatToExpect": "We identify specific trigger points and overactive muscle groups, then use fine filament needles to create a precise neurophysiological reset. This is always integrated into your broader active rehabilitation plan.",
-      "outcome": "Normalized muscle tone, instantly modulated pain sensitivity, and a mechanical environment ready for active strengthening."
+      "whatToExpect": "قد تشعر بوخز خفيف أو \"ارتعاش\" سريع في العضلة عند دخول الإبرة، وهو علامة جيدة على استجابة العضلة. عادة ما يتبع العلاج شعور بالارتخاء والراحة، مع احتمال وجود بعض الوجع العضلي الخفيف في اليوم التالي يشبه وجع النادي الرياضي.",
+      "outcome": "عضلات مسترخية، تنفس أفضل للأنسجة، وتخلص جذري من العقد المؤلمة التي كانت تقيد حركاتك اليومية."
     },
     "kinesiologyTaping": {
-      "title": "Kinesiology Taping",
-      "metaTitle": "Kinesiology Taping Therapy",
-      "metaDescription": "Support that moves with you. Mechanical offloading and sensory feedback without restricting freedom of movement.",
-      "heroSubtitle": "Support that moves with you.",
-      "overview": "Following acute trauma or neuromuscular disruption, the brain loses clear sensory awareness of a joint. Elastic kinesiology tape applied with specific tension slightly lifts the skin, aiding lymphatic drainage, altering sensory input to reduce pain perception, and providing proprioceptive cues to facilitate proper muscle firing.",
-      "duration": "15–20 min (as adjunct)",
-      "frequency": "As needed during rehab",
+      "title": "العلاج بالشريط اللاصق الحركي",
+      "metaTitle": "العلاج بالشريط اللاصق الحركي والدعم الوظيفي",
+      "metaDescription": "دعم عضلاتك ومفاصلك بشريط حركي صمم لتحسين الدورة الدموية وتقليل الألم مع الحفاظ على كامل حريتك في الحركة.",
+      "heroSubtitle": "دعم ذكي يتحرك معك، ولا يعيقك.",
+      "overview": "الشريط الحركي (Kinesiology Tape) هو شريط قطني مرن مصمم خصيصًا ليحاكي مرونة الجلد البشري. بفضل الطريقة الاحترافية لوضعه، فإنه يرفع الجلد جزيئياً مما يحسن تدفق السوائل اللمفاوية، ويقلل الضغط على مستقبلات الألم، ويوفر دعمًا وظيفيًا للعضلات الضعيفة دون الحد من نطاق الحركة.",
+      "duration": "10–15 دقيقة (كجزء من الجلسة)",
+      "frequency": "يبقى على الجلد من 3 إلى 5 أيام",
       "symptoms": [
-        "Acute, localized swelling post-injury",
-        "Tendon sensitivity during movement",
-        "A lack of body awareness or 'clumsiness' in a specific joint during recovery",
-        "Need for support without restricting movement"
+        "تورم بسيط أو كدمات بعد الإصابة",
+        "إحساس بعدم الاستقرار في المفصل",
+        "تعب عضلي متكرر أثناء ممارسة الرياضة",
+        "ألم خفيف مستمر يحتاج لدعم وتحفيز حسي"
       ],
       "clinicalApproach": [
-        "Clinical Assessment: Identifying the specific mechanical and sensory deficit",
-        "Precision Application: Tape applied with calculated tension and direction for optimal effect",
-        "Lymphatic Facilitation: Skin lifting to accelerate swelling reduction",
-        "Proprioceptive Enhancement: Sensory feedback to improve joint awareness during rehab"
+        "التقييم الحركي: تحديد ما إذا كانت العضلة تحتاج إلى \"تسهيل\" (تنشيط) أو \"تثبيط\" (ارتخاء)",
+        "الرفع المجهري: وضع الشريط لخلق مساحة تحت الجلد لتقليل الضغط وتخفيف التورم",
+        "تثبيت المفصل: استخدام الشريط لإرسال إشارات حسية للجهاز العصبي لتحسين وضعية المفصل",
+        "تحسين التوعية الحسية: مساعدة الجسم على إدراك موقعه في الفراغ (Proprioception)"
       ],
       "benefits": [
-        "Reduced pain perception",
-        "Accelerated swelling reduction",
-        "Improved mechanical confidence",
-        "Proprioceptive feedback during recovery",
-        "Unrestricted movement support"
+        "تقليل التورم والالتهاب بشكل أسرع",
+        "توفير دعم واستقرار للمفاصل دون تيبس",
+        "تخفيف الألم أثناء ممارسة الأنشطة اليومية أو الرياضية",
+        "تحسين الأداء العضلي ومنع الإرهاق المبكر"
       ],
       "idealFor": [
-        "Post-injury patients requiring early-phase support",
-        "Athletes needing proprioceptive feedback during return-to-sport transition"
+        "العداؤون والرياضيون الباحثون عن دعم إضافي",
+        "الأفراد الذين يعانون من إصابات طفيفة ويحتاجون لإكمال أعمالهم",
+        "المرضى الذين يعانون من تورم لمفاوي أو كدمات",
+        "الأشخاص الذين يحتاجون لتعديل وضعية الوقوف أو الجلوس حسياً"
       ],
       "process": [
-        "Deficit identification",
-        "Precision tape application",
-        "Movement assessment with tape",
-        "Integration into rehabilitation sessions"
+        "تنظيف الجلد لضمان الالتصاق",
+        "تطبيق الشريط بتكنيك مخصص (حسب الحالة)",
+        "إعطاء تعليمات حول كيفية العناية بالشريط",
+        "إزالته أو استبداله بعد عدة أيام حسب مراحل العلاج"
       ],
-      "whatToExpect": "Kinesiology taping is a clinical adjunct applied during your rehabilitation sessions. We apply tape with specific tension and direction to create a mechanical environment that allows you to tolerate loading during early-phase rehabilitation.",
-      "outcome": "Reduced pain perception, accelerated swelling reduction, and improved mechanical confidence during movement therapy."
+      "whatToExpect": "ستشعر بدعم خفيف ولطيف في المنطقة المصابة. بخلاف الأربطة الضاغطة التقليدية، يمكنك الاستحمام وممارسة الرياضة والنوم بهذا الشريط دون الشعور بأنه يعيق حركتك. إنه يعمل كـ \"دعم خفي\" لجسمك على مدار الساعة.",
+      "outcome": "تقليل الألم والتورم، وزيادة الثقة في قدرة جسمك على الحركة، مع استمرار مفعول العلاج حتى بعد خروجك من العيادة."
     },
     "neurodynamics": {
-      "title": "Neurodynamics",
-      "metaTitle": "Neurodynamic Therapy",
-      "metaDescription": "Restoring nerve mobility through precise, graded mobilizations. When nerves get trapped, traditional stretching makes it worse.",
-      "heroSubtitle": "Nerves are designed to slide and glide.",
-      "overview": "Conditions like sciatica or cervical radiculopathy are issues of nerve mobility. Due to injury, inflammation, sustained posture, or post-surgical scar tissue, a nerve can lose its mechanical mobility. When a trapped nerve is stretched, it sends alarm signals and forces surrounding muscles into severe protective guarding.",
-      "duration": "40–50 min",
-      "frequency": "2× per week",
+      "title": "العلاج الحركي العصبي (Neurodynamics)",
+      "metaTitle": "علاج انضغاط وتوتر الأعصاب المحيطية",
+      "metaDescription": "علاج متخصص لتحسين حركة الأعصاب وتقليل الألم العصبي. تخلص من الوخز والتنميل من خلال تقنيات التحريك العصبي المتطورة.",
+      "heroSubtitle": "عندما تفقد الأعصاب مرونتها، نحن نعيد لها القدرة على \"الانزلاق\" بسلاسة.",
+      "overview": "الأعصاب ليست مجرد أسلاك كهربائية؛ بل هي أنسجة حية تحتاج إلى التحرك والانزلاق والتمدد داخل جسمك مع كل حركة تقوم بها. عند حدوث ضيق أو التصاق أو التهاب، \"يعلق\" العصب، مما يسبب الألم أو التنميل أو الوخز. العلاج الحركي العصبي يركز على استعادة هذه الحركة الفيزيائية للأعصاب لتخفيف الضغط عنها.",
+      "duration": "45 دقيقة",
+      "frequency": "1-2 مرة أسبوعياً",
       "symptoms": [
-        "Tingling, numbness, or burning sensations traveling down an arm or leg",
-        "Heavy, dead-feeling limbs",
-        "Sharp, radiating pain triggered by specific movements",
-        "Severe protective muscle spasms"
+        "تنميل أو وخز ينتشر أسفل الذراع أو الساق",
+        "ألم \"كهربائي\" حاد عند تمديد الجسم في وضعيات معينة",
+        "ضعف مفاجئ في اليد أو القدم لا تسببه العضلات وحدها",
+        "إحساس بالشد \"خلف الساق\" لا يختفي بإطالة العضلات التقليدية"
       ],
       "clinicalApproach": [
-        "Neural Tension Assessment: Identifying exactly where the nerve is mechanically restricted",
-        "Graded Mobilizations: Precise, direction-sensitive techniques applied to the nerve and surrounding tissue",
-        "Nerve Glides/Flossing: Restoring mechanical freedom without triggering alarm responses",
-        "Guarding Pattern Resolution: Breaking the cycle of protective muscle spasm"
+        "اختبارات التوتر العصبي: وضع الجسم في زوايا محددة لاختبار مدى مرونة الجهاز العصبي",
+        "تقنيات الانزلاق (Sliding): تحريك العصب بلطف ذهاباً وإياباً دون وضع ضغط مفرط عليه",
+        "تقنيات الشد (Tensioning): للمراحل المتقدمة، لزيادة قدرة العصب على تحمل التمدد",
+        "تحرير الأنسجة المحيطة: معالجة العضلات التي قد تكون تضغط على مسار العصب"
       ],
       "benefits": [
-        "Restored neural mechanical mobility",
-        "Reduced neural sensitivity",
-        "Broken protective guarding cycle",
-        "Resolved radiating symptoms",
-        "Permanent symptom relief"
+        "تقليل جذري في مشاعر التنميل والوخز والألم الكهربائي",
+        "تحسين المرونة الكلية التي لا تتحسن بتمارين الإطالة العادية",
+        "استعادة القوة العصبية العضلية للأطراف",
+        "تجنب اللجوء للجراحات العصبية في الحالات المتوسطة"
       ],
       "idealFor": [
-        "Patients experiencing sciatica or cervical radiculopathy",
-        "Peripheral nerve irritation",
-        "Post-surgical scar tissue restricting nerve mobility"
+        "مرضى عرق النسا المزمن وانزلاق الأقراص",
+        "الأشخاص المصابون بمتلازمة النفق الرسغي (Carpal Tunnel)",
+        "الذين يعانون من تنميل الرقبة الذي يمتد للأصابع",
+        "الرياضيون المصابون بإصابات عصبية محيطية"
       ],
       "process": [
-        "Neural tension testing",
-        "Nerve pathway mapping",
-        "Graded glide/flossing protocols",
-        "Active mobility maintenance program"
+        "تقييم عصبي ميكانيكي دقيق",
+        "تحديد المناطق التي \"يعلق\" فيها العصب",
+        "تطبيق حركات \"الخيط العصبي\" (Nerve Flossing) اللطيفة",
+        "برنامج منزلي لضمان استمرارية حركة العصب"
       ],
-      "whatToExpect": "We use precise, graded, direction-sensitive mobilizations applied directly to the nerve and its surrounding tissue to restore mechanical freedom without triggering protective alarm responses.",
-      "outcome": "Restored mechanical mobility of the nervous system, reduced neural sensitivity, and a permanent break in the cycle of protective muscle guarding."
+      "whatToExpect": "هذا العلاج يحتاج للدقة واللطف. لا نقوم بشد العصب بقوة لأن ذلك قد يزعجه، بل نقوم بـ \"تحريكه\" لجعله ينزلق بمرونة أكبر. ستشعر بتخفيف تدريجي في الأعراض المزعجة مع تحسن قدرة جسمك على التمدد.",
+      "outcome": "جهاز عصبي مرن ومنطلق، ونهاية لمشاعر التنميل والوخز المزعجة، وحرية كاملة في حركة أطرافك دون خوف من \"صعقات\" الألم."
     },
     "injuryPrevention": {
-      "title": "Injury Prevention",
-      "metaTitle": "Injury Prevention & Movement Screening",
-      "metaDescription": "Identify silent compensations before tissue failure. The most effective time to treat an injury is before it happens.",
-      "heroSubtitle": "The most effective time to treat an injury is before the tissue fails.",
-      "overview": "Injuries rarely happen out of nowhere. They are the climax of training volume exceeding tissue capacity, paired with poor movement mechanics. The body creates compensatory patterns to achieve tasks, but these compensations load the wrong tissues. Without adequate recovery, structural failure is inevitable.",
-      "duration": "60 min",
-      "frequency": "Pre-season / quarterly",
+      "title": "الوقاية من الإصابات والأداء الأمثل",
+      "metaTitle": "الوقاية من الإصابات الرياضية وتطوير الأداء",
+      "metaDescription": "لا تنتظر حدوث الإصابة. برنامج وقائي مخصص لتحديد نقاط الضعف البيوميكانيكية وتعزيز مرونة جسمك وأدائه الرياضي.",
+      "heroSubtitle": "أفضل طريقة لعلاج الإصابة هي منع حدوثها في المقام الأول.",
+      "overview": "الوقاية من الإصابات ليست مجرد تمارين إطالة؛ بل هي تحليل علمي لكيفية تحرك جسمك تحت الضغط. نحن نحدد \"الحلقات الضعيفة\" في سلاسلك الحركية قبل أن تؤدي إلى تمزق أو التواء، مما يسمح لك بالتدريب بقوة أكبر ولفترة أطول وبثقة كاملة.",
+      "duration": "45–60 دقيقة",
+      "frequency": "مرة واحدة أسبوعياً أو نصف شهرية",
       "symptoms": [
-        "Movement asymmetry — one side feels vastly different than the other",
-        "Unexplained tightness or load intolerance that comes and goes",
-        "A history of recurring, minor 'niggles' that interrupt training",
-        "Performance plateaus despite increased training effort"
+        "إحساس بتعب عضلي متكرر في نفس المنطقة",
+        "تاريخ سابق من الإصابات المتكررة في نفس المفصل",
+        "ضعف في التوازن أو التحكم الحركي أثناء التمارين المعقدة",
+        "الرغبة في زيادة كثافة التدريب دون المخاطرة بالإصابة"
       ],
       "clinicalApproach": [
-        "Comprehensive Screening: Sport-specific movement and load assessment",
-        "Risk Profiling: Developing an actionable, individual risk profile based on your biomechanics",
-        "Targeted Correction: Programming exact corrective exercises to address deficits",
-        "Load Optimization: Ensuring training volume matches tissue capacity"
+        "فحص الحركة الوظيفية (FMS): تحديد قيود الحركة وعدم التماثل في الجسم",
+        "تحليل التحميل: تقييم ما إذا كان برنامجك التدريبي الحالي يتجاوز قدرة أنسجتك",
+        "التقوية التصحيحية: تمارين مستهدفة لمعالجة نقاط الضعف المحددة",
+        "تحسين التكنيك: العمل على ميكانيكا الجري أو القفز أو الرفع الخاصة برياضتك"
       ],
       "benefits": [
-        "Identification of physical deficits",
-        "Optimized recovery strategy",
-        "Uninterrupted high-level performance",
-        "Reduced injury recurrence",
-        "Data-driven training adjustments"
+        "تقليل خطر التوقف عن الرياضة بسبب الإصابات المفاجئة",
+        "تحسين كفاءة الحركة مما يؤدي لأداء رياضي أفضل",
+        "زيادة طول العمر الرياضي والاستمرارية المنافسة",
+        "فهم أعمق لنقاط القوة والضعف في جسمك"
       ],
       "idealFor": [
-        "Pre-season athletes",
-        "Recreational sport participants with recurring injuries",
-        "Corporate professionals with high physical expectations"
+        "الرياضيون المحترفون والهواة في جميع الرياضات",
+        "العداؤون الذين يتحضرون للماراثونات أو السباقات الطويلة",
+        "مرتادو الصالات الرياضية الذين يرغبون في رفع أوزان أثقل بأمان",
+        "المراهقون الرياضيون في مرحلة النمو السريع"
       ],
       "process": [
-        "Sport-specific movement screening",
-        "Biomechanical risk profiling",
-        "Corrective exercise programming",
-        "Training load optimization"
+        "تقييم شامل للمخاطر وتاريخ الإصابات",
+        "تحليل دقيق لأنماط الحركة المخصصة للرياضة",
+        "تصميم برنامج وقائي مدمج في تدريبك الحالي",
+        "متابعة دورية لتعديل الأحمال وتطوير الأداء"
       ],
-      "whatToExpect": "A comprehensive sport-specific screening that identifies asymmetries and compensatory patterns. We develop an actionable risk profile and program exact corrective exercises before deficits result in structural consequences.",
-      "outcome": "Identification and correction of physical deficits, an optimized recovery strategy, and the ability to sustain high-level performance uninterrupted by preventable injuries."
+      "whatToExpect": "سنجري فحصاً شاملاً يتجاوز مجرد مكان الألم. سننظر في كيفية تفاعل قدميك وركبتيك ووركك وجذعك معاً. ستحصل على \"خارطة طريق\" جسدية تجعلك أكثر صلابة وقدرة على تحمل ضغوط رياضتك.",
+      "outcome": "جسم أكثر مرونة وقوة، وانخفاض ملحوظ في احتمالية الإصابات، وثقة ذهنية وجسدية كاملة أثناء التدريب والمنافسة."
     },
     "returnToPlay": {
-      "title": "Return to Play & Performance",
-      "metaTitle": "Return to Play & Athletic Performance",
-      "metaDescription": "Clinical recovery is not athletic readiness. Objective testing to bridge the gap between 'healed' and 'ready.'",
-      "heroSubtitle": "Clinical recovery is not athletic readiness.",
-      "overview": "The gap between 'healed' and 'ready' is where most reinjuries occur. Premature clearance is often based on pain resolution or elapsed time. Under the stress of fatigue and high-speed demands, the brain reverts to compensatory strategies if true neuromuscular control hasn't been objectively rebuilt and tested.",
-      "duration": "60–75 min",
-      "frequency": "2–3× per week",
+      "title": "العودة إلى اللعب (Return to Play)",
+      "metaTitle": "اختبارات وبرامج العودة للملاعب بعد الإصابة",
+      "metaDescription": "انتقل من مرحلة العلاج السريري إلى ذروة الأداء الميداني. اختبارات جاهزية رياضية مبنية على البيانات لضمان عودة آمنة وقوية.",
+      "heroSubtitle": "الجسر بين العيادة والملعب. لا تعود فقط، بل عد أقوى.",
+      "overview": "العودة إلى اللعب هي المرحلة النهائية والأكثر حرجاً في التعافي الرياضي. هي تتجاوز مجرد غياب الألم؛ بل تتعلق بالقدرة على تحمل الأحمال الانفجارية، وتغيير الاتجاه السريع، والالتحام الجسدي. نحن نستخدم اختبارات موضوعية للتأكد من أن جسمك جاهز تماماً لمتطلبات رياضتك.",
+      "duration": "60 دقيقة",
+      "frequency": "2-3 مرات أسبوعياً",
       "symptoms": [
-        "Hesitation or lack of trust in the injured joint",
-        "Compensatory strategies appearing only during sport-specific movement or under high fatigue",
-        "Measurable strength asymmetries between injured and uninjured sides",
-        "Psychological fear of reinjury"
+        "الخوف الذهني من إعادة الإصابة عند اللعب",
+        "نقص في السرعة أو القوة مقارنة بمستواك قبل الإصابة",
+        "عدم التماثل الملحوظ بين الطرف المصاب والسليم في القوة",
+        "أوجاع خفيفة تظهر فقط عند ممارسة النشاط الرياضي عالي الكثافة"
       ],
       "clinicalApproach": [
-        "Objective Testing: Rigorous testing of strength and load tolerance using hard data",
-        "Fatigue Testing: Neuromuscular testing under progressive fatigue to expose hidden compensations",
-        "Sequenced Loading: Gradual, planned introduction of sport-specific loading",
-        "Psychological Readiness: Ensuring mental confidence matches physical capability"
+        "اختبارات القوة الموضوعية: قياس دقيق للتأكد من استعادة قوة الطرف المصاب بنسبة 90% على الأقل",
+        "تحليل الحركة الانفجارية: تقييم القفز والهبوط وتغيير الاتجاه (Agility)",
+        "محاكاة ظروف المباراة: إدخال تمارين تحاكي الضغوط الفنية والبدنية للرياضة",
+        "بروتوكولات التدرج في الحمل: خطة واضحة للانتقال من التدريب الفردي إلى الجماعي ثم المنافسة"
       ],
       "benefits": [
-        "Movement quality under fatigue",
-        "Matched physical and psychological confidence",
-        "Safe return to competition",
-        "Objective clearance criteria",
-        "Reinjury prevention"
+        "تقليل فرصة إعادة الإصابة (Re-injury) بشكل كبير",
+        "استعادة الثقة النفسية والبدنية الكاملة في الميدان",
+        "ضمان الجاهزية البدنية لمواكبة ريتم المنافسة",
+        "تحسين الميكانيكا الحيوية للوقاية من إصابات تعويضية جديدة"
       ],
       "idealFor": [
-        "Post-injury or post-surgery athletes",
-        "Active professionals",
-        "Anyone experiencing setbacks when trying to return to sport independently"
+        "لاعبي كرة القدم والسلة والطائرة بعد إصابات الركبة والكاحل",
+        "العدائون العائدون بعد إصابات الإجهاد أو تمزق العضلات الخلفية",
+        "أي رياضي أكمل مرحلة العلاج الطبيعي الأساسية ويريد العودة للمنافسة"
       ],
       "process": [
-        "Objective strength & load testing",
-        "Progressive fatigue stress testing",
-        "Sport-specific sequenced loading",
-        "Psychological readiness assessment"
+        "بطارية اختبارات الجاهزية الوظيفية والبدنية",
+        "تطوير القوة الانفجارية والتحمل الخاص بالرياضة",
+        "تدريبات تغيير الاتجاه والتفاعل الحركي",
+        "التوجيه النهائي للمدربين واللاعب حول حجم المشاركة الأولي"
       ],
-      "whatToExpect": "We test your strength and neuromuscular control under progressive fatigue — not just at rest. Sport-specific loading is introduced gradually with objective clearance criteria at every stage.",
-      "outcome": "Movement quality under fatigue indistinguishable from your rested state, matched physical and psychological confidence, and a safe, dominant return to competition."
+      "whatToExpect": "ستكون الجلسات مكثفة وتحاكي بيئة تدريبك الرياضي. سنقوم بقياس كل شيء، من قوة قفزك إلى سرعة رد فعلك، لنعطيك وللمدربين \"الضوء الأخضر\" المبني على الأرقام وليس فقط على الشعور.",
+      "outcome": "عودة ناجحة وآمنة تماماً للمنافسة، مع جسم مهيأ للأحمال العالية وعقل خالٍ من الخوف من الإصابة."
     },
     "womensHealth": {
-      "title": "Women's Health Physiotherapy",
-      "metaTitle": "Women's Health Physiotherapy",
-      "metaDescription": "Specialized care for pelvic floor dysfunction and hormonal musculoskeletal changes with dignity and clinical precision.",
-      "heroSubtitle": "Distinct biomechanical and hormonal demands require specialized care.",
-      "overview": "Women's bodies experience unique structural stresses due to distinct hormonal biology, anatomical load demands, pregnancy, and gynecological surgical trauma. When the pelvic floor—the core's foundation—loses its ability to stabilize or transfer load, symptoms arise that affect daily life, exercise capacity, and overall confidence.",
-      "duration": "45–60 min",
-      "frequency": "2× per week",
+      "title": "العلاج الطبيعي لصحة المرأة",
+      "metaTitle": "العلاج الطبيعي المتخصص لصحة المرأة وقاع الحوض",
+      "metaDescription": "رعاية رحيمة وعلمية لمشاكل قاع الحوض، آلام الحوض المزمنة، وصحة المرأة في مختلف مراحل العمر.",
+      "heroSubtitle": "تمكين المرأة من خلال رعاية متخصصة، سرية، ومبنية على الفهم العميق.",
+      "overview": "صحة المرأة تتطلب نهجاً خاصاً وتقديرًا للتغيرات البيولوجية والفسيولوجية الفريدة. يركز هذا التخصص على علاج مشاكل عضلات قاع الحوض، والآلام المرتبطة بالدورة الشهرية أو انقطاع الطمث، والمشاكل البولية، لضمان استعادة الراحة والثقة في كل مراحل الحياة.",
+      "duration": "45–60 دقيقة",
+      "frequency": "مرة واحدة أسبوعياً أو حسب الحالة",
       "symptoms": [
-        "Urinary leakage during coughing, sneezing, or exercising",
-        "Feelings of pelvic urgency or prolapse symptoms",
-        "Core instability and cycle-related joint laxity",
-        "Pain or sensitivity around gynecological surgical scars"
+        "ضعف في عضلات قاع الحوض (سلس بولي ناتج عن الإجهاد)",
+        "ألم الحوض المزمن أو ألم مع الأنشطة اليومية",
+        "هبوط أعضاء الحوض البسيط (Prolapse)",
+        "آلام الظهر المرتبطة بالتغيرات الهرمونية أو الدورة الشهرية",
+        "الانفصال العضلي بعد الولادة (Diastasis Recti)"
       ],
       "clinicalApproach": [
-        "Targeted Stabilization: Precise assessment and strengthening of the pelvic floor and deep core",
-        "Functional Management: Addressing diastasis recti through load transfer training",
-        "Scar Management: Mobilization for C-section and hysterectomy recovery",
-        "Capacity Building: A structured, safe return to high-impact sport and lifting"
+        "التقييم الشامل والخاص: فحص خارجي (وأحياناً تقييم متخصص) لعضلات الحوض والجذع",
+        "إعادة تأهيل قاع الحوض: تمارين كيجل المطورة وتقنيات الاسترخاء الموجهة",
+        "العلاج اليدوي اللطيف: تحرير الشد في منطقة الحوض وأسفل الظهر",
+        "التثقيف الصحي: نصائح حول العادات اليومية التي تؤثر على صحة الحوض والمثانة"
       ],
       "benefits": [
-        "Restored load transfer capacity",
-        "Resolution of pelvic floor symptoms",
-        "Confident return to physical performance",
-        "Scar tissue resolution",
-        "Core integrity restoration"
+        "تحسن ملحوظ في السيطرة على المثانة والأمعاء",
+        "تقليل الآلام المزمنة في منطقة الحوض والظهر",
+        "استعادة القوة والثقة في عضلات البطن وقاع الحوض",
+        "تحسين الجودة العامة للحياة والنشاط البدني دون إحراج"
       ],
       "idealFor": [
-        "Active professionals",
-        "Perimenopausal women experiencing joint/pelvic changes",
-        "Patients recovering from gynecological procedures"
+        "السيدات اللواتي يعانين من مشاكل في التحكم بالبول عند السعال أو القفز",
+        "من يعانون من آلام الحوض المزمنة أو الانتباذ البطاني الرحمي (Endometriosis)",
+        "النساء في مرحلة ما قبل وما بعد انقطاع الطمث",
+        "أي امرأة ترغب في تقوية قاع الحوض بشكل وقائي"
       ],
       "process": [
-        "Pelvic floor & deep core assessment",
-        "Load transfer capacity testing",
-        "Targeted stabilization program",
-        "Structured return-to-activity protocol"
+        "استشارة خاصة ومفصلة في بيئة مريحة",
+        "تقييم وظائف عضلات الحوض والبطن",
+        "تصميم خطة علاجية فردية تشمل تمارين منزلية",
+        "مراجعة دورية لمدى تحسن الأعراض الوظيفية"
       ],
-      "whatToExpect": "We perform a focused assessment of your pelvic floor and deep core mechanics. Treatment addresses load transfer deficits with dignity and clinical precision, progressing toward confident return to full physical performance.",
-      "outcome": "Completely restored load transfer capacity, resolution of pelvic floor symptoms, and a confident, structured return to full physical performance without fear of leakage or pain."
+      "whatToExpect": "نحن نتفهم حساسية هذه المواضيع ونوفر بيئة آمنة وسرية تماماً. العلاج يركز على التمكين الذاتي وفهم كيفية عمل عضلات الحوض مع كامل الجسم لاستعادة التوازن الطبيعي.",
+      "outcome": "استعادة السيطرة الكاملة، والقضاء على الألم المزعج، والشعور بالقوة والثقة في أنوثتك وحركتك اليومية."
     },
     "prenatalPostnatal": {
-      "title": "Pre & Postnatal Physiotherapy",
-      "metaTitle": "Pre & Postnatal Physiotherapy",
-      "metaDescription": "Supporting your body through its most profound physical transformation. Strategies to carry comfortably and recover strongly.",
-      "heroSubtitle": "Supporting your body through its most profound transformation.",
-      "overview": "Pregnancy rapidly shifts the body's center of gravity. Hormones like relaxin increase joint laxity, while the growing baby places immense downward load on the pelvic floor and outward pressure on the abdominal wall. Delivery involves trauma that requires deliberate, progressive rehabilitation to restore normal core mechanics.",
-      "duration": "45–60 min",
-      "frequency": "1–2× per week",
+      "title": "رعاية الحوامل وبعد الولادة",
+      "metaTitle": "العلاج الطبيعي للحوامل وبعد الولادة",
+      "metaDescription": "دعم جسدك خلال رحلة الأمومة. علاج آلام الظهر أثناء الحمل وإعادة التأهيل الآمن بعد الولادة لاستعادة القوة والنشاط.",
+      "heroSubtitle": "رعاية الأمومة التي تهتم بكِ، بينما تهتمين بطفلكِ.",
+      "overview": "يمر جسم المرأة بتغيرات هائلة أثناء الحمل وبعد الولادة، مما يضع ضغوطاً فريدة على العمود الفقري والحوض والعضلات. نحن نوفر رعاية متخصصة لتخفيف آلام الحمل وتهيئة الجسم للولادة، بالإضافة إلى برامج إعادة تأهيل بعد الولادة لمساعدتك على استعادة قوتك بأمان وبطريقة تدعم متطلبات الأمومة الجديدة.",
+      "duration": "45–60 دقيقة",
+      "frequency": "1-2 مرة أسبوعياً",
       "symptoms": [
-        "Heavy pelvic pressure or urinary leakage",
-        "Visible abdominal doming or separation (Diastasis Recti)",
-        "Wrist pain (De Quervain's) from repetitive infant feeding/lifting",
-        "Persistent back, rib, pubic symphysis, or sacroiliac pain"
+        "ألم أسفل الظهر وعرق النسا المرتبط بالحمل",
+        "ألم الحوض والارتفاق العاني (SPD)",
+        "تورم الساقين والقدمين وإجهاد الجسم العام",
+        "ضعف عضلات البطن (الانفصال العضلي) بعد الولادة",
+        "آلام الرقبة والظهر الناتجة عن الرضاعة وحمل الطفل"
       ],
       "clinicalApproach": [
-        "Trimester Calibration: Assessment and exercise guidance tailored to specific pregnancy stage",
-        "Active Pain Management: Strategies to manage joint pain while pregnant",
-        "Postnatal Rehab: Comprehensive recovery including scar mobilization and progressive return to loading",
-        "Return to Exercise: Safe, objective return to running and lifting post-partum"
+        "تمارين آمنة للحمل: برامج مصممة لتقوية الجسم دون إجهاد الجنين",
+        "إعادة تأهيل ما بعد الولادة: بروتوكول تدريجي لإغلاق الانفصال العضلي وتقوية قاع الحوض",
+        "العلاج اليدوي المخصص: تقنيات مساج وتعبئة آمنة للحوامل لتخفيف الشد",
+        "بيئة العمل للأمهات: تعليم الأوضاع الصحيحة للرضاعة وحمل الطفل لتجنب الإصابات"
       ],
       "benefits": [
-        "Supported biomechanics throughout pregnancy",
-        "Restored abdominal wall function",
-        "Safe return to running & lifting",
-        "Pain-managed pregnancy experience",
-        "Accelerated postnatal recovery"
+        "تجربة حمل أكثر راحة وأقل ألماً",
+        "تحسين فرص الولادة السهلة من خلال مرونة الحوض",
+        "تعافي أسرع للقوام والقوة بعد الولادة",
+        "تقليل مخاطر الإصابة بآلام الظهر المزمنة بعد الأمومة"
       ],
       "idealFor": [
-        "Pregnant women navigating bodily changes who wish to stay active",
-        "Postpartum women looking to safely recover core function and return to exercise"
+        "الحوامل في جميع الأشهر اللواتي يعانين من أوجاع الظهر أو الحوض",
+        "الأمهات الجدد اللواتي يرغبن في العودة للرياضة بأمان",
+        "من يعانين من انفصال واضح في عضلات البطن بعد الولادة",
+        "النساء اللواتي يحضرن أجسادهن للحمل والولادة"
       ],
       "process": [
-        "Trimester-specific assessment",
-        "Active pain management strategies",
-        "Postnatal core restoration",
-        "Progressive return-to-exercise protocol"
+        "تقييم التغيرات الوضعية والعضلية",
+        "علاج يدوي لتخفيف الآلام الحادة",
+        "برنامج تمارين منزلية آمن ومناسب لمرحلة الحمل أو التعافي",
+        "استشارات حول الوضعيات وحركات العناية بالطفل"
       ],
-      "whatToExpect": "We tailor assessment and guidance to your specific trimester. Prenatal sessions focus on pain management and safe activity. Postnatal rehabilitation progressively restores core function with clear milestones.",
-      "outcome": "Supported, pain-managed biomechanics throughout pregnancy, restored abdominal wall load transfer post-birth, and a safe, objective return to running and lifting."
+      "whatToExpect": "نحن نرافقك في هذه الرحلة الجميلة بلمسة شفائية وعلمية. جلساتنا تركز على جعل جسمك مكاناً أقوى وأكثر راحة لكِ ولطفلك، مع التركيز على استعادة \"قوتك الأساسية\" (Core) بعد وصول طفلك بسلام.",
+      "outcome": "جسم قوي ومرن قادر على التعامل مع تحديات الحمل، وتعافي صحي وسريع بعد الولادة يسمح لكِ بالاستمتاع بكل لحظة مع طفلكِ بدون ألم."
     },
     "geriatricMobility": {
-      "title": "Geriatric Mobility & Fall Prevention",
-      "metaTitle": "Geriatric Mobility & Fall Prevention",
-      "metaDescription": "Aging is inevitable. Decline is not. We restore reaction time, rebuild strength, and eradicate the fear of falling.",
-      "heroSubtitle": "Aging is inevitable. Decline is not.",
-      "overview": "Age-related decline in mobility is rarely just about joints getting older. It is a compounding cycle of under-loading. Muscle mass decreases, reaction times slow, and the nervous system loses its sharp edge. When a joint lacks muscular support, it hurts. When it hurts, we move less. When we move less, we lose the capacity to balance and catch ourselves.",
-      "duration": "45–60 min",
-      "frequency": "2–3× per week",
+      "title": "تحسين حركة كبار السن والوقاية من السقوط",
+      "metaTitle": "العلاج الطبيعي لكبار السن وتحسين الحركة",
+      "metaDescription": "حافظ على استقلاليتك مع برامج العلاج الطبيعي المخصصة لكبار السن. الوقاية من السقوط، تحسين التوازن، واستعادة النشاط اليومي.",
+      "heroSubtitle": "سنواتك الذهبية تستحق العيش بحرية وحركة واثقة.",
+      "overview": "الشيخوخة لا تبرر العجز. يركز العلاج الطبيعي لكبار السن على الحفاظ على الاستقلال الوظيفي، وتحسين التوازن لمنع السقوط، وزيادة القوة العضلية لتسهيل القيام بالمهام اليومية البسيطة. نحن نصمم برامج لطيفة ولكنها فعالة جداً لضمان جودة حياة أفضل.",
+      "duration": "45–60 دقيقة",
+      "frequency": "2-3 مرات أسبوعياً",
       "symptoms": [
-        "A growing reliance on furniture or walls for support while walking",
-        "Unsteadiness on stairs, curbs, or uneven ground",
-        "Severe morning stiffness and rapid fatigue",
-        "A profound, quiet fear of falling that begins to dictate daily choices"
+        "فقدان التوازن أو التعثر المتكرر",
+        "صعوبة في الوقوف من الكرسي أو صعود السلالم",
+        "تيبس المفاصل العام وضعف العضلات",
+        "الخوف من المشي خارج المنزل بمفردك",
+        "انخفاض مستويات النشاط البدني بسبب الوجع المزمن"
       ],
       "clinicalApproach": [
-        "Demand-Based Assessment: Evaluating balance and gait against actual demands of daily life",
-        "Progressive Strength: Real, load-bearing strength building — not just 'gentle movement'",
-        "Reactive Balance: Training the nervous system to react quickly to stumbles and unexpected shifts",
-        "Independence Building: Ensuring you retain the physical freedom to live on your own terms"
+        "تدريب التوازن المتقدم: تمارين متدرجة لتحفيز الجهاز الدهليزي والتحكم بالمركز",
+        "التقوية الوظيفية: التركيز على عضلات الساقين والوضعية لدعم الوقوف والمشي",
+        "تحرير المفاصل: تقنيات يدوية لطيفة لتقليل التصلب المرتبط بالعمر",
+        "تقييم السلامة المنزلية: نصائح حول كيفية جعل بيئة المعيشة أكثر أماناً لمنع السقوط"
       ],
       "benefits": [
-        "Reversed physical decline",
-        "Restored reaction time",
-        "Rebuilt strength",
-        "Eradicated fear of falling",
-        "Total physical independence"
+        "زيادة الاستقلالية في ممارسة المهام اليومية",
+        "تقليل كبير في مخاطر السقوط والكسور الخطيرة",
+        "تحسن ملحوظ في الثقة بالنفس والحالة المزاجية",
+        "تخفيف آلام المفاصل المزمنة وزيادة المرونة الكلية"
       ],
       "idealFor": [
-        "Older adults experiencing unsteadiness",
-        "Those recovering from a recent fall",
-        "Individuals who want to proactively maintain total independence"
+        "الأفراد فوق سن 60 عاماً الراغبين في حياة نشطة",
+        "من يعانون من ضعف مفاجئ أو تدريجي في المشي",
+        "المرضى الذين لديهم تاريخ سابق من السقوط",
+        "كبار السن الذين يعانون من هشاشة العظام أو استبدال المفاصل"
       ],
       "process": [
-        "Balance & gait demand assessment",
-        "Progressive load-bearing strength program",
-        "Reactive balance training",
-        "Independence milestone tracking"
+        "تقييم شامل للتوازن والقوة الوظيفية",
+        "وضع خطة تدريبية لطيفة ومتناسبة مع قدرة المريض",
+        "تمارين تحفيزية لزيادة نطاق الحركة",
+        "توجيه مستمر حول استخدام أدوات المساعدة (إن لزم الأمر)"
       ],
-      "whatToExpect": "We evaluate your balance and gait against the actual demands of your daily life. We build real, load-bearing strength — not just gentle movement — and train your nervous system to react quickly to unexpected balance challenges.",
-      "outcome": "Reversed physical decline. Restored reaction time, rebuilt strength, eradicated fear of falling, and the physical freedom to live entirely on your own terms."
+      "whatToExpect": "نحن نعامل مرضانا من كبار السن بعناية فائقة وصبر. الجلسات تتضمن مزيجاً من التمارين الممتعة والآمنة التي تشعرهم بالنجاح والقدرة، مع التركيز على استعادة القوة في المناطق التي تسهل حياتهم اليومية.",
+      "outcome": "حركة أكثر ثباتاً، استعادة الثقة في كل خطوة، والقدرة على الاستمرار في الاستمتاع بالحياة مع العائلة باستقلالية تامة."
     },
     "cancerRehabilitation": {
-      "title": "Cancer Rehabilitation",
-      "metaTitle": "Cancer Rehabilitation & Recovery",
-      "metaDescription": "Extraordinary rehabilitation for the body after the hardest thing it has ever endured. Rebuilding energy, strength, and movement.",
-      "heroSubtitle": "Care for the body after the hardest thing it has ever endured.",
-      "overview": "Survival is the medical priority, but treatments—surgery, chemotherapy, radiotherapy, hormonal therapy—leave a profound physical wake. Tissues are scarred. Nerves are altered by toxicity. Bone density is compromised. Muscles are deconditioned from profound, systemic fatigue. The body's systems require deliberate, intelligent rebuilding.",
-      "duration": "40–60 min",
-      "frequency": "1–3× per week (individualized)",
+      "title": "إعادة التأهيل لمرضى السرطان",
+      "metaTitle": "العلاج الطبيعي لمرضى السرطان والتعافي",
+      "metaDescription": "دعم جسدي ونفسي شامل لمرضى السرطان. إدارة التعب، علاج التورم اللمفاوي، واستعادة القوة خلال وبعد رحلة العلاج.",
+      "heroSubtitle": "ندعم قوتك الجسدية، بينما تقاتل أنت لشفائك.",
+      "overview": "رحلة علاج السرطان (الجراحة، الكيماوي، الإشعاع) ترهق الجسم بشدة. إعادة التأهيل المتخصص للأورام يساعد في تقليل الآثار الجانبية للعلاج، مثل التعب الشديد، ضعف العضلات، ومشاكل الحركة، لمساعدتك على استعادة حياتك بأفضل شكل ممكن.",
+      "duration": "45 دقيقة",
+      "frequency": "1-2 مرة أسبوعياً أو حسب تحمل المريض",
       "symptoms": [
-        "Debilitating, systemic fatigue that sleep does not fix",
-        "Altered sensation, numbness, or compromised balance",
-        "Tissue restriction, heavy scarring, and localized swelling (lymphoedema)",
-        "Profound loss of strength and treatment-related joint pain"
+        "تعب شديد ومستمر لا يزول بالراحة (Cancer Fatigue)",
+        "تورم في الذراعين أو الساقين (التورم اللمفاوي)",
+        "تيبس في الجلد أو العضلات بعد الجراحة أو الإشعاع",
+        "صعوبة في أداء الأنشطة اليومية البسيطة",
+        "ألم وتنميل في الأطراف (الاعتلال العصبي الناتج عن الكيماوي)"
       ],
       "clinicalApproach": [
-        "Capacity Assessment: Highly individualized evaluation of post-treatment baseline",
-        "Precisely Dosed Exercise: Progressive loading that rebuilds without triggering overwhelming fatigue",
-        "Tissue & Neural Work: Manual lymphatic drainage, scar mobilization, and neural gliding",
-        "Collaborative Care: Working alongside oncology team for safe, effective progression"
+        "التصريف اللمفاوي اليدوي: تقنيات متخصصة لتقليل التورم وتدفق السوائل",
+        "التمارين المتدرجة: بناء القوة بلطف شديد دون إجهاد الجهاز المناعي",
+        "تمارين النفس والاسترخاء: لتحسين سعة الرئة وتقليل التوتر والقلق",
+        "إدارة الطاقة: تعليم المريض كيفية توزيع مجهوده وتجنب الانهيار البدني"
       ],
       "benefits": [
-        "Fatigue that no longer dictates the day",
-        "Strength that returns with intention",
-        "Movement that feels possible again",
-        "Restored functional capacity",
-        "Integrated oncology team approach"
+        "تحسن ملحوظ في مستويات الطاقة اليومية",
+        "السيطرة على التورم اللمفاوي بشكل فعال",
+        "استعادة مرونة النسيج والمفاصل المتأثرة بالندبات أو الإشعاع",
+        "تعزيز المناعة الجسمانية والحالة النفسية للتعافي"
       ],
       "idealFor": [
-        "Individuals at any stage of their cancer journey",
-        "During treatment or years into remission",
-        "Those who refuse to accept debilitation as their 'new normal'"
+        "الأفراد قبل العمليات الجراحية للأورام (Prehab)",
+        "المرضى أثناء تلقي العلاج الكيماوي أو الإشعاعي",
+        "الناجون من السرطان الراغبون في استعادة قوتهم البدنية",
+        "المصابون بالتورم اللمفاوي الناتج عن استئصال العقد اللمفاوية"
       ],
       "process": [
-        "Post-treatment baseline assessment",
-        "Energy system calibration",
-        "Lymphatic & scar tissue work",
-        "Progressive capacity rebuilding"
+        "تقييم طبي دقيق بالتنسيق مع فريق الأورام",
+        "علاج يدوي لطيف لتحرير التوتير والندبات",
+        "برنامج حركي صمم خصيصاً لمرحلة العلاج الحالية",
+        "دعم مستمر ومراقبة لعلامات التعب والجهد الخفي"
       ],
-      "whatToExpect": "We perform a highly individualized assessment of your post-treatment baseline. Exercise is precisely dosed to rebuild your energy systems without triggering overwhelming fatigue, working alongside your oncology team.",
-      "outcome": "A body that functions at the level life now demands — not the level treatment left it at. Fatigue that no longer dictates the day. Strength that returns with intention."
+      "whatToExpect": "سنتعامل معك بكثير من التفهم واللطف. لن ندفعك إلى أقصى حدودك، بل سنعمل معك لبناء قوتك خطوة بخطوة، مع احترام كامل لحدود جسمك في هذه المرحلة الصعبة.",
+      "outcome": "تخفيف الآثار الجانبية للعلاجات، قدرة أفضل على ممارسة الحياة اليومية، وجسم أقوى قادر على دعم رحلة الشفاء."
     },
     "ergonomics": {
-      "title": "Ergonomics & Workplace Health",
-      "metaTitle": "Ergonomics & Workplace Health",
-      "metaDescription": "Optimizing how you interact with your environment to eliminate workplace-driven pain and boost productivity.",
-      "heroSubtitle": "Your workstation should support your output, not break your body down.",
-      "overview": "The human body is designed for dynamic movement, not sustained static holds. When you sit at a poorly positioned screen or keyboard for 8 to 10 hours, you subject your neck, shoulders, and lower back to unvarying mechanical load. Muscles fatigue, joints compress, and chronic pain sets in, disrupting focus and productivity.",
-      "duration": "60–90 min (assessment)",
-      "frequency": "Initial + follow-up",
+      "title": "بيئة العمل وتحليل وضعية المكتب",
+      "metaTitle": "بيئة العمل المكتبية وتصحيح الوضعية",
+      "metaDescription": "توقف عن الشعور بالألم أثناء العمل. تحليل بيئة العمل المكتبية وتصميم حلول مخصصة لتقليل إجهاد الرقبة والظهر وزيادة الإنتاجية.",
+      "heroSubtitle": "اجعل مكتبك يعمل من أجلك، وليس ضدك.",
+      "overview": "نقضي ساعات طويلة أمام المكاتب والشاشات، مما يعيد تشكيل أجسامنا بطرق مؤلمة. تحليل بيئة العمل (Ergonomics) يهدف لضبط مساحة عملك لتناسب أبعادك الجسدية، مع تعليمك كيفية الجلوس والحركة لتقليل الضغط التراكمي على العمود الفقري والمفاصل.",
+      "duration": "45 دقيقة (استشارة)",
+      "frequency": "مرة واحدة أو متابعات دورية",
       "symptoms": [
-        "Neck and lower back pain that accumulates predictably across the workday",
-        "Shoulder overload and mid-back burning",
-        "Wrist tendinopathy or numbness from poor keyboard positioning",
-        "Chronic tension headaches that peak in the mid-afternoon"
+        "ألم الرقبة والكتفين الملازم لساعات العمل",
+        "صداع متكرر يظهر في نهاية الدوام",
+        "خدر بسيط في أصابع اليد عند استخدما الفأرة أو الكيبورد",
+        "ألم أسفل الظهر عند الجلوس لفترات طويلة",
+        "إجهاد العينين وتوتر عضلات الوجه"
       ],
       "clinicalApproach": [
-        "Workstation Optimization: Assessing physical setup and aligning it with your specific biomechanics",
-        "Postural Retraining: Teaching you how to hold your body efficiently against gravity",
-        "Micro-Recovery Integration: Implementing brief movement strategies to break the static load cycle",
-        "Physical Rehabilitation: Treating the musculoskeletal damage already caused by poor ergonomics"
+        "تقييم محطة العمل: تحليل ارتفاع الشاشة، وضعية الكرسي، وموقع الكيبورد",
+        "تحليل الوضعية الحركية: مراقبة كيفية تفاعلك مع أدواتك أثناء العمل الفعلي",
+        "التعديلات التصحيحية: توصيات دقيقة لمعداتك المكتبية الحالية وتغييراتها",
+        "برنامج \"فترات الراحة الصغيرة\": تدريبات حركية سريعة (دقيقة واحدة) يتم دمجها في الدوام"
       ],
       "benefits": [
-        "Optimized load distribution",
-        "Dramatic reduction in workplace injuries",
-        "Sustained high-level professional output",
-        "Resolved headache patterns",
-        "Improved focus and productivity"
+        "القضاء الفوري على آلام الظهر والرقبة المكتبية",
+        "زيادة الإنتاجية والتركيز الذهني لفترات أطول",
+        "منع الإصابات المهنية طويلة الأمد (مثل الدسك أو التهاب الرسغ)",
+        "الشعور بالراحة والحيوية حتى بعد انتهاء ساعات العمل الطويلة"
       ],
       "idealFor": [
-        "Desk-intensive professionals",
-        "Frequent travelers working from laptops",
-        "Corporate organizations reducing employee sick leave"
+        "المبرمجون ومصممو الجرافيك والعمل المكتبي المكثف",
+        "المدراء الذين يقضون وقتاً طويلاً في الاجتماعات والشاشات",
+        "الطلاب الذين يدرسون لساعات طويلة في وضعية واحدة",
+        "أي شخص يشعر بأن عمله هو المسبب الرئيسي لألم جسمه"
       ],
       "process": [
-        "Workstation biomechanics audit",
-        "Postural efficiency training",
-        "Micro-recovery protocol design",
-        "Musculoskeletal rehabilitation"
+        "مراجعة صور أو فيديو لمكان عملك الحالي (أو زيارة الموقع)",
+        "تحديد الأخطاء في الزوايا الحركية والجلوس",
+        "توفير حلول عملية للأثاث والمعدات الموجودة",
+        "تدريبات تصحيحية لعضلات الوضعية الضعيفة"
       ],
-      "whatToExpect": "We assess your physical workstation setup and align it with your specific biomechanics. You'll receive postural retraining and specific micro-recovery strategies to integrate into your workday.",
-      "outcome": "Optimized load distribution across your body, a dramatic reduction in workplace injuries, and the physical comfort necessary to sustain high-level professional output."
+      "whatToExpect": "سنقوم بتفكيك عاداتك في العمل. لن نعطيك مجرد قائمة مشتريات لكراسي باهظة، بل سنعلمك كيف تستخدم ما لديك لتجعل جسمك في وضعية مريحة وفعالة تقلل من تراكم الإجهاد اليومي.",
+      "outcome": "بيئة عمل مريحة تدعم صحتك، والمعرفة الكاملة بكيفية حماية جسمك من ضغوط العمل المكتبي بشكل دائم."
     },
     "posturalEducation": {
-      "title": "Postural Education",
-      "metaTitle": "Postural Education & Correction",
-      "metaDescription": "Correcting the root causes of physical inefficiency. Posture is about how you move and load your body through life.",
-      "heroSubtitle": "Posture is not just about how you sit.",
-      "overview": "Poor posture is an accumulation of physical adaptations to sustained daily demands. Over time, chest and anterior muscles become short and restricted, while the upper back and deep neck stabilizers become overstretched and weak. This imbalance compromises everything from breathing mechanics to athletic force production.",
-      "duration": "50–60 min",
-      "frequency": "2× per week",
+      "title": "تثقيف وتصحيح الوضعية",
+      "metaTitle": "تصحيح الوضعية وتعليم الميكانيكا الحيوية للجمسم",
+      "metaDescription": "الوضعية الجيدة ليست مجرد الوقوف بظهر مفرود. تعلم كيف توازن جسمك وتحميه من آلام الظهر والرقبة من خلال التثقيف الحركي.",
+      "heroSubtitle": "أعد محاذاة جسمك لتعيش حياة خالية من الألم والقيود.",
+      "overview": "الوضعية هي الأساس الذي تُبنى عليه كل حركاتك. عندما يكون جسمك في حالة عدم توازن، تضطر بعض العضلات للعمل بشكل مفرط بينما تضعف أخرى، مما يؤدي للألم المزمن. نحن لا نصحح شكلك فقط، بل نعلمك \"لغة جسدك الحركية\" لتتحرك بتناغم وثبات.",
+      "duration": "45 دقيقة",
+      "frequency": "1-2 مرة أسبوعياً (لمدة 4-6 أسابيع)",
       "symptoms": [
-        "Cumulative pain across the week with no specific injury mechanism",
-        "Frequent tension headaches and severe upper back stiffness",
-        "A feeling of constant, low-level physical fatigue",
-        "Reduced athletic performance due to loading asymmetries"
+        "الأكتاف المنحنية للأمام والرقبة المائلة (Tech Neck)",
+        "بروز البطن للأمام أو التقوس الزائد لأسفل الظهر",
+        "ألم يظهر عند الوقوف لفترات طويلة في مكان واحد",
+        "إحساس بأن جسمك \"مائل\" لجهة واحدة أكثر من الأخرى",
+        "التعب السريع من المجهود البدني البسيط"
       ],
       "clinicalApproach": [
-        "Dynamic Assessment: Evaluating posture not just standing still, but in movement and under load",
-        "Targeted Interventions: Mobility work to open restricted anterior chains",
-        "Posterior Strengthening: Building the neglected posterior stabilizers",
-        "Habit Retraining: Precise education on personal loading habits and daily movement retraining"
+        "التحليل الشامل للوضعية: فحص التوازن من القدمين وصولاً إلى الرأس",
+        "تحرير المفاصل واللفافة: إزالة القيود التي تجبرك على اتخاذ وضعية سيئة",
+        "إعادة البرمجة العصبية العضلية: تمارين متخصصة لتعليم الدماغ الوضعية الصحيحة",
+        "التعليم الواعي للحركة: دمج الوضعية الجيدة في المشي والجلوس وحمل الأشياء"
       ],
       "benefits": [
-        "Sustainable corrective loading habits",
-        "Improved breathing and movement efficiency",
-        "Long-term posture-driven pain resolution",
-        "Enhanced athletic performance",
-        "Reduced physical fatigue"
+        "مظهر أكثر ثقة وطولاً وتوازناً",
+        "تخفيف فوري ومستدام لآلام الظهر والرقبة والكتف",
+        "تحسين سعة التنفس ومستويات الطاقة (بسبب فتح القفص الصدري)",
+        "تقليل خطر التعرض للإصابات المفاجئة في المستقبل"
       ],
       "idealFor": [
-        "Desk workers",
-        "Frequent travelers",
-        "Athletes experiencing loading asymmetries",
-        "Individuals managing chronic, unexplained aches"
+        "الأشخاص الذين يقضون وقتاً طويلاً على الهواتف والأجهزة",
+        "المراهقين والشباب في مراحل النمو لتجنب انحناء الظهر",
+        "المرضى الذين جربوا علاجات كثيرة ولكن الألم يعود دائماً",
+        "أي شخص يرغب في تحسين صورته الجسدية وأدائه الحركي"
       ],
       "process": [
-        "Dynamic posture assessment",
-        "Anterior chain mobility work",
-        "Posterior stabilizer strengthening",
-        "Daily movement habit integration"
+        "تقييم الوضعية وتحليل الخلل العضلي",
+        "جلسات يدوية لفك الشد المزمن",
+        "برنامج تمارين \"تقوية المركز والوضعية\"",
+        "تصحيح حركي يومي مستمر لضمان النتائج"
       ],
-      "whatToExpect": "We evaluate your posture not just standing still, but in movement and under load. Treatment combines mobility work to open restricted areas with strengthening for neglected stabilizers, plus habit retraining for daily life.",
-      "outcome": "Sustainable, corrective loading habits, drastically improved breathing and movement efficiency, and the long-term resolution of posture-driven pain."
+      "whatToExpect": "ستكتشف عضلات لم تكن تعرف أنها موجودة. العلاج ليس سلبياً (فقط استلقاء)، بل يتطلب انتباهك وتفاعلك لتتعلم كيف \"تحمل\" وزنك بطريقة تحرر عمودك الفقري من العبء المفرط.",
+      "outcome": "جسم متوازن ومتناسق، زوال للأوجاع التراكمية، والقدرة على الوقوف والجلوس براحة دون الحاجة للتفكير المستمر في ذلك."
     },
     "osteoporosis": {
-      "title": "Osteoporosis & Bone Health",
-      "metaTitle": "Osteoporosis & Bone Health Management",
-      "metaDescription": "Building resilient bones through intelligent, targeted loading. Safely reducing fracture risk with deliberate programming.",
-      "heroSubtitle": "Building resilient bones requires intelligent, targeted loading.",
-      "overview": "Osteoporosis occurs when bone resorption outpaces bone formation, leading to reduced bone mineral density. This is driven by hormonal changes, poor nutrition, and crucially, insufficient skeletal loading. Bones respond to forces placed upon them (Wolff's Law). Without adequate resistance and impact, they become porous, fragile, and highly susceptible to fracture.",
-      "duration": "45–60 min",
-      "frequency": "2–3× per week",
+      "title": "إدارة هشاشة العظام وقوة الأنسجة",
+      "metaTitle": "العلاج الطبيعي لهشاشة العظام وبناء متانة العظام",
+      "metaDescription": "عزز قوة عظامك وأمانك الجسدي. برنامج تمارين مخصص لزيادة كثافة العظام، تحسين التوازن، ومنع الكسور لمرضى هشاشة العظام.",
+      "heroSubtitle": "عظام قوية تعني حياة بلا قيود ولا خوف.",
+      "overview": "هشاشة العظام (Osteoporosis) هي حالة تضعف فيها العظام وتصبح هشة، لكن العلم أثبت أن العظام نسيج حي يستجيب للحمل الميكانيكي المدروس. نحن نستخدم تمارين التحميل والوزن الآمنة لـ \"تحفيز\" عظامك لتصبح أقوى، مع العمل المكثف على التوازن لمنع السقوط والكسور.",
+      "duration": "45–60 دقيقة",
+      "frequency": "2-3 مرات أسبوعياً",
       "symptoms": [
-        "Often completely silent until a devastating fracture occurs",
-        "Gradual loss of height over time",
-        "An increasing thoracic kyphosis (rounding of the upper back)",
-        "Deep apprehension or fear about the safety of exercising"
+        "انخفاض تدريجي في الطول أو ظهور انحناء في أعلى الظهر",
+        "ألم مفاجئ في الظهر قد يشير لكسور انضغاطية بسيطة",
+        "إصابة سابقة بكسر ناتج عن سقطة بسيطة جداً",
+        "رغبة في ممارسة الرياضة ولكن مع خوف من \"كسر شيء ما\""
       ],
       "clinicalApproach": [
-        "Progressive Resistance: Carefully dosed weight-bearing and strength training to stimulate bone remodeling",
-        "Impact Training: Safe, calibrated impact exercises to drive skeletal density",
-        "Fall Prevention: Integration of balance training to mitigate the risk of falls",
-        "Movement Safety: Education on avoiding high-risk movements (such as loaded spinal flexion)"
+        "تمارين التحميل التدريجي (Weight-bearing): استخدام أوزان آمنة لزيادة كثافة العظام",
+        "تقوية العمود الفقري: التركيز على عضلات الظهر لدعم الفقرات ومنع الكسور",
+        "تدريب حماية التوازن: تمارين متخصصة لمنع السقطات الناتجة عن اختلال التوازن",
+        "التثقيف الحركي الآمن: تعليم كيفية الانحناء وحمل الأشياء بطريقة لا تضر الفقرات الهشة"
       ],
       "benefits": [
-        "Positive bone remodeling",
-        "Significant reduction in fall/fracture risk",
-        "Resilient, capable body",
-        "Safe confident movement",
-        "Informed exercise choices"
+        "إبطاء فقدان كثافة العظام وربما تحسينها في مناطق معينة",
+        "زيادة كبيرة في الثقة بالحركة والقوة البدنية",
+        "تقليل خطر التعرض لكسور الورك والعمود الفقري بشكل جذري",
+        "وضعية ظهر أكثر استقامة وصحة"
       ],
       "idealFor": [
-        "Peri- and postmenopausal women",
-        "Men with specific risk factors",
-        "Individuals with highly sedentary lifestyles",
-        "Anyone with diagnosed low bone mass"
+        "السيدات في مرحلة ما بعد انقطاع الطمث بـ تشخيص (Osteopenia) أو (Osteoporosis)",
+        "الرجال الكبار في السن الذين يعانون من ضعف كثافة العظام",
+        "الأفراد الذين يتناولون أدوية تؤثر على متانة العظام (مثل الكورتيزون)",
+        "أي شخص لديه تاريخ عائلي قوي لهشاشة العظام"
       ],
       "process": [
-        "Bone health risk assessment",
-        "Progressive resistance programming",
-        "Calibrated impact training",
-        "Balance & fall prevention integration"
+        "مراجعة نتائج فحص كثافة العظام (DEXA scan)",
+        "تقييم مخاطر السقوط والقوة العضلية الأساسية",
+        "تطبيق برنامج تمارين التحميل المتصاعد (بأمان تام)",
+        "متابعة دورية وتعديل الخطة حسب تطور القوة"
       ],
-      "whatToExpect": "We carefully dose weight-bearing and strength training to stimulate bone remodeling, integrate safe impact exercises, and include balance training to mitigate fall risk. Every exercise is chosen with your bone health in mind.",
-      "outcome": "Positive bone remodeling, a significant reduction in fall and fracture risk, and a body that feels resilient and capable of safe, confident movement."
+      "whatToExpect": "الأمان هو أولويتنا القصوى هنا. لن نقوم بحركات انحناء مفاجئة أو التواءات شديدة. سنستخدم تمارين المقاومة التي يحتاج جسمك إليها ليشعر بالحاجة لبناء عظام أقوى، وكل ذلك تحت إشراف دقيق جداً.",
+      "outcome": "هيكل عظمي أكثر متانة، عضلات قوية تدعم مفاصلك، ونهاية لكل مخاوفك من السقوط أو الضعف الجسدي."
     },
     "postFractureRehab": {
-      "title": "Post-Fracture Rehabilitation",
-      "metaTitle": "Post-Fracture Rehabilitation",
-      "metaDescription": "True rehabilitation means restoring total body strength, mechanics, and confidence after a fracture — ensuring it never happens again.",
-      "heroSubtitle": "Healing the bone is only the first step.",
-      "overview": "When a bone fractures, immobilization is required to heal. But this immobilization causes profound secondary issues: massive muscle atrophy, joint stiffness, and heavily altered movement mechanics. Furthermore, if the fracture was caused by a fall or poor neuromuscular control, the underlying issue still remains.",
-      "duration": "45–60 min",
-      "frequency": "2–3× per week",
+      "title": "التأهيل بعد الكسور واستعادة الوظيفة",
+      "metaTitle": "إعادة التأهيل بعد الكسور وعود القوة",
+      "metaDescription": "استعد حركتك الكاملة بعد كسر العظام. برنامج تأهيل شامل لتقليل التصلب الناتج عن التجبير واستعادة القوة والتمكين الحركي.",
+      "heroSubtitle": "العظمة المكسورة تلتئم، ونحن نعيد لها ولعضلاتها الحياة والنشاط.",
+      "overview": "بعد إزالة الجبيرة أو العملية الجراحية للكسر، غالباً ما تجد الطرف ضعيفاً ونحيلاً ومتيبساً جداً. الالتحام العظمي هو نصف المعركة فقط؛ النصف الآخر هو إعادة التأهيل لاستعادة نطاق الحركة الكامل والقوة العضلية التي فُقدت خلال فترة عدم الحركة.",
+      "duration": "45-60 دقيقة",
+      "frequency": "2-4 مرات أسبوعياً",
       "symptoms": [
-        "Severe post-immobilization stiffness in the affected joint",
-        "Profound weakness and visible muscle loss",
-        "Altered gait (limping) or hesitation to trust the limb",
-        "Compensatory pain in other areas (e.g., mid-back pain after a wrist fracture)"
+        "تيبس شديد في المفاصل المجاورة للكسر",
+        "ضعف عضلي ملحوظ (ضمور) وفقدان حجم الطرف المصاب",
+        "ألم عند محاولة تحريك الطرف بعد فترة طويلة من التجبير",
+        "خوف وقلق من تحميل الوزن على العظمة التي كانت مكسورة",
+        "تورم مستمر في الطرف المصاب عند الحركة"
       ],
       "clinicalApproach": [
-        "Acute Load Protection: Ensuring the healing bone is safely managed during early movement",
-        "Mobility Restoration: Aggressive but safe restoration of joint range of motion",
-        "Progressive Resistance: Rebuilding the atrophied musculature around the fracture site",
-        "Systemic Correction: Addressing balance deficits or movement flaws that caused the fracture"
+        "تعبئة المفاصل (Joint Mobilization): تقنيات يدوية لفك التصلب الناتج عن الجبيرة",
+        "تنشيط العضلات المتدرج: تمارين تبدأ بالحمل الخفيف جداً وصولاً للمقاومة الكاملة",
+        "إدارة الأنسجة والندبات: علاج يدوي لفك التصاقات الأنسجة حول مكان الكسر",
+        "إعادة تأهيل المشي والتحميل: تعليم كيفية المشي الصحيح بعد كسور الساق أو الورك"
       ],
       "benefits": [
-        "Fully healed structures",
-        "Completely restored strength",
-        "Movement confidence",
-        "Systematic future fracture prevention",
-        "Resolved compensatory pain"
+        "استعادة المدى الحركي الكامل في وقت أسرع",
+        "بناء القوة العضلية ومنع الضمور الدائم",
+        "التخلص من التورم والأوجاع الملازمة للفترة ما بعد التجبير",
+        "العودة السريعة والآمنة للعمل وممارسة الحياة الطبيعية"
       ],
       "idealFor": [
-        "Individuals recovering from hip, wrist, shoulder, ankle, foot, or spine fractures",
-        "Those who want full functionality, not just bone healing"
+        "الأفراد بعد جراحات تثبيت الكسور (الشرائح والمسامير)",
+        "أي شخص تمت إزالة الجبيرة عن طرفه تواً (اليد، الساق، الكاحل)",
+        "الكسور الناتجة عن حوادث السيارات أو السقوط أو الإصابات الرياضية",
+        "مرضى كسور الفقرات المستقرة"
       ],
       "process": [
-        "Fracture site load protection",
-        "Joint range of motion restoration",
-        "Targeted muscle rebuilding",
-        "Balance & movement flaw correction"
+        "التأكد من اكتمال الالتحام العظمي عبر تقارير الأشعة",
+        "تقييم المدى الحركي والقوة المفقودة",
+        "خطة مكثفة لاستعادة مرونة الأنسجة والمفاصل المتصلبة",
+        "التدرج في تحميل الوزن حتى الوصول لكامل الوظيفة"
       ],
-      "whatToExpect": "We safely manage the healing bone during early movement, then aggressively but safely restore joint range of motion. Progressive resistance rebuilds lost muscle while we address the underlying causes of the fracture.",
-      "outcome": "Fully healed structures, completely restored strength and movement confidence, and systematic mitigation of future fracture risk."
+      "whatToExpect": "المرحلة الأولى قد تكون مجهدة قليلاً لأننا نعمل على تحريك مفاصل لم تتحرك لأسابيع. سنكون داعمين لك في كل لحظة إحباط وسنوفر لك التمارين التي تجعلك ترى تقدماً ملموساً في قوتك كل أسبوع.",
+      "outcome": "طرف قوي ومرن يعمل تماماً كما كان قبل الإصابة، واختفاء كامل لمظاهر الضمور والتصلب، وثقة تامة في بنية عظامك."
     }
   },
   "metadata": {

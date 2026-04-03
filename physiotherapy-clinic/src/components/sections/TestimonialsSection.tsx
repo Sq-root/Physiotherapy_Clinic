@@ -74,10 +74,10 @@ export async function TestimonialsSection() {
           <p className="text-forest/80 text-sm md:text-base mb-6">{t('cta.prompt')}</p>
           <a 
             href="#contact" 
-            className="inline-flex items-center gap-3 bg-forest text-white px-8 py-4 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-forest/90 hover:shadow-glow transition-all duration-300 group"
+            className="inline-flex items-center gap-3 bg-forest text-white px-8 py-4 rounded-full font-bold text-sm uppercase tracking-wider shadow-[4px_4px_0px_0px_#A4C639] hover:bg-seafoam hover:text-forest hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[3px] active:translate-y-[3px] active:shadow-none transition-all duration-300 group"
           >
             <span>{t('cta.button')}</span>
-            <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+            <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </a>

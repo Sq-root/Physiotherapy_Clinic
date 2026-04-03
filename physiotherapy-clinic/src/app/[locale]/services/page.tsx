@@ -176,7 +176,7 @@ export default async function ServicesPage({
           <AnimateOnView delay={0.2} className="flex justify-center">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-forest text-white font-bold uppercase tracking-wider rounded-full hover:bg-seafoam hover:text-forest transition-all duration-300 shadow-[4px_4px_0px_0px_#A4C639] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-forest text-white font-bold uppercase tracking-wider rounded-full transition-all duration-300 shadow-[4px_4px_0px_0px_#A4C639] hover:bg-seafoam hover:text-forest hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[3px] active:translate-y-[3px] active:shadow-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 outline-none"
             >
               {t("bookConsultation")}
               <ArrowRight className={`w-5 h-5 ${isRTL ? "rotate-180" : ""}`} />
@@ -336,7 +336,7 @@ export default async function ServicesPage({
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-white text-forest font-semibold rounded-full border border-forest/10 hover:bg-forest hover:text-white transition-all duration-300 text-sm"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-white text-forest font-bold uppercase tracking-wider rounded-full border border-forest/10 hover:bg-forest hover:text-white transition-all duration-300 text-[11px] shadow-sm hover:shadow-md active:translate-y-[1px]"
             >
               Contact Us
               <ArrowRight className={`w-4 h-4 ${isRTL ? "rotate-180" : ""}`} />
@@ -362,7 +362,7 @@ export default async function ServicesPage({
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-3 px-10 py-4 bg-seafoam text-forest font-bold uppercase tracking-wider rounded-full hover:bg-lime transition-all duration-300 shadow-xl"
+              className="inline-flex items-center gap-3 px-10 py-5 bg-forest text-white font-bold uppercase tracking-widest rounded-full transition-all duration-300 shadow-[4px_4px_0px_0px_#A4C639] hover:bg-seafoam hover:text-forest hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[3px] active:translate-y-[3px] active:shadow-none"
             >
               {tCommon("bookAppointment")}
               <ArrowRight className={`w-5 h-5 ${isRTL ? "rotate-180" : ""}`} />

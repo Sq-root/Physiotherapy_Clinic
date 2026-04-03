@@ -48,13 +48,12 @@ export async function SupportSection() {
           <AnimateOnView className="relative pt-12">
             {/* Main Content Card */}
             <div className="bg-white/80 backdrop-blur-xl rounded-[40px] p-6 pt-16 shadow-glow border border-forest/5 relative">
-              
               {/* Floating Avatar Header */}
               <div className="absolute -top-12 left-1/2 -translate-x-1/2">
                 <div className="relative">
                   {/* Decorative Outer Ring */}
                   <div className="absolute inset-0 -m-2 border border-seafoam/20 rounded-full animate-pulse"></div>
-                  
+
                   {/* Portrait Circle */}
                   <div className="size-28 rounded-full overflow-hidden border-4 border-white shadow-2xl relative z-10">
                     <Image
@@ -93,11 +92,12 @@ export async function SupportSection() {
                     {t("badge")}
                   </span>
                 </div>
-                
+
                 <h2 className="text-2xl font-bold text-forest leading-tight mb-3">
-                  {t("title")} <span className="text-seafoam">{t("titleHighlight")}</span>
+                  {t("title")}{" "}
+                  <span className="text-seafoam">{t("titleHighlight")}</span>
                 </h2>
-                
+
                 <p className="text-forest/70 text-xs leading-relaxed mb-6 mx-auto max-w-[280px]">
                   {t("description")}
                 </p>
@@ -105,14 +105,17 @@ export async function SupportSection() {
                 {/* Highlights Grid - Compact Horizontal Scroll or 2-column */}
                 <div className="grid grid-cols-2 gap-2 mb-6">
                   {highlights.slice(0, 2).map((item, i) => {
-                    const IconComponent = highlightIconMap[i as keyof typeof highlightIconMap];
+                    const IconComponent =
+                      highlightIconMap[i as keyof typeof highlightIconMap];
                     return (
                       <div
                         key={i}
                         className="flex flex-col items-center gap-2 bg-forest/5 rounded-2xl p-3 border border-forest/5"
                       >
                         <div className="size-8 bg-white rounded-xl flex items-center justify-center shadow-sm text-seafoam">
-                          {IconComponent && <IconComponent className="w-4 h-4" />}
+                          {IconComponent && (
+                            <IconComponent className="w-4 h-4" />
+                          )}
                         </div>
                         <span className="text-[10px] font-bold text-forest text-center leading-tight">
                           {item.label}
@@ -121,30 +124,34 @@ export async function SupportSection() {
                     );
                   })}
                   <div className="col-span-2 flex items-center justify-center gap-3 bg-forest/5 rounded-2xl p-2 border border-forest/5">
-                        <div className="size-6 bg-white rounded-lg flex items-center justify-center shadow-xs text-seafoam">
-                           <Heart className="w-3.5 h-3.5" />
-                        </div>
-                        <span className="text-[10px] font-bold text-forest">
-                          {highlights[2].label}
-                        </span>
+                    <div className="size-6 bg-white rounded-lg flex items-center justify-center shadow-xs text-seafoam">
+                      <Heart className="w-3.5 h-3.5" />
+                    </div>
+                    <span className="text-[10px] font-bold text-forest">
+                      {highlights[2].label}
+                    </span>
                   </div>
                 </div>
 
                 {/* Mobile CTA */}
                 <Link
                   href="/about"
-                  className={`flex items-center justify-between w-full bg-forest text-white p-1.5 rounded-full font-bold text-sm shadow-lg active:scale-95 transition-all`}
+                  className={`flex items-center justify-between w-full bg-forest text-white p-2 rounded-full font-bold text-sm shadow-[4px_4px_0px_0px_#A4C639] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all outline-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2`}
                 >
-                  <span className={isRTL ? 'pr-6' : 'pl-6'}>{t("cta")}</span>
-                  <div className="size-10 bg-lime rounded-full flex items-center justify-center text-forest">
+                  <span className={isRTL ? "pr-6" : "pl-6"}>{t("cta")}</span>
+                  <div className="size-10 bg-seafoam rounded-full flex items-center justify-center text-forest group-hover:bg-lime transition-colors">
                     <svg
-                      className={`w-5 h-5 ${isRTL ? 'rotate-180' : ''}`}
+                      className={`w-5 h-5 ${isRTL ? "rotate-180" : ""}`}
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
                       strokeWidth="3"
                     >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
                     </svg>
                   </div>
                 </Link>
@@ -154,22 +161,28 @@ export async function SupportSection() {
 
           {/* Secondary Mobile Element: Trust Indicators */}
           <div className="px-2 mt-4">
-             <div className="flex items-center justify-center gap-8 py-3 bg-section/30 rounded-3xl border border-forest/5">
-                <div className="text-center">
-                  <p className="text-forest text-lg font-bold">1.2K+</p>
-                  <p className="text-forest/50 text-[9px] uppercase font-bold tracking-wider">Patients</p>
-                </div>
-                <div className="w-px h-8 bg-forest/10"></div>
-                <div className="text-center">
-                  <p className="text-forest text-lg font-bold">98%</p>
-                  <p className="text-forest/50 text-[9px] uppercase font-bold tracking-wider">Success</p>
-                </div>
-                <div className="w-px h-8 bg-forest/10"></div>
-                <div className="text-center">
-                  <p className="text-forest text-lg font-bold">4.9</p>
-                  <p className="text-forest/50 text-[9px] uppercase font-bold tracking-wider">Rating</p>
-                </div>
-             </div>
+            <div className="flex items-center justify-center gap-8 py-3 bg-section/30 rounded-3xl border border-forest/5">
+              <div className="text-center">
+                <p className="text-forest text-lg font-bold">1.2K+</p>
+                <p className="text-forest/50 text-[9px] uppercase font-bold tracking-wider">
+                  Patients
+                </p>
+              </div>
+              <div className="w-px h-8 bg-forest/10"></div>
+              <div className="text-center">
+                <p className="text-forest text-lg font-bold">98%</p>
+                <p className="text-forest/50 text-[9px] uppercase font-bold tracking-wider">
+                  Success
+                </p>
+              </div>
+              <div className="w-px h-8 bg-forest/10"></div>
+              <div className="text-center">
+                <p className="text-forest text-lg font-bold">4.9</p>
+                <p className="text-forest/50 text-[9px] uppercase font-bold tracking-wider">
+                  Rating
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -336,16 +349,16 @@ export async function SupportSection() {
 
               <Link
                 href="/about"
-                className={`group inline-flex items-center gap-2 bg-seafoam text-white ${isRTL ? 'pr-6 pl-2' : 'pl-6 pr-2'} py-2.5 rounded-full font-semibold text-sm hover:bg-forest transition-colors duration-300`}
+                className={`group inline-flex items-center gap-4 bg-forest text-white ${isRTL ? "pr-8 pl-3" : "pl-8 pr-3"} py-3 rounded-full font-bold uppercase tracking-widest text-sm transition-all duration-300 shadow-[4px_4px_0px_0px_#A4C639] hover:bg-seafoam hover:text-forest hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[3px] active:translate-y-[3px] active:shadow-none outline-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2`}
               >
                 <span>{t("cta")}</span>
-                <span className="size-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                <span className="size-10 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-forest/10 transition-colors">
                   <svg
-                    className={`w-4 h-4 ${isRTL ? 'rotate-180' : ''}`}
+                    className={`w-5 h-5 ${isRTL ? "rotate-180" : ""}`}
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
-                    strokeWidth="2.5"
+                    strokeWidth="3"
                   >
                     <path
                       strokeLinecap="round"

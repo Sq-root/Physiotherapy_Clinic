@@ -20,7 +20,8 @@
     "email": "Email",
     "address": "Address",
     "hours": "Hours",
-    "viewServices": "View Services"
+    "viewServices": "View Services",
+    "whatsappMessage": "Hello Dr. Isha, I would like to book a consultation for physiotherapy. Please let me know the availability."
   },
   "nav": {
     "home": "Home",

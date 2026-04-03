@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServerClient } from '@/lib/supabase/client';
+import { Resend } from 'resend';
 import type { Appointment, AppointmentInsert, Database, ServiceType, TimeSlot } from '@/lib/supabase/types';
+
+const NOTIFICATION_EMAIL = "prabodhamtech369@gmail.com";
 
 // Validation helpers
 const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -95,10 +98,13 @@ export async function POST(request: NextRequest) {
       .select()
       .single();
 
-    const typedAppointment = appointment as Appointment | null;
-
     if (insertError) {
-      console.error('Insert error:', insertError);
+      console.error('Supabase Insert Error:', {
+        code: insertError.code,
+        message: insertError.message,
+        details: insertError.details,
+        hint: insertError.hint
+      });
 
       // Handle unique constraint violation (double booking)
       if (insertError.code === '23505') {
@@ -115,27 +121,114 @@ export async function POST(request: NextRequest) {
         { success: false, errors: [insertError.message || 'Failed to book appointment. Please try again.'] },
         { status: 500 }
       );
+    }
 
+    const typedAppointment = appointment as Appointment;
+
+    // Send email notification via Resend
+    try {
+      const resendApiKey = process.env.RESEND_API_KEY;
+      if (resendApiKey) {
+        const resend = new Resend(resendApiKey);
+        
+        const serviceLabels: Record<string, string> = {
+          ortho: 'Orthopedic Physiotherapy',
+          sports: 'Sports Injury Rehab',
+          neuro: 'Neurological Rehab',
+          manual: 'Manual Therapy',
+          senior: 'Geriatric Care',
+          surgery: 'Post-Surgical Rehab',
+          online: 'Online Consultation',
+          others: 'Other Services'
+        };
+
+        const htmlContent = `
+          <div style="font-family: sans-serif; padding: 20px; color: #333; max-width: 600px; margin: 0 auto; border: 1px solid #eaeaea; border-radius: 8px;">
+            <h2 style="color: #1a5653; margin-bottom: 24px; text-align: center;">New Appointment Booking</h2>
+            
+            <table style="width: 100%; border-collapse: collapse;">
+              <tbody>
+                <tr>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #eaeaea; font-weight: bold; width: 140px; color: #666;">Patient Name</td>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #eaeaea;">${typedAppointment.name}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #eaeaea; font-weight: bold; color: #666;">Email</td>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #eaeaea;">
+                    <a href="mailto:${typedAppointment.email}" style="color: #0b9e86; text-decoration: none;">${typedAppointment.email}</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #eaeaea; font-weight: bold; color: #666;">Phone</td>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #eaeaea;">${typedAppointment.phone || 'N/A'}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #eaeaea; font-weight: bold; color: #666;">Service</td>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #eaeaea;">
+                    <span style="background: #f0fdf4; padding: 4px 10px; border-radius: 99px; text-transform: capitalize; font-size: 14px; border: 1px solid #bbf7d0; color: #166534;">
+                      ${serviceLabels[typedAppointment.service] || typedAppointment.service}
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #eaeaea; font-weight: bold; color: #666;">Date</td>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #eaeaea;">${typedAppointment.appointment_date}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #eaeaea; font-weight: bold; color: #666;">Time Slot</td>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #eaeaea; text-transform: capitalize;">${typedAppointment.time_slot}</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            ${typedAppointment.message ? `
+            <div style="margin-top: 24px;">
+              <p style="font-weight: bold; color: #666; margin-bottom: 8px;">Message from Patient:</p>
+              <div style="background-color: #f9f9f9; padding: 16px; border-radius: 6px; border: 1px solid #eaeaea; white-space: pre-wrap;">${typedAppointment.message}</div>
+            </div>
+            ` : ''}
+            
+            <div style="margin-top: 32px; font-size: 12px; color: #999; text-align: center;">
+              <p>This is an automated notification for a new appointment booked via your clinic website.</p>
+            </div>
+          </div>
+        `;
+
+        await resend.emails.send({
+          from: "Clinic Appointments <onboarding@resend.dev>",
+          to: [NOTIFICATION_EMAIL],
+          subject: `New Appointment: ${typedAppointment.name} - ${serviceLabels[typedAppointment.service] || typedAppointment.service}`,
+          html: htmlContent,
+          replyTo: typedAppointment.email,
+        });
+      }
+    } catch (emailError) {
+      // We don't want to fail the whole request if email notification fails
+      console.error('Failed to send appointment notification email:', emailError);
     }
 
     return NextResponse.json({
       success: true,
       message: 'Appointment booked successfully!',
       data: {
-        id: typedAppointment?.id,
-        name: typedAppointment?.name,
-        email: typedAppointment?.email,
-        service: typedAppointment?.service,
-        date: typedAppointment?.appointment_date,
-        timeSlot: typedAppointment?.time_slot,
-        status: typedAppointment?.status,
+        id: typedAppointment.id,
+        name: typedAppointment.name,
+        email: typedAppointment.email,
+        service: typedAppointment.service,
+        date: typedAppointment.appointment_date,
+        timeSlot: typedAppointment.time_slot,
+        status: typedAppointment.status,
       },
     });
 
-  } catch (error) {
-    console.error('Appointment booking error:', error);
+  } catch (error: any) {
+    console.error('Detailed Appointment Booking Error:', {
+      message: error.message,
+      stack: error.stack,
+      cause: error.cause
+    });
     return NextResponse.json(
-      { success: false, errors: ['An unexpected error occurred. Please try again.'] },
+      { success: false, errors: [error.message || 'An unexpected error occurred. Please try again.'] },
       { status: 500 }
     );
   }

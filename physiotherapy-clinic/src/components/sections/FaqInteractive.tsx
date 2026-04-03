@@ -12,8 +12,12 @@ import {
   MessageCircle,
 } from "lucide-react";
 import { Link } from "@/i18n/routing";
+import { AccordionItem } from "@/components/ui/Accordion";
 
-const categoryIconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+const categoryIconMap: Record<
+  string,
+  React.ComponentType<{ className?: string }>
+> = {
   gettingStarted: Rocket,
   treatment: User,
   insurance: CreditCard,
@@ -135,11 +139,11 @@ export function FaqInteractive({
             </div>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 w-full justify-center px-4 py-2.5 bg-forest text-white rounded-full text-sm font-medium hover:bg-forest/90 transition-colors"
+              className="inline-flex items-center gap-2 w-full justify-center px-6 py-3 bg-forest text-white rounded-full text-sm font-bold tracking-wide transition-all duration-300 shadow-[4px_4px_0px_0px_#A4C639] hover:bg-seafoam hover:text-forest hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[3px] active:translate-y-[3px] active:shadow-none"
             >
               {contactUs}
               <ArrowRight
-                className={`w-4 h-4 ${isRTL ? "rotate-180" : ""}`}
+                className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${isRTL ? "rotate-180" : ""}`}
               />
             </Link>
           </motion.div>
@@ -178,87 +182,14 @@ export function FaqInteractive({
             {/* FAQ Items */}
             <div className="space-y-3">
               {activeFaqs.map((faq, index) => (
-                <motion.div
+                <AccordionItem
                   key={index}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className={`rounded-2xl transition-all duration-300 ${
-                    openFaq === index
-                      ? "bg-white shadow-lg shadow-forest/5"
-                      : "bg-white/50 hover:bg-white"
-                  }`}
-                >
-                  <button
-                    onClick={() =>
-                      setOpenFaq(openFaq === index ? null : index)
-                    }
-                    className="w-full text-left p-4 md:p-5 flex items-start gap-4"
-                  >
-                    <span
-                      className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors ${
-                        openFaq === index
-                          ? "bg-seafoam text-white"
-                          : "bg-forest/5 text-forest/40"
-                      }`}
-                    >
-                      {index + 1}
-                    </span>
-                    <div className="flex-1 min-w-0">
-                      <h4
-                        className={`font-semibold text-sm md:text-base transition-colors ${
-                          openFaq === index ? "text-forest" : "text-forest/80"
-                        }`}
-                      >
-                        {faq.question}
-                      </h4>
-                    </div>
-                    <div
-                      className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all ${
-                        openFaq === index
-                          ? "bg-seafoam/10 rotate-180"
-                          : "bg-forest/5"
-                      }`}
-                    >
-                      <svg
-                        className={`w-4 h-4 transition-colors ${
-                          openFaq === index ? "text-seafoam" : "text-forest/40"
-                        }`}
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M19 9l-7 7-7-7"
-                        />
-                      </svg>
-                    </div>
-                  </button>
-
-                  <AnimatePresence>
-                    {openFaq === index && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{
-                          duration: 0.3,
-                          ease: [0.22, 1, 0.36, 1],
-                        }}
-                        className="overflow-hidden"
-                      >
-                        <div className="px-4 md:px-5 pb-5 pl-16 md:pl-[4.5rem]">
-                          <p className="text-forest/80 text-sm leading-relaxed">
-                            {faq.answer}
-                          </p>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
+                  question={faq.question}
+                  answer={faq.answer}
+                  index={index}
+                  isOpen={openFaq === index}
+                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                />
               ))}
             </div>
           </motion.div>

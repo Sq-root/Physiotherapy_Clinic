@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, ChevronDown } from "lucide-react";
+import { Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Link } from "@/i18n/routing";
+import { AccordionItem } from "@/components/ui/Accordion";
 
 // Types
 interface FaqItem {
@@ -150,60 +151,6 @@ function StickyNav({
   );
 }
 
-/* FAQ Accordion Item */
-function FaqAccordionItem({
-  item,
-  isOpen,
-  onToggle,
-}: {
-  item: FaqItem;
-  isOpen: boolean;
-  onToggle: () => void;
-}) {
-  return (
-    <div
-      className={cn(
-        "rounded-xl border transition-all duration-300",
-        isOpen
-          ? "bg-lime border-transparent shadow-lg shadow-lime/10"
-          : "bg-white/60 border-forest/10"
-      )}
-    >
-      <button
-        onClick={onToggle}
-        className="flex items-center justify-between px-4 py-3.5 w-full text-start"
-        aria-expanded={isOpen}
-      >
-        <span className={cn("font-medium text-sm text-forest transition-all", isOpen && "font-bold")}>
-          {item.question}
-        </span>
-        <motion.div
-          className="text-forest/80 shrink-0 ms-4"
-          animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <ChevronDown className="w-5 h-5" />
-        </motion.div>
-      </button>
-
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden"
-          >
-            <div className="px-4 pb-4 pt-0 text-forest/80">
-              <p className="leading-relaxed text-[13px]">{item.answer}</p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-}
 
 /* FAQ Category Section */
 function CategorySection({
@@ -254,12 +201,14 @@ function CategorySection({
               {sub.title}
             </h3>
             <div className="grid grid-cols-1 gap-3">
-              {sub.items.map((item) => (
-                <FaqAccordionItem
+              {sub.items.map((item, index) => (
+                <AccordionItem
                   key={item.id}
-                  item={item}
+                  question={item.question}
+                  answer={item.answer}
+                  index={index}
                   isOpen={openId === item.id}
-                  onToggle={() => onToggle(item.id)}
+                  onClick={() => onToggle(item.id)}
                 />
               ))}
             </div>

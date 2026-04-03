@@ -308,7 +308,7 @@ export default async function AboutPage() {
               <div className="flex flex-col sm:flex-row gap-5 justify-center">
                 <Link
                   href="/contact"
-                  className="group relative inline-flex items-center justify-center gap-3 bg-white text-forest px-10 py-5 rounded-full font-bold hover:bg-seafoam transition-all transition-transform hover:-translate-y-1 shadow-lg"
+                  className="group relative inline-flex items-center justify-center gap-3 bg-white text-forest px-10 py-5 rounded-full font-bold uppercase tracking-widest text-sm shadow-[4px_4px_0px_0px_#A4C639] hover:bg-seafoam hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[3px] active:translate-y-[3px] active:shadow-none transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
                 >
                   {t("cta.button")}
                 </Link>

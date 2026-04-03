@@ -379,7 +379,7 @@ export default function ContactFormIsland({ labels, services }: ContactFormIslan
             <button
               type="submit"
               disabled={status === "loading"}
-              className="w-full h-14 bg-forest text-white font-bold text-sm uppercase tracking-widest rounded-2xl hover:bg-forest/90 active:scale-[0.98] transition-all duration-200 disabled:opacity-50 flex items-center justify-center gap-3"
+              className="w-full py-4.5 bg-forest text-white font-bold text-sm uppercase tracking-widest rounded-2xl transition-all duration-300 shadow-[4px_4px_0px_0px_#A4C639] hover:bg-seafoam hover:text-forest hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[3.5px] active:translate-y-[3.5px] active:shadow-none disabled:opacity-50 flex items-center justify-center gap-3 outline-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2"
             >
               {status === "loading" ? (
                 <>

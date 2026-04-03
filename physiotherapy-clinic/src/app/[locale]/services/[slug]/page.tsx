@@ -15,7 +15,11 @@ import {
 import { setRequestLocale, getTranslations, getLocale } from "next-intl/server";
 import { Link } from "@/i18n/routing";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
-import { services, getAllServiceSlugs, getServiceBySlug } from "@/lib/data/services";
+import {
+  services,
+  getAllServiceSlugs,
+  getServiceBySlug,
+} from "@/lib/data/services";
 import { routing } from "@/i18n/routing";
 import { ServiceDetailInteractive } from "./ServiceDetailInteractive";
 
@@ -23,7 +27,7 @@ import { ServiceDetailInteractive } from "./ServiceDetailInteractive";
 export function generateStaticParams() {
   const slugs = getAllServiceSlugs();
   return routing.locales.flatMap((locale) =>
-    slugs.map((slug) => ({ locale, slug }))
+    slugs.map((slug) => ({ locale, slug })),
   );
 }
 
@@ -73,9 +77,15 @@ export default async function ServiceDetailPage({
   let symptoms: string[] = [];
   let clinicalApproach: string[] = [];
   let outcome = "";
-  try { symptoms = t.raw(`${key}.symptoms`) as string[]; } catch {}
-  try { clinicalApproach = t.raw(`${key}.clinicalApproach`) as string[]; } catch {}
-  try { outcome = t(`${key}.outcome`); } catch {}
+  try {
+    symptoms = t.raw(`${key}.symptoms`) as string[];
+  } catch {}
+  try {
+    clinicalApproach = t.raw(`${key}.clinicalApproach`) as string[];
+  } catch {}
+  try {
+    outcome = t(`${key}.outcome`);
+  } catch {}
 
   // Get related services (same category, excluding current)
   const relatedServices = services
@@ -88,7 +98,9 @@ export default async function ServiceDetailPage({
       ? [
           ...relatedServices,
           ...services
-            .filter((s) => s.id !== service.id && s.category !== service.category)
+            .filter(
+              (s) => s.id !== service.id && s.category !== service.category,
+            )
             .slice(0, 3 - relatedServices.length),
         ]
       : relatedServices;
@@ -125,12 +137,21 @@ export default async function ServiceDetailPage({
               <Link href="/" className="hover:text-forest transition-colors">
                 {isRTL ? "الرئيسية" : "Home"}
               </Link>
-              <ChevronRight className={`w-3.5 h-3.5 ${isRTL ? "rotate-180" : ""}`} />
-              <Link href="/services" className="hover:text-forest transition-colors">
+              <ChevronRight
+                className={`w-3.5 h-3.5 ${isRTL ? "rotate-180" : ""}`}
+              />
+              <Link
+                href="/services"
+                className="hover:text-forest transition-colors"
+              >
                 {t("backToServices")}
               </Link>
-              <ChevronRight className={`w-3.5 h-3.5 ${isRTL ? "rotate-180" : ""}`} />
-              <span className="text-forest font-medium">{t(`${key}.title`)}</span>
+              <ChevronRight
+                className={`w-3.5 h-3.5 ${isRTL ? "rotate-180" : ""}`}
+              />
+              <span className="text-forest font-medium">
+                {t(`${key}.title`)}
+              </span>
             </nav>
           </AnimateOnView>
 
@@ -143,7 +164,8 @@ export default async function ServiceDetailPage({
                   className="py-1.5 px-4 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] shadow-sm"
                   style={{
                     backgroundColor: service.color + "20",
-                    color: service.color === "#002D04" ? "#002D04" : service.color,
+                    color:
+                      service.color === "#002D04" ? "#002D04" : service.color,
                   }}
                 >
                   {service.category}
@@ -191,12 +213,18 @@ export default async function ServiceDetailPage({
                 className="inline-flex items-center gap-3 px-8 py-4 bg-forest text-white font-bold uppercase tracking-wider rounded-full hover:bg-seafoam hover:text-forest transition-all duration-300 shadow-[4px_4px_0px_0px_#A4C639] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]"
               >
                 {t("bookThisService")}
-                <ArrowRight className={`w-5 h-5 ${isRTL ? "rotate-180" : ""}`} />
+                <ArrowRight
+                  className={`w-5 h-5 ${isRTL ? "rotate-180" : ""}`}
+                />
               </Link>
             </AnimateOnView>
 
             {/* Hero Image */}
-            <AnimateOnView delay={0.2} direction="right" className="order-1 lg:order-2">
+            <AnimateOnView
+              delay={0.2}
+              direction="right"
+              className="order-1 lg:order-2"
+            >
               {service.image && (
                 <div className="relative">
                   <div className="aspect-[4/5] md:aspect-[5/6] relative rounded-[3rem] overflow-hidden shadow-2xl border-[8px] border-white ring-1 ring-forest/5">
@@ -267,7 +295,10 @@ export default async function ServiceDetailPage({
           ═══════════════════════════════════════════════════════════════ */}
       {symptoms.length > 0 && (
         <section className="py-20 md:py-28 bg-white relative overflow-hidden">
-          <div className="absolute top-0 start-0 w-full h-24 bg-section/30" style={{ borderRadius: "0 0 200px 200px" }} />
+          <div
+            className="absolute top-0 start-0 w-full h-24 bg-section/30"
+            style={{ borderRadius: "0 0 200px 200px" }}
+          />
 
           <div className="mx-auto max-w-6xl px-6 lg:px-8 pt-8 relative z-10">
             <AnimateOnView className="text-center mb-16">
@@ -289,7 +320,9 @@ export default async function ServiceDetailPage({
                   <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center shrink-0 mt-0.5">
                     <AlertCircle className="w-5 h-5 text-red-400" />
                   </div>
-                  <p className="text-forest font-medium leading-relaxed">{symptom}</p>
+                  <p className="text-forest font-medium leading-relaxed">
+                    {symptom}
+                  </p>
                 </AnimateOnView>
               ))}
             </div>
@@ -317,13 +350,17 @@ export default async function ServiceDetailPage({
             {/* Approach Timeline */}
             <div className="relative">
               {/* Vertical line */}
-              <div className={`absolute top-0 bottom-0 ${isRTL ? "right-6 md:right-1/2" : "left-6 md:left-1/2"} w-px bg-forest/10`} />
+              <div
+                className={`absolute top-0 bottom-0 ${isRTL ? "right-6 md:right-1/2" : "left-6 md:left-1/2"} w-px bg-forest/10`}
+              />
 
               <div className="space-y-12">
                 {clinicalApproach.map((step, index) => {
                   const parts = step.split(": ");
-                  const stepTitle = parts.length > 1 ? parts[0] : `Step ${index + 1}`;
-                  const stepDesc = parts.length > 1 ? parts.slice(1).join(": ") : step;
+                  const stepTitle =
+                    parts.length > 1 ? parts[0] : `Step ${index + 1}`;
+                  const stepDesc =
+                    parts.length > 1 ? parts.slice(1).join(": ") : step;
 
                   return (
                     <AnimateOnView
@@ -350,8 +387,12 @@ export default async function ServiceDetailPage({
                         }`}
                       >
                         <div className="bg-white backdrop-blur-sm border border-forest/5 rounded-2xl p-6 hover:shadow-lg hover:border-seafoam/20 transition-all duration-300">
-                          <h3 className="text-forest font-bold text-lg mb-2">{stepTitle}</h3>
-                          <p className="text-forest/70 font-light leading-relaxed">{stepDesc}</p>
+                          <h3 className="text-forest font-bold text-lg mb-2">
+                            {stepTitle}
+                          </h3>
+                          <p className="text-forest/70 font-light leading-relaxed">
+                            {stepDesc}
+                          </p>
                         </div>
                       </div>
 
@@ -515,7 +556,9 @@ export default async function ServiceDetailPage({
                 className="h-14 px-10 bg-forest text-white font-bold uppercase tracking-wider text-sm hover:bg-seafoam hover:text-forest transition-all duration-300 shadow-[4px_4px_0px_0px_#A4C639] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] rounded-full flex items-center justify-center gap-3"
               >
                 {tCommon("bookAppointment")}
-                <ArrowRight className={`w-4 h-4 ${isRTL ? "rotate-180" : ""}`} />
+                <ArrowRight
+                  className={`w-4 h-4 ${isRTL ? "rotate-180" : ""}`}
+                />
               </Link>
               <Link
                 href="/services"
@@ -562,7 +605,9 @@ export default async function ServiceDetailPage({
                         sizes="(max-width: 768px) 100vw, 33vw"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-forest/40 to-transparent" />
-                      <div className={`absolute bottom-4 ${isRTL ? "right-4" : "left-4"}`}>
+                      <div
+                        className={`absolute bottom-4 ${isRTL ? "right-4" : "left-4"}`}
+                      >
                         <span className="text-3xl">{related.icon}</span>
                       </div>
                     </div>
@@ -579,9 +624,13 @@ export default async function ServiceDetailPage({
                     <p className="text-forest/60 text-sm font-light leading-relaxed line-clamp-2">
                       {related.description}
                     </p>
-                    <div className={`flex items-center gap-2 mt-4 text-seafoam text-sm font-semibold ${isRTL ? "flex-row-reverse" : ""}`}>
+                    <div
+                      className={`flex items-center gap-2 mt-4 text-seafoam text-sm font-semibold ${isRTL ? "flex-row-reverse" : ""}`}
+                    >
                       <span>{isRTL ? "اعرف المزيد" : "Learn More"}</span>
-                      <ArrowRight className={`w-4 h-4 group-hover:translate-x-1 transition-transform ${isRTL ? "rotate-180 group-hover:-translate-x-1" : ""}`} />
+                      <ArrowRight
+                        className={`w-4 h-4 group-hover:translate-x-1 transition-transform ${isRTL ? "rotate-180 group-hover:-translate-x-1" : ""}`}
+                      />
                     </div>
                   </div>
                 </Link>
