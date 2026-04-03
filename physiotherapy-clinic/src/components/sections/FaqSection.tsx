@@ -1,4 +1,4 @@
-import { PersonStanding, Zap, CheckCircle } from "lucide-react";
+// import { PersonStanding, Zap, CheckCircle } from "lucide-react";
 import { getTranslations, getLocale } from "next-intl/server";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
 import { FaqInteractive } from "./FaqInteractive";

@@ -13,7 +13,6 @@ interface NavbarServicesDropdownProps {
   isActive: boolean;
   useDarkStyle: boolean;
   isRTL: boolean;
-  t: (key: string) => string;
   onNavigate?: () => void;
 }
 
@@ -69,7 +68,6 @@ export function NavbarServicesDropdown({
   isActive,
   useDarkStyle,
   isRTL,
-  t,
   onNavigate,
 }: NavbarServicesDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -78,14 +76,13 @@ export function NavbarServicesDropdown({
 
   const tCat = useTranslations("servicesPage.categories");
   const tDetail = useTranslations("serviceDetail");
-  const tCommon = useTranslations("common");
 
   // Helper to fetch translated title
   const getServiceLabel = (slug: string, fallback: string) => {
     if (!isRTL) return fallback;
     const service = getServiceBySlug(slug);
     if (!service) return fallback;
-    const raw = tDetail(`${service.translationKey}.title` as any);
+    const raw = tDetail(`${service.translationKey}.title`);
     return raw.includes(".title") ? fallback : raw;
   };
 
@@ -213,7 +210,7 @@ export function NavbarServicesDropdown({
                     {/* Column heading with accent underline (reference style) */}
                     <div className="mb-4">
                       <p className="text-[10px] font-black uppercase tracking-[0.2em] text-forest/70">
-                        {isRTL ? (tCat as any)(col.categoryId) : col.heading}
+                        {isRTL ? tCat(col.categoryId) : col.heading}
                       </p>
                       <div
                         className={cn(

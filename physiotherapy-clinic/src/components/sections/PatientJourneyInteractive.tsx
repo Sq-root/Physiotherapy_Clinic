@@ -4,7 +4,6 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ClipboardList, Target, Dumbbell, Star } from "lucide-react";
-import { siteConfig } from "@/config/site";
 import { Link } from "@/i18n/routing";
 
 const stepIconMap = {

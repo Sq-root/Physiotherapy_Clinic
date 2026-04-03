@@ -4,14 +4,12 @@ import { useState, useMemo } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  ArrowRight,
   Clock,
   RotateCcw,
   Sparkles,
   CheckCircle2,
   ChevronRight,
   Activity,
-  Star,
 } from "lucide-react";
 import { Link } from "@/i18n/routing";
 import {
@@ -24,7 +22,7 @@ import { DynamicIcon } from "@/components/ui/DynamicIcon";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
-type ServiceTranslation = {
+export type ServiceTranslation = {
   title: string;
   heroSubtitle: string;
   overview: string;
@@ -199,14 +197,12 @@ function ServiceCard({
   categoryLabels,
   uiLabels,
   onQuickView,
-  index,
 }: {
   service: (typeof services)[number];
   trans: ServiceTranslation | undefined;
   categoryLabels: Record<string, string>;
   uiLabels: Props["uiLabels"];
   onQuickView: () => void;
-  index: number;
 }) {
   const [hovered, setHovered] = useState(false);
   const config = CATEGORY_CONFIG[service.category] ?? DEFAULT_CONFIG;
@@ -545,7 +541,6 @@ export function ServicesGrid({ translations, categoryLabels, uiLabels }: Props) 
                   categoryLabels={categoryLabels}
                   uiLabels={uiLabels}
                   onQuickView={() => setModalService(service.id)}
-                  index={idx}
                 />
               </motion.div>
             );

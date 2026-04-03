@@ -2,15 +2,12 @@ import Image from "next/image";
 import { siteConfig } from "@/config/site";
 import { GoogleMap } from "@/components/ui/GoogleMap";
 import { Logo } from "@/components/ui/Logo";
-import { getTranslations, getLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/routing";
 
 export async function Footer() {
   const t = await getTranslations("footer");
-  const tCommon = await getTranslations("common");
   const tNav = await getTranslations("nav");
-  const locale = await getLocale();
-  const isRTL = locale === "ar";
 
   const socialLinks = [
     {

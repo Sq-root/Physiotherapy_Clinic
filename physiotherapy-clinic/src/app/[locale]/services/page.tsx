@@ -1,10 +1,10 @@
-import { setRequestLocale, getTranslations, getLocale } from "next-intl/server";
+import { setRequestLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { ArrowRight, Quote } from "lucide-react";
 import { Link } from "@/i18n/routing";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
 import { ServiceFAQInteractive } from "./ServiceFAQInteractive";
-import { ServicesGrid } from "@/components/sections/ServicesGrid";
+import { ServicesGrid, type ServiceTranslation } from "@/components/sections/ServicesGrid";
 import { services } from "@/lib/data/services";
 
 // ─── Static service data ────────────────────────────────────────────
@@ -45,7 +45,7 @@ export default async function ServicesPage({
   const t = await getTranslations("servicesPage");
   const tDetail = await getTranslations("serviceDetail");
   const tCommon = await getTranslations("common");
-  const currentLocale = await getLocale();
+  const currentLocale = locale;
   const isRTL = currentLocale === "ar";
 
   // Pre-resolve FAQ data for the client island
@@ -54,7 +54,7 @@ export default async function ServicesPage({
     answer: t(`faq.questions.${key}.answer`),
   }));
 
-  const serviceTranslations: Record<string, any> = {};
+  const serviceTranslations: Record<string, ServiceTranslation> = {};
   for (const service of services) {
     const key = service.translationKey;
     try {

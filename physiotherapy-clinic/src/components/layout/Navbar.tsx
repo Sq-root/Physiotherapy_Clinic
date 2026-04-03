@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-import { Leaf, Sparkles, Globe } from "lucide-react";
+import { Globe } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { Logo } from "@/components/ui/Logo";
 import { NavbarServicesDropdown } from "@/components/layout/NavbarServicesDropdown";
@@ -181,7 +181,6 @@ export function Navbar() {
                           isActive={isActive}
                           useDarkStyle={useDarkStyle}
                           isRTL={isRTL}
-                          t={t}
                         />
                       );
                     }
@@ -429,7 +428,6 @@ export function Navbar() {
                           key={link.href}
                           label={link.label}
                           isRTL={isRTL}
-                          t={t}
                           onNavigate={() => setMobileOpen(false)}
                           index={index}
                         />

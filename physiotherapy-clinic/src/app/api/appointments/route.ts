@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServerClient } from '@/lib/supabase/client';
 import { Resend } from 'resend';
-import type { Appointment, AppointmentInsert, Database, ServiceType, TimeSlot } from '@/lib/supabase/types';
+import type { Appointment, AppointmentInsert, ServiceType, TimeSlot } from '@/lib/supabase/types';
 
 const NOTIFICATION_EMAIL = "prabodhamtech369@gmail.com";
 
@@ -92,11 +92,8 @@ export async function POST(request: NextRequest) {
       status: 'pending',
     };
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: appointment, error: insertError } = await (supabase.from('appointments') as any)
-      .insert(appointmentData)
-      .select()
-      .single();
+    // @ts-expect-error - Supabase type inference issue with handwritten Database interface
+    const { data: appointment, error: insertError } = await supabase.from('appointments').insert(appointmentData).select().single();
 
     if (insertError) {
       console.error('Supabase Insert Error:', {
@@ -221,14 +218,14 @@ export async function POST(request: NextRequest) {
       },
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const err = error as Error;
     console.error('Detailed Appointment Booking Error:', {
-      message: error.message,
-      stack: error.stack,
-      cause: error.cause
+      message: err.message,
+      stack: err.stack,
     });
     return NextResponse.json(
-      { success: false, errors: [error.message || 'An unexpected error occurred. Please try again.'] },
+      { success: false, errors: [err.message || 'An unexpected error occurred. Please try again.'] },
       { status: 500 }
     );
   }
@@ -268,8 +265,8 @@ export async function GET(request: NextRequest) {
       },
     });
 
-  } catch (error) {
-    console.error('Error checking availability:', error);
+  } catch (_error) {
+    console.error('Error checking availability:', _error);
     return NextResponse.json(
       { success: false, errors: ['An unexpected error occurred'] },
       { status: 500 }

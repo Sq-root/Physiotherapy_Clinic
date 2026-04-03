@@ -27,6 +27,7 @@ import {
   Dumbbell,
   Wrench,
   Activity,
+  type LucideIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Link } from "@/i18n/routing";
@@ -36,13 +37,12 @@ import { useTranslations } from "next-intl";
 interface MobileServicesAccordionProps {
   label: string;
   isRTL: boolean;
-  t: (key: string) => string;
   onNavigate: () => void;
   index: number;
 }
 
 // Map string icon names to lucide components
-const iconMap: Record<string, any> = {
+const iconMap: Record<string, LucideIcon> = {
   Bone, Zap, PersonStanding, Target, MoveVertical, Footprints,
   RefreshCw, CircleDot, Stethoscope, Syringe, Brain, ShieldCheck,
   Trophy, HeartPulse, Baby, Users, Sparkles, Monitor, ScanLine,
@@ -72,7 +72,6 @@ const patientCategoryLabels: Record<string, string> = {
 export function MobileServicesAccordion({
   label,
   isRTL,
-  t,
   onNavigate,
   index,
 }: MobileServicesAccordionProps) {
@@ -87,7 +86,7 @@ export function MobileServicesAccordion({
     if (!isRTL) return fallback;
     const service = getServiceBySlug(slug);
     if (!service) return fallback;
-    const raw = tDetail(`${service.translationKey}.title` as any);
+    const raw = tDetail(`${service.translationKey}.title`);
     return raw.includes('.title') ? fallback : raw;
   };
 
@@ -153,7 +152,7 @@ export function MobileServicesAccordion({
                           )}
                         />
                         <span className="text-[12px] font-bold uppercase tracking-widest">
-                          {isRTL ? (tCat as any)(cat.id) : (patientCategoryLabels[cat.id] || cat.label)}
+                          {isRTL ? tCat(cat.id) : (patientCategoryLabels[cat.id] || cat.label)}
                         </span>
                         <span className="text-[10px] font-medium text-forest/35 ml-0.5">
                           {services.length}
