@@ -3,7 +3,7 @@ import { createServerClient } from '@/lib/supabase/client';
 import { Resend } from 'resend';
 import type { Appointment, AppointmentInsert, ServiceType, TimeSlot } from '@/lib/supabase/types';
 
-const NOTIFICATION_EMAIL = "[EMAIL_ADDRESS]";
+const NOTIFICATION_EMAIL = "drishashah95@gmail.com";
 
 // Validation helpers
 const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
