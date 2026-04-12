@@ -3,7 +3,7 @@ import { createServerClient } from '@/lib/supabase/client';
 import { Resend } from 'resend';
 import type { Appointment, AppointmentInsert, ServiceType, TimeSlot } from '@/lib/supabase/types';
 
-const NOTIFICATION_EMAIL = "prabodhamtech369@gmail.com";
+const NOTIFICATION_EMAIL = "[EMAIL_ADDRESS]";
 
 // Validation helpers
 const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -127,7 +127,7 @@ export async function POST(request: NextRequest) {
       const resendApiKey = process.env.RESEND_API_KEY;
       if (resendApiKey) {
         const resend = new Resend(resendApiKey);
-        
+
         const serviceLabels: Record<string, string> = {
           ortho: 'Orthopedic Physiotherapy',
           sports: 'Sports Injury Rehab',
