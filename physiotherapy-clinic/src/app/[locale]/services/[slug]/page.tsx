@@ -22,6 +22,7 @@ import {
 } from "@/lib/data/services";
 import { routing } from "@/i18n/routing";
 import { ServiceDetailInteractive } from "./ServiceDetailInteractive";
+import { DynamicIcon } from "@/components/ui/DynamicIcon";
 
 // ─── Static Params ──────────────────────────────────────────────────
 export function generateStaticParams() {
@@ -170,7 +171,16 @@ export default async function ServiceDetailPage({
                 >
                   {service.category}
                 </span>
-                <span className="text-3xl">{service.icon}</span>
+                <div
+                  className="w-8 h-8 rounded-xl flex items-center justify-center"
+                  style={{ backgroundColor: service.color + "20" }}
+                >
+                  <DynamicIcon
+                    name={service.icon}
+                    className="w-5 h-5"
+                    style={{ color: service.color === "#002D04" ? "#002D04" : service.color }}
+                  />
+                </div>
               </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-forest mb-4 tracking-tight leading-[1.1]">
@@ -543,7 +553,13 @@ export default async function ServiceDetailPage({
 
         <div className="mx-auto max-w-4xl px-6 lg:px-8 text-center relative z-10">
           <AnimateOnView>
-            <span className="text-3xl mb-6 block">{service.icon}</span>
+            <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6" style={{ backgroundColor: service.color + "20" }}>
+              <DynamicIcon
+                name={service.icon}
+                className="w-8 h-8"
+                style={{ color: service.color === "#002D04" ? "#002D04" : service.color }}
+              />
+            </div>
             <h2 className="text-4xl md:text-6xl font-bold text-forest mb-6 tracking-tighter">
               {t("readyToStart")}
             </h2>

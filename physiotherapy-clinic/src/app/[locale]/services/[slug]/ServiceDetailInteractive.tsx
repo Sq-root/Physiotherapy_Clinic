@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { DynamicIcon } from "@/components/ui/DynamicIcon";
 
 interface ServiceDetailInteractiveProps {
   benefits: string[];
@@ -25,10 +26,14 @@ export function ServiceDetailInteractive({
       {/* Header */}
       <div className="flex items-center gap-4 mb-8">
         <div
-          className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shadow-lg"
+          className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg"
           style={{ backgroundColor: serviceColor + "20" }}
         >
-          {serviceIcon}
+          <DynamicIcon
+            name={serviceIcon}
+            className="w-7 h-7"
+            style={{ color: serviceColor }}
+          />
         </div>
         <div>
           <p className="text-forest font-bold text-lg tracking-tight">{serviceTitle}</p>
