@@ -191,7 +191,7 @@ export default async function ServiceDetailPage({
                 {t(`${key}.heroSubtitle`)}
               </p>
 
-              {/* Quick Stats */}
+              {/* Quick Stats - Commented out as requested
               <div className="flex flex-wrap gap-4 mb-10">
                 <div className="flex items-center gap-3 bg-white/80 backdrop-blur-sm rounded-2xl px-5 py-3 border border-forest/5 shadow-sm">
                   <Clock className="w-5 h-5 text-seafoam" />
@@ -216,6 +216,7 @@ export default async function ServiceDetailPage({
                   </div>
                 </div>
               </div>
+              */}
 
               {/* CTA */}
               <Link
@@ -623,8 +624,9 @@ export default async function ServiceDetailPage({
                       <div className="absolute inset-0 bg-gradient-to-t from-forest/40 to-transparent" />
                       <div
                         className={`absolute bottom-4 ${isRTL ? "right-4" : "left-4"}`}
+                        style={{ color: related.color === "#002D04" ? "#002D04" : related.color }}
                       >
-                        <span className="text-3xl">{related.icon}</span>
+                        <DynamicIcon name={related.icon} className="w-8 h-8" />
                       </div>
                     </div>
                   )}

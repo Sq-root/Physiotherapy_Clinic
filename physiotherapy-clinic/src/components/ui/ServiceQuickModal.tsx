@@ -120,7 +120,7 @@ export function ServiceQuickModal({ service, translation, uiLabels, onClose }: P
           )}
 
           <div className="p-6 md:p-8 space-y-8">
-            {/* Duration + Frequency Chips */}
+            {/* Duration + Frequency Chips - Commented out as requested
             <div className="flex flex-wrap gap-3">
               <span className="flex items-center gap-2 px-4 py-2 rounded-full bg-section text-forest text-sm font-medium">
                 <Clock className="w-4 h-4 text-seafoam" />
@@ -131,6 +131,7 @@ export function ServiceQuickModal({ service, translation, uiLabels, onClose }: P
                 {translation.frequency}
               </span>
             </div>
+            */}
 
             {/* Mechanism / Overview */}
             <div>
