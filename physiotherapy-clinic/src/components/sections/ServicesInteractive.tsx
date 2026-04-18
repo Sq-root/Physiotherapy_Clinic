@@ -205,21 +205,21 @@ export function ServicesInteractive({
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.3 }}
-                    className="text-white/20 text-6xl xl:text-8xl font-bold leading-none select-none drop-shadow-sm"
+                    className="text-white/20 text-5xl xl:text-7xl font-bold leading-none select-none drop-shadow-sm"
                   >
                     {activeData.id}
                   </motion.span>
                 </div>
 
                 {/* Bottom Section: Title & CTA */}
-                <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-8">
+                <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-4 xl:gap-6">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}
                     className="max-w-lg"
                   >
-                    <h3 className="text-3xl xl:text-5xl font-bold text-white leading-[1.1] tracking-tight">
+                    <h3 className="text-xl lg:text-2xl xl:text-4xl font-bold text-white leading-[1.15] tracking-tight">
                       {activeData.title}
                     </h3>
                   </motion.div>
@@ -228,12 +228,13 @@ export function ServicesInteractive({
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
+                    className="shrink-0"
                   >
                     <Link href="/services">
-                      <span className="inline-flex items-center justify-center gap-4 px-8 py-4 bg-white text-forest font-bold uppercase tracking-[0.15em] rounded-full transition-all duration-300 shadow-[4px_4px_0px_0px_#A4C639] hover:bg-seafoam hover:text-forest hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[3px] active:translate-y-[3px] active:shadow-none group/cta">
-                        <span className="text-sm">{learnMoreLabel || "Discover"}</span>
-                        <span className="size-8 rounded-full bg-forest/10 flex items-center justify-center group-hover/cta:bg-white/30 transition-colors">
-                          <ArrowRight className={`w-4 h-4 ${isRTL ? "rotate-180" : ""}`} />
+                      <span className="inline-flex items-center justify-center gap-3 px-5 py-2.5 xl:px-7 xl:py-3.5 bg-white text-forest font-bold uppercase tracking-[0.12em] rounded-full transition-all duration-300 shadow-[3px_3px_0px_0px_#A4C639] hover:bg-seafoam hover:text-forest hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[3px] active:translate-y-[3px] active:shadow-none group/cta">
+                        <span className="text-xs xl:text-sm">{learnMoreLabel || "Discover"}</span>
+                        <span className="size-7 xl:size-8 rounded-full bg-forest/10 flex items-center justify-center group-hover/cta:bg-white/30 transition-colors">
+                          <ArrowRight className={`w-3.5 h-3.5 xl:w-4 xl:h-4 ${isRTL ? "rotate-180" : ""}`} />
                         </span>
                       </span>
                     </Link>
@@ -293,7 +294,7 @@ export function ServicesInteractive({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="relative rounded-2xl overflow-hidden aspect-[4/5]"
+            className="relative rounded-2xl overflow-hidden aspect-[3/4] sm:aspect-[4/5]"
           >
             {/* Image Background */}
             <motion.div
@@ -333,8 +334,8 @@ export function ServicesInteractive({
               </div>
 
               {/* Bottom Section: Title & CTA */}
-              <div className="flex flex-col gap-4">
-                <h3 className="text-2xl font-bold text-white leading-tight">
+              <div className="flex flex-col gap-3">
+                <h3 className="text-lg sm:text-xl font-bold text-white leading-tight">
                   {activeData.title}
                 </h3>
 

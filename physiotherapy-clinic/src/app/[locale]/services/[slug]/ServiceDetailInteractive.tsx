@@ -4,16 +4,17 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { DynamicIcon } from "@/components/ui/DynamicIcon";
 
 interface ServiceDetailInteractiveProps {
-  benefits: string[];
+  treatmentHighlights: string[];
   serviceColor: string;
   serviceIcon: string;
   serviceTitle: string;
 }
 
 export function ServiceDetailInteractive({
-  benefits,
+  treatmentHighlights,
   serviceColor,
   serviceIcon,
   serviceTitle,
@@ -25,10 +26,14 @@ export function ServiceDetailInteractive({
       {/* Header */}
       <div className="flex items-center gap-4 mb-8">
         <div
-          className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shadow-lg"
+          className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg"
           style={{ backgroundColor: serviceColor + "20" }}
         >
-          {serviceIcon}
+          <DynamicIcon
+            name={serviceIcon}
+            className="w-7 h-7"
+            style={{ color: serviceColor }}
+          />
         </div>
         <div>
           <p className="text-forest font-bold text-lg tracking-tight">{serviceTitle}</p>
@@ -38,9 +43,9 @@ export function ServiceDetailInteractive({
         </div>
       </div>
 
-      {/* Interactive Benefit Cards */}
+      {/* Interactive Treatment Highlight Cards */}
       <div className="space-y-3">
-        {benefits.map((benefit, index) => {
+        {treatmentHighlights.map((highlight, index) => {
           const isActive = activeIndex === index;
 
           return (
@@ -74,7 +79,7 @@ export function ServiceDetailInteractive({
                   isActive ? "text-forest" : "text-forest/60"
                 )}
               >
-                {benefit}
+                {highlight}
               </span>
               <ChevronDown
                 className={cn(
@@ -89,7 +94,7 @@ export function ServiceDetailInteractive({
 
       {/* Progress Indicator */}
       <div className="mt-8 flex items-center gap-2">
-        {benefits.map((_, index) => (
+        {treatmentHighlights.map((_, index) => (
           <button
             key={index}
             onClick={() => setActiveIndex(index)}

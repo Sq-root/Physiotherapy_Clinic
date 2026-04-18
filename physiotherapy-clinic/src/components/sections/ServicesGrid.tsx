@@ -251,11 +251,12 @@ function ServiceCard({
               {categoryLabels[service.category] || service.category}
             </span>
 
-            {/* Duration pill */}
+            {/* Duration pill - Commented out as requested
             <span className="inline-flex items-center gap-1 py-1 px-2.5 rounded-full text-[9px] font-bold bg-black/30 backdrop-blur-sm text-white/80 border border-white/10">
               <Clock className="w-2.5 h-2.5" />
               {trans?.duration || "45–60 min"}
             </span>
+            */}
           </div>
 
           {/* ── Bottom of image: Title + outcome badge ── */}
@@ -340,7 +341,7 @@ function ServiceCard({
             {subtitle}
           </p>
 
-          {/* ── Session frequency row ── */}
+          {/* ── Session frequency row ── - Commented out as requested
           <div className="flex items-center gap-2 mb-4 py-2.5 px-3 rounded-xl bg-section/60">
             <RotateCcw className="w-3.5 h-3.5 text-seafoam shrink-0" />
             <span className="text-[10px] font-bold text-forest/50 uppercase tracking-wider">
@@ -350,6 +351,7 @@ function ServiceCard({
               {trans?.frequency || "2× / week"}
             </span>
           </div>
+          */}
 
           {/* ── Divider ── */}
           <div className="h-px bg-forest/[0.06] mb-4" />

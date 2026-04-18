@@ -22,6 +22,7 @@ import {
 } from "@/lib/data/services";
 import { routing } from "@/i18n/routing";
 import { ServiceDetailInteractive } from "./ServiceDetailInteractive";
+import { DynamicIcon } from "@/components/ui/DynamicIcon";
 
 // ─── Static Params ──────────────────────────────────────────────────
 export function generateStaticParams() {
@@ -73,15 +74,19 @@ export default async function ServiceDetailPage({
   const benefits = t.raw(`${key}.benefits`) as string[];
   const idealFor = t.raw(`${key}.idealFor`) as string[];
 
-  // Safely get new fields (symptoms, clinicalApproach, outcome)
+  // Safely get new fields (symptoms, clinicalApproach, treatmentHighlights, outcome)
   let symptoms: string[] = [];
   let clinicalApproach: string[] = [];
+  let treatmentHighlights: string[] = [];
   let outcome = "";
   try {
     symptoms = t.raw(`${key}.symptoms`) as string[];
   } catch {}
   try {
     clinicalApproach = t.raw(`${key}.clinicalApproach`) as string[];
+  } catch {}
+  try {
+    treatmentHighlights = t.raw(`${key}.treatmentHighlights`) as string[];
   } catch {}
   try {
     outcome = t(`${key}.outcome`);
@@ -170,7 +175,16 @@ export default async function ServiceDetailPage({
                 >
                   {service.category}
                 </span>
-                <span className="text-3xl">{service.icon}</span>
+                <div
+                  className="w-8 h-8 rounded-xl flex items-center justify-center"
+                  style={{ backgroundColor: service.color + "20" }}
+                >
+                  <DynamicIcon
+                    name={service.icon}
+                    className="w-5 h-5"
+                    style={{ color: service.color === "#002D04" ? "#002D04" : service.color }}
+                  />
+                </div>
               </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-forest mb-4 tracking-tight leading-[1.1]">
@@ -181,7 +195,7 @@ export default async function ServiceDetailPage({
                 {t(`${key}.heroSubtitle`)}
               </p>
 
-              {/* Quick Stats */}
+              {/* Quick Stats - Commented out as requested
               <div className="flex flex-wrap gap-4 mb-10">
                 <div className="flex items-center gap-3 bg-white/80 backdrop-blur-sm rounded-2xl px-5 py-3 border border-forest/5 shadow-sm">
                   <Clock className="w-5 h-5 text-seafoam" />
@@ -206,6 +220,7 @@ export default async function ServiceDetailPage({
                   </div>
                 </div>
               </div>
+              */}
 
               {/* CTA */}
               <Link
@@ -525,7 +540,7 @@ export default async function ServiceDetailPage({
             {/* Interactive Client Island */}
             <AnimateOnView delay={0.15} direction="right">
               <ServiceDetailInteractive
-                benefits={benefits}
+                treatmentHighlights={treatmentHighlights.length > 0 ? treatmentHighlights : benefits}
                 serviceColor={service.color}
                 serviceIcon={service.icon}
                 serviceTitle={t(`${key}.title`)}
@@ -543,7 +558,13 @@ export default async function ServiceDetailPage({
 
         <div className="mx-auto max-w-4xl px-6 lg:px-8 text-center relative z-10">
           <AnimateOnView>
-            <span className="text-3xl mb-6 block">{service.icon}</span>
+            <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6" style={{ backgroundColor: service.color + "20" }}>
+              <DynamicIcon
+                name={service.icon}
+                className="w-8 h-8"
+                style={{ color: service.color === "#002D04" ? "#002D04" : service.color }}
+              />
+            </div>
             <h2 className="text-4xl md:text-6xl font-bold text-forest mb-6 tracking-tighter">
               {t("readyToStart")}
             </h2>
@@ -607,8 +628,9 @@ export default async function ServiceDetailPage({
                       <div className="absolute inset-0 bg-gradient-to-t from-forest/40 to-transparent" />
                       <div
                         className={`absolute bottom-4 ${isRTL ? "right-4" : "left-4"}`}
+                        style={{ color: related.color === "#002D04" ? "#002D04" : related.color }}
                       >
-                        <span className="text-3xl">{related.icon}</span>
+                        <DynamicIcon name={related.icon} className="w-8 h-8" />
                       </div>
                     </div>
                   )}
