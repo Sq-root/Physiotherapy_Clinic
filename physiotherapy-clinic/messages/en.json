@@ -37,7 +37,7 @@
       "manualTherapy": "Manual Therapy",
       "sportsRecovery": "Sports Recovery",
       "painManagement": "Pain Management",
-      "postSurgical": "Post-Surgical",
+      "postSurgical": "PostSurgical",
       "activeAging": "Active Aging",
       "hydrotherapy": "Hydrotherapy",
       "correctiveExercise": "Corrective Exercise",
@@ -51,7 +51,7 @@
         "badge": "Sports Recovery",
         "title": "Get Back To",
         "highlight": "Peak Performance",
-        "description": "Professional sports rehabilitation designed to get athletes back in the game faster with evidence-based treatment protocols."
+        "description": "Professional sports rehabilitation designed to get athletes back in the game faster with evidencebased treatment protocols."
       },
       "seniorCare": {
         "badge": "Senior Care",
@@ -69,7 +69,7 @@
         "badge": "Post Surgery",
         "title": "Accelerate Your",
         "highlight": "Recovery Journey",
-        "description": "Comprehensive post-operative rehabilitation to restore function, rebuild strength, and get you back to daily activities."
+        "description": "Comprehensive postoperative rehabilitation to restore function, rebuild strength, and get you back to daily activities."
       }
     },
     "cta": {
@@ -81,11 +81,11 @@
     "badge": "Why Us",
     "title": "Precision Physiotherapy for",
     "titleHighlight": "Lasting Recovery",
-    "description": "Led by expert therapists, we blend cutting-edge techniques with compassionate care to restore your mobility and well-being.",
+    "description": "Led by expert therapists, we blend cuttingedge techniques with compassionate care to restore your mobility and wellbeing.",
     "highlights": {
       "globalStandard": "Global Standard Of Care",
-      "personalized": "Personalized (Evidence-based)",
-      "outcomeDriven": "Outcome-driven Rehabilitation"
+      "personalized": "Personalized (Evidencebased)",
+      "outcomeDriven": "Outcomedriven Rehabilitation"
     },
     "cta": "Start Your Recovery →",
     "stats": {
@@ -104,37 +104,33 @@
       "orthopedic": {
         "title": "Orthopedic Rehabilitation",
         "shortDesc": "Joint & Bone Recovery",
-        "fullDesc": "Comprehensive treatment for musculoskeletal disorders including joint pain, fractures, arthritis management, and post-surgical rehabilitation protocols.",
+        "fullDesc": "Comprehensive treatment for musculoskeletal disorders including joint pain, fractures, arthritis management, and postsurgical rehabilitation protocols.",
         "features": [
           "Joint Mobilization",
-          "Post-Surgery Care",
+          "PostSurgery Care",
           "Pain Management"
         ]
       },
       "sports": {
         "title": "Sports Medicine & Rehab",
         "shortDesc": "Athletic Performance",
-        "fullDesc": "Expert rehabilitation for athletes of all levels - from injury diagnosis and treatment to full return-to-sport performance optimization programs.",
+        "fullDesc": "Expert rehabilitation for athletes of all levels  from injury diagnosis and treatment to full returntosport performance optimization programs.",
         "features": [
           "Injury Prevention",
           "Performance Training",
-          "Sport-Specific Rehab"
+          "SportSpecific Rehab"
         ]
       },
       "neurological": {
         "title": "Neurological Therapy",
         "shortDesc": "Brain & Nerve Care",
         "fullDesc": "Compassionate care for neurological conditions including stroke recovery, Parkinson's disease, multiple sclerosis, and spinal cord injuries.",
-        "features": [
-          "Stroke Recovery",
-          "Balance Training",
-          "Motor Control"
-        ]
+        "features": ["Stroke Recovery", "Balance Training", "Motor Control"]
       },
       "manual": {
         "title": "Manual Therapy",
-        "shortDesc": "Hands-On Healing",
-        "fullDesc": "Skilled hands-on techniques including soft tissue mobilization, joint manipulation, and myofascial release for optimal pain relief and mobility.",
+        "shortDesc": "HandsOn Healing",
+        "fullDesc": "Skilled handson techniques including soft tissue mobilization, joint manipulation, and myofascial release for optimal pain relief and mobility.",
         "features": [
           "Deep Tissue Work",
           "Trigger Point Release",
@@ -157,14 +153,14 @@
     "badge": "Your Path to Recovery",
     "title": "How We Help You",
     "titleHighlight": "Heal & Thrive",
-    "description": "A proven 4-step process designed to identify, treat, and prevent recurring injuries.",
+    "description": "A proven 4step process designed to identify, treat, and prevent recurring injuries.",
     "cta": "Start Your Journey →",
     "steps": {
       "assessment": {
         "title": "Initial Assessment",
         "shortTitle": "Assess",
         "desc": "Comprehensive evaluation of your injury history, biomechanics, lifestyle factors, and personal recovery goals.",
-        "duration": "45-60 min"
+        "duration": "4560 min"
       },
       "plan": {
         "title": "Treatment Plan",
@@ -175,48 +171,32 @@
       "therapy": {
         "title": "Active Therapy",
         "shortTitle": "Heal",
-        "desc": "Hands-on manual techniques combined with guided exercises to reduce pain and restore function.",
-        "duration": "2-8 weeks"
+        "desc": "Handson manual techniques combined with guided exercises to reduce pain and restore function.",
+        "duration": "28 weeks"
       },
       "recovery": {
         "title": "Full Recovery",
         "shortTitle": "Thrive",
         "desc": "Return to full activity with lasting results, prevention strategies, and ongoing wellness support.",
-        "duration": "Long-term"
+        "duration": "Longterm"
       }
     },
     "painPoints": {
       "neckShoulder": {
         "title": "Neck & Shoulder",
-        "conditions": [
-          "Stiffness",
-          "Tension",
-          "Whiplash"
-        ]
+        "conditions": ["Stiffness", "Tension", "Whiplash"]
       },
       "upperBack": {
         "title": "Upper Back",
-        "conditions": [
-          "Posture Issues",
-          "Muscle Strain",
-          "Thoracic Pain"
-        ]
+        "conditions": ["Posture Issues", "Muscle Strain", "Thoracic Pain"]
       },
       "lowerBack": {
         "title": "Lower Back",
-        "conditions": [
-          "Disc Issues",
-          "Sciatica",
-          "Chronic Pain"
-        ]
+        "conditions": ["Disc Issues", "Sciatica", "Chronic Pain"]
       },
       "kneeLeg": {
         "title": "Knee & Leg",
-        "conditions": [
-          "Sports Injuries",
-          "Arthritis",
-          "Recovery"
-        ]
+        "conditions": ["Sports Injuries", "Arthritis", "Recovery"]
       }
     }
   },
@@ -251,7 +231,7 @@
         "faqs": [
           {
             "question": "Do I need a referral to book an appointment?",
-            "answer": "No referral is necessary. You can book directly through our website or by calling our clinic. We welcome self-referrals and work with most health insurance providers."
+            "answer": "No referral is necessary. You can book directly through our website or by calling our clinic. We welcome selfreferrals and work with most health insurance providers."
           },
           {
             "question": "What should I bring to my first visit?",
@@ -259,7 +239,7 @@
           },
           {
             "question": "How do I schedule an appointment?",
-            "answer": "You can book online through our website, call us directly, or use our mobile app. Same-day appointments are often available for urgent cases."
+            "answer": "You can book online through our website, call us directly, or use our mobile app. Sameday appointments are often available for urgent cases."
           }
         ]
       },
@@ -268,7 +248,7 @@
         "faqs": [
           {
             "question": "How long does each session typically last?",
-            "answer": "Initial assessments are 60 minutes. Follow-up treatment sessions are usually 45-60 minutes depending on your condition and treatment plan."
+            "answer": "Initial assessments are 60 minutes. Followup treatment sessions are usually 4560 minutes depending on your condition and treatment plan."
           },
           {
             "question": "Is physiotherapy treatment painful?",
@@ -276,7 +256,7 @@
           },
           {
             "question": "What should I wear to my session?",
-            "answer": "Wear comfortable, loose-fitting clothing that allows easy access to the area being treated. For lower body issues, shorts work best. For upper body, a tank top or loose t-shirt is ideal."
+            "answer": "Wear comfortable, loosefitting clothing that allows easy access to the area being treated. For lower body issues, shorts work best. For upper body, a tank top or loose tshirt is ideal."
           }
         ]
       },
@@ -302,7 +282,7 @@
         "faqs": [
           {
             "question": "How many sessions will I need?",
-            "answer": "This varies widely depending on your condition. Some patients see significant improvement in 4-6 sessions, while chronic or complex conditions may require longer treatment plans."
+            "answer": "This varies widely depending on your condition. Some patients see significant improvement in 46 sessions, while chronic or complex conditions may require longer treatment plans."
           },
           {
             "question": "Will I get exercises to do at home?",
@@ -310,7 +290,7 @@
           },
           {
             "question": "Is physiotherapy the same as chiropractic care?",
-            "answer": "While there are overlaps, physiotherapy focuses on rehabilitation, movement re-education, and exercise therapy in addition to manual techniques, offering a more comprehensive approach."
+            "answer": "While there are overlaps, physiotherapy focuses on rehabilitation, movement reeducation, and exercise therapy in addition to manual techniques, offering a more comprehensive approach."
           }
         ]
       }
@@ -322,7 +302,7 @@
     "badge": "Book Your Appointment",
     "title": "Start Your",
     "titleHighlight": "Recovery Today",
-    "description": "Take the first step towards a pain-free life. Book your consultation with our expert physiotherapists.",
+    "description": "Take the first step towards a painfree life. Book your consultation with our expert physiotherapists.",
     "form": {
       "name": "Full Name",
       "namePlaceholder": "Enter your full name",
@@ -349,14 +329,14 @@
       "neuro": "Neurological Therapy",
       "manual": "Manual Therapy",
       "senior": "Senior Care",
-      "surgery": "Post-Surgery Recovery",
+      "surgery": "PostSurgery Recovery",
       "online": "Online Consultation",
       "others": "Others"
     },
     "timeSlots": {
-      "morning": "Morning (9AM - 12PM)",
-      "afternoon": "Afternoon (12PM - 4PM)",
-      "evening": "Evening (4PM - 7PM)"
+      "morning": "Morning (9AM  12PM)",
+      "afternoon": "Afternoon (12PM  4PM)",
+      "evening": "Evening (4PM  7PM)"
     },
     "trustIndicators": {
       "secure": "Secure & Confidential",
@@ -384,9 +364,9 @@
   "about": {
     "badge": "Founder & Lead Physiotherapist",
     "heroTitle": "Dr. Isha Shah",
-    "heroSubtitle": "I do not believe in high-volume care, indefinite treatment plans, or passive rehabilitation. My methodology is analytical, finite, and outcome-led.",
-    "heroDescription1": "Dr. Isha Shah is a physiotherapist with advanced expertise in spine rehabilitation, complex pain, post-procedure recovery, and postnatal restoration. Her work is grounded in movement diagnostics and load science rather than trends or generic protocols.",
-    "heroDescription2": "She works closely with medical teams when required, managing cases that demand precision and discretion. Every program is personally designed and progressed—without dilution.",
+    "heroSubtitle": "I do not believe in highvolume care, indefinite treatment plans, or passive rehabilitation. My methodology is analytical, finite, and outcomeled.",
+    "heroDescription1": "Dr. Isha Shah is a physiotherapist with advanced expertise in spine rehabilitation, complex pain, postprocedure recovery, and postnatal restoration. Her work is grounded in movement diagnostics and load science rather than trends or generic protocols.",
+    "heroDescription2": "She works closely with medical teams when required, managing cases that demand precision and discretion. Every program is personally designed and progressedwithout dilution.",
     "experienceBadge": "Years of Clinical Depth",
     "credentials": {
       "dha": "DHA Licensed",
@@ -394,29 +374,29 @@
     },
     "practiceOverview": {
       "title": "A Curated Practice",
-      "description": "This is not a scaled model. Clients accepted into care work directly under my clinical oversight—ensuring consistency, accountability, and clinical depth at every stage."
+      "description": "This is not a scaled model. Clients accepted into care work directly under my clinical oversightensuring consistency, accountability, and clinical depth at every stage."
     },
     "clinicalFocus": {
       "title": "Clinical Focus",
       "items": {
         "spine": "Spine & Persistent Pain",
-        "postSurgical": "Post-Surgical & Complex Rehab",
+        "postSurgical": "PostSurgical & Complex Rehab",
         "postnatal": "Postnatal Biomechanics",
-        "highFunctioning": "High-Functioning Individuals with Recurrent Dysfunction",
+        "highFunctioning": "HighFunctioning Individuals with Recurrent Dysfunction",
         "musculoskeletal": "Musculoskeletal & Sports Injuries"
       }
     },
     "standards": {
       "badge": "The Methodology",
       "title": "The Standard We Operate At",
-      "subtitle": "High-precision physiotherapy for individuals who value discretion and measurable outcomes.",
+      "subtitle": "Highprecision physiotherapy for individuals who value discretion and measurable outcomes.",
       "private": {
         "title": "Private, Not Casual",
-        "desc": "Care is delivered one-to-one, in your space, on your schedule. No clinic chaos, no compromised attention."
+        "desc": "Care is delivered onetoone, in your space, on your schedule. No clinic chaos, no compromised attention."
       },
       "digital": {
         "title": "Digital, But Exact",
-        "desc": "Online physiotherapy is assessment-driven and outcome-mapped. Live analysis, progressive load management, and constant recalibration."
+        "desc": "Online physiotherapy is assessmentdriven and outcomemapped. Live analysis, progressive load management, and constant recalibration."
       },
       "clinical": {
         "title": "Clinically Aligned",
@@ -426,7 +406,7 @@
     "whoIsFor": {
       "title": "Who This Is For",
       "items": [
-        "Individuals who think long-term.",
+        "Individuals who think longterm.",
         "Professionals who protect their time.",
         "Postnatal women who expect intelligent restoration.",
         "Active bodies that refuse decline.",
@@ -438,7 +418,7 @@
       "pain": "Pain is data",
       "movement": "Movement is strategy",
       "recovery": "Recovery is engineered",
-      "quote": "If you expect clinical depth and uncompromising standards—welcome."
+      "quote": "If you expect clinical depth and uncompromising standardswelcome."
     },
     "cta": {
       "badge": "The Final Milestone",
@@ -482,7 +462,7 @@
       "neurological": "Neurological Therapy",
       "manual": "Manual Therapy",
       "senior": "Senior Care",
-      "postSurgery": "Post-Surgery Recovery",
+      "postSurgery": "PostSurgery Recovery",
       "general": "General Inquiry",
       "online": "Online Consultation",
       "others": "Others"
@@ -523,7 +503,7 @@
     "badge": "The Methodology",
     "title": "Active",
     "titleHighlight": "Life Design",
-    "description": "A systematic approach to movement. From clinical restoration to high-performance architecture, we engineer your recovery journey with surgical precision.",
+    "description": "A systematic approach to movement. From clinical restoration to highperformance architecture, we engineer your recovery journey with surgical precision.",
     "bookConsultation": "Book Initial Consult",
     "deepDive": {
       "title": "Therapeutic",
@@ -533,21 +513,21 @@
         "activeAging": {
           "category": "Clinical Mobility",
           "title": "Active Aging",
-          "description": "Systematic maintenance of independent mobility and structural strength through personalized low-impact protocols.",
+          "description": "Systematic maintenance of independent mobility and structural strength through personalized lowimpact protocols.",
           "quote": "Independence is being able to play with my grandkids without structural pain.",
           "author": "Margaret, 72"
         },
         "hydrotherapy": {
           "category": "Structural Recovery",
           "title": "Hydrotherapy",
-          "description": "Precision aquatic resistance modeling to facilitate muscle hypertrophy without osteo-articular stress.",
-          "quote": "The buoyancy provided a pain-free environment to rebuild my peak power.",
+          "description": "Precision aquatic resistance modeling to facilitate muscle hypertrophy without osteoarticular stress.",
+          "quote": "The buoyancy provided a painfree environment to rebuild my peak power.",
           "author": "David, 45"
         },
         "correctiveExercise": {
           "category": "Functional Prevention",
           "title": "Corrective Exercise",
-          "description": "Analytical assessment and resolution of biomechanical imbalances to mitigate long-term injury risks.",
+          "description": "Analytical assessment and resolution of biomechanical imbalances to mitigate longterm injury risks.",
           "quote": "My chronic spinal dysfunction resolved entirely after correcting my base posture.",
           "author": "Sarah, 29"
         }
@@ -561,15 +541,15 @@
       "questions": {
         "acuteInjuries": {
           "question": "Which therapy is right for acute injuries?",
-          "answer": "For acute injuries (occurring within the last 48-72 hours), we typically recommend starting with a diagnostic consultation followed by gentle Manual Therapy to manage inflammation and pain before progressing to active rehabilitation."
+          "answer": "For acute injuries (occurring within the last 4872 hours), we typically recommend starting with a diagnostic consultation followed by gentle Manual Therapy to manage inflammation and pain before progressing to active rehabilitation."
         },
         "combineTreatments": {
           "question": "Can I combine treatments?",
-          "answer": "Absolutely. Our approach is holistic. Most successful recovery plans involve a mix of Manual Therapy for immediate relief and Corrective Exercise for long-term prevention."
+          "answer": "Absolutely. Our approach is holistic. Most successful recovery plans involve a mix of Manual Therapy for immediate relief and Corrective Exercise for longterm prevention."
         },
         "postOpPackages": {
-          "question": "Do you offer post-op packages?",
-          "answer": "Yes. Our Post-Surgical Rehab program is comprehensive. We bundle initial assessments, wound care checks, and a 12-week progressive strength track to get you back to normal life."
+          "question": "Do you offer postop packages?",
+          "answer": "Yes. Our PostSurgical Rehab program is comprehensive. We bundle initial assessments, wound care checks, and a 12week progressive strength track to get you back to normal life."
         },
         "sportsRecovery": {
           "question": "Is sports recovery only for professionals?",
@@ -623,33 +603,45 @@
     "neckPain": {
       "title": "Neck Pain & Cervical Spondylosis",
       "metaTitle": "Neck Pain & Cervical Spondylosis Treatment",
-      "metaDescription": "Expert treatment for neck pain and cervical spondylosis. We address the root cause — sustained load and unvarying posture.",
-      "heroSubtitle": "Neck pain is rarely just neck pain.",
-      "overview": "Cervical Spondylosis is not a disease. It is an adaptation. When the neck is subjected to constant, unvarying loads—often from sustained screen time or poor ergonomics—the structures adapt. Discs narrow. Facet joints undergo changes. Muscles designed for movement are forced into roles of sustained stabilization, leading to fatigue, guarding, and pain.",
-      "duration": "45–60 min",
-      "frequency": "2–3× per week",
+      "metaDescription": "Expert treatment for neck pain and cervical spondylosis. We address the root cause  sustained load and unvarying posture.",
+      "heroSubtitle": "You've adapted around it long enough.",
+      "overview": "Cervical Spondylosis is not a disease. It is an adaptation. When the neck is subjected to constant, unvarying loadsoften from sustained screen time or poor ergonomicsthe structures adapt. Discs narrow. Facet joints undergo changes. Muscles designed for movement are forced into roles of sustained stabilization, leading to fatigue, guarding, and pain.",
+      "duration": "4560 min",
+      "frequency": "23× per week",
       "symptoms": [
         "A deep, persistent ache that intensifies as the day progresses",
-        "Restricted rotation — difficulty checking blind spots while driving",
+        "Restricted rotation  difficulty checking blind spots while driving",
         "Headaches originating at the base of the skull",
-        "Tightness or tingling radiating into the shoulders, jaw, or arms"
+        "Tightness or tingling radiating into the shoulders, jaw, or arms",
+        "If you've tried massage, hot water bags, and sleeping on a different pillow  and nothing lasts  this is why."
       ],
       "clinicalApproach": [
-        "Systemic Assessment: Full upper quadrant evaluation including thoracic spine mobility and shoulder mechanics",
-        "Targeted Intervention: Precise manual therapy and dry needling to release acute guarding and restore joint mobility",
-        "Rebuilding Capacity: Progressive retraining of deep cervical stabilizers for your specific daily demands",
-        "Ergonomic Strategy: Real-world adjustments to your environment to prevent load accumulation"
+        "Cervical joint mobilization to restore segmental movement",
+        "Deep neck flexor retraining  the muscles most people never knew they'd lost",
+        "Neurodynamic release for tingling into the arms and hands",
+        "Postural load redistribution across the thoracic spine",
+        "Trigger point release for suboccipital and upper trapezius",
+        "Home programme designed around your actual desk setup"
+      ],
+      "treatmentHighlights": [
+        "Cervical joint mobilization to restore segmental movement",
+        "Deep neck flexor retraining  the muscles most people never knew they'd lost",
+        "Neurodynamic release for tingling into the arms and hands",
+        "Postural load redistribution across the thoracic spine",
+        "Trigger point release for suboccipital and upper trapezius",
+        "Home programme designed around your actual desk setup"
       ],
       "benefits": [
-        "Restored movement quality",
-        "Improved load tolerance",
-        "Reduced headache frequency",
-        "Structural confidence replacing fear of movement",
-        "Long-term postural correction"
+        "Turning to check your blind spot while driving without bracing first",
+        "Getting through a full screen day without the 3pm neck roll ritual",
+        "Waking up in a position you chose, not the only one that didn't hurt",
+        "Knowing the actual source of the headaches, not just managing the symptom",
+        "No more waking up stiff  mornings feel like yours again",
+        "Headaches that used to need medication, managed without it"
       ],
       "idealFor": [
-        "Professionals with desk-intensive careers",
-        "Frequent long-haul travelers",
+        "Professionals with deskintensive careers",
+        "Frequent longhaul travelers",
         "Anyone with chronic neck tension that massage fails to resolve"
       ],
       "process": [
@@ -658,35 +650,45 @@
         "Deep cervical stabilizer retraining",
         "Ergonomic strategy implementation"
       ],
-      "whatToExpect": "We evaluate the full upper quadrant—including your thoracic spine mobility and shoulder mechanics—to understand why the neck is overloaded. Treatment begins with targeted manual therapy, progressing to deep stabilizer retraining.",
+      "whatToExpect": "We evaluate the full upper quadrantincluding your thoracic spine mobility and shoulder mechanicsto understand why the neck is overloaded. Treatment begins with targeted manual therapy, progressing to deep stabilizer retraining.",
       "outcome": "Restored movement quality, improved load tolerance, and an accurate understanding of your physical capacity. We replace the fear of movement with structural confidence."
     },
     "discProlapse": {
       "title": "Disc Prolapse & Sciatica",
       "metaTitle": "Disc Prolapse, Herniation & Sciatica Treatment",
       "metaDescription": "Expert rehabilitation for disc prolapse and sciatica. We address the cumulative overload causing structural failure.",
-      "heroSubtitle": "A disc does not fail overnight.",
-      "overview": "The intervertebral disc is designed to withstand massive force. But when movement mechanics are flawed—when the hips lack mobility or the deep core lacks control—the spine absorbs repetitive, uncontrolled shear and compression. Eventually, the outer wall of the disc compromises, encroaching on sensitive neural structures nearby, creating the burning, traveling pain known as sciatica.",
-      "duration": "45–60 min",
-      "frequency": "2–3× per week",
+      "heroSubtitle": "The pain is in your leg. The problem is in your spine.",
+      "overview": "The intervertebral disc is designed to withstand massive force. But when movement mechanics are flawedwhen the hips lack mobility or the deep core lacks controlthe spine absorbs repetitive, uncontrolled shear and compression. Eventually, the outer wall of the disc compromises, encroaching on sensitive neural structures nearby, creating the burning, traveling pain known as sciatica.",
+      "duration": "4560 min",
+      "frequency": "23× per week",
       "symptoms": [
-        "Deep lumbar pain aggravated by sitting, bending, or lifting",
-        "Burning, electrical, or tingling sensations radiating into the hip, leg, or foot",
-        "Altered sensation or sudden muscular weakness",
-        "Significant movement restriction and protective muscle guarding"
+        "Pain that shoots from your lower back into the leg when you sneeze or cough",
+        "Can't find a position  sitting hurts, standing hurts, lying down barely helps",
+        "Foot feels numb or heavy, like it belongs to someone else",
+        "Mornings take 20 minutes before you can move normally"
       ],
       "clinicalApproach": [
-        "Neural Offloading: Immediate strategies and manual therapy to reduce nerve sensitivity",
-        "Mechanical Correction: Assessing pelvis, hips, and thoracic spine to identify failing load transfer",
-        "Progressive Loading: Rebuilding deep spinal and pelvic control around real-life demands",
-        "Functional Strength: Not generic core exercises — functional, load-bearing strength"
+        "Neural tension assessment to locate the exact level of compression",
+        "Lumbar decompression and disc offloading techniques",
+        "Neurodynamic mobilization to restore nerve glide",
+        "Deep spinal stabilizer reactivation  multifidus and transverse abdominis",
+        "Load management progressions before return to sport or lifting",
+        "Posture and sitting mechanics recalibration for deskheavy lifestyles"
+      ],
+      "treatmentHighlights": [
+        "Neural tension assessment to locate the exact level of compression",
+        "Lumbar decompression and disc offloading techniques",
+        "Neurodynamic mobilization to restore nerve glide",
+        "Deep spinal stabilizer reactivation  multifidus and transverse abdominis",
+        "Load management progressions before return to sport or lifting",
+        "Posture and sitting mechanics recalibration for deskheavy lifestyles"
       ],
       "benefits": [
-        "Reduced neural sensitivity",
-        "Corrected mechanical overload",
-        "Restored functional capacity",
-        "Durable long-term recovery",
-        "Return to full activity"
+        "Sitting through meetings, flights, and dinners without shifting every 15 minutes",
+        "Sleeping through the night instead of waking from position pain",
+        "Understanding the mechanical reason it happened, not just that it did",
+        "Moving with trust again instead of moving with permission",
+        "Lifting your child, your luggage, yourself without calculating the risk"
       ],
       "idealFor": [
         "Individuals with prolonged sitting habits",
@@ -706,28 +708,39 @@
       "title": "Shoulder Impingement & Rotator Cuff",
       "metaTitle": "Shoulder Impingement, Rotator Cuff & Frozen Shoulder",
       "metaDescription": "Expert treatment for shoulder impingement, rotator cuff tears, and frozen shoulder. Restoring the shoulder's intricate balance.",
-      "heroSubtitle": "The shoulder sacrifices stability for mobility.",
+      "heroSubtitle": "You stopped reaching up without thinking about it first.",
       "overview": "Impingement and cuff tears arise from inadequate load distribution. When the scapula doesn't move correctly, or the thoracic spine is stiff, the rotator cuff absorbs forces it wasn't designed for. Frozen Shoulder involves an inflammatory cascade leading to profound capsular restriction, completely locking the joint's mechanics.",
-      "duration": "45–60 min",
-      "frequency": "2–3× per week",
+      "duration": "4560 min",
+      "frequency": "23× per week",
       "symptoms": [
         "Sharp pain when reaching overhead or behind the back",
         "Night discomfort that severely disrupts sleep",
-        "Weakness or a 'giving way' sensation under load",
-        "Progressive or sudden, dramatic loss of range of motion"
+        "A clicking or catching feeling midmovement that wasn't there before",
+        "Shoulder that fatigues within minutes of overhead work",
+        "Pain that starts dull, then sharpens the moment load is added"
       ],
       "clinicalApproach": [
-        "Accurate Staging: Identifying exactly what phase of pathology the tissue is in",
-        "Whole-System Assessment: Evaluating cervical spine, thoracic spine, and scapular mechanics",
-        "Mechanical Restoration: Manual therapy to restore joint play with progressive cuff rebuilding",
-        "Full-Range Rehabilitation: Rebuilding the rotator cuff through its complete range of motion"
+        "Scapular position and movement assessment across the full kinetic chain",
+        "Glenohumeral joint mobilisation to restore joint play",
+        "Rotator cuff isolation before progressive loading",
+        "AC joint and bicipital tendon evaluation",
+        "Posture correction addressing thoracic kyphosis contribution",
+        "Returntooverhead protocol  sport or occupational"
+      ],
+      "treatmentHighlights": [
+        "Scapular position and movement assessment across the full kinetic chain",
+        "Glenohumeral joint mobilisation to restore joint play",
+        "Rotator cuff isolation before progressive loading",
+        "AC joint and bicipital tendon evaluation",
+        "Posture correction addressing thoracic kyphosis contribution",
+        "Returntooverhead protocol  sport or occupational"
       ],
       "benefits": [
-        "Restored joint mechanics",
-        "Improved structural capacity",
-        "Pain-free overhead movement",
-        "Planned return to sport demands",
-        "Night pain resolution"
+        "Reaching overhead without mapping the movement before you make it",
+        "A training session that ends on your terms, not the shoulder's",
+        "Both arms doing equal work without unconscious compensation",
+        "Sleeping through the night on your preferred side again",
+        "Lifting, pressing, and reaching without premedicating"
       ],
       "idealFor": [
         "Individuals with repetitive overhead demands",
@@ -741,47 +754,56 @@
         "Joint play restoration",
         "Progressive rotator cuff rebuilding"
       ],
-      "whatToExpect": "We identify the exact phase of your shoulder pathology and evaluate the entire chain — cervical spine, thoracic spine, and scapula. Treatment restores joint play first, then rebuilds cuff capacity.",
+      "whatToExpect": "We identify the exact phase of your shoulder pathology and evaluate the entire chain  cervical spine, thoracic spine, and scapula. Treatment restores joint play first, then rebuilds cuff capacity.",
       "outcome": "Restored joint mechanics, improved structural capacity, and a planned, confident return to the loads your life and sport demand."
     },
     "tennisElbow": {
       "title": "Tennis & Golfer's Elbow",
       "metaTitle": "Tennis Elbow & Golfer's Elbow Treatment",
       "metaDescription": "Expert treatment for elbow tendinopathy. We correct the load imbalances across the entire upper limb chain.",
-      "heroSubtitle": "Elbow pain is rarely just an elbow problem.",
-      "overview": "Tennis and Golfer's elbow are forms of tendinopathy. They occur when the demand placed on the tendon exceeds its current capacity. This is sustained by a load imbalance across the upper limb chain, causing localized micro-trauma and reactive pain at the medial or lateral epicondyle.",
-      "duration": "40–50 min",
+      "heroSubtitle": "You can't pour a kettle. That's not a minor problem.",
+      "overview": "Tennis and Golfer's elbow are forms of tendinopathy. They occur when the demand placed on the tendon exceeds its current capacity. This is sustained by a load imbalance across the upper limb chain, causing localized microtrauma and reactive pain at the medial or lateral epicondyle.",
+      "duration": "4050 min",
       "frequency": "2× per week",
       "symptoms": [
-        "Pain and weakness specifically when gripping or lifting",
-        "Persistent, deep aching after activity",
-        "Extreme sensitivity to light contact over the elbow bone",
-        "Progressive erosion of tolerance in simple daily tasks (e.g., pouring a kettle, turning a doorknob)"
+        "Pain that flares hours after activity, not during",
+        "Typing or scrolling that leaves a burning trail down the forearm",
+        "You've tried rest. It came back the moment you returned to normal life."
       ],
       "clinicalApproach": [
-        "Kinetic Chain Assessment: Evaluating grip, wrist, and shoulder to find the true source of overload",
-        "Progressive Tendon Loading: Precisely dosed exercises to build structural capacity back into the tendon",
-        "Neural Mobility: Manual therapy and nerve glides where indicated to reduce local sensitivity",
-        "Load Redistribution: Correcting the upper limb chain to share force appropriately"
+        "Lateral vs medial epicondyle differentiation to confirm exact tendon involved",
+        "Wrist extensor/flexor eccentric loading protocol",
+        "Neural tension assessment  cervical contribution ruled out or addressed",
+        "Grip strength rehabilitation with progressive resistance",
+        "Dry needling to the myofascial trigger points in forearm musculature",
+        "Equipment and ergonomic review  grip size, mouse position, technique"
+      ],
+      "treatmentHighlights": [
+        "Lateral vs medial epicondyle differentiation to confirm exact tendon involved",
+        "Wrist extensor/flexor eccentric loading protocol",
+        "Neural tension assessment  cervical contribution ruled out or addressed",
+        "Grip strength rehabilitation with progressive resistance",
+        "Dry needling to the myofascial trigger points in forearm musculature",
+        "Equipment and ergonomic review  grip size, mouse position, technique"
       ],
       "benefits": [
-        "Corrected load imbalances",
-        "Fully restored tendon capacity",
-        "Durable recovery without relapse",
-        "Return to gripping activities",
-        "Resolved daily task limitations"
+        "Pouring a kettle, turning a key, shaking hands without a wince",
+        "Typing through a full workday without a forearm that burns by lunch",
+        "Understanding that rest alone was never going to fix it",
+        "Grip strength that doesn't embarrass you at the gym",
+        "Getting through a workday without icing your elbow at lunch"
       ],
       "idealFor": [
         "Repetitive gripping professions",
         "Racquet sports players",
         "Manual trades workers",
-        "Desk-intensive work requiring heavy mouse/keyboard use"
+        "Deskintensive work requiring heavy mouse/keyboard use"
       ],
       "process": [
         "Full kinetic chain assessment",
         "Tendon capacity baseline testing",
         "Progressive eccentric loading",
-        "Return-to-activity graduated protocol"
+        "Returntoactivity graduated protocol"
       ],
       "whatToExpect": "We evaluate your grip, wrist, and shoulder to find where the overload originates. Treatment involves precisely dosed tendon loading to rebuild capacity from the inside out.",
       "outcome": "Corrected load imbalances and fully restored tendon capacity, ensuring a durable recovery without relying on temporary symptom suppression."
@@ -789,11 +811,11 @@
     "kneePain": {
       "title": "Knee Pain, ACL & MCL Injury",
       "metaTitle": "Knee Pain, ACL & MCL Injury Treatment",
-      "metaDescription": "Expert rehabilitation for knee pain and ligament injuries. The knee is rarely the culprit — it's the victim.",
+      "metaDescription": "Expert rehabilitation for knee pain and ligament injuries. The knee is rarely the culprit  it's the victim.",
       "heroSubtitle": "The knee is a hinge caught between two highly mobile joints.",
       "overview": "Whether it's an acute ligament tear from a sudden direction change, or chronic anterior knee pain from poor tracking, the root cause is often a failure to absorb and distribute force. If the glutes fail to stabilize the hip, or the foot pronates uncontrollably, the knee absorbs rotational and shear forces that destroy cartilage and tear ligaments.",
-      "duration": "45–60 min",
-      "frequency": "2–3× per week",
+      "duration": "4560 min",
+      "frequency": "23× per week",
       "symptoms": [
         "Instability, giving way, or apprehension during movement",
         "Rapid swelling following activity or acute trauma",
@@ -803,15 +825,21 @@
       "clinicalApproach": [
         "Integrated Evaluation: Assessing the foot, ankle, hip, and pelvis",
         "Acute Management: Immediate control of swelling and restoration of basic joint mechanics",
-        "Neuromuscular Prioritization: Rebuilding single-leg stability and proprioception",
-        "Return to Sport Profiling: Progressive rotational and sport-specific strength retraining"
+        "Neuromuscular Prioritization: Rebuilding singleleg stability and proprioception",
+        "Return to Sport Profiling: Progressive rotational and sportspecific strength retraining"
+      ],
+      "treatmentHighlights": [
+        "Integrated Evaluation: Assessing the foot, ankle, hip, and pelvis",
+        "Acute Management: Immediate control of swelling and restoration of basic joint mechanics",
+        "Neuromuscular Prioritization: Rebuilding singleleg stability and proprioception",
+        "Return to Sport Profiling: Progressive rotational and sportspecific strength retraining"
       ],
       "benefits": [
-        "Complete single-leg capacity",
-        "Movement confidence",
-        "Return to high-level activity",
-        "Objectively measured capability",
-        "Injury recurrence prevention"
+        "Taking stairs without the hesitation that has become automatic",
+        "Running a straight line without the knee being the thing that ends it",
+        "Squatting, pivoting, and loading without the joint becoming the limiting factor",
+        "Trust in a leg that used to require constant monitoring",
+        "Activities that used to be planned around the knee  done without the calculation"
       ],
       "idealFor": [
         "Athletes recovering from acute trauma",
@@ -819,13 +847,13 @@
         "Anyone whose knee unreliability dictates their lifestyle"
       ],
       "process": [
-        "Foot-to-pelvis integrated evaluation",
+        "Foottopelvis integrated evaluation",
         "Swelling control & joint mechanics restoration",
-        "Single-leg stability rebuilding",
-        "Sport-specific return protocol"
+        "Singleleg stability rebuilding",
+        "Sportspecific return protocol"
       ],
-      "whatToExpect": "We assess the entire chain from foot to pelvis to find where force distribution is failing. Treatment rebuilds single-leg stability and proprioception before graduating to sport-specific demands.",
-      "outcome": "Complete single-leg capacity, movement confidence, and a return to high-level activity backed by objective, measured physical capability."
+      "whatToExpect": "We assess the entire chain from foot to pelvis to find where force distribution is failing. Treatment rebuilds singleleg stability and proprioception before graduating to sportspecific demands.",
+      "outcome": "Complete singleleg capacity, movement confidence, and a return to highlevel activity backed by objective, measured physical capability."
     },
     "plantarFasciitis": {
       "title": "Plantar Fasciitis & Achilles Tendinopathy",
@@ -833,7 +861,7 @@
       "metaDescription": "Expert treatment for heel pain and Achilles tendinopathy. Restoring how your body absorbs shock with every step.",
       "heroSubtitle": "Foot and heel pain fundamentally alters how you interact with the ground.",
       "overview": "Plantar fasciitis and Achilles tendinopathy are tissue overload conditions. When there is a rapid increase in training volume, or a mechanical failure higher up in the kinetic chain, the fascia and tendon at the foot absorb excessive, uncontrolled load until they become reactive, thickened, and painful.",
-      "duration": "40–50 min",
+      "duration": "4050 min",
       "frequency": "2× per week",
       "symptoms": [
         "Sharp, localized heel pain during the first steps in the morning",
@@ -843,16 +871,22 @@
       ],
       "clinicalApproach": [
         "Gait & Lower Limb Assessment: Analyzing how force travels from your foot to your hip",
-        "Active Rehabilitation: Load-based protocols to restore tendon and fascial tolerance",
+        "Active Rehabilitation: Loadbased protocols to restore tendon and fascial tolerance",
+        "Load Management: Precision management of daily steps, training load, and footwear",
+        "Kinetic Chain Correction: Addressing mechanical failures higher up the chain"
+      ],
+      "treatmentHighlights": [
+        "Gait & Lower Limb Assessment: Analyzing how force travels from your foot to your hip",
+        "Active Rehabilitation: Loadbased protocols to restore tendon and fascial tolerance",
         "Load Management: Precision management of daily steps, training load, and footwear",
         "Kinetic Chain Correction: Addressing mechanical failures higher up the chain"
       ],
       "benefits": [
-        "Restored tendon tolerance",
-        "Corrected compensatory patterns",
-        "Safe return to running",
-        "Morning pain resolution",
-        "Long-term recurrence prevention"
+        "First steps out of bed that don't require bracing for what's coming",
+        "Running without the limp that used to build by kilometre three",
+        "Getting through a full day on your feet without it defining how you move",
+        "Understanding the chain that caused it, not just treating the heel",
+        "Returning to volume and intensity without the slow creep of it coming back"
       ],
       "idealFor": [
         "Runners",
@@ -862,38 +896,49 @@
       "process": [
         "Gait & force transfer analysis",
         "Tendon/fascial tolerance baseline",
-        "Progressive load-based rehabilitation",
-        "Return-to-running protocol"
+        "Progressive loadbased rehabilitation",
+        "Returntorunning protocol"
       ],
-      "whatToExpect": "We analyze how force travels from your foot to your hip to find the mechanical failure point. Treatment uses load-based protocols to rebuild tolerance progressively.",
+      "whatToExpect": "We analyze how force travels from your foot to your hip to find the mechanical failure point. Treatment uses loadbased protocols to rebuild tolerance progressively.",
       "outcome": "Restored tendon tolerance and corrected compensatory movement patterns, allowing a safe and objective return to running and sport without recurrence."
     },
     "osteoarthritis": {
       "title": "Osteoarthritis",
       "metaTitle": "Osteoarthritis Management & Treatment",
       "metaDescription": "Progressive loading and pain education for osteoarthritis. A diagnosis is not a mandate to stop moving.",
-      "heroSubtitle": "Wear and tear is normal. Debilitating pain is not.",
-      "overview": "Osteoarthritis involves age-related tissue adaptation, but the pain is largely driven by cumulative mechanical loading on joints that have lost their necessary muscular support. When muscles around a joint weaken, the bone and cartilage absorb the brunt of daily impact, leading to inflammation, stiffness, and structural breakdown.",
-      "duration": "45–60 min",
+      "heroSubtitle": "You haven't slowed down because you got older. You've slowed down because it hurts.",
+      "overview": "Osteoarthritis involves agerelated tissue adaptation, but the pain is largely driven by cumulative mechanical loading on joints that have lost their necessary muscular support. When muscles around a joint weaken, the bone and cartilage absorb the brunt of daily impact, leading to inflammation, stiffness, and structural breakdown.",
+      "duration": "4560 min",
       "frequency": "2× per week",
       "symptoms": [
         "Profound stiffness after periods of rest (especially in the morning)",
+        "Pain that behaves unpredictably  fine one day, flared the next, for no obvious reason",
         "Deep, aching joint pain during or after activity",
-        "Swelling after physical demand",
-        "A progressive, quiet reduction in functional capabilities and daily independence"
+        "Stairs, slopes, and long walks now require a mental calculation before you attempt them",
+        "Swelling after physical demand"
       ],
       "clinicalApproach": [
-        "Regional Mechanics: Assessing the joint and all surrounding structures",
-        "Progressive Loading: Deliberate restoration of movement quality and muscular support to offload the joint",
-        "Reframing Pain: Education to remove catastrophic thinking — hurt does not always equal harm",
-        "Functional Independence: Building the strength to maintain your lifestyle"
+        "Joint load assessment to identify which structures are being overworked",
+        "Periarticular muscle strengthening to mechanically offload the joint surface",
+        "Graded activity exposure  rebuilding tolerance without flare cycles",
+        "Pain neuroscience education: understanding why hurt doesn't always mean harm",
+        "Gait and movement pattern correction to reduce asymmetrical joint loading",
+        "Functional goalsetting  defined by what you want to do, not just pain scores"
+      ],
+      "treatmentHighlights": [
+        "Joint load assessment to identify which structures are being overworked",
+        "Periarticular muscle strengthening to mechanically offload the joint surface",
+        "Graded activity exposure  rebuilding tolerance without flare cycles",
+        "Pain neuroscience education: understanding why hurt doesn't always mean harm",
+        "Gait and movement pattern correction to reduce asymmetrical joint loading",
+        "Functional goalsetting  defined by what you want to do, not just pain scores"
       ],
       "benefits": [
-        "Maintained activity levels",
-        "Reduced dependence on passive treatments",
-        "Confident joint function",
-        "Pain education mastery",
-        "Preserved independence"
+        "Covering distances that felt impossible a few months ago",
+        "Understanding why hurt doesn't always mean harm  and trusting it",
+        "An active life that doesn't require the next day written off",
+        "Walking a full day without paying for it the next morning",
+        "Less reliance on antiinflammatories to get through the week"
       ],
       "idealFor": [
         "Older adults",
@@ -906,35 +951,46 @@
         "Pain neuroscience education",
         "Progressive functional loading"
       ],
-      "whatToExpect": "We assess the joint and surrounding structures, then deliberately restore muscular support to offload the affected area. Education is central — understanding that hurt doesn't always equal harm.",
+      "whatToExpect": "We assess the joint and surrounding structures, then deliberately restore muscular support to offload the affected area. Education is central  understanding that hurt doesn't always equal harm.",
       "outcome": "Maintained and improved activity levels, a drastic reduction in dependence on passive treatments, and confident joint function within your biological limits."
     },
     "meniscusInjury": {
       "title": "Meniscus Injury",
       "metaTitle": "Meniscus Injury Treatment & Rehabilitation",
       "metaDescription": "Conservative management and rehabilitation for meniscus tears. Surgery is not always the answer.",
-      "heroSubtitle": "A meniscus tear does not automatically equal surgery.",
+      "heroSubtitle": "A meniscus tear does not automatically equal surgery. What you do in the weeks after matters more than the tear itself.",
       "overview": "The meniscus can be damaged via acute trauma (pivoting or twisting under load) or through degenerative cumulative compressive loading in joints lacking muscular support. When the knee experiences sudden, unplanned movement without the glutes and hamstrings stabilizing it, the meniscus bears the brunt of the rotational shear.",
-      "duration": "45–60 min",
-      "frequency": "2–3× per week",
+      "duration": "4560 min",
+      "frequency": "23× per week",
       "symptoms": [
         "Pinpoint medial or lateral joint line tenderness",
         "Catching, locking, or clicking sensations within the knee",
+        "Squatting or sitting crosslegged now impossible, or something you brace through",
         "Swelling that appears hours after an activity",
-        "A persistent sense of the joint being 'unreliable' or about to give way"
+        "You were told to rest. It helped. Then you returned to normal life and it came back."
       ],
       "clinicalApproach": [
-        "Clinical Staging: Accurately diagnosing the type and severity to determine if conservative management is viable",
-        "Early Management: Controlling swelling and modifying load immediately",
-        "Neuromuscular Control: Progressive single-leg and rotational capacity building",
-        "Joint Stabilization: Permanently stabilizing the joint through targeted strengthening"
+        "MRIcorrelated clinical assessment  grade and tear pattern determine the approach",
+        "Acute phase swelling and effusion control before loading begins",
+        "Quadriceps reactivation to restore joint protection capacity",
+        "Progressive rotational loading to rebuild meniscal tolerance",
+        "Returntosport criteria testing  not timebased, capabilitybased",
+        "Surgical referral pathway if conservative management reaches its limit  with clear criteria"
+      ],
+      "treatmentHighlights": [
+        "MRIcorrelated clinical assessment  grade and tear pattern determine the approach",
+        "Acute phase swelling and effusion control before loading begins",
+        "Quadriceps reactivation to restore joint protection capacity",
+        "Progressive rotational loading to rebuild meniscal tolerance",
+        "Returntosport criteria testing  not timebased, capabilitybased",
+        "Surgical referral pathway if conservative management reaches its limit  with clear criteria"
       ],
       "benefits": [
-        "Restored rotational control",
-        "Elimination of catching/locking",
-        "Movement confidence",
-        "Potential avoidance of surgery",
-        "Long-term joint stability"
+        "Getting in and out of a car without the familiar catch on entry",
+        "Understanding the difference between pain that signals damage and pain that signals loading",
+        "A leg that contributes fully to movement rather than one you quietly protect",
+        "Knowing with clarity whether you need surgery  or don't",
+        "Squatting, pivoting, and cutting without bracing yourself first"
       ],
       "idealFor": [
         "Athletes dealing with acute twisting injuries",
@@ -943,45 +999,56 @@
       "process": [
         "Tear type & severity assessment",
         "Swelling control & load modification",
-        "Single-leg stability progression",
+        "Singleleg stability progression",
         "Rotational capacity building"
       ],
       "whatToExpect": "We accurately diagnose the type and severity of your tear to determine if conservative management is viable. Treatment focuses on controlling swelling immediately, then progressively building rotational capacity.",
-      "outcome": "Restored rotational control, elimination of catching and locking, and movement confidence — often successfully preventing unnecessary surgical intervention."
+      "outcome": "Restored rotational control, elimination of catching and locking, and movement confidence  often successfully preventing unnecessary surgical intervention."
     },
     "postSurgicalRehab": {
-      "title": "Post-Surgical Rehabilitation",
+      "title": "PostSurgical Rehabilitation",
       "metaTitle": "Total Knee & Hip Replacement Rehabilitation",
-      "metaDescription": "Post-surgical rehabilitation for joint replacements. The surgeon replaces the joint; we rebuild the function.",
+      "metaDescription": "Postsurgical rehabilitation for joint replacements. The surgeon replaces the joint; we rebuild the function.",
       "heroSubtitle": "The surgeon replaces the joint; we rebuild the function.",
-      "overview": "Joint replacement surgery involves significant tissue trauma. Patients often spend years altering their gait and allowing muscles to deteriorate to avoid arthritic pain prior to surgery. Post-surgery, profound muscular inhibition prevents normal movement unless systematically retrained.",
-      "duration": "45–60 min",
+      "overview": "Joint replacement surgery involves significant tissue trauma. Patients often spend years altering their gait and allowing muscles to deteriorate to avoid arthritic pain prior to surgery. Postsurgery, profound muscular inhibition prevents normal movement unless systematically retrained.",
+      "duration": "4560 min",
       "frequency": "3× per week initially",
       "symptoms": [
-        "Post-operative swelling and profound stiffness",
-        "Muscular inhibition — the inability to 'turn on' muscles around the new joint",
-        "Heavily altered, compensatory walking patterns (limping)",
-        "Apprehension on stairs, uneven ground, or when transitioning from sitting to standing"
+        "Postoperative swelling and profound stiffness",
+        "Muscular inhibition  the inability to 'turn on' muscles around the new joint",
+        "Walking looks normal to others. It doesn't feel normal to you.",
+        "One leg does all the work while the other one quietly avoids contributing",
+        "You were discharged from hospital with exercises. No one checked if you were doing them correctly."
       ],
       "clinicalApproach": [
-        "Early Phase Control: Immediate management of swelling and muscular reactivation",
-        "Kinetic Chain Evaluation: Identifying compensations built up over years of arthritis",
-        "Gait Retraining: Breaking old habits to ensure symmetrical loading",
-        "Progressive Rebuilding: Systematic strength building to maximize implant longevity"
+        "Phasespecific protocol: acute swelling → muscular reactivation → functional loading",
+        "VMO and glute activation before any weightbearing progressions",
+        "Limb symmetry index testing to measure when true bilateral function is restored",
+        "Scar tissue and joint mobility work to restore full flexion and extension",
+        "Stair, slope, and uneven surface retraining for realworld independence",
+        "Implant longevity education  how to move well so the joint lasts"
+      ],
+      "treatmentHighlights": [
+        "Phasespecific protocol: acute swelling → muscular reactivation → functional loading",
+        "VMO and glute activation before any weightbearing progressions",
+        "Limb symmetry index testing to measure when true bilateral function is restored",
+        "Scar tissue and joint mobility work to restore full flexion and extension",
+        "Stair, slope, and uneven surface retraining for realworld independence",
+        "Implant longevity education  how to move well so the joint lasts"
       ],
       "benefits": [
-        "Resolved muscular inhibition",
-        "Corrected lifelong compensatory habits",
-        "Maximized implant longevity",
-        "True movement independence",
-        "Symmetrical gait restoration"
+        "Walking without a visible limp  on any surface, at any pace",
+        "Trusting the joint to hold rather than protecting it from every step",
+        "Getting back to the activities the surgery was supposed to restore",
+        "Moving through stairs, slopes, and uneven ground without mental mapping",
+        "Knowing your implant is being protected, not just used"
       ],
       "idealFor": [
         "Patients who have undergone or are preparing for total hip or knee arthroplasty",
         "Those wanting to maximize their surgical outcome"
       ],
       "process": [
-        "Post-operative baseline assessment",
+        "Postoperative baseline assessment",
         "Swelling control & muscle reactivation",
         "Gait pattern retraining",
         "Progressive strength & independence building"
@@ -994,9 +1061,9 @@
       "metaTitle": "Dry Needling Therapy",
       "metaDescription": "Precision dry needling to reset the nervous system and release chronic muscle guarding from the inside out.",
       "heroSubtitle": "Resetting the nervous system from the inside out.",
-      "overview": "When tissues are injured or overloaded, muscles enter a state of chronic guarding, developing trigger points. The nervous system becomes hyper-sensitized. Dry needling inserts fine solid filament needles directly into overactive muscles, creating a localized micro-lesion that triggers increased blood flow and forces a neurophysiological 'reset.'",
-      "duration": "30–45 min",
-      "frequency": "1–2× per week",
+      "overview": "When tissues are injured or overloaded, muscles enter a state of chronic guarding, developing trigger points. The nervous system becomes hypersensitized. Dry needling inserts fine solid filament needles directly into overactive muscles, creating a localized microlesion that triggers increased blood flow and forces a neurophysiological 'reset.'",
+      "duration": "3045 min",
+      "frequency": "12× per week",
       "symptoms": [
         "Stubborn, restricted movement that stretching cannot fix",
         "Hard, overactive muscle knots that refer pain to other areas",
@@ -1004,22 +1071,32 @@
         "Chronic tension patterns unresponsive to standard massage"
       ],
       "clinicalApproach": [
-        "Precise Targeting: Identifying specific trigger points and overactive muscle groups",
-        "Neurophysiological Intervention: Fine needle insertion to create a controlled reset response",
-        "Integration with Active Rehab: Not a standalone cure — part of a broader rehabilitation plan",
-        "Progressive Desensitization: Systematic reduction of nervous system hypersensitivity"
+        "Trigger point mapping across the affected muscle group and referral zones",
+        "Fine filament needle insertion to elicit a localised twitch response",
+        "Autonomic nervous system downregulation  reduces central sensitisation",
+        "Fascial decompression in chronically overloaded tissue layers",
+        "Immediate postneedling movement assessment to confirm tissue response",
+        "Always integrated into active rehab  never standalone"
+      ],
+      "treatmentHighlights": [
+        "Trigger point mapping across the affected muscle group and referral zones",
+        "Fine filament needle insertion to elicit a localised twitch response",
+        "Autonomic nervous system downregulation  reduces central sensitisation",
+        "Fascial decompression in chronically overloaded tissue layers",
+        "Immediate postneedling movement assessment to confirm tissue response",
+        "Always integrated into active rehab  never standalone"
       ],
       "benefits": [
-        "Normalized muscle tone",
-        "Instantly modulated pain sensitivity",
-        "Mechanical environment ready for strengthening",
-        "Rapid neurophysiological reset",
-        "Breaking chronic tension cycles"
+        "Muscles that finally respond to exercise rather than holding despite it",
+        "Moving past the plateau that stretching and massage couldn't break",
+        "Areas of chronic holding that finally relax  and stay relaxed",
+        "A nervous system reset that opens the door to actual rehabilitation",
+        "Strength work that is now possible because the tissue is ready for it"
       ],
       "idealFor": [
         "Patients with chronic tension patterns",
         "Those unresponsive to standard manual therapy",
-        "Athletes needing rapid neurophysiological reset post-injury"
+        "Athletes needing rapid neurophysiological reset postinjury"
       ],
       "process": [
         "Trigger point identification",
@@ -1036,30 +1113,40 @@
       "metaDescription": "Support that moves with you. Mechanical offloading and sensory feedback without restricting freedom of movement.",
       "heroSubtitle": "Support that moves with you.",
       "overview": "Following acute trauma or neuromuscular disruption, the brain loses clear sensory awareness of a joint. Elastic kinesiology tape applied with specific tension slightly lifts the skin, aiding lymphatic drainage, altering sensory input to reduce pain perception, and providing proprioceptive cues to facilitate proper muscle firing.",
-      "duration": "15–20 min (as adjunct)",
+      "duration": "1520 min (as adjunct)",
       "frequency": "As needed during rehab",
       "symptoms": [
-        "Acute, localized swelling post-injury",
+        "Acute, localized swelling postinjury",
         "Tendon sensitivity during movement",
         "A lack of body awareness or 'clumsiness' in a specific joint during recovery",
         "Need for support without restricting movement"
       ],
       "clinicalApproach": [
-        "Clinical Assessment: Identifying the specific mechanical and sensory deficit",
-        "Precision Application: Tape applied with calculated tension and direction for optimal effect",
-        "Lymphatic Facilitation: Skin lifting to accelerate swelling reduction",
-        "Proprioceptive Enhancement: Sensory feedback to improve joint awareness during rehab"
+        "Skinlift application technique to decompress superficial lymphatic channels",
+        "Directional taping to facilitate or inhibit specific muscle activation patterns",
+        "Joint position sense enhancement through cutaneous mechanoreceptor stimulation",
+        "Postural correction taping for scapular and spinal alignment support",
+        "Applied with precise tension calibration  facilitatory vs inhibitory based on assessment",
+        "Always prescribed as part of a broader session  not a standalone fix"
+      ],
+      "treatmentHighlights": [
+        "Skinlift application technique to decompress superficial lymphatic channels",
+        "Directional taping to facilitate or inhibit specific muscle activation patterns",
+        "Joint position sense enhancement through cutaneous mechanoreceptor stimulation",
+        "Postural correction taping for scapular and spinal alignment support",
+        "Applied with precise tension calibration  facilitatory vs inhibitory based on assessment",
+        "Always prescribed as part of a broader session  not a standalone fix"
       ],
       "benefits": [
-        "Reduced pain perception",
-        "Accelerated swelling reduction",
-        "Improved mechanical confidence",
-        "Proprioceptive feedback during recovery",
-        "Unrestricted movement support"
+        "Continuing to train or work while your body heals, not waiting it out",
+        "Swelling that tracks down visibly over days, not weeks",
+        "Joint awareness during movement that reduces the chance of a misstep",
+        "Loading through an area that felt untouchable the week before",
+        "Support that stays active with you, not one that forces you to stop"
       ],
       "idealFor": [
-        "Post-injury patients requiring early-phase support",
-        "Athletes needing proprioceptive feedback during return-to-sport transition"
+        "Postinjury patients requiring earlyphase support",
+        "Athletes needing proprioceptive feedback during returntosport transition"
       ],
       "process": [
         "Deficit identification",
@@ -1067,7 +1154,7 @@
         "Movement assessment with tape",
         "Integration into rehabilitation sessions"
       ],
-      "whatToExpect": "Kinesiology taping is a clinical adjunct applied during your rehabilitation sessions. We apply tape with specific tension and direction to create a mechanical environment that allows you to tolerate loading during early-phase rehabilitation.",
+      "whatToExpect": "Kinesiology taping is a clinical adjunct applied during your rehabilitation sessions. We apply tape with specific tension and direction to create a mechanical environment that allows you to tolerate loading during earlyphase rehabilitation.",
       "outcome": "Reduced pain perception, accelerated swelling reduction, and improved mechanical confidence during movement therapy."
     },
     "neurodynamics": {
@@ -1075,32 +1162,38 @@
       "metaTitle": "Neurodynamic Therapy",
       "metaDescription": "Restoring nerve mobility through precise, graded mobilizations. When nerves get trapped, traditional stretching makes it worse.",
       "heroSubtitle": "Nerves are designed to slide and glide.",
-      "overview": "Conditions like sciatica or cervical radiculopathy are issues of nerve mobility. Due to injury, inflammation, sustained posture, or post-surgical scar tissue, a nerve can lose its mechanical mobility. When a trapped nerve is stretched, it sends alarm signals and forces surrounding muscles into severe protective guarding.",
-      "duration": "40–50 min",
+      "overview": "Conditions like sciatica or cervical radiculopathy are issues of nerve mobility. Due to injury, inflammation, sustained posture, or postsurgical scar tissue, a nerve can lose its mechanical mobility. When a trapped nerve is stretched, it sends alarm signals and forces surrounding muscles into severe protective guarding.",
+      "duration": "4050 min",
       "frequency": "2× per week",
       "symptoms": [
         "Tingling, numbness, or burning sensations traveling down an arm or leg",
-        "Heavy, dead-feeling limbs",
+        "Heavy, deadfeeling limbs",
         "Sharp, radiating pain triggered by specific movements",
         "Severe protective muscle spasms"
       ],
       "clinicalApproach": [
         "Neural Tension Assessment: Identifying exactly where the nerve is mechanically restricted",
-        "Graded Mobilizations: Precise, direction-sensitive techniques applied to the nerve and surrounding tissue",
+        "Graded Mobilizations: Precise, directionsensitive techniques applied to the nerve and surrounding tissue",
+        "Nerve Glides/Flossing: Restoring mechanical freedom without triggering alarm responses",
+        "Guarding Pattern Resolution: Breaking the cycle of protective muscle spasm"
+      ],
+      "treatmentHighlights": [
+        "Neural Tension Assessment: Identifying exactly where the nerve is mechanically restricted",
+        "Graded Mobilizations: Precise, directionsensitive techniques applied to the nerve and surrounding tissue",
         "Nerve Glides/Flossing: Restoring mechanical freedom without triggering alarm responses",
         "Guarding Pattern Resolution: Breaking the cycle of protective muscle spasm"
       ],
       "benefits": [
-        "Restored neural mechanical mobility",
-        "Reduced neural sensitivity",
-        "Broken protective guarding cycle",
-        "Resolved radiating symptoms",
-        "Permanent symptom relief"
+        "Numbness and pins and needles that fade rather than dictate which positions you can hold",
+        "Moving your neck or limb without bracing against the electric sensation",
+        "Sleeping in positions that were previously off-limits",
+        "Understanding why the stretching you were doing was making it worse",
+        "A nervous system that allows movement instead of alarming at it"
       ],
       "idealFor": [
         "Patients experiencing sciatica or cervical radiculopathy",
         "Peripheral nerve irritation",
-        "Post-surgical scar tissue restricting nerve mobility"
+        "Postsurgical scar tissue restricting nerve mobility"
       ],
       "process": [
         "Neural tension testing",
@@ -1108,7 +1201,7 @@
         "Graded glide/flossing protocols",
         "Active mobility maintenance program"
       ],
-      "whatToExpect": "We use precise, graded, direction-sensitive mobilizations applied directly to the nerve and its surrounding tissue to restore mechanical freedom without triggering protective alarm responses.",
+      "whatToExpect": "We use precise, graded, directionsensitive mobilizations applied directly to the nerve and its surrounding tissue to restore mechanical freedom without triggering protective alarm responses.",
       "outcome": "Restored mechanical mobility of the nervous system, reduced neural sensitivity, and a permanent break in the cycle of protective muscle guarding."
     },
     "injuryPrevention": {
@@ -1118,107 +1211,137 @@
       "heroSubtitle": "The most effective time to treat an injury is before the tissue fails.",
       "overview": "Injuries rarely happen out of nowhere. They are the climax of training volume exceeding tissue capacity, paired with poor movement mechanics. The body creates compensatory patterns to achieve tasks, but these compensations load the wrong tissues. Without adequate recovery, structural failure is inevitable.",
       "duration": "60 min",
-      "frequency": "Pre-season / quarterly",
+      "frequency": "Preseason / quarterly",
       "symptoms": [
-        "Movement asymmetry — one side feels vastly different than the other",
-        "Unexplained tightness or load intolerance that comes and goes",
-        "A history of recurring, minor 'niggles' that interrupt training",
-        "Performance plateaus despite increased training effort"
+        "The same area keeps getting strained, taped, and rested  then strained again",
+        "Something feels off in your movement but your scans are clean",
+        "You're training harder than ever and getting less out of it",
+        "One side feels subtly different  not painful, just not the same",
+        "You've had one significant injury and you're quietly terrified of the next one"
       ],
       "clinicalApproach": [
-        "Comprehensive Screening: Sport-specific movement and load assessment",
-        "Risk Profiling: Developing an actionable, individual risk profile based on your biomechanics",
-        "Targeted Correction: Programming exact corrective exercises to address deficits",
-        "Load Optimization: Ensuring training volume matches tissue capacity"
+        "Functional Movement Screen and sportspecific asymmetry mapping",
+        "Force plate or singleleg load testing to identify limb dominance deficits",
+        "Tissue load capacity assessment against training volume demands",
+        "Corrective exercise prescription targeting identified movement faults",
+        "Training load audit and periodisation guidance to prevent overuse",
+        "Written risk profile with objective rescreening timeline"
+      ],
+      "treatmentHighlights": [
+        "Functional Movement Screen and sportspecific asymmetry mapping",
+        "Force plate or singleleg load testing to identify limb dominance deficits",
+        "Tissue load capacity assessment against training volume demands",
+        "Corrective exercise prescription targeting identified movement faults",
+        "Training load audit and periodisation guidance to prevent overuse",
+        "Written risk profile with objective rescreening timeline"
       ],
       "benefits": [
-        "Identification of physical deficits",
-        "Optimized recovery strategy",
-        "Uninterrupted high-level performance",
-        "Reduced injury recurrence",
-        "Data-driven training adjustments"
+        "Training seasons that don't get cut short",
+        "A body that absorbs load instead of accumulating it until something gives",
+        "Understanding which movements are borrowing from your reserves",
+        "Going into a preseason knowing your baseline, not hoping for it",
+        "Training without that background dread that something is about to give"
       ],
       "idealFor": [
-        "Pre-season athletes",
+        "Preseason athletes",
         "Recreational sport participants with recurring injuries",
         "Corporate professionals with high physical expectations"
       ],
       "process": [
-        "Sport-specific movement screening",
+        "Sportspecific movement screening",
         "Biomechanical risk profiling",
         "Corrective exercise programming",
         "Training load optimization"
       ],
-      "whatToExpect": "A comprehensive sport-specific screening that identifies asymmetries and compensatory patterns. We develop an actionable risk profile and program exact corrective exercises before deficits result in structural consequences.",
-      "outcome": "Identification and correction of physical deficits, an optimized recovery strategy, and the ability to sustain high-level performance uninterrupted by preventable injuries."
+      "whatToExpect": "A comprehensive sportspecific screening that identifies asymmetries and compensatory patterns. We develop an actionable risk profile and program exact corrective exercises before deficits result in structural consequences.",
+      "outcome": "Identification and correction of physical deficits, an optimized recovery strategy, and the ability to sustain highlevel performance uninterrupted by preventable injuries."
     },
     "returnToPlay": {
       "title": "Return to Play & Performance",
       "metaTitle": "Return to Play & Athletic Performance",
       "metaDescription": "Clinical recovery is not athletic readiness. Objective testing to bridge the gap between 'healed' and 'ready.'",
       "heroSubtitle": "Clinical recovery is not athletic readiness.",
-      "overview": "The gap between 'healed' and 'ready' is where most reinjuries occur. Premature clearance is often based on pain resolution or elapsed time. Under the stress of fatigue and high-speed demands, the brain reverts to compensatory strategies if true neuromuscular control hasn't been objectively rebuilt and tested.",
-      "duration": "60–75 min",
-      "frequency": "2–3× per week",
+      "overview": "The gap between 'healed' and 'ready' is where most reinjuries occur. Premature clearance is often based on pain resolution or elapsed time. Under the stress of fatigue and highspeed demands, the brain reverts to compensatory strategies if true neuromuscular control hasn't been objectively rebuilt and tested.",
+      "duration": "6075 min",
+      "frequency": "23× per week",
       "symptoms": [
         "Hesitation or lack of trust in the injured joint",
-        "Compensatory strategies appearing only during sport-specific movement or under high fatigue",
-        "Measurable strength asymmetries between injured and uninjured sides",
+        "At full speed or under fatigue, the old movement pattern comes back",
+        "One leg is measurably weaker  you feel it even if no one else sees it",
         "Psychological fear of reinjury"
       ],
       "clinicalApproach": [
-        "Objective Testing: Rigorous testing of strength and load tolerance using hard data",
-        "Fatigue Testing: Neuromuscular testing under progressive fatigue to expose hidden compensations",
-        "Sequenced Loading: Gradual, planned introduction of sport-specific loading",
-        "Psychological Readiness: Ensuring mental confidence matches physical capability"
+        "Limb symmetry index testing at 75%, 90%, and 100% load thresholds",
+        "Reactive agility and deceleration testing under sportspecific fatigue",
+        "Hop, jump, and cutting mechanics analysis before contact clearance",
+        "Psychological readiness assessment  ACLRSI or equivalent protocol",
+        "Progressive sportspecific loading with objective go/nogo criteria at each stage",
+        "Coach and trainer communication on reintegration timeline and load limits"
+      ],
+      "treatmentHighlights": [
+        "Limb symmetry index testing at 75%, 90%, and 100% load thresholds",
+        "Reactive agility and deceleration testing under sportspecific fatigue",
+        "Hop, jump, and cutting mechanics analysis before contact clearance",
+        "Psychological readiness assessment  ACLRSI or equivalent protocol",
+        "Progressive sportspecific loading with objective go/nogo criteria at each stage",
+        "Coach and trainer communication on reintegration timeline and load limits"
       ],
       "benefits": [
-        "Movement quality under fatigue",
-        "Matched physical and psychological confidence",
-        "Safe return to competition",
-        "Objective clearance criteria",
-        "Reinjury prevention"
+        "Entering a match without the internal calculation of whether the leg will hold",
+        "Moving at full speed without the old movement pattern creeping back in",
+        "Your team knowing you're back because the numbers say so, not just your feeling",
+        "Competing at the level your ability demands, not the level fear allows",
+        "Trust in the joint that doesn't require a specific moment to confirm it",
+        "Returning with evidence  not just a feeling that you're ready"
       ],
       "idealFor": [
-        "Post-injury or post-surgery athletes",
+        "Postinjury or postsurgery athletes",
         "Active professionals",
         "Anyone experiencing setbacks when trying to return to sport independently"
       ],
       "process": [
         "Objective strength & load testing",
         "Progressive fatigue stress testing",
-        "Sport-specific sequenced loading",
+        "Sportspecific sequenced loading",
         "Psychological readiness assessment"
       ],
-      "whatToExpect": "We test your strength and neuromuscular control under progressive fatigue — not just at rest. Sport-specific loading is introduced gradually with objective clearance criteria at every stage.",
+      "whatToExpect": "We test your strength and neuromuscular control under progressive fatigue  not just at rest. Sportspecific loading is introduced gradually with objective clearance criteria at every stage.",
       "outcome": "Movement quality under fatigue indistinguishable from your rested state, matched physical and psychological confidence, and a safe, dominant return to competition."
     },
     "womensHealth": {
       "title": "Women's Health Physiotherapy",
       "metaTitle": "Women's Health Physiotherapy",
       "metaDescription": "Specialized care for pelvic floor dysfunction and hormonal musculoskeletal changes with dignity and clinical precision.",
-      "heroSubtitle": "Distinct biomechanical and hormonal demands require specialized care.",
-      "overview": "Women's bodies experience unique structural stresses due to distinct hormonal biology, anatomical load demands, pregnancy, and gynecological surgical trauma. When the pelvic floor—the core's foundation—loses its ability to stabilize or transfer load, symptoms arise that affect daily life, exercise capacity, and overall confidence.",
-      "duration": "45–60 min",
+      "heroSubtitle": "Your body isn't broken. It's been through something your GP doesn't have time to address.",
+      "overview": "Women's bodies experience unique structural stresses due to distinct hormonal biology, anatomical load demands, pregnancy, and gynecological surgical trauma. When the pelvic floorthe core's foundationloses its ability to stabilize or transfer load, symptoms arise that affect daily life, exercise capacity, and overall confidence.",
+      "duration": "4560 min",
       "frequency": "2× per week",
       "symptoms": [
         "Urinary leakage during coughing, sneezing, or exercising",
         "Feelings of pelvic urgency or prolapse symptoms",
-        "Core instability and cycle-related joint laxity",
+        "Core instability and cyclerelated joint laxity",
         "Pain or sensitivity around gynecological surgical scars"
       ],
       "clinicalApproach": [
-        "Targeted Stabilization: Precise assessment and strengthening of the pelvic floor and deep core",
-        "Functional Management: Addressing diastasis recti through load transfer training",
-        "Scar Management: Mobilization for C-section and hysterectomy recovery",
-        "Capacity Building: A structured, safe return to high-impact sport and lifting"
+        "Pelvic floor function assessment  both overactive and underactive presentations",
+        "Intraabdominal pressure management across exercise, lifting, and daily load",
+        "Caesarean and perineal scar mobilisation and desensitisation",
+        "Hip and SIJ stability retraining  the structures most disrupted by pregnancy",
+        "Returntosport grading with pelvic floor load tolerance benchmarks"
+      ],
+      "treatmentHighlights": [
+        "Pelvic floor function assessment  both overactive and underactive presentations",
+        "Intraabdominal pressure management across exercise, lifting, and daily load",
+        "Caesarean and perineal scar mobilisation and desensitisation",
+        "Hip and SIJ stability retraining  the structures most disrupted by pregnancy",
+        "Returntosport grading with pelvic floor load tolerance benchmarks"
       ],
       "benefits": [
-        "Restored load transfer capacity",
-        "Resolution of pelvic floor symptoms",
-        "Confident return to physical performance",
-        "Scar tissue resolution",
-        "Core integrity restoration"
+        "Sneezing, jumping, and laughing without the mental precheck",
+        "Exercise and movement that are possible again without a rule list",
+        "A body that feels physically integrated rather than managed around",
+        "Scar areas that no longer dictate how you move or how clothing feels",
+        "Physical confidence in activities that previously required planning"
       ],
       "idealFor": [
         "Active professionals",
@@ -1229,7 +1352,7 @@
         "Pelvic floor & deep core assessment",
         "Load transfer capacity testing",
         "Targeted stabilization program",
-        "Structured return-to-activity protocol"
+        "Structured returntoactivity protocol"
       ],
       "whatToExpect": "We perform a focused assessment of your pelvic floor and deep core mechanics. Treatment addresses load transfer deficits with dignity and clinical precision, progressing toward confident return to full physical performance.",
       "outcome": "Completely restored load transfer capacity, resolution of pelvic floor symptoms, and a confident, structured return to full physical performance without fear of leakage or pain."
@@ -1238,10 +1361,10 @@
       "title": "Pre & Postnatal Physiotherapy",
       "metaTitle": "Pre & Postnatal Physiotherapy",
       "metaDescription": "Supporting your body through its most profound physical transformation. Strategies to carry comfortably and recover strongly.",
-      "heroSubtitle": "Supporting your body through its most profound transformation.",
+      "heroSubtitle": "Pregnancy changes everything. Most of it no one warns you about.",
       "overview": "Pregnancy rapidly shifts the body's center of gravity. Hormones like relaxin increase joint laxity, while the growing baby places immense downward load on the pelvic floor and outward pressure on the abdominal wall. Delivery involves trauma that requires deliberate, progressive rehabilitation to restore normal core mechanics.",
-      "duration": "45–60 min",
-      "frequency": "1–2× per week",
+      "duration": "4560 min",
+      "frequency": "12× per week",
       "symptoms": [
         "Heavy pelvic pressure or urinary leakage",
         "Visible abdominal doming or separation (Diastasis Recti)",
@@ -1249,57 +1372,77 @@
         "Persistent back, rib, pubic symphysis, or sacroiliac pain"
       ],
       "clinicalApproach": [
-        "Trimester Calibration: Assessment and exercise guidance tailored to specific pregnancy stage",
-        "Active Pain Management: Strategies to manage joint pain while pregnant",
-        "Postnatal Rehab: Comprehensive recovery including scar mobilization and progressive return to loading",
-        "Return to Exercise: Safe, objective return to running and lifting post-partum"
+        "Trimesterspecific load and posture assessment",
+        "Diastasis Recti grading and progressive linea alba rehabilitation",
+        "Pelvic girdle pain management with safe movement prescription",
+        "Postnatal pelvic floor reactivation before return to any impact activity",
+        "Csection scar mobilisation from 6 weeks postpartum onward",
+        "Returntorunning readiness testing  not timebased, functionbased"
+      ],
+      "treatmentHighlights": [
+        "Trimesterspecific load and posture assessment",
+        "Diastasis Recti grading and progressive linea alba rehabilitation",
+        "Pelvic girdle pain management with safe movement prescription",
+        "Postnatal pelvic floor reactivation before return to any impact activity",
+        "Csection scar mobilisation from 6 weeks postpartum onward",
+        "Returntorunning readiness testing  not timebased, functionbased"
       ],
       "benefits": [
-        "Supported biomechanics throughout pregnancy",
-        "Restored abdominal wall function",
-        "Safe return to running & lifting",
-        "Pain-managed pregnancy experience",
-        "Accelerated postnatal recovery"
+        "A pregnancy where pain doesn't set the daily agenda",
+        "Picking up your baby without the back locking up",
+        "A midsection that responds to movement rather than one you work around",
+        "Running again with milestones that are physical, not just calendarbased",
+        "Knowing your body is rebuilding structurally, not just gradually feeling better"
       ],
       "idealFor": [
         "Pregnant women navigating bodily changes who wish to stay active",
         "Postpartum women looking to safely recover core function and return to exercise"
       ],
       "process": [
-        "Trimester-specific assessment",
+        "Trimesterspecific assessment",
         "Active pain management strategies",
         "Postnatal core restoration",
-        "Progressive return-to-exercise protocol"
+        "Progressive returntoexercise protocol"
       ],
       "whatToExpect": "We tailor assessment and guidance to your specific trimester. Prenatal sessions focus on pain management and safe activity. Postnatal rehabilitation progressively restores core function with clear milestones.",
-      "outcome": "Supported, pain-managed biomechanics throughout pregnancy, restored abdominal wall load transfer post-birth, and a safe, objective return to running and lifting."
+      "outcome": "Supported, painmanaged biomechanics throughout pregnancy, restored abdominal wall load transfer postbirth, and a safe, objective return to running and lifting."
     },
     "geriatricMobility": {
       "title": "Geriatric Mobility & Fall Prevention",
       "metaTitle": "Geriatric Mobility & Fall Prevention",
       "metaDescription": "Aging is inevitable. Decline is not. We restore reaction time, rebuild strength, and eradicate the fear of falling.",
       "heroSubtitle": "Aging is inevitable. Decline is not.",
-      "overview": "Age-related decline in mobility is rarely just about joints getting older. It is a compounding cycle of under-loading. Muscle mass decreases, reaction times slow, and the nervous system loses its sharp edge. When a joint lacks muscular support, it hurts. When it hurts, we move less. When we move less, we lose the capacity to balance and catch ourselves.",
-      "duration": "45–60 min",
-      "frequency": "2–3× per week",
+      "overview": "Agerelated decline in mobility is rarely just about joints getting older. It is a compounding cycle of underloading. Muscle mass decreases, reaction times slow, and the nervous system loses its sharp edge. When a joint lacks muscular support, it hurts. When it hurts, we move less. When we move less, we lose the capacity to balance and catch ourselves.",
+      "duration": "4560 min",
+      "frequency": "23× per week",
       "symptoms": [
-        "A growing reliance on furniture or walls for support while walking",
         "Unsteadiness on stairs, curbs, or uneven ground",
         "Severe morning stiffness and rapid fatigue",
-        "A profound, quiet fear of falling that begins to dictate daily choices"
+        "A profound, quiet fear of falling that begins to dictate daily choices",
+        "Walking on unfamiliar surfaces or in the dark feels genuinely risky"
       ],
       "clinicalApproach": [
-        "Demand-Based Assessment: Evaluating balance and gait against actual demands of daily life",
-        "Progressive Strength: Real, load-bearing strength building — not just 'gentle movement'",
-        "Reactive Balance: Training the nervous system to react quickly to stumbles and unexpected shifts",
-        "Independence Building: Ensuring you retain the physical freedom to live on your own terms"
+        "Standardised fall risk screening: Berg Balance Scale and Timed Up & Go",
+        "Reactive balance training  teaching the nervous system to recover, not just prevent",
+        "Lower limb strength loading with progressive resistance",
+        "Dualtask training: balance under cognitive and physical distraction",
+        "Home environment risk mapping and movement strategy coaching",
+        "Proprioception retraining for uneven, dark, and unpredictable surfaces"
+      ],
+      "treatmentHighlights": [
+        "Standardised fall risk screening: Berg Balance Scale and Timed Up & Go",
+        "Reactive balance training  teaching the nervous system to recover, not just prevent",
+        "Lower limb strength loading with progressive resistance",
+        "Dualtask training: balance under cognitive and physical distraction",
+        "Home environment risk mapping and movement strategy coaching",
+        "Proprioception retraining for uneven, dark, and unpredictable surfaces"
       ],
       "benefits": [
-        "Reversed physical decline",
-        "Restored reaction time",
-        "Rebuilt strength",
-        "Eradicated fear of falling",
-        "Total physical independence"
+        "Walking into unfamiliar environments without mentally mapping the exit routes",
+        "Getting up from a low chair without reaching for something to push off",
+        "Taking stairs confidently in both directions",
+        "Being the one who keeps up on the walk, not the one who slows it down",
+        "Independence that doesn't require planning every trip outside the house"
       ],
       "idealFor": [
         "Older adults experiencing unsteadiness",
@@ -1308,11 +1451,11 @@
       ],
       "process": [
         "Balance & gait demand assessment",
-        "Progressive load-bearing strength program",
+        "Progressive loadbearing strength program",
         "Reactive balance training",
         "Independence milestone tracking"
       ],
-      "whatToExpect": "We evaluate your balance and gait against the actual demands of your daily life. We build real, load-bearing strength — not just gentle movement — and train your nervous system to react quickly to unexpected balance challenges.",
+      "whatToExpect": "We evaluate your balance and gait against the actual demands of your daily life. We build real, loadbearing strength  not just gentle movement  and train your nervous system to react quickly to unexpected balance challenges.",
       "outcome": "Reversed physical decline. Restored reaction time, rebuilt strength, eradicated fear of falling, and the physical freedom to live entirely on your own terms."
     },
     "cancerRehabilitation": {
@@ -1320,27 +1463,38 @@
       "metaTitle": "Cancer Rehabilitation & Recovery",
       "metaDescription": "Extraordinary rehabilitation for the body after the hardest thing it has ever endured. Rebuilding energy, strength, and movement.",
       "heroSubtitle": "Care for the body after the hardest thing it has ever endured.",
-      "overview": "Survival is the medical priority, but treatments—surgery, chemotherapy, radiotherapy, hormonal therapy—leave a profound physical wake. Tissues are scarred. Nerves are altered by toxicity. Bone density is compromised. Muscles are deconditioned from profound, systemic fatigue. The body's systems require deliberate, intelligent rebuilding.",
-      "duration": "40–60 min",
-      "frequency": "1–3× per week (individualized)",
+      "overview": "Survival is the medical priority, but treatmentssurgery, chemotherapy, radiotherapy, hormonal therapyleave a profound physical wake. Tissues are scarred. Nerves are altered by toxicity. Bone density is compromised. Muscles are deconditioned from profound, systemic fatigue. The body's systems require deliberate, intelligent rebuilding.",
+      "duration": "4060 min",
+      "frequency": "13× per week (individualized)",
       "symptoms": [
         "Debilitating, systemic fatigue that sleep does not fix",
         "Altered sensation, numbness, or compromised balance",
+        "Neuropathy that makes walking, balance, or fine motor tasks unreliable",
         "Tissue restriction, heavy scarring, and localized swelling (lymphoedema)",
-        "Profound loss of strength and treatment-related joint pain"
+        "Profound loss of strength and treatmentrelated joint pain"
       ],
       "clinicalApproach": [
-        "Capacity Assessment: Highly individualized evaluation of post-treatment baseline",
-        "Precisely Dosed Exercise: Progressive loading that rebuilds without triggering overwhelming fatigue",
-        "Tissue & Neural Work: Manual lymphatic drainage, scar mobilization, and neural gliding",
-        "Collaborative Care: Working alongside oncology team for safe, effective progression"
+        "Post-treatment functional baseline assessment - strength, fatigue, neural function",
+        "Graded exercise prescription calibrated to your current energy envelope",
+        "Lymphoedema management: manual drainage and compression guidance",
+        "Peripheral neuropathy balance and gait retraining",
+        "Surgical scar and tissue restriction mobilisation",
+        "Oncologyinformed exercise  coordinated alongside your medical team"
+      ],
+      "treatmentHighlights": [
+        "Posttreatment functional baseline assessment  strength, fatigue, neural function",
+        "Graded exercise prescription calibrated to your current energy envelope",
+        "Lymphoedema management: manual drainage and compression guidance",
+        "Peripheral neuropathy balance and gait retraining",
+        "Surgical scar and tissue restriction mobilisation",
+        "Oncologyinformed exercise  coordinated alongside your medical team"
       ],
       "benefits": [
-        "Fatigue that no longer dictates the day",
-        "Strength that returns with intention",
-        "Movement that feels possible again",
-        "Restored functional capacity",
-        "Integrated oncology team approach"
+        "Days that belong to you, not to the exhaustion",
+        "Strength returning in ways that feel earned, not accidental",
+        "Physical capacity that matches where your mind already wants to be",
+        "A body that functions at the level life now demands",
+        "Rehabilitation that works alongside your treatment, not against it"
       ],
       "idealFor": [
         "Individuals at any stage of their cancer journey",
@@ -1348,54 +1502,65 @@
         "Those who refuse to accept debilitation as their 'new normal'"
       ],
       "process": [
-        "Post-treatment baseline assessment",
+        "Posttreatment baseline assessment",
         "Energy system calibration",
         "Lymphatic & scar tissue work",
         "Progressive capacity rebuilding"
       ],
-      "whatToExpect": "We perform a highly individualized assessment of your post-treatment baseline. Exercise is precisely dosed to rebuild your energy systems without triggering overwhelming fatigue, working alongside your oncology team.",
-      "outcome": "A body that functions at the level life now demands — not the level treatment left it at. Fatigue that no longer dictates the day. Strength that returns with intention."
+      "whatToExpect": "We perform a highly individualized assessment of your posttreatment baseline. Exercise is precisely dosed to rebuild your energy systems without triggering overwhelming fatigue, working alongside your oncology team.",
+      "outcome": "A body that functions at the level life now demands  not the level treatment left it at. Fatigue that no longer dictates the day. Strength that returns with intention."
     },
     "ergonomics": {
       "title": "Ergonomics & Workplace Health",
       "metaTitle": "Ergonomics & Workplace Health",
-      "metaDescription": "Optimizing how you interact with your environment to eliminate workplace-driven pain and boost productivity.",
+      "metaDescription": "Optimizing how you interact with your environment to eliminate workplacedriven pain and boost productivity.",
       "heroSubtitle": "Your workstation should support your output, not break your body down.",
       "overview": "The human body is designed for dynamic movement, not sustained static holds. When you sit at a poorly positioned screen or keyboard for 8 to 10 hours, you subject your neck, shoulders, and lower back to unvarying mechanical load. Muscles fatigue, joints compress, and chronic pain sets in, disrupting focus and productivity.",
-      "duration": "60–90 min (assessment)",
-      "frequency": "Initial + follow-up",
+      "duration": "6090 min (assessment)",
+      "frequency": "Initial + followup",
       "symptoms": [
+        "You've bought a new chair, a standing desk, a lumbar roll. Still hurts.",
+        "You travel frequently  hotel desks, laptops on laps, redeye flights  and your body tracks every one",
         "Neck and lower back pain that accumulates predictably across the workday",
-        "Shoulder overload and mid-back burning",
+        "Shoulder overload and midback burning",
         "Wrist tendinopathy or numbness from poor keyboard positioning",
-        "Chronic tension headaches that peak in the mid-afternoon"
+        "Chronic tension headaches that peak in the midafternoon"
       ],
       "clinicalApproach": [
-        "Workstation Optimization: Assessing physical setup and aligning it with your specific biomechanics",
-        "Postural Retraining: Teaching you how to hold your body efficiently against gravity",
-        "Micro-Recovery Integration: Implementing brief movement strategies to break the static load cycle",
-        "Physical Rehabilitation: Treating the musculoskeletal damage already caused by poor ergonomics"
+        "Onsite or virtual workstation biomechanical assessment",
+        "Screen height, keyboard distance, and chair geometry calibration to your specific proportions",
+        "Postural muscle activation sequencing for sustained desk work",
+        "Microrecovery protocol design  movement breaks timed to your work pattern",
+        "Travel ergonomics guidance for frequent flyers and remote workers",
+        "Followup reassessment to confirm load redistribution has held"
+      ],
+      "treatmentHighlights": [
+        "Onsite or virtual workstation biomechanical assessment",
+        "Screen height, keyboard distance, and chair geometry calibration to your specific proportions",
+        "Postural muscle activation sequencing for sustained desk work",
+        "Microrecovery protocol design  movement breaks timed to your work pattern",
+        "Travel ergonomics guidance for frequent flyers and remote workers",
+        "Followup reassessment to confirm load redistribution has held"
       ],
       "benefits": [
-        "Optimized load distribution",
-        "Dramatic reduction in workplace injuries",
-        "Sustained high-level professional output",
-        "Resolved headache patterns",
-        "Improved focus and productivity"
-      ],
+        "Getting to 4pm without your neck or lower back taking over",
+        "Knowing your setup is configured for your body, not a generic standard",
+        "Headaches that stop following your work schedule",
+        "Focus that doesn't compete with background discomfort",
+        "Energy levels at end of day that don't reflect a body that fought its position all day"      ],
       "idealFor": [
-        "Desk-intensive professionals",
+        "Deskintensive professionals",
         "Frequent travelers working from laptops",
         "Corporate organizations reducing employee sick leave"
       ],
       "process": [
         "Workstation biomechanics audit",
         "Postural efficiency training",
-        "Micro-recovery protocol design",
+        "Microrecovery protocol design",
         "Musculoskeletal rehabilitation"
       ],
-      "whatToExpect": "We assess your physical workstation setup and align it with your specific biomechanics. You'll receive postural retraining and specific micro-recovery strategies to integrate into your workday.",
-      "outcome": "Optimized load distribution across your body, a dramatic reduction in workplace injuries, and the physical comfort necessary to sustain high-level professional output."
+      "whatToExpect": "We assess your physical workstation setup and align it with your specific biomechanics. You'll receive postural retraining and specific microrecovery strategies to integrate into your workday.",
+      "outcome": "Optimized load distribution across your body, a dramatic reduction in workplace injuries, and the physical comfort necessary to sustain highlevel professional output."
     },
     "posturalEducation": {
       "title": "Postural Education",
@@ -1403,26 +1568,38 @@
       "metaDescription": "Correcting the root causes of physical inefficiency. Posture is about how you move and load your body through life.",
       "heroSubtitle": "Posture is not just about how you sit.",
       "overview": "Poor posture is an accumulation of physical adaptations to sustained daily demands. Over time, chest and anterior muscles become short and restricted, while the upper back and deep neck stabilizers become overstretched and weak. This imbalance compromises everything from breathing mechanics to athletic force production.",
-      "duration": "50–60 min",
+      "duration": "5060 min",
       "frequency": "2× per week",
       "symptoms": [
-        "Cumulative pain across the week with no specific injury mechanism",
-        "Frequent tension headaches and severe upper back stiffness",
-        "A feeling of constant, low-level physical fatigue",
-        "Reduced athletic performance due to loading asymmetries"
+        "You catch yourself slumped  and correct it  and slump again within minutes",
+        "One shoulder visibly higher, one hip further forward  and it's getting more pronounced",
+        "Breathing that's shallow, neckdriven, and exhausting by end of day",
+        "Pain that shifts around rather than staying in one place  today the neck, tomorrow the midback",
+        "You've been told your posture is bad for years. No one has ever shown you how to actually fix it."
       ],
       "clinicalApproach": [
-        "Dynamic Assessment: Evaluating posture not just standing still, but in movement and under load",
-        "Targeted Interventions: Mobility work to open restricted anterior chains",
-        "Posterior Strengthening: Building the neglected posterior stabilizers",
-        "Habit Retraining: Precise education on personal loading habits and daily movement retraining"
+        "Static and dynamic postural assessment  including under load and in fatigue",
+        "Thoracic mobility restoration  the segment most postural dysfunction originates from",
+        "Deep cervical and lumbar stabiliser activation sequencing",
+        "Breathing mechanics retraining  diaphragmatic function and rib cage position",
+        "Daily habit audit: phone use, sleep position, commute and carry patterns",
+        "Loaded postural correction  not just standing straight, but moving straight"
+      ],
+      "treatmentHighlights": [
+        "Static and dynamic postural assessment  including under load and in fatigue",
+        "Thoracic mobility restoration  the segment most postural dysfunction originates from",
+        "Deep cervical and lumbar stabiliser activation sequencing",
+        "Breathing mechanics retraining  diaphragmatic function and rib cage position",
+        "Daily habit audit: phone use, sleep position, commute and carry patterns",
+        "Loaded postural correction  not just standing straight, but moving straight"
       ],
       "benefits": [
-        "Sustainable corrective loading habits",
-        "Improved breathing and movement efficiency",
-        "Long-term posture-driven pain resolution",
-        "Enhanced athletic performance",
-        "Reduced physical fatigue"
+        "Standing in a queue or kitchen for an hour without the slow creep of pain",
+        "Breathing that feels full rather than effortful by end of day",
+        "A spine that distributes load across the day rather than accumulating it",
+        "Athletic output that isn't quietly limited by compensations underneath",
+        "A body that looks as capable as it actually is",
+        "Pain that stops migrating  because the underlying pattern has actually changed"
       ],
       "idealFor": [
         "Desk workers",
@@ -1437,7 +1614,7 @@
         "Daily movement habit integration"
       ],
       "whatToExpect": "We evaluate your posture not just standing still, but in movement and under load. Treatment combines mobility work to open restricted areas with strengthening for neglected stabilizers, plus habit retraining for daily life.",
-      "outcome": "Sustainable, corrective loading habits, drastically improved breathing and movement efficiency, and the long-term resolution of posture-driven pain."
+      "outcome": "Sustainable, corrective loading habits, drastically improved breathing and movement efficiency, and the longterm resolution of posturedriven pain."
     },
     "osteoporosis": {
       "title": "Osteoporosis & Bone Health",
@@ -1445,29 +1622,41 @@
       "metaDescription": "Building resilient bones through intelligent, targeted loading. Safely reducing fracture risk with deliberate programming.",
       "heroSubtitle": "Building resilient bones requires intelligent, targeted loading.",
       "overview": "Osteoporosis occurs when bone resorption outpaces bone formation, leading to reduced bone mineral density. This is driven by hormonal changes, poor nutrition, and crucially, insufficient skeletal loading. Bones respond to forces placed upon them (Wolff's Law). Without adequate resistance and impact, they become porous, fragile, and highly susceptible to fracture.",
-      "duration": "45–60 min",
-      "frequency": "2–3× per week",
+      "duration": "4560 min",
+      "frequency": "23× per week",
       "symptoms": [
+        "A DEXA scan result that made you Google what osteopenia actually means",
+        "You're perimenopausal and no one has talked to you about what that means for your bones",
         "Often completely silent until a devastating fracture occurs",
         "Gradual loss of height over time",
-        "An increasing thoracic kyphosis (rounding of the upper back)",
-        "Deep apprehension or fear about the safety of exercising"
+        "An increasing thoracic kyphosis (rounding of the upper back)"
       ],
       "clinicalApproach": [
-        "Progressive Resistance: Carefully dosed weight-bearing and strength training to stimulate bone remodeling",
-        "Impact Training: Safe, calibrated impact exercises to drive skeletal density",
-        "Fall Prevention: Integration of balance training to mitigate the risk of falls",
-        "Movement Safety: Education on avoiding high-risk movements (such as loaded spinal flexion)"
+        "Bone loading zone assessment  identifying which sites need targeted stimulus",
+        "Progressive resistance training dosed to stimulate osteoblast activity",
+        "Safe impact exercise integration  jumping and landing mechanics for bone stimulus",
+        "Spinal extension strengthening to counter kyphotic progression",
+        "Fall risk screening integrated into every bone health programme",
+        "Exercise safety education: what loads protect bone versus what risks it"
+      ],
+      "treatmentHighlights": [
+        "Bone loading zone assessment  identifying which sites need targeted stimulus",
+        "Progressive resistance training dosed to stimulate osteoblast activity",
+        "Safe impact exercise integration  jumping and landing mechanics for bone stimulus",
+        "Spinal extension strengthening to counter kyphotic progression",
+        "Fall risk screening integrated into every bone health programme",
+        "Exercise safety education: what loads protect bone versus what risks it"
       ],
       "benefits": [
-        "Positive bone remodeling",
-        "Significant reduction in fall/fracture risk",
-        "Resilient, capable body",
-        "Safe confident movement",
-        "Informed exercise choices"
+        "Exercising without the background fear of what one wrong move could cost",
+        "A body that can handle the things daily life actually demands of it",
+        "Bone health that is being actively managed, not passively monitored",
+        "Knowing which exercises are building bone and which are risking it",
+        "Confidence on stairs, uneven ground, and surfaces that used to feel precarious",
+        "A concrete plan  not just a supplement recommendation and a pamphlet"
       ],
       "idealFor": [
-        "Peri- and postmenopausal women",
+        "Peri and postmenopausal women",
         "Men with specific risk factors",
         "Individuals with highly sedentary lifestyles",
         "Anyone with diagnosed low bone mass"
@@ -1478,35 +1667,46 @@
         "Calibrated impact training",
         "Balance & fall prevention integration"
       ],
-      "whatToExpect": "We carefully dose weight-bearing and strength training to stimulate bone remodeling, integrate safe impact exercises, and include balance training to mitigate fall risk. Every exercise is chosen with your bone health in mind.",
+      "whatToExpect": "We carefully dose weightbearing and strength training to stimulate bone remodeling, integrate safe impact exercises, and include balance training to mitigate fall risk. Every exercise is chosen with your bone health in mind.",
       "outcome": "Positive bone remodeling, a significant reduction in fall and fracture risk, and a body that feels resilient and capable of safe, confident movement."
     },
     "postFractureRehab": {
-      "title": "Post-Fracture Rehabilitation",
-      "metaTitle": "Post-Fracture Rehabilitation",
-      "metaDescription": "True rehabilitation means restoring total body strength, mechanics, and confidence after a fracture — ensuring it never happens again.",
+      "title": "PostFracture Rehabilitation",
+      "metaTitle": "PostFracture Rehabilitation",
+      "metaDescription": "True rehabilitation means restoring total body strength, mechanics, and confidence after a fracture  ensuring it never happens again.",
       "heroSubtitle": "Healing the bone is only the first step.",
       "overview": "When a bone fractures, immobilization is required to heal. But this immobilization causes profound secondary issues: massive muscle atrophy, joint stiffness, and heavily altered movement mechanics. Furthermore, if the fracture was caused by a fall or poor neuromuscular control, the underlying issue still remains.",
-      "duration": "45–60 min",
-      "frequency": "2–3× per week",
+      "duration": "4560 min",
+      "frequency": "23× per week",
       "symptoms": [
-        "Severe post-immobilization stiffness in the affected joint",
-        "Profound weakness and visible muscle loss",
-        "Altered gait (limping) or hesitation to trust the limb",
-        "Compensatory pain in other areas (e.g., mid-back pain after a wrist fracture)"
+        "The cast came off weeks ago. The stiffness hasn't.",
+        "You're protecting the limb without realising it  and the rest of your body is starting to feel it",
+        "Muscle that visibly disappeared during immobilisation and hasn't come back",
+        "Compensatory pain in other areas (e.g., midback pain after a wrist fracture)"
       ],
       "clinicalApproach": [
-        "Acute Load Protection: Ensuring the healing bone is safely managed during early movement",
-        "Mobility Restoration: Aggressive but safe restoration of joint range of motion",
-        "Progressive Resistance: Rebuilding the atrophied musculature around the fracture site",
-        "Systemic Correction: Addressing balance deficits or movement flaws that caused the fracture"
+        "Phase-matched loading: protected movement during healing, aggressive restore after",
+        "Joint range of motion restoration  targeting the contracture left by immobilisation",
+        "Progressive resistance to rebuild the muscle mass lost in cast",
+        "Proprioception and balance retraining for the affected limb",
+        "Compensatory pain assessment  identifying and correcting secondary load patterns",
+        "Fracture cause investigation: bone quality, biomechanics, or both"
+      ],
+      "treatmentHighlights": [
+        "Phase-matched loading: protected movement during healing, aggressive restore after",
+        "Joint range of motion restoration  targeting the contracture left by immobilisation",
+        "Progressive resistance to rebuild the muscle mass lost in cast",
+        "Proprioception and balance retraining for the affected limb",
+        "Compensatory pain assessment  identifying and correcting secondary load patterns",
+        "Fracture cause investigation: bone quality, biomechanics, or both"
       ],
       "benefits": [
-        "Fully healed structures",
-        "Completely restored strength",
-        "Movement confidence",
-        "Systematic future fracture prevention",
-        "Resolved compensatory pain"
+        "Using the arm or leg without mentally noting how it compares to before",
+        "The areas that compensated  back, hip, opposite side  quieting down",
+        "Strength that comes back measured and intentional, not just hoped for",
+        "Getting back to load with confidence, not just with healing declared complete",
+        "Using the limb without mentally bracing every time",
+        "Understanding why it happened  and making sure it doesn't again"
       ],
       "idealFor": [
         "Individuals recovering from hip, wrist, shoulder, ankle, foot, or spine fractures",

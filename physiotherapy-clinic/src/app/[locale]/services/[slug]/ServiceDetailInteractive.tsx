@@ -7,14 +7,14 @@ import { cn } from "@/lib/utils";
 import { DynamicIcon } from "@/components/ui/DynamicIcon";
 
 interface ServiceDetailInteractiveProps {
-  benefits: string[];
+  treatmentHighlights: string[];
   serviceColor: string;
   serviceIcon: string;
   serviceTitle: string;
 }
 
 export function ServiceDetailInteractive({
-  benefits,
+  treatmentHighlights,
   serviceColor,
   serviceIcon,
   serviceTitle,
@@ -43,9 +43,9 @@ export function ServiceDetailInteractive({
         </div>
       </div>
 
-      {/* Interactive Benefit Cards */}
+      {/* Interactive Treatment Highlight Cards */}
       <div className="space-y-3">
-        {benefits.map((benefit, index) => {
+        {treatmentHighlights.map((highlight, index) => {
           const isActive = activeIndex === index;
 
           return (
@@ -79,7 +79,7 @@ export function ServiceDetailInteractive({
                   isActive ? "text-forest" : "text-forest/60"
                 )}
               >
-                {benefit}
+                {highlight}
               </span>
               <ChevronDown
                 className={cn(
@@ -94,7 +94,7 @@ export function ServiceDetailInteractive({
 
       {/* Progress Indicator */}
       <div className="mt-8 flex items-center gap-2">
-        {benefits.map((_, index) => (
+        {treatmentHighlights.map((_, index) => (
           <button
             key={index}
             onClick={() => setActiveIndex(index)}

@@ -12,6 +12,7 @@ import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { localeDirection } from '@/i18n/config';
+import { RecaptchaProvider } from '@/components/providers/RecaptchaProvider';
 
 const lexend = localFont({
   src: '../../../public/fonts/Lexend-Variable-latin.woff2',
@@ -109,10 +110,12 @@ export default async function LocaleLayout({
         className={`${isArabic ? 'font-arabic' : 'font-sans'} antialiased overflow-x-hidden selection:bg-seafoam selection:text-forest`}
       >
         <NextIntlClientProvider locale={locale} messages={sharedMessages}>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-          <WhatsAppButton />
+          <RecaptchaProvider>
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+            <WhatsAppButton />
+          </RecaptchaProvider>
         </NextIntlClientProvider>
       </body>
     </html>

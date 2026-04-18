@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { verifyRecaptcha } from "@/lib/recaptcha";
 
 const NOTIFICATION_EMAIL = "drishashah95@gmail.com";
 
@@ -17,13 +18,21 @@ export async function POST(request: Request) {
     const resend = new Resend(resendApiKey);
 
     const body = await request.json();
-    const { firstName, lastName, email, countryCode, phone, service, message } = body;
+    const { firstName, lastName, email, countryCode, phone, service, message, recaptchaToken } = body;
 
     if (!firstName || !lastName || !email || !phone || !service || !message) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
       );
+    }
+
+    if (!recaptchaToken) {
+      return NextResponse.json({ error: "Security verification required" }, { status: 400 });
+    }
+    const recaptcha = await verifyRecaptcha(recaptchaToken);
+    if (!recaptcha.success) {
+      return NextResponse.json({ error: "Security verification failed. Please try again." }, { status: 400 });
     }
 
     const htmlContent = `

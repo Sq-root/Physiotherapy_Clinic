@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
@@ -93,6 +94,7 @@ interface FormData {
 type FormStatus = "idle" | "loading" | "success" | "error";
 
 export function AppointmentSection() {
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -238,6 +240,13 @@ export function AppointmentSection() {
     setErrors([]);
 
     try {
+      if (!executeRecaptcha) {
+        setErrors(["Security check unavailable. Please refresh and try again."]);
+        setStatus("error");
+        return;
+      }
+      const recaptchaToken = await executeRecaptcha("appointment_booking");
+
       const response = await fetch("/api/appointments", {
         method: "POST",
         headers: {
@@ -253,6 +262,7 @@ export function AppointmentSection() {
           date: formData.date,
           timeSlot: formData.timeSlot,
           message: formData.message || undefined,
+          recaptchaToken,
         }),
       });
 

@@ -74,15 +74,19 @@ export default async function ServiceDetailPage({
   const benefits = t.raw(`${key}.benefits`) as string[];
   const idealFor = t.raw(`${key}.idealFor`) as string[];
 
-  // Safely get new fields (symptoms, clinicalApproach, outcome)
+  // Safely get new fields (symptoms, clinicalApproach, treatmentHighlights, outcome)
   let symptoms: string[] = [];
   let clinicalApproach: string[] = [];
+  let treatmentHighlights: string[] = [];
   let outcome = "";
   try {
     symptoms = t.raw(`${key}.symptoms`) as string[];
   } catch {}
   try {
     clinicalApproach = t.raw(`${key}.clinicalApproach`) as string[];
+  } catch {}
+  try {
+    treatmentHighlights = t.raw(`${key}.treatmentHighlights`) as string[];
   } catch {}
   try {
     outcome = t(`${key}.outcome`);
@@ -536,7 +540,7 @@ export default async function ServiceDetailPage({
             {/* Interactive Client Island */}
             <AnimateOnView delay={0.15} direction="right">
               <ServiceDetailInteractive
-                benefits={benefits}
+                treatmentHighlights={treatmentHighlights.length > 0 ? treatmentHighlights : benefits}
                 serviceColor={service.color}
                 serviceIcon={service.icon}
                 serviceTitle={t(`${key}.title`)}

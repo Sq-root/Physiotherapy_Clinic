@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createServerClient } from '@/lib/supabase/client';
 import { Resend } from 'resend';
 import type { Appointment, AppointmentInsert, ServiceType, TimeSlot } from '@/lib/supabase/types';
+import { verifyRecaptcha } from '@/lib/recaptcha';
 
 const NOTIFICATION_EMAIL = "drishashah95@gmail.com";
 
@@ -22,12 +23,27 @@ interface AppointmentRequest {
   date: string;
   timeSlot: string;
   message?: string;
+  recaptchaToken?: string;
 }
 
 export async function POST(request: NextRequest) {
   try {
     const body: AppointmentRequest = await request.json();
-    const { name, email, phone, service, date, timeSlot, message } = body;
+    const { name, email, phone, service, date, timeSlot, message, recaptchaToken } = body;
+
+    if (!recaptchaToken) {
+      return NextResponse.json(
+        { success: false, errors: ['Security verification required'] },
+        { status: 400 }
+      );
+    }
+    const recaptcha = await verifyRecaptcha(recaptchaToken);
+    if (!recaptcha.success) {
+      return NextResponse.json(
+        { success: false, errors: ['Security verification failed. Please try again.'] },
+        { status: 400 }
+      );
+    }
 
     // Validation
     const errors: string[] = [];

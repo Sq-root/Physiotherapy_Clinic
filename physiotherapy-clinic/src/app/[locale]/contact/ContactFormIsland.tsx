@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Send,
@@ -69,6 +70,7 @@ const inputBase =
   "w-full h-12 px-4 rounded-xl bg-white border text-forest text-sm placeholder:text-forest/30 outline-none transition-all duration-200 focus:border-seafoam focus:ring-2 focus:ring-seafoam/10";
 
 export default function ContactFormIsland({ labels, services }: ContactFormIslandProps) {
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
@@ -118,15 +120,17 @@ export default function ContactFormIsland({ labels, services }: ContactFormIslan
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) { setStatus("error"); return; }
-    
+    if (!executeRecaptcha) return;
+
     setStatus("loading");
     setErrors({});
-    
+
     try {
+      const recaptchaToken = await executeRecaptcha("contact_form");
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, recaptchaToken }),
       });
 
       const result = await response.json();
