@@ -308,9 +308,9 @@ export function Navbar() {
                 </div>
 
                 <motion.div
-                  whileHover={{ scale: 1.03, y: -1 }}
-                  whileTap={{ scale: 0.97 }}
-                  transition={{ type: "spring", stiffness: 400 }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
                   className="shrink-0"
                 >
                   <Link
@@ -318,8 +318,8 @@ export function Navbar() {
                     className={cn(
                       "inline-flex items-center justify-center gap-2 h-10 px-6 text-[11px] font-bold uppercase tracking-widest rounded-full whitespace-nowrap transition-all duration-300 group outline-none",
                       useDarkStyle
-                        ? "bg-forest text-white shadow-[3px_3px_0px_0px_#A4C639] hover:bg-seafoam hover:text-forest hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[3px] active:translate-y-[3px] active:shadow-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2"
-                        : "bg-white text-forest shadow-[3px_3px_0px_0px_#A4C639] hover:bg-seafoam hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[3px] active:translate-y-[3px] active:shadow-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2",
+                        ? "bg-forest text-white shadow-[3px_3px_0px_0px_#A4C639] hover:bg-seafoam hover:text-forest active:translate-x-[1px] active:translate-y-[1px] active:shadow-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2"
+                        : "bg-white text-forest shadow-[3px_3px_0px_0px_#A4C639] hover:bg-seafoam hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none active:translate-x-[2px] active:translate-y-[2px] active:shadow-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2",
                     )}
                   >
                     <span>{tCommon("bookAppointment")}</span>
