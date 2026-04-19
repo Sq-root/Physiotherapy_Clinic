@@ -354,6 +354,7 @@
     "quickLinks": "Quick Links",
     "services": "Services",
     "contact": "Contact",
+    "location": "Location",
     "servicesLinks": {
       "orthopedic": "Orthopedic Care",
       "sports": "Sports Rehab",
@@ -547,7 +548,7 @@
       "questions": {
         "acuteInjuries": {
           "question": "Which therapy is right for acute injuries?",
-          "answer": "For acute injuries (occurring within the last 4872 hours), we typically recommend starting with a diagnostic consultation followed by gentle Manual Therapy to manage inflammation and pain before progressing to active rehabilitation."
+          "answer": "For acute injuries (occurring within the last 48-72 hours), we typically recommend starting with a diagnostic consultation followed by gentle Manual Therapy to manage inflammation and pain before progressing to active rehabilitation."
         },
         "combineTreatments": {
           "question": "Can I combine treatments?",
@@ -1553,7 +1554,8 @@
         "Knowing your setup is configured for your body, not a generic standard",
         "Headaches that stop following your work schedule",
         "Focus that doesn't compete with background discomfort",
-        "Energy levels at end of day that don't reflect a body that fought its position all day"      ],
+        "Energy levels at end of day that don't reflect a body that fought its position all day"
+      ],
       "idealFor": [
         "Deskintensive professionals",
         "Frequent travelers working from laptops",

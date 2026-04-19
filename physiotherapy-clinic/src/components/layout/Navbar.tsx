@@ -139,7 +139,7 @@ export function Navbar() {
         <div
           className={cn(
             "mx-auto transition-all duration-500 ease-out pointer-events-auto",
-            scrolled ? "mt-4 max-w-5xl mx-4 md:mx-auto" : "max-w-[1400px]",
+            scrolled ? "mt-4 max-w-7xl mx-4 lg:mx-auto" : "max-w-[1400px]",
           )}
         >
           <div
@@ -158,7 +158,7 @@ export function Navbar() {
             >
               {/* Logo */}
               <div className="shrink-0">
-                <Logo useDarkStyle={useDarkStyle} />
+                <Logo useDarkStyle={useDarkStyle} size={scrolled ? "sm" : "md"} />
               </div>
 
               {/* Desktop Navigation with Clean Design */}
@@ -216,7 +216,7 @@ export function Navbar() {
                       <Link
                         key={link.label}
                         href={link.href}
-                        className="relative px-4 py-2 rounded-full group"
+                        className="relative px-3 py-2 rounded-full group"
                       >
                         {/* Animated Active Background */}
                         {isActive && (

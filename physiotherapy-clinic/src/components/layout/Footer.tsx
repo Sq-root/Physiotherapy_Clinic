@@ -5,9 +5,24 @@ import { Logo } from "@/components/ui/Logo";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/routing";
 
+// ─── Curated service links — real slugs from services.ts ───────────────────
+// These are ordered by clinical relevance and SEO value.
+const footerServices = [
+  { slug: "neck-pain",            label: "Neck Pain & Cervical" },
+  { slug: "disc-prolapse-sciatica", label: "Disc & Sciatica" },
+  { slug: "shoulder-impingement", label: "Shoulder & Rotator Cuff" },
+  { slug: "knee-pain-acl",        label: "Knee Pain & ACL" },
+  { slug: "plantar-fasciitis",    label: "Foot & Heel Pain" },
+  { slug: "dry-needling",         label: "Dry Needling" },
+  { slug: "womens-health",        label: "Women's Health" },
+  { slug: "post-surgical-rehab",  label: "Post-Surgical Rehab" },
+];
+
 export async function Footer() {
   const t = await getTranslations("footer");
   const tNav = await getTranslations("nav");
+
+  const currentYear = new Date().getFullYear();
 
   const socialLinks = [
     {
@@ -27,20 +42,13 @@ export async function Footer() {
     },
   ];
 
-  const services = [
-    t("servicesLinks.orthopedic"),
-    t("servicesLinks.sports"),
-    t("servicesLinks.neurological"),
-    t("servicesLinks.manual"),
-    t("servicesLinks.senior"),
-  ];
-
   const navLinks = [
-    { href: "/", label: tNav("home") },
-    { href: "/services", label: tNav("services") },
-    { href: "/about", label: tNav("aboutUs") },
-    { href: "/faq", label: tNav("faq") },
-    { href: "/contact", label: tNav("contact") },
+    { href: "/",                     label: tNav("home") },
+    { href: "/services",             label: tNav("services") },
+    { href: "/about",                label: tNav("aboutUs") },
+    { href: "/faq",                  label: tNav("faq") },
+    { href: "/contact",              label: tNav("contact") },
+    { href: "/online-physiotherapy", label: tNav("onlineConsultation") },
   ];
 
   return (
@@ -108,23 +116,33 @@ export async function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Services — real slugs, real links */}
           <div>
             <h2 className="font-semibold text-[10px] uppercase tracking-[0.15em] text-seafoam mb-4">
               {t("services")}
             </h2>
             <ul className="space-y-2">
-              {services.map((service) => (
-                <li key={service}>
+              {footerServices.map((svc) => (
+                <li key={svc.slug}>
                   <Link
-                    href="/services"
-                    className={`text-white/50 text-xs hover:text-seafoam transition-colors flex items-center gap-1 group`}
+                    href={`/services/${svc.slug}`}
+                    className="text-white/50 text-xs hover:text-seafoam transition-colors flex items-center gap-1 group"
                   >
-                    <span className={`w-0 group-hover:w-2 h-px bg-seafoam transition-all duration-200`} />
-                    {service}
+                    <span className="w-0 group-hover:w-2 h-px bg-seafoam transition-all duration-200" />
+                    {svc.label}
                   </Link>
                 </li>
               ))}
+              {/* View all services */}
+              <li>
+                <Link
+                  href="/services"
+                  className="text-seafoam/60 text-xs hover:text-seafoam transition-colors flex items-center gap-1 group mt-1 font-medium"
+                >
+                  <span className="w-0 group-hover:w-2 h-px bg-seafoam transition-all duration-200" />
+                  View All 22 →
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -140,7 +158,7 @@ export async function Footer() {
                   className="text-white/50 text-xs hover:text-seafoam transition-colors flex items-center gap-2"
                 >
                   <svg
-                    className="w-3 h-3 text-seafoam"
+                    className="w-3 h-3 text-seafoam shrink-0"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -172,7 +190,7 @@ export async function Footer() {
                   className="text-white/50 text-xs hover:text-seafoam transition-colors flex items-center gap-2"
                 >
                   <svg
-                    className="w-3 h-3 text-seafoam"
+                    className="w-3 h-3 text-seafoam shrink-0"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -189,7 +207,7 @@ export async function Footer() {
               </li>
               <li className="text-white/50 text-xs flex items-center gap-2">
                 <svg
-                  className="w-3 h-3 text-seafoam"
+                  className="w-3 h-3 text-seafoam shrink-0"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -209,7 +227,7 @@ export async function Footer() {
           {/* Location Mini Map */}
           <div>
             <h2 className="font-semibold text-[10px] uppercase tracking-[0.15em] text-seafoam mb-4">
-              Location
+              {t("location")}
             </h2>
             <div className="relative rounded-lg overflow-hidden h-20 bg-white/5 border border-white/10 mb-2">
               <GoogleMap
@@ -229,9 +247,10 @@ export async function Footer() {
         {/* Bottom Section */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6">
           <p className="text-white/30 text-[10px]">
-            © {siteConfig.name}. All rights reserved.
+            © {currentYear} {siteConfig.name}. All rights reserved.
           </p>
-          {/* <div className="flex items-center gap-4">
+          {/* Uncomment when privacy/terms pages are ready
+          <div className="flex items-center gap-4">
             {["Privacy", "Terms", "Cookies"].map((item) => (
               <a
                 key={item}
