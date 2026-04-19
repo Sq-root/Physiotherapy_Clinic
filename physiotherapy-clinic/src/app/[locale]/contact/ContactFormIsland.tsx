@@ -133,18 +133,32 @@ export default function ContactFormIsland({ labels, services }: ContactFormIslan
         body: JSON.stringify({ ...formData, recaptchaToken }),
       });
 
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.error || "Failed to submit form");
+      let result: { success?: boolean; errors?: Record<string, string> | string[]; error?: string } = {};
+      try {
+        result = await response.json();
+      } catch {
+        // Non-JSON response — treat as server down
       }
 
-      setStatus("success");
-      setFormData({ firstName: "", lastName: "", email: "", countryCode: "+971", phone: "", service: "", message: "" });
+      if (response.ok && result.success !== false) {
+        setStatus("success");
+        setFormData({ firstName: "", lastName: "", email: "", countryCode: "+971", phone: "", service: "", message: "" });
+        return;
+      }
+
+      if (response.status === 400 && result.errors && !Array.isArray(result.errors)) {
+        // Field-level validation errors from the API
+        setErrors(result.errors as Partial<Record<keyof FormData, string>>);
+        setStatus("error");
+        return;
+      }
+
+      setStatus("error");
+      setErrors({ message: "Server is temporarily unavailable. Please try again in a few minutes." });
     } catch (error) {
       console.error("Form submission error:", error);
       setStatus("error");
-      setErrors({ message: error instanceof Error ? error.message : "Something went wrong. Please try again." });
+      setErrors({ message: "Server is temporarily unavailable. Please try again in a few minutes." });
     }
   };
 

@@ -286,9 +286,14 @@ export function AppointmentSection() {
         }),
       });
 
-      const data = await response.json();
+      let data: { success?: boolean; data?: { id: string; date: string; timeSlot: string; service: string }; errors?: string[] } = {};
+      try {
+        data = await response.json();
+      } catch {
+        // Non-JSON response (e.g. HTML error page from upstream) — treat as server down
+      }
 
-      if (data.success) {
+      if (response.ok && data.success && data.data) {
         setStatus("success");
         setBookedAppointment({
           id: data.data.id,
@@ -308,13 +313,17 @@ export function AppointmentSection() {
           message: "",
         });
         // setSlots([]);
+      } else if (response.status === 400 && data.errors?.length) {
+        // Validation errors from the API — safe to surface
+        setErrors(data.errors);
+        setStatus("error");
       } else {
-        setErrors(data.errors || ["Failed to book appointment"]);
+        setErrors(["Server is temporarily unavailable. Please try again in a few minutes."]);
         setStatus("error");
       }
     } catch (error) {
       console.error("Booking error:", error);
-      setErrors(["An unexpected error occurred. Please try again."]);
+      setErrors(["Server is temporarily unavailable. Please try again in a few minutes."]);
       setStatus("error");
     }
   };
