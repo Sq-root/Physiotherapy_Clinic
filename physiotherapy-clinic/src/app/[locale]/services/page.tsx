@@ -1,4 +1,37 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
+import type { Metadata } from "next";
+import { siteConfig } from "@/config/site";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const isAr = locale === 'ar';
+  const title = isAr
+    ? 'خدمات العلاج الطبيعي في دبي | زيارات منزلية واستشارات أونلاين | د. عيشة شاه'
+    : 'Physiotherapy Services in Dubai | In-Clinic, Home Visits & Online — Dr. Isha Shah';
+  const description = isAr
+    ? '٢٢ خدمة علاج طبيعي متخصصة: علاج الألم، إعادة التأهيل الرياضي، صحة المرأة، وإعادة التأهيل العصبي — في العيادة بدبي أو أونلاين في أي مكان بالعالم.'
+    : '22 specialist physiotherapy services: pain management, sports rehab, women\'s health, post-surgical recovery, and more — in-clinic in Dubai, home visits, or online consultations worldwide.';
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `${siteConfig.url}/${locale}/services`,
+      languages: { en: `${siteConfig.url}/en/services`, ar: `${siteConfig.url}/ar/services`, 'x-default': `${siteConfig.url}/en/services` },
+    },
+    openGraph: {
+      title, description,
+      url: `${siteConfig.url}/${locale}/services`,
+      type: 'website',
+      locale: isAr ? 'ar_AE' : 'en_AE',
+      images: [{ url: '/logo/Dr_isha_Logo.png', width: 1200, height: 630, alt: siteConfig.name }],
+    },
+    twitter: { card: 'summary_large_image', title, description, images: ['/logo/Dr_isha_Logo.png'] },
+  };
+}
 import Image from "next/image";
 import { ArrowRight, Quote } from "lucide-react";
 import { Link } from "@/i18n/routing";

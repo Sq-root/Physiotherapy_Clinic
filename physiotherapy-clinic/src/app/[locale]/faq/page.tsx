@@ -1,4 +1,8 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
+import type { Metadata } from "next";
+import { siteConfig } from "@/config/site";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildFAQPage } from "@/lib/seo/jsonLd";
 import Image from "next/image";
 import { MessageCircle, MessageSquare, Phone } from "lucide-react";
 import { Link } from "@/i18n/routing";
@@ -99,6 +103,7 @@ export default async function FaqPage({
 
   return (
     <div className="bg-section text-forest font-sans antialiased overflow-x-hidden">
+      <JsonLd schema={buildFAQPage(faqCategories)} />
       {/* Interactive Island - Hero, Nav, FAQ Content, and Sidebar */}
       <FaqInteractiveIsland
         categories={faqCategories}
@@ -116,15 +121,30 @@ export async function generateMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>;
-}) {
+}): Promise<Metadata> {
   const { locale } = await params;
   setRequestLocale(locale);
-
+  const isAr = locale === 'ar';
+  const title = isAr
+    ? 'الأسئلة الشائعة | د. عيشة شاه للعلاج الطبيعي'
+    : 'FAQ | Dr. Isha Shah Physiotherapy Dubai & Online';
+  const description = isAr
+    ? 'أجوبة على أكثر الأسئلة شيوعاً حول العلاج الطبيعي، التأهيل عن بُعد، والزيارات المنزلية في دبي.'
+    : 'Answers to common questions about physiotherapy in Dubai, tele-rehabilitation, home visit physio, insurance, and online consultations worldwide.';
   return {
-    title: locale === "ar" ? "الأسئلة الشائعة" : "FAQ",
-    description:
-      locale === "ar"
-        ? "الأسئلة الشائعة حول خدمات وعلاجات العلاج الطبيعي لدينا."
-        : "Frequently asked questions about our physiotherapy services and treatments.",
+    title,
+    description,
+    alternates: {
+      canonical: `${siteConfig.url}/${locale}/faq`,
+      languages: { en: `${siteConfig.url}/en/faq`, ar: `${siteConfig.url}/ar/faq`, 'x-default': `${siteConfig.url}/en/faq` },
+    },
+    openGraph: {
+      title, description,
+      url: `${siteConfig.url}/${locale}/faq`,
+      type: 'website',
+      locale: isAr ? 'ar_AE' : 'en_AE',
+      images: [{ url: '/logo/Dr_isha_Logo.png', width: 1200, height: 630, alt: siteConfig.name }],
+    },
+    twitter: { card: 'summary_large_image', title, description, images: ['/logo/Dr_isha_Logo.png'] },
   };
 }

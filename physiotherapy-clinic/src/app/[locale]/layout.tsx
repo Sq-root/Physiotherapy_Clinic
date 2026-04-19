@@ -5,9 +5,11 @@ import { Navbar } from '@/components/layout/Navbar';
 const WhatsAppButton = dynamic(() => import('@/components/layout/WhatsAppButton').then(m => ({ default: m.WhatsAppButton })));
 import dynamic from 'next/dynamic';
 import { siteConfig } from '@/config/site';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { buildMedicalBusiness, buildPerson, buildWebSite } from '@/lib/seo/jsonLd';
 
 const Footer = dynamic(() => import('@/components/layout/Footer').then(m => ({ default: m.Footer })));
-import { NextIntlClientProvider } from 'next-intl';
+import NextIntlProviderClient from '@/components/providers/NextIntlProviderClient';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
@@ -64,9 +66,11 @@ export async function generateMetadata({
       ? 'خدمات علاج طبيعي متخصصة في دبي للإصابات الرياضية وإعادة التأهيل وإدارة الألم المزمن.'
       : siteConfig.description,
     alternates: {
+      canonical: `${siteConfig.url}/${locale}`,
       languages: {
         'en': `${siteConfig.url}/en`,
         'ar': `${siteConfig.url}/ar`,
+        'x-default': `${siteConfig.url}/en`,
       },
     },
   };
@@ -109,14 +113,17 @@ export default async function LocaleLayout({
       <body 
         className={`${isArabic ? 'font-arabic' : 'font-sans'} antialiased overflow-x-hidden selection:bg-seafoam selection:text-forest`}
       >
-        <NextIntlClientProvider locale={locale} messages={sharedMessages}>
+        <JsonLd schema={buildMedicalBusiness()} />
+        <JsonLd schema={buildPerson()} />
+        <JsonLd schema={buildWebSite()} />
+        <NextIntlProviderClient locale={locale} messages={sharedMessages}>
           <RecaptchaProvider>
             <Navbar />
             <main>{children}</main>
             <Footer />
             <WhatsAppButton />
           </RecaptchaProvider>
-        </NextIntlClientProvider>
+        </NextIntlProviderClient>
       </body>
     </html>
   );

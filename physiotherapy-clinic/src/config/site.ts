@@ -3,7 +3,7 @@ export const siteConfig = {
     tagline: 'Begin Your Inner Recovery Journey',
     description:
         'Embark on a journey of self-discovery and physical healing with our expert therapists in a serene, nature-inspired environment.',
-    url: process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
+    url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://physiotherapy-clinic-azure.vercel.app',
 
     nav: [
         { label: 'Home', href: '/' },
@@ -30,8 +30,7 @@ export const siteConfig = {
         phone: '+971 50 412 0369',
         whatsapp: '+971 50 412 0369',
         address: {
-            line1: '',
-            line2: '',
+            line1: 'AL Mankhool,Bur Dubai',
             city: 'Dubai, United Arab Emirates',
             zip: ''
         },

@@ -231,11 +231,25 @@ export async function generateMetadata({
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const isAr = locale === 'ar';
+  const title = isAr ? 'تواصل معنا | د. عيشة شاه' : 'Contact Us | Dr. Isha Shah Physiotherapy Dubai';
+  const description = isAr
+    ? 'تواصل مع عيادة د. عيشة شاه للعلاج الطبيعي في دبي. احجز موعدك للعيادة أو زيارة منزلية أو استشارة أونلاين.'
+    : 'Get in touch with Dr. Isha Shah physiotherapy clinic in Dubai. Book an in-clinic session, home visit, or online consultation worldwide.';
   return {
-    title: locale === "ar" ? "تواصل معنا" : "Contact Us",
-    description:
-      locale === "ar"
-        ? "تواصل مع عيادة العلاج الطبيعي في دبي. احجز موعدك اليوم."
-        : "Get in touch with our physiotherapy clinic in Dubai. Book your appointment today.",
+    title,
+    description,
+    alternates: {
+      canonical: `${siteConfig.url}/${locale}/contact`,
+      languages: { en: `${siteConfig.url}/en/contact`, ar: `${siteConfig.url}/ar/contact`, 'x-default': `${siteConfig.url}/en/contact` },
+    },
+    openGraph: {
+      title, description,
+      url: `${siteConfig.url}/${locale}/contact`,
+      type: 'website',
+      locale: isAr ? 'ar_AE' : 'en_AE',
+      images: [{ url: '/logo/Dr_isha_Logo.png', width: 1200, height: 630, alt: siteConfig.name }],
+    },
+    twitter: { card: 'summary_large_image', title, description, images: ['/logo/Dr_isha_Logo.png'] },
   };
 }

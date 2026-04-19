@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node gen-favicons.mjs)",
+      "Bash(node /d/Learning/Project/Physiotherapy_Clinic_Nextjs/physiotherapy-clinic/gen-favicons.mjs)"
+    ]
+  }
+}

@@ -13,6 +13,9 @@ import {
   Quote,
 } from "lucide-react";
 import { setRequestLocale, getTranslations, getLocale } from "next-intl/server";
+import { siteConfig } from "@/config/site";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildService, buildBreadcrumbList } from "@/lib/seo/jsonLd";
 import { Link } from "@/i18n/routing";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
 import {
@@ -45,10 +48,33 @@ export async function generateMetadata({
   if (!service) return {};
 
   const t = await getTranslations("serviceDetail");
+  const isAr = locale === 'ar';
+  const title = t(`${service.translationKey}.metaTitle`);
+  const description = t(`${service.translationKey}.metaDescription`);
+  const ogImage = service.image
+    ? { url: service.image, width: 1200, height: 630, alt: service.title }
+    : { url: '/logo/Dr_isha_Logo.png', width: 1200, height: 630, alt: service.title };
 
   return {
-    title: t(`${service.translationKey}.metaTitle`),
-    description: t(`${service.translationKey}.metaDescription`),
+    title,
+    description,
+    alternates: {
+      canonical: `${siteConfig.url}/${locale}/services/${slug}`,
+      languages: {
+        en: `${siteConfig.url}/en/services/${slug}`,
+        ar: `${siteConfig.url}/ar/services/${slug}`,
+        'x-default': `${siteConfig.url}/en/services/${slug}`,
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      url: `${siteConfig.url}/${locale}/services/${slug}`,
+      type: 'website',
+      locale: isAr ? 'ar_AE' : 'en_AE',
+      images: [ogImage],
+    },
+    twitter: { card: 'summary_large_image', title, description, images: [ogImage.url] },
   };
 }
 
@@ -112,6 +138,12 @@ export default async function ServiceDetailPage({
 
   return (
     <main className="overflow-x-clip">
+      <JsonLd schema={buildService({ name: service.title, description: service.description, slug, locale })} />
+      <JsonLd schema={buildBreadcrumbList([
+        { name: 'Home', href: `/${locale}` },
+        { name: 'Services', href: `/${locale}/services` },
+        { name: service.title, href: `/${locale}/services/${slug}` },
+      ])} />
       {/* ═══════════════════════════════════════════════════════════════
           HERO SECTION
           ═══════════════════════════════════════════════════════════════ */}

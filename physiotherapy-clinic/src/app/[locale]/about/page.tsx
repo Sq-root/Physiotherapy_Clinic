@@ -15,6 +15,39 @@ import {
 import { getTranslations, getLocale } from "next-intl/server";
 import { Link } from "@/i18n/routing";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
+import type { Metadata } from "next";
+import { siteConfig } from "@/config/site";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const isAr = locale === 'ar';
+  const title = isAr
+    ? 'عن د. عيشة شاه | معالجة طبيعية مرخصة من هيئة الصحة بدبي'
+    : 'About Dr. Isha Shah | DHA Licensed Physiotherapist in Dubai';
+  const description = isAr
+    ? 'تعرّف على د. عيشة شاه — معالجة طبيعية مرخصة من هيئة الصحة بدبي، متخصصة في إعادة التأهيل، علاج الألم، وصحة ما بعد الولادة. ٧+ سنوات خبرة، ٣٠٠٠+ مريض.'
+    : 'Meet Dr. Isha Shah — DHA-licensed physiotherapist in Dubai specialising in spine rehabilitation, post-surgical recovery, postnatal restoration, and sports injury. 7+ years, 3000+ patients.';
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `${siteConfig.url}/${locale}/about`,
+      languages: { en: `${siteConfig.url}/en/about`, ar: `${siteConfig.url}/ar/about`, 'x-default': `${siteConfig.url}/en/about` },
+    },
+    openGraph: {
+      title, description,
+      url: `${siteConfig.url}/${locale}/about`,
+      type: 'profile',
+      locale: isAr ? 'ar_AE' : 'en_AE',
+      images: [{ url: '/logo/Dr_isha_Logo.png', width: 1200, height: 630, alt: siteConfig.doctorName }],
+    },
+    twitter: { card: 'summary_large_image', title, description, images: ['/logo/Dr_isha_Logo.png'] },
+  };
+}
 
 export default async function AboutPage() {
   const t = await getTranslations("about");

@@ -221,7 +221,6 @@ export async function Footer() {
             <p className="text-white/50 text-[10px] leading-relaxed mt-2 text-center">
               {siteConfig.contact.address.line1}
               <br />
-              {siteConfig.contact.address.line2}
               {siteConfig.contact.address.city} {siteConfig.contact.address.zip}
             </p>
           </div>
