@@ -41,11 +41,15 @@
       "activeAging": "Active Aging",
       "hydrotherapy": "Hydrotherapy",
       "correctiveExercise": "Corrective Exercise",
-      "neurological": "Neurological",
-      "pediatric": "Pediatric"
-    }
+      "neurological": "Neurological"
+    },
+    "onlineConsultation": "Online Consult"
   },
   "hero": {
+    "locationBadge": {
+      "dubai": "Dubai, UAE",
+      "online": "Online Worldwide"
+    },
     "slides": {
       "sportsRecovery": {
         "badge": "Sports Recovery",
@@ -99,6 +103,7 @@
     "title": "Expert Care For Every",
     "titleHighlight": "Recovery Journey",
     "description": "From sports injuries to chronic conditions, our specialized treatments are designed to restore your mobility and enhance your quality of life.",
+    "introText": "Whether you're in Dubai or anywhere in the world — Dr. Isha Shah offers 22 specialist physiotherapy services in-clinic, as home visits across Dubai, or via secure online consultations worldwide. DHA-licensed, outcome-led, and entirely personalised.",
     "viewAllServices": "View All Services",
     "services": {
       "orthopedic": {
@@ -239,7 +244,7 @@
           },
           {
             "question": "How do I schedule an appointment?",
-            "answer": "You can book online through our website, call us directly, or use our mobile app. Sameday appointments are often available for urgent cases."
+            "answer": "You can book online through our website or call us directly. Sameday appointments are often available for urgent cases."
           }
         ]
       },
@@ -500,6 +505,7 @@
     }
   },
   "servicesPage": {
+    "introText": "Whether you're in Dubai or anywhere in the world — Dr. Isha Shah offers 22 specialist physiotherapy services in-clinic, as home visits across Dubai, or via secure online consultations worldwide. DHA-licensed, outcome-led, and entirely personalised.",
     "badge": "The Methodology",
     "title": "Active",
     "titleHighlight": "Life Design",
@@ -1743,5 +1749,131 @@
       "title": "FAQ",
       "description": "Frequently asked questions about our physiotherapy services and treatments."
     }
+  },
+  "onlinePhysio": {
+    "hero": {
+      "badge": "DHA Licensed · Telehealth Worldwide",
+      "title": "Physiotherapy —",
+      "highlight": "Without Borders",
+      "description": "Live video assessment, personalised rehabilitation plans, and expert guidance delivered directly to you — wherever you are in the world. Same clinical precision as in-clinic. No travel required.",
+      "cta": "Book Online Session",
+      "ctaSecondary": "How It Works"
+    },
+    "howItWorks": {
+      "badge": "Simple Process",
+      "title": "From Anywhere to Recovery in 3 Steps",
+      "steps": [
+        {
+          "title": "Book Your Slot",
+          "description": "Select a time that works for your timezone. You'll receive a secure video link and a pre-session intake form instantly."
+        },
+        {
+          "title": "Live Video Assessment",
+          "description": "Dr. Isha Shah conducts a real-time clinical assessment — posture, movement analysis, pain mapping — via HD video call."
+        },
+        {
+          "title": "Your Personalised Plan",
+          "description": "Receive a structured rehabilitation programme with exercise demos, loading progressions, and direct messaging support between sessions."
+        }
+      ]
+    },
+    "whatWeTreat": {
+      "badge": "Conditions We Treat",
+      "title": "What We Treat Online",
+      "description": "Clinical-grade assessment and rehabilitation for a wide range of musculoskeletal conditions — delivered via secure video from anywhere in the world.",
+      "neck": "Neck & Cervical Pain",
+      "disc": "Disc Prolapse & Sciatica",
+      "shoulder": "Shoulder Impingement",
+      "ergonomics": "Ergonomics & Posture",
+      "womens": "Women's Health",
+      "postnatal": "Pre & Postnatal Care",
+      "senior": "Senior Mobility",
+      "injury": "Injury Prevention",
+      "surgical": "Post-Surgical Recovery"
+    },
+    "why": {
+      "badge": "Why Online",
+      "title": "The Same Care. Delivered Differently.",
+      "description": "Online physiotherapy isn't a compromise — it's a different access point to the same clinical excellence.",
+      "benefits": [
+        {
+          "title": "Flexible Scheduling",
+          "description": "Morning, afternoon, or evening — sessions available 6 days a week, fitting seamlessly around your timezone."
+        },
+        {
+          "title": "Zero Travel Time",
+          "description": "Recover from your home, hotel, or office. No commute, no parking, no waiting room — just clinical care."
+        },
+        {
+          "title": "DHA-Licensed Clinical Care",
+          "description": "Every session conducted by Dr. Isha Shah, a Dubai Health Authority licensed physiotherapist with 7+ years of experience."
+        },
+        {
+          "title": "Recorded Exercise Demos",
+          "description": "Never forget a movement. All exercises explained clearly and can be referenced again between sessions."
+        },
+        {
+          "title": "Ongoing Support",
+          "description": "Direct messaging access between sessions for questions, progressions, and accountability at every stage."
+        },
+        {
+          "title": "Bring a Family Member",
+          "description": "A caregiver can join the session — especially valuable for seniors or post-surgical patients needing a familiar support presence."
+        }
+      ]
+    },
+    "whoFor": {
+      "badge": "Who It's For",
+      "title": "Built for People Like You",
+      "profiles": [
+        {
+          "title": "Expats & Travellers",
+          "description": "Based abroad or travelling frequently? Access Dubai-standard physiotherapy care wherever you land."
+        },
+        {
+          "title": "Busy Professionals",
+          "description": "No time for clinic visits? Book an early-morning or lunchtime session without losing time to commuting."
+        },
+        {
+          "title": "New Mothers",
+          "description": "Postnatal recovery from home — no need to arrange childcare to attend a physiotherapy appointment."
+        },
+        {
+          "title": "Post-Surgery Patients",
+          "description": "Continue your rehabilitation from home after hospital discharge, with expert clinical oversight at every step."
+        },
+        {
+          "title": "Athletes in Training",
+          "description": "Remote injury assessment and return-to-sport programming, even when you're away on competition."
+        },
+        {
+          "title": "Desk Workers",
+          "description": "Live video ergonomic assessment of your actual workspace — recommendations designed around your real setup."
+        }
+      ]
+    },
+    "technology": {
+      "badge": "Technology",
+      "title": "Secure. Simple. Professional.",
+      "description": "No apps to download. A standard video link is all you need — works on any device from any location.",
+      "features": [
+        "HD video for clear, real-time movement assessment",
+        "Screen share capability for exercise demonstrations",
+        "Private, encrypted one-time session links",
+        "Compatible with any device — phone, tablet, or laptop",
+        "Zero software downloads required"
+      ]
+    },
+    "cta": {
+      "title": "Ready to Start Your Recovery — Anywhere?",
+      "description": "Book your first online physiotherapy session with Dr. Isha Shah. Clinical assessment, diagnosis, and your personalised plan — all in one session.",
+      "button": "Book Online Session",
+      "secondary": "View All Services"
+    },
+    "viewAll": "View All Services",
+    "statsPatients": "Patients Helped",
+    "statsRate": "Recovery Rate",
+    "statsYears": "Years Experience",
+    "statsDHA": "DHA Licensed"
   }
 }

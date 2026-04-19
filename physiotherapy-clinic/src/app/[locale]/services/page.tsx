@@ -218,6 +218,15 @@ export default async function ServicesPage({
         </div>
       </section>
 
+      {/* Dual-positioning intro strip */}
+      <div className="bg-forest/[0.03] border-y border-forest/[0.06]">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 py-6 text-center">
+          <p className="text-sm md:text-base text-forest/70 leading-relaxed">
+            {t("introText")}
+          </p>
+        </div>
+      </div>
+
       {/* ═══════════════════════════════════════════════════════════════
           SECTION 2: Full Service Grid with Category Filter
           ═══════════════════════════════════════════════════════════════ */}

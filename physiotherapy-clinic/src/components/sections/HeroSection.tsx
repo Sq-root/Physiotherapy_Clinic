@@ -43,6 +43,10 @@ const slides: HeroSlide[] = [
 export async function HeroSection() {
   const t = await getTranslations("hero");
   const tSupport = await getTranslations("support");
+  const locationBadge = {
+    dubai: t("locationBadge.dubai"),
+    online: t("locationBadge.online"),
+  };
   const locale = await getLocale();
   const isRTL = locale === "ar";
 
@@ -90,6 +94,23 @@ export async function HeroSection() {
       <div
         className={`absolute bottom-40 ${isRTL ? "right-20" : "left-20"} w-20 h-20 border border-seafoam/20 rounded-full pointer-events-none hidden lg:block`}
       />
+
+      {/* Location Badge - Static, crawlable, always visible */}
+      <div className="absolute top-28 md:top-36 left-0 right-0 z-20 pointer-events-none">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm text-white text-[11px] font-semibold uppercase tracking-widest">
+              <svg className="w-3 h-3 text-seafoam shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              {locationBadge.dubai}
+            </span>
+            <span className="text-white/40 text-xs">·</span>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-seafoam/20 border border-seafoam/30 backdrop-blur-sm text-seafoam text-[11px] font-semibold uppercase tracking-widest">
+              <svg className="w-3 h-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              {locationBadge.online}
+            </span>
+          </div>
+        </div>
+      </div>
 
       {/* Stats Row - Static HTML */}
       <div className="absolute bottom-32 md:bottom-40 left-0 right-0 z-20">

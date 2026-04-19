@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-import { Globe } from "lucide-react";
+import { Globe, Monitor } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { Logo } from "@/components/ui/Logo";
 import { NavbarServicesDropdown } from "@/components/layout/NavbarServicesDropdown";
@@ -27,12 +27,13 @@ export function Navbar() {
   const isRTL = locale === "ar";
 
   // Navigation items with translated labels
-  const navItems = [
+  const navItems: { href: string; label: string; isOnline?: boolean }[] = [
     { href: "/", label: t("home") },
     { href: "/services", label: t("services") },
     { href: "/about", label: t("aboutUs") },
     { href: "/faq", label: t("faq") },
     { href: "/contact", label: t("contact") },
+    { href: "/online-physiotherapy", label: t("onlineConsultation"), isOnline: true },
   ];
 
   // Language switcher function
@@ -105,11 +106,16 @@ export function Navbar() {
 
   const activeLinkHref = getActiveLink();
 
-  // The Home page has a dark hero background, so it needs white text initially.
-  // Other pages (including About, Services, Contact) have light backgrounds.
-  const isLightPage = pathname !== "/";
+  // Pages with a dark hero background need white nav text initially (before scroll).
+  const darkHeroPages = ["/", "/online-physiotherapy"];
+  const isLightPage = !darkHeroPages.includes(pathname ?? "");
   // Use dark styling when scrolled OR on a light-background page
   const useDarkStyle = scrolled || isLightPage;
+
+  // Pages that actually render an on-page #appointment section.
+  // Other pages should send users to the homepage booking section.
+  const hasAppointmentAnchor = pathname === "/" || pathname === "/online-physiotherapy";
+  const appointmentHref = hasAppointmentAnchor ? "#appointment" : "/#appointment";
 
   return (
     <>
@@ -182,6 +188,27 @@ export function Navbar() {
                           useDarkStyle={useDarkStyle}
                           isRTL={isRTL}
                         />
+                      );
+                    }
+
+                    // Online Consultation — distinct accent pill
+                    if (link.isOnline) {
+                      return (
+                        <Link
+                          key="online-consultation"
+                          href={link.href}
+                          className={cn(
+                            "relative flex items-center gap-1.5 px-3 py-1.5 rounded-full border transition-all duration-200 group",
+                            useDarkStyle
+                              ? "border-seafoam/40 text-seafoam hover:bg-seafoam hover:text-forest"
+                              : "border-white/40 text-white/90 hover:bg-white hover:text-forest",
+                          )}
+                        >
+                          <Monitor className="w-3 h-3 shrink-0" />
+                          <span className="text-[11px] font-semibold uppercase tracking-[0.1em] whitespace-nowrap">
+                            {link.label}
+                          </span>
+                        </Link>
                       );
                     }
 
@@ -287,7 +314,7 @@ export function Navbar() {
                   className="shrink-0"
                 >
                   <Link
-                    href="#appointment"
+                    href={appointmentHref}
                     className={cn(
                       "inline-flex items-center justify-center gap-2 h-10 px-6 text-[11px] font-bold uppercase tracking-widest rounded-full whitespace-nowrap transition-all duration-300 group outline-none",
                       useDarkStyle
@@ -434,6 +461,29 @@ export function Navbar() {
                       );
                     }
 
+                    // Online Consultation — accent style
+                    if (link.isOnline) {
+                      return (
+                        <motion.div
+                          key="online-consultation-mobile"
+                          initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.05 }}
+                        >
+                          <Link
+                            href={link.href}
+                            onClick={() => setMobileOpen(false)}
+                            className="flex items-center gap-2 py-3 px-4 rounded-xl text-seafoam border border-seafoam/30 hover:bg-seafoam/10 transition-colors"
+                          >
+                            <Monitor className="w-4 h-4 shrink-0" />
+                            <span className="text-sm font-semibold uppercase tracking-wider">
+                              {link.label}
+                            </span>
+                          </Link>
+                        </motion.div>
+                      );
+                    }
+
                     return (
                       <motion.div
                         key={link.href}
@@ -480,7 +530,7 @@ export function Navbar() {
                   transition={{ delay: 0.3 }}
                 >
                   <Link
-                    href="#appointment"
+                    href={appointmentHref}
                     onClick={() => setMobileOpen(false)}
                     className="flex items-center justify-center gap-2 w-full h-12 bg-forest text-white text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 shadow-[4px_4px_0px_0px_#A4C639] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
                   >

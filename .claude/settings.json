@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(node gen-favicons.mjs)",
-      "Bash(node /d/Learning/Project/Physiotherapy_Clinic_Nextjs/physiotherapy-clinic/gen-favicons.mjs)"
+      "Bash(node /d/Learning/Project/Physiotherapy_Clinic_Nextjs/physiotherapy-clinic/gen-favicons.mjs)",
+      "Bash(node -e \"JSON.parse\\(require\\('fs'\\).readFileSync\\('messages/en.json', 'utf8'\\)\\); console.log\\('en.json OK'\\);\")",
+      "Bash(node -e \"JSON.parse\\(require\\('fs'\\).readFileSync\\('messages/ar.json', 'utf8'\\)\\); console.log\\('ar.json OK'\\);\")",
+      "Bash(node -e ' *)"
     ]
   }
 }
