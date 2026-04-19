@@ -59,37 +59,41 @@ export function Logo({
     <div className={cn("flex items-center gap-2.5 group", className)}>
       <div
         className={cn(
-          "relative flex items-center justify-center rounded-full transition-all duration-300",
+          "relative flex items-center justify-center rounded-full transition-all duration-300 overflow-hidden shrink-0",
           sizeClasses[size],
           useDarkStyle
-            ? "bg-[#E8EFE3] border border-[#002D04]/10"
-            : "bg-white/20 backdrop-blur-sm border border-white/30"
+            ? "bg-white border border-[#002D04]/10 shadow-sm"
+            : "bg-white/95 border-2 border-white/80 shadow-md",
         )}
       >
         <Image
           src="/logo/Dr_isha_Logo.png"
           alt="Company Logo"
-          width={size === "sm" ? 28 : size === "md" ? 36 : 44}
-          height={size === "sm" ? 28 : size === "md" ? 36 : 44}
-          className={cn("object-contain p-1", sizeClasses[size])}
+          width={size === "sm" ? 64 : size === "md" ? 80 : 96}
+          height={size === "sm" ? 64 : size === "md" ? 80 : 96}
+          className="object-contain w-[75%] h-[75%]"
         />
       </div>
       {showName && (
         <div className="flex flex-col justify-center">
           {splitName ? (
             <>
-              <span className={cn(
-                "font-bold tracking-tight uppercase leading-none transition-colors duration-300",
-                size === "sm" ? "text-base" : "text-lg",
-                useDarkStyle ? "text-forest" : "text-white"
-              )}>
+              <span
+                className={cn(
+                  "font-bold tracking-tight uppercase leading-none transition-colors duration-300",
+                  size === "sm" ? "text-base" : "text-lg",
+                  useDarkStyle ? "text-forest" : "text-white",
+                )}
+              >
                 {firstName}
               </span>
-              <span className={cn(
-                "font-bold tracking-[0.2em] uppercase leading-none mt-1 transition-colors duration-300",
-                size === "sm" ? "text-[8px]" : "text-[10px]",
-                useDarkStyle ? "text-forest/80" : "text-seafoam"
-              )}>
+              <span
+                className={cn(
+                  "font-bold tracking-[0.2em] uppercase leading-none mt-1 transition-colors duration-300",
+                  size === "sm" ? "text-[8px]" : "text-[10px]",
+                  useDarkStyle ? "text-forest/80" : "text-seafoam",
+                )}
+              >
                 {otherNames}
               </span>
             </>
@@ -98,7 +102,7 @@ export function Logo({
               className={cn(
                 "font-medium tracking-tight leading-none whitespace-nowrap transition-colors duration-300",
                 textClasses[size],
-                useDarkStyle ? "text-forest" : "text-white"
+                useDarkStyle ? "text-forest" : "text-white",
               )}
             >
               {siteConfig.name}

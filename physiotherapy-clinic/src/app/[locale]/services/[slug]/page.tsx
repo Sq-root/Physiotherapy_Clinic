@@ -187,11 +187,11 @@ export default async function ServiceDetailPage({
                 </div>
               </div>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-forest mb-4 tracking-tight leading-[1.1]">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-forest mb-4 tracking-tight leading-[1.1]">
                 {t(`${key}.title`)}
               </h1>
 
-              <p className="text-lg md:text-xl text-seafoam font-medium mb-6 italic">
+              <p className="text-sm md:text-lg md:text-xl text-seafoam font-medium mb-6 italic">
                 {t(`${key}.heroSubtitle`)}
               </p>
 
@@ -225,7 +225,7 @@ export default async function ServiceDetailPage({
               {/* CTA */}
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-forest text-white font-bold uppercase tracking-wider rounded-full hover:bg-seafoam hover:text-forest transition-all duration-300 shadow-[4px_4px_0px_0px_#A4C639] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]"
+                className="inline-flex items-center gap-2 sm:gap-3 px-6 py-3.5 sm:px-8 sm:py-4 bg-forest text-white font-bold uppercase tracking-wide sm:tracking-wider text-sm sm:text-base whitespace-nowrap rounded-full hover:bg-seafoam hover:text-forest transition-all duration-300 shadow-[4px_4px_0px_0px_#A4C639] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]"
               >
                 {t("bookThisService")}
                 <ArrowRight
@@ -290,14 +290,14 @@ export default async function ServiceDetailPage({
             <span className="text-seafoam font-bold uppercase tracking-[0.3em] text-xs">
               {t("mechanism")}
             </span>
-            <h2 className="text-3xl md:text-5xl font-bold text-white mt-4 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mt-4 tracking-tight">
               {t("mechanismSubtitle")}
             </h2>
           </AnimateOnView>
 
           <AnimateOnView>
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-[2.5rem] p-8 md:p-12">
-              <p className="text-white/90 text-lg md:text-xl font-light leading-relaxed">
+              <p className="text-white/90 text-base md:text-lg lg:text-xl font-light leading-relaxed">
                 {t(`${key}.overview`)}
               </p>
             </div>
@@ -320,7 +320,7 @@ export default async function ServiceDetailPage({
               <span className="text-seafoam font-bold uppercase tracking-[0.3em] text-xs">
                 {t("symptoms")}
               </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-forest mt-4 tracking-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-forest mt-4 tracking-tight">
                 {t("symptomsSubtitle")}
               </h2>
             </AnimateOnView>
@@ -330,12 +330,12 @@ export default async function ServiceDetailPage({
                 <AnimateOnView
                   key={index}
                   delay={index * 0.1}
-                  className="flex items-start gap-5 p-6 rounded-[2rem] bg-section/50 border border-forest/5 hover:bg-section hover:shadow-lg hover:border-seafoam/20 transition-all duration-300"
+                  className="flex items-start gap-4 p-4 md:p-6 rounded-[2rem] bg-section/50 border border-forest/5 hover:bg-section hover:shadow-lg hover:border-seafoam/20 transition-all duration-300"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center shrink-0 mt-0.5">
-                    <AlertCircle className="w-5 h-5 text-red-400" />
+                  <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl bg-red-50 flex items-center justify-center shrink-0 mt-0.5">
+                    <AlertCircle className="w-4 h-4 md:w-5 md:h-5 text-red-400" />
                   </div>
-                  <p className="text-forest font-medium leading-relaxed">
+                  <p className="text-forest text-sm md:text-base font-medium leading-relaxed">
                     {symptom}
                   </p>
                 </AnimateOnView>
@@ -357,7 +357,7 @@ export default async function ServiceDetailPage({
               <span className="text-lime font-bold uppercase tracking-[0.3em] text-xs">
                 {t("clinicalApproach")}
               </span>
-              <h2 className="text-3xl md:text-5xl font-bold text-forest mt-4 tracking-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-forest mt-4 tracking-tight">
                 {t(`${key}.title`)}
               </h2>
             </AnimateOnView>
@@ -401,11 +401,11 @@ export default async function ServiceDetailPage({
                           index % 2 === 0 ? "" : "md:text-end"
                         }`}
                       >
-                        <div className="bg-white backdrop-blur-sm border border-forest/5 rounded-2xl p-6 hover:shadow-lg hover:border-seafoam/20 transition-all duration-300">
-                          <h3 className="text-forest font-bold text-lg mb-2">
+                        <div className="bg-white backdrop-blur-sm border border-forest/5 rounded-2xl p-4 md:p-6 hover:shadow-lg hover:border-seafoam/20 transition-all duration-300">
+                          <h3 className="text-forest font-bold text-sm md:text-base mb-1.5">
                             {stepTitle}
                           </h3>
-                          <p className="text-forest/70 font-light leading-relaxed">
+                          <p className="text-forest/70 font-light leading-relaxed text-sm">
                             {stepDesc}
                           </p>
                         </div>
@@ -432,7 +432,7 @@ export default async function ServiceDetailPage({
             <AnimateOnView>
               <div className="mb-8">
                 <div className="h-px w-16 bg-lime mb-6" />
-                <h2 className="text-3xl md:text-4xl font-bold text-forest tracking-tight">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-forest tracking-tight">
                   {t("benefits")}
                 </h2>
               </div>
@@ -441,12 +441,12 @@ export default async function ServiceDetailPage({
                   <AnimateOnView
                     key={index}
                     delay={index * 0.08}
-                    className="flex items-start gap-4 p-4 rounded-2xl bg-section/50 border border-forest/5 hover:bg-section hover:shadow-sm transition-all duration-300"
+                    className="flex items-start gap-3 p-3.5 md:p-4 rounded-2xl bg-section/50 border border-forest/5 hover:bg-section hover:shadow-sm transition-all duration-300"
                   >
-                    <div className="w-8 h-8 rounded-xl bg-lime/20 flex items-center justify-center shrink-0 mt-0.5">
-                      <CheckCircle2 className="w-4 h-4 text-lime" />
+                    <div className="w-7 h-7 md:w-8 md:h-8 rounded-xl bg-lime/20 flex items-center justify-center shrink-0 mt-0.5">
+                      <CheckCircle2 className="w-3.5 h-3.5 md:w-4 md:h-4 text-lime" />
                     </div>
-                    <p className="text-forest font-medium">{benefit}</p>
+                    <p className="text-forest text-sm md:text-base font-medium">{benefit}</p>
                   </AnimateOnView>
                 ))}
               </div>
@@ -456,7 +456,7 @@ export default async function ServiceDetailPage({
             <AnimateOnView delay={0.15}>
               <div className="mb-8">
                 <div className="h-px w-16 bg-seafoam mb-6" />
-                <h2 className="text-3xl md:text-4xl font-bold text-forest tracking-tight">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-forest tracking-tight">
                   {t("idealFor")}
                 </h2>
               </div>
@@ -465,12 +465,12 @@ export default async function ServiceDetailPage({
                   <AnimateOnView
                     key={index}
                     delay={index * 0.08 + 0.15}
-                    className="flex items-start gap-4 p-4 rounded-2xl bg-seafoam/5 border border-seafoam/10 hover:bg-seafoam/10 hover:shadow-sm transition-all duration-300"
+                    className="flex items-start gap-3 p-3.5 md:p-4 rounded-2xl bg-seafoam/5 border border-seafoam/10 hover:bg-seafoam/10 hover:shadow-sm transition-all duration-300"
                   >
-                    <div className="w-8 h-8 rounded-xl bg-seafoam/20 flex items-center justify-center shrink-0 mt-0.5">
-                      <Users className="w-4 h-4 text-seafoam" />
+                    <div className="w-7 h-7 md:w-8 md:h-8 rounded-xl bg-seafoam/20 flex items-center justify-center shrink-0 mt-0.5">
+                      <Users className="w-3.5 h-3.5 md:w-4 md:h-4 text-seafoam" />
                     </div>
-                    <p className="text-forest font-medium">{item}</p>
+                    <p className="text-forest text-sm md:text-base font-medium">{item}</p>
                   </AnimateOnView>
                 ))}
               </div>
@@ -495,7 +495,7 @@ export default async function ServiceDetailPage({
               <span className="text-seafoam font-bold uppercase tracking-[0.3em] text-xs block mb-6">
                 {t("outcome")}
               </span>
-              <blockquote className="text-2xl md:text-3xl lg:text-4xl font-light text-white leading-relaxed tracking-tight">
+              <blockquote className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-white leading-relaxed tracking-tight">
                 <Quote className="w-8 h-8 text-white/20 mx-auto mb-4" />
                 {outcome}
               </blockquote>
@@ -514,11 +514,11 @@ export default async function ServiceDetailPage({
             <AnimateOnView>
               <div className="mb-6">
                 <div className="h-px w-16 bg-lime mb-6" />
-                <h2 className="text-3xl md:text-4xl font-bold text-forest tracking-tight mb-6">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-forest tracking-tight mb-6">
                   {t("whatToExpect")}
                 </h2>
               </div>
-              <p className="text-forest/70 text-lg font-light leading-relaxed mb-8">
+              <p className="text-forest/70 text-base md:text-lg font-light leading-relaxed mb-8">
                 {t(`${key}.whatToExpect`)}
               </p>
 
@@ -565,10 +565,10 @@ export default async function ServiceDetailPage({
                 style={{ color: service.color === "#002D04" ? "#002D04" : service.color }}
               />
             </div>
-            <h2 className="text-4xl md:text-6xl font-bold text-forest mb-6 tracking-tighter">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-forest mb-6 tracking-tighter">
               {t("readyToStart")}
             </h2>
-            <p className="text-forest/60 text-lg font-light max-w-2xl mx-auto mb-10 leading-relaxed">
+            <p className="text-forest/60 text-sm md:text-base lg:text-lg font-light max-w-2xl mx-auto mb-10 leading-relaxed">
               {t("readyCta")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -599,7 +599,7 @@ export default async function ServiceDetailPage({
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <AnimateOnView className="text-center mb-16">
             <div className="h-px w-16 bg-seafoam mx-auto mb-6" />
-            <h2 className="text-3xl md:text-4xl font-bold text-forest tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-forest tracking-tight">
               {t("exploreMore")}
             </h2>
           </AnimateOnView>

@@ -161,13 +161,13 @@ export default async function ServicesPage({
                 {t("badge")}
               </span>
             </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-forest mb-6 tracking-tight leading-[1.05]">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-forest mb-6 tracking-tight leading-[1.05]">
               {t("title")}{" "}
               <span className="text-lime font-script">
                 {t("titleHighlight")}
               </span>
             </h1>
-            <p className="text-lg md:text-xl text-forest/80 font-light max-w-2xl mx-auto leading-relaxed">
+            <p className="text-sm md:text-lg lg:text-xl text-forest/80 font-light max-w-2xl mx-auto leading-relaxed">
               {t("description")}
             </p>
           </AnimateOnView>
@@ -176,7 +176,7 @@ export default async function ServicesPage({
           <AnimateOnView delay={0.2} className="flex justify-center">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-forest text-white font-bold uppercase tracking-wider rounded-full transition-all duration-300 shadow-[4px_4px_0px_0px_#A4C639] hover:bg-seafoam hover:text-forest hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[3px] active:translate-y-[3px] active:shadow-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 outline-none"
+              className="inline-flex items-center gap-2 sm:gap-3 px-6 py-3.5 sm:px-8 sm:py-4 bg-forest text-white font-bold uppercase tracking-wide sm:tracking-wider text-sm sm:text-base whitespace-nowrap rounded-full transition-all duration-300 shadow-[4px_4px_0px_0px_#A4C639] hover:bg-seafoam hover:text-forest hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[3px] active:translate-y-[3px] active:shadow-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 outline-none"
             >
               {t("bookConsultation")}
               <ArrowRight className={`w-5 h-5 ${isRTL ? "rotate-180" : ""}`} />
@@ -320,10 +320,10 @@ export default async function ServicesPage({
             <span className="py-1.5 px-5 rounded-full bg-forest text-white font-bold uppercase tracking-[0.25em] text-[9px] shadow-lg">
               {t("faq.badge")}
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-forest mt-6 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-forest mt-6 tracking-tight">
               {t("faq.title")}
             </h2>
-            <p className="text-forest/60 text-base font-light mt-4 max-w-xl mx-auto">
+            <p className="text-forest/60 text-sm md:text-base font-light mt-4 max-w-xl mx-auto">
               {t("faq.description")}
             </p>
           </AnimateOnView>
@@ -353,10 +353,10 @@ export default async function ServicesPage({
 
         <div className="mx-auto max-w-4xl px-6 lg:px-8 text-center relative z-10">
           <AnimateOnView>
-            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tighter">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tighter">
               Ready to Start?
             </h2>
-            <p className="text-white/60 text-lg font-light max-w-2xl mx-auto mb-10 leading-relaxed">
+            <p className="text-white/60 text-sm md:text-base lg:text-lg font-light max-w-2xl mx-auto mb-10 leading-relaxed">
               Take the first step toward recovery. Book your personalized
               consultation today.
             </p>

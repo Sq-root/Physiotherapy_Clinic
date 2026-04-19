@@ -277,7 +277,7 @@ function ServiceCard({
             )}
 
             {/* Card title on image */}
-            <h3 className="text-white text-[1.1rem] font-extrabold leading-snug tracking-tight drop-shadow-sm">
+            <h3 className="text-white text-[1rem] sm:text-[1.1rem] font-extrabold leading-snug tracking-tight drop-shadow-sm">
               {title}
             </h3>
           </div>
@@ -416,7 +416,7 @@ function FilterTab({
     <motion.button
       onClick={onClick}
       whileTap={{ scale: 0.96 }}
-      className={`relative inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-bold tracking-wide transition-all duration-300 ${
+      className={`relative inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-xs sm:text-sm font-bold tracking-wide transition-all duration-300 ${
         isActive
           ? "bg-forest text-white shadow-lg shadow-forest/30"
           : "bg-white text-forest/60 border border-forest/10 hover:border-forest/25 hover:text-forest hover:bg-forest/[0.03]"
