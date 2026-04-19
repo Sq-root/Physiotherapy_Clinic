@@ -22,22 +22,22 @@ export function ServiceDetailInteractive({
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <div className="bg-section rounded-[2.5rem] p-8 md:p-10 border border-forest/5">
+    <div className="bg-section rounded-2xl p-4 md:p-10 border border-forest/5">
       {/* Header */}
-      <div className="flex items-center gap-4 mb-8">
+      <div className="flex items-center gap-3 mb-6">
         <div
-          className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg"
+          className="w-12 h-12 rounded-lg flex items-center justify-center shadow-lg"
           style={{ backgroundColor: serviceColor + "20" }}
         >
           <DynamicIcon
             name={serviceIcon}
-            className="w-7 h-7"
+            className="w-6 h-6"
             style={{ color: serviceColor }}
           />
         </div>
         <div>
-          <p className="text-forest font-bold text-lg tracking-tight">{serviceTitle}</p>
-          <p className="text-forest/40 text-xs font-semibold uppercase tracking-wider">
+          <p className="text-forest font-bold text-base md:text-lg tracking-tight">{serviceTitle}</p>
+          <p className="text-forest/40 text-[10px] md:text-xs font-semibold uppercase tracking-wider">
             Treatment Highlights
           </p>
         </div>
@@ -53,7 +53,7 @@ export function ServiceDetailInteractive({
               key={index}
               onClick={() => setActiveIndex(index)}
               className={cn(
-                "w-full flex items-center gap-4 p-4 rounded-2xl text-start transition-all duration-300 border",
+                "w-full flex items-start gap-3 p-3 md:p-4 rounded-xl md:rounded-2xl text-start transition-all duration-300 border",
                 isActive
                   ? "bg-white border-seafoam/20 shadow-md"
                   : "bg-white/50 border-transparent hover:bg-white hover:border-forest/5"
@@ -62,20 +62,20 @@ export function ServiceDetailInteractive({
             >
               <div
                 className={cn(
-                  "w-8 h-8 rounded-xl flex items-center justify-center shrink-0 transition-colors duration-300",
+                  "w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-300",
                   isActive ? "bg-seafoam" : "bg-forest/5"
                 )}
               >
                 <CheckCircle2
                   className={cn(
-                    "w-4 h-4 transition-colors duration-300",
+                    "w-3 h-3 transition-colors duration-300",
                     isActive ? "text-white" : "text-forest/30"
                   )}
                 />
               </div>
               <span
                 className={cn(
-                  "font-medium transition-colors duration-300",
+                  "font-medium transition-colors duration-300 text-sm md:text-base leading-snug",
                   isActive ? "text-forest" : "text-forest/60"
                 )}
               >
@@ -83,7 +83,7 @@ export function ServiceDetailInteractive({
               </span>
               <ChevronDown
                 className={cn(
-                  "w-4 h-4 ms-auto shrink-0 transition-all duration-300",
+                  "w-3 h-3 ms-auto shrink-0 transition-all duration-300 mt-1",
                   isActive ? "text-seafoam rotate-180" : "text-forest/20"
                 )}
               />

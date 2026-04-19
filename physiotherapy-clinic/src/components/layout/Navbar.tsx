@@ -287,7 +287,7 @@ export function Navbar() {
                   className="shrink-0"
                 >
                   <Link
-                    href="/contact"
+                    href="#appointment"
                     className={cn(
                       "inline-flex items-center justify-center gap-2 h-10 px-6 text-[11px] font-bold uppercase tracking-widest rounded-full whitespace-nowrap transition-all duration-300 group outline-none",
                       useDarkStyle
@@ -480,7 +480,7 @@ export function Navbar() {
                   transition={{ delay: 0.3 }}
                 >
                   <Link
-                    href="/contact"
+                    href="#appointment"
                     onClick={() => setMobileOpen(false)}
                     className="flex items-center justify-center gap-2 w-full h-12 bg-forest text-white text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 shadow-[4px_4px_0px_0px_#A4C639] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
                   >
