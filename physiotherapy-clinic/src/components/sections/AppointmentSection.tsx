@@ -110,7 +110,15 @@ export function AppointmentSection() {
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errors, setErrors] = useState<string[]>([]);
   const [showCountryDropdown, setShowCountryDropdown] = useState(false);
+  const [isRecaptchaReady, setIsRecaptchaReady] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Monitor reCAPTCHA readiness
+  useEffect(() => {
+    if (executeRecaptcha) {
+      setIsRecaptchaReady(true);
+    }
+  }, [executeRecaptcha]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -241,11 +249,23 @@ export function AppointmentSection() {
 
     try {
       if (!executeRecaptcha) {
-        setErrors(["Security check unavailable. Please refresh and try again."]);
+        setErrors([
+          "Security check is loading. Please wait a moment and try again.",
+          "If the problem persists, please refresh the page.",
+        ]);
         setStatus("error");
         return;
       }
-      const recaptchaToken = await executeRecaptcha("appointment_booking");
+
+      let recaptchaToken: string;
+      try {
+        recaptchaToken = await executeRecaptcha("appointment_booking");
+      } catch (recaptchaError) {
+        console.error("reCAPTCHA execution failed:", recaptchaError);
+        setErrors(["Failed to verify security check. Please try again."]);
+        setStatus("error");
+        return;
+      }
 
       const response = await fetch("/api/appointments", {
         method: "POST",
@@ -791,7 +811,7 @@ export function AppointmentSection() {
                     {/* Submit Button */}
                     <motion.button
                       type="submit"
-                      disabled={status === "loading"}
+                      disabled={status === "loading" || !isRecaptchaReady}
                       className="w-full py-4 bg-forest text-white font-bold uppercase tracking-widest rounded-xl flex items-center justify-center gap-3 transition-all duration-300 shadow-[4px_4px_0px_0px_#A4C639] hover:bg-seafoam hover:translate-x-[2.5px] hover:translate-y-[2.5px] hover:shadow-none hover:text-forest active:translate-x-[4px] active:translate-y-[4px] disabled:opacity-70 disabled:cursor-not-allowed outline-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2"
                       whileHover={{ scale: 1 }}
                       whileTap={{ scale: 1 }}
@@ -800,6 +820,11 @@ export function AppointmentSection() {
                         <>
                           <Loader2 className="w-5 h-5 animate-spin" />
                           <span>Booking...</span>
+                        </>
+                      ) : !isRecaptchaReady ? (
+                        <>
+                          <Loader2 className="w-5 h-5 animate-spin" />
+                          <span>Loading Security...</span>
                         </>
                       ) : (
                         <>
